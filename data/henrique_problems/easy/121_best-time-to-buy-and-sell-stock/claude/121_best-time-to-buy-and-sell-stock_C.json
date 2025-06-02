@@ -1,1 +1,45 @@
-{}
+{
+  "data": {
+    "submissionDetails": {
+      "runtime": 0,
+      "runtimeDisplay": "0 ms",
+      "runtimePercentile": 100.0,
+      "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"0\", 61.4523], [\"1\", 5.5662], [\"2\", 3.7108], [\"3\", 10.1727], [\"4\", 10.3647], [\"5\", 1.0557], [\"6\", 1.1836]]}",
+      "memory": 15220000,
+      "memoryDisplay": "15.2 MB",
+      "memoryPercentile": 81.6379,
+      "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"15100\", 0.3839], [\"15200\", 17.9782], [\"15300\", 38.9315], [\"15400\", 25.3999], [\"15500\", 7.9974]]}",
+      "code": "#include <stdio.h>\n#include <stdlib.h>\n\n// Solu\u00e7\u00e3o principal - Uma passada O(n)\nint maxProfit(int* prices, int pricesSize) {\n    if (pricesSize <= 1) {\n        return 0;\n    }\n    \n    int minPrice = prices[0];  // Menor pre\u00e7o encontrado at\u00e9 agora\n    int maxProfit = 0;        // Maior lucro poss\u00edvel\n    \n    for (int i = 1; i < pricesSize; i++) {\n        // Se encontramos um pre\u00e7o menor, atualizamos\n        if (prices[i] < minPrice) {\n            minPrice = prices[i];\n        }\n        // Caso contr\u00e1rio, calculamos o lucro vendendo hoje\n        else {\n            int currentProfit = prices[i] - minPrice;\n            if (currentProfit > maxProfit) {\n                maxProfit = currentProfit;\n            }\n        }\n    }\n    \n    return maxProfit;\n}\n",
+      "timestamp": 1748827250,
+      "statusCode": 10,
+      "user": {
+        "username": "yosQbj5lkC",
+        "profile": {
+          "realName": "Henrique Freitas",
+          "userAvatar": "https://assets.leetcode.com/users/yosQbj5lkC/avatar_1748722942.png"
+        }
+      },
+      "lang": { "name": "c", "verboseName": "C" },
+      "question": {
+        "questionId": "121",
+        "titleSlug": "best-time-to-buy-and-sell-stock",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null,
+      "lastTestcase": "",
+      "codeOutput": "",
+      "expectedOutput": "",
+      "totalCorrect": 212,
+      "totalTestcases": 212,
+      "fullCodeOutput": null,
+      "testDescriptions": null,
+      "testBodies": null,
+      "testInfo": null,
+      "stdOutput": ""
+    }
+  }
+}

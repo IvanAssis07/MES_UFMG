@@ -1,1 +1,45 @@
-{}
+{
+  "data": {
+    "submissionDetails": {
+      "runtime": 0,
+      "runtimeDisplay": "0 ms",
+      "runtimePercentile": 100.0,
+      "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"0\", 87.7397], [\"1\", 1.7123], [\"2\", 2.4658], [\"3\", 3.1507], [\"4\", 0.3425]]}",
+      "memory": 8084000,
+      "memoryDisplay": "8.1 MB",
+      "memoryPercentile": 67.6028,
+      "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"7900\", 2.7397], [\"8000\", 29.6575], [\"8100\", 37.5342], [\"8200\", 16.7808], [\"8300\", 7.1918], [\"8400\", 1.0274], [\"8500\", 0.0685]]}",
+      "code": "#include <stdio.h>\n#include <stdlib.h>\n#include <string.h>\n\nchar* addBinary(const char* a, const char* b) {\n    int lenA = strlen(a);\n    int lenB = strlen(b);\n    int maxLen = lenA > lenB ? lenA : lenB;\n    \n    // Alocar espa\u00e7o suficiente para o resultado (m\u00e1x + 1 para carry, +1 para '\\0')\n    char* result = (char*)malloc(maxLen + 2);\n    result[maxLen + 1] = '\\0';\n\n    int i = lenA - 1, j = lenB - 1, k = maxLen, carry = 0;\n\n    while (i >= 0 || j >= 0 || carry) {\n        int bitA = i >= 0 ? a[i--] - '0' : 0;\n        int bitB = j >= 0 ? b[j--] - '0' : 0;\n        int sum = bitA + bitB + carry;\n\n        result[k--] = (sum % 2) + '0';\n        carry = sum / 2;\n    }\n\n    // Se n\u00e3o houve carry no final, retornamos a string come\u00e7ando de result + 1\n    if (k == 0)\n        return result + 1;\n    \n    // Caso contr\u00e1rio, colocamos '1' no in\u00edcio\n    result[0] = '1';\n    return result;\n}\n",
+      "timestamp": 1748824417,
+      "statusCode": 10,
+      "user": {
+        "username": "yosQbj5lkC",
+        "profile": {
+          "realName": "Henrique Freitas",
+          "userAvatar": "https://assets.leetcode.com/users/yosQbj5lkC/avatar_1748722942.png"
+        }
+      },
+      "lang": { "name": "c", "verboseName": "C" },
+      "question": {
+        "questionId": "67",
+        "titleSlug": "add-binary",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null,
+      "lastTestcase": "",
+      "codeOutput": "",
+      "expectedOutput": "",
+      "totalCorrect": 296,
+      "totalTestcases": 296,
+      "fullCodeOutput": null,
+      "testDescriptions": null,
+      "testBodies": null,
+      "testInfo": null,
+      "stdOutput": ""
+    }
+  }
+}

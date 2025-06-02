@@ -1,1 +1,45 @@
-{}
+{
+  "data": {
+    "submissionDetails": {
+      "runtime": 0,
+      "runtimeDisplay": "0 ms",
+      "runtimePercentile": 100.0,
+      "runtimeDistribution": "{\"lang\": \"python\", \"distribution\": [[\"0\", 93.8976], [\"1\", 0.9577], [\"2\", 0.6682], [\"3\", 1.9599], [\"4\", 1.5813]]}",
+      "memory": 12316000,
+      "memoryDisplay": "12.3 MB",
+      "memoryPercentile": 80.76840000000001,
+      "memoryDistribution": "{\"lang\": \"python\", \"distribution\": [[\"12000\", 0.0111], [\"12100\", 0.0445], [\"12200\", 1.3029], [\"12300\", 17.8731], [\"12400\", 28.1849], [\"12500\", 40.2895]]}",
+      "code": "class Solution(object):\n    def climbStairs(self, n):\n        \"\"\"\n        :type n: int\n        :rtype: int\n        \"\"\"\n        if n <= 2:\n            return n\n        \n        # Fibonacci sequence: f(n) = f(n-1) + f(n-2)\n        # f(1) = 1, f(2) = 2\n        prev2, prev1 = 1, 2\n        \n        for i in range(3, n + 1):\n            current = prev1 + prev2\n            prev2, prev1 = prev1, current\n        \n        return prev1",
+      "timestamp": 1748825533,
+      "statusCode": 10,
+      "user": {
+        "username": "yosQbj5lkC",
+        "profile": {
+          "realName": "Henrique Freitas",
+          "userAvatar": "https://assets.leetcode.com/users/yosQbj5lkC/avatar_1748722942.png"
+        }
+      },
+      "lang": { "name": "python", "verboseName": "Python" },
+      "question": {
+        "questionId": "70",
+        "titleSlug": "climbing-stairs",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null,
+      "lastTestcase": "",
+      "codeOutput": "",
+      "expectedOutput": "",
+      "totalCorrect": 45,
+      "totalTestcases": 45,
+      "fullCodeOutput": null,
+      "testDescriptions": null,
+      "testBodies": null,
+      "testInfo": null,
+      "stdOutput": ""
+    }
+  }
+}

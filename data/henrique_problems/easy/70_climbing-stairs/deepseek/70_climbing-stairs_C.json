@@ -1,1 +1,45 @@
-{}
+{
+  "data": {
+    "submissionDetails": {
+      "runtime": 0,
+      "runtimeDisplay": "0 ms",
+      "runtimePercentile": 100.0,
+      "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"0\", 98.503], [\"1\", 0.1996], [\"2\", 0.4741], [\"3\", 0.1248], [\"4\", 0.025]]}",
+      "memory": 7784000,
+      "memoryDisplay": "7.8 MB",
+      "memoryPercentile": 63.0489,
+      "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"7500\", 0.0499], [\"7600\", 4.0669], [\"7700\", 32.8343], [\"7800\", 37.1257], [\"7900\", 11.0529], [\"8000\", 9.2066]]}",
+      "code": "int climbStairs(int n) {\n    if (n == 1) return 1;\n    if (n == 2) return 2;\n    \n    int prev1 = 2;  // Represents ways to reach step n-1\n    int prev2 = 1;  // Represents ways to reach step n-2\n    int current = 0;\n    \n    for (int i = 3; i <= n; i++) {\n        current = prev1 + prev2;\n        prev2 = prev1;\n        prev1 = current;\n    }\n    \n    return current;\n}",
+      "timestamp": 1748825447,
+      "statusCode": 10,
+      "user": {
+        "username": "yosQbj5lkC",
+        "profile": {
+          "realName": "Henrique Freitas",
+          "userAvatar": "https://assets.leetcode.com/users/yosQbj5lkC/avatar_1748722942.png"
+        }
+      },
+      "lang": { "name": "c", "verboseName": "C" },
+      "question": {
+        "questionId": "70",
+        "titleSlug": "climbing-stairs",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null,
+      "lastTestcase": "",
+      "codeOutput": "",
+      "expectedOutput": "",
+      "totalCorrect": 45,
+      "totalTestcases": 45,
+      "fullCodeOutput": null,
+      "testDescriptions": null,
+      "testBodies": null,
+      "testInfo": null,
+      "stdOutput": ""
+    }
+  }
+}

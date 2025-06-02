@@ -1,1 +1,45 @@
-{}
+{
+  "data": {
+    "submissionDetails": {
+      "runtime": 0,
+      "runtimeDisplay": "0 ms",
+      "runtimePercentile": 100.0,
+      "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"0\", 61.4523], [\"1\", 5.5662], [\"2\", 3.7108], [\"3\", 10.1727], [\"4\", 10.3647], [\"5\", 1.0557], [\"6\", 1.1836]]}",
+      "memory": 15312000,
+      "memoryDisplay": "15.3 MB",
+      "memoryPercentile": 42.7064,
+      "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"15100\", 0.3839], [\"15200\", 17.9782], [\"15300\", 38.9315], [\"15400\", 25.3999], [\"15500\", 7.9974]]}",
+      "code": "#include <stdio.h>\n#include <limits.h>\n\nint maxProfit(int* prices, int pricesSize) {\n    if (pricesSize <= 1) return 0;\n    \n    int min_price = INT_MAX;\n    int max_profit = 0;\n    \n    for (int i = 0; i < pricesSize; i++) {\n        if (prices[i] < min_price) {\n            min_price = prices[i];\n        } else if (prices[i] - min_price > max_profit) {\n            max_profit = prices[i] - min_price;\n        }\n    }\n    \n    return max_profit;\n}\n",
+      "timestamp": 1748827282,
+      "statusCode": 10,
+      "user": {
+        "username": "yosQbj5lkC",
+        "profile": {
+          "realName": "Henrique Freitas",
+          "userAvatar": "https://assets.leetcode.com/users/yosQbj5lkC/avatar_1748722942.png"
+        }
+      },
+      "lang": { "name": "c", "verboseName": "C" },
+      "question": {
+        "questionId": "121",
+        "titleSlug": "best-time-to-buy-and-sell-stock",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null,
+      "lastTestcase": "",
+      "codeOutput": "",
+      "expectedOutput": "",
+      "totalCorrect": 212,
+      "totalTestcases": 212,
+      "fullCodeOutput": null,
+      "testDescriptions": null,
+      "testBodies": null,
+      "testInfo": null,
+      "stdOutput": ""
+    }
+  }
+}

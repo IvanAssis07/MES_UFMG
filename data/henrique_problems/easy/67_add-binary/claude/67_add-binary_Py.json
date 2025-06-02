@@ -1,1 +1,45 @@
-{}
+{
+  "data": {
+    "submissionDetails": {
+      "runtime": 7,
+      "runtimeDisplay": "7 ms",
+      "runtimePercentile": 37.20169999999999,
+      "runtimeDistribution": "{\"lang\": \"python\", \"distribution\": [[\"0\", 38.313], [\"1\", 1.7854], [\"2\", 2.1315], [\"3\", 7.9249], [\"4\", 6.759], [\"5\", 2.7327], [\"6\", 3.1518], [\"7\", 14.8114], [\"8\", 5.3562], [\"9\", 2.3684], [\"10\", 1.8947], [\"11\", 5.9209], [\"12\", 0.9473], [\"13\", 0.5648]]}",
+      "memory": 12356000,
+      "memoryDisplay": "12.4 MB",
+      "memoryPercentile": 85.22500000000001,
+      "memoryDistribution": "{\"lang\": \"python\", \"distribution\": [[\"12100\", 0.0547], [\"12200\", 0.8198], [\"12300\", 13.9005], [\"12400\", 30.6067], [\"12500\", 38.6774]]}",
+      "code": "class Solution(object):\n    def addBinary(self, a, b):\n        \"\"\"\n        :type a: str\n        :type b: str\n        :rtype: str\n        \"\"\"\n        result = []\n        carry = 0\n        i, j = len(a) - 1, len(b) - 1\n        \n        # Processa os bits da direita para a esquerda\n        while i >= 0 or j >= 0 or carry:\n            # Pega o bit atual de cada string (0 se \u00edndice for inv\u00e1lido)\n            bit_a = int(a[i]) if i >= 0 else 0\n            bit_b = int(b[j]) if j >= 0 else 0\n            \n            # Soma os bits + carry\n            total = bit_a + bit_b + carry\n            \n            # Adiciona o bit resultante (0 ou 1)\n            result.append(str(total % 2))\n            \n            # Calcula o novo carry (0 ou 1)\n            carry = total // 2\n            \n            # Move para o pr\u00f3ximo bit\n            i -= 1\n            j -= 1\n        \n        # Inverte o resultado (foi constru\u00eddo de tr\u00e1s para frente)\n        return ''.join(reversed(result))\n    ",
+      "timestamp": 1748825190,
+      "statusCode": 10,
+      "user": {
+        "username": "yosQbj5lkC",
+        "profile": {
+          "realName": "Henrique Freitas",
+          "userAvatar": "https://assets.leetcode.com/users/yosQbj5lkC/avatar_1748722942.png"
+        }
+      },
+      "lang": { "name": "python", "verboseName": "Python" },
+      "question": {
+        "questionId": "67",
+        "titleSlug": "add-binary",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null,
+      "lastTestcase": "",
+      "codeOutput": "",
+      "expectedOutput": "",
+      "totalCorrect": 296,
+      "totalTestcases": 296,
+      "fullCodeOutput": null,
+      "testDescriptions": null,
+      "testBodies": null,
+      "testInfo": null,
+      "stdOutput": ""
+    }
+  }
+}
