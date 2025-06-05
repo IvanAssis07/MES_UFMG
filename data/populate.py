@@ -12,28 +12,28 @@ import json
 '''
 
 def create_leetcode_folders_and_files():
-    base_dir = "henrique_problems"
+    base_dir = "ivan_problems"
     difficulties = {
         "EASY": [
-            "67_add-binary",
-            "637_average-of-levels-in-binary-tree",
-            "121_best-time-to-buy-and-sell-stock",
-            "70_climbing-stairs",
-            "219_contains-duplicate-ii"
+            "108_convert-sorted-array-to-binary-search-tree",
+            "222_count-complete-tree-nodes",
+            "28_find-the-index-of-the-first-occurrence-in-a-string",
+            "202_happy-number",
+            "226_invert-binary-tree"
         ],
         "MEDIUM": [
-            "15_3sum",
-            "2_add-two-numbers",
-            "122_best-time-to-buy-and-sell-stock-ii",
-            "173_binary-search-tree-iterator",
-            "102_binary-tree-level-order-traversal"
+            "199_binary-tree-right-side-view",
+            "103_binary-tree-zigzag-level-order-traversal",
+            "201_bitwise-and-of-numbers-range",
+            "133_clone-graph",
+            "322_coin-change"
         ],
         "HARD": [
-            "224_basic-calculator",
-            "123_best-time-to-buy-and-sell-stock-iii",
-            "188_best-time-to-buy-and-sell-stock-iv",
-            "124_binary-tree-maximum-path-sum",
-            "135_candy"
+            "295_find-median-from-data-stream",
+            "502_ipo",
+            "149_max-points-on-a-line",
+            "4_median-of-two-sorted-arrays",
+            "23_merge-k-sorted-lists"
         ]
     }
 
