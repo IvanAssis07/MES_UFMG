@@ -1,1 +1,48 @@
-{}
+{
+    "data": {
+        "submissionDetails": {
+            "runtime": 0,
+            "runtimeDisplay": "0 ms",
+            "runtimePercentile": 100.0,
+            "runtimeDistribution": "{\"lang\": \"python\", \"distribution\": [[\"0\", 35.0128], [\"1\", 0.6378], [\"2\", 0.4464], [\"3\", 2.1046], [\"4\", 2.6786], [\"5\", 1.4668], [\"6\", 1.3393], [\"7\", 5.3571], [\"8\", 4.9745], [\"9\", 2.4235], [\"10\", 2.4235], [\"11\", 7.3342], [\"12\", 6.6964], [\"13\", 2.6148], [\"14\", 2.2321], [\"15\", 4.7194], [\"16\", 4.4005], [\"17\", 2.2959], [\"18\", 1.8495], [\"19\", 2.6148], [\"20\", 1.2117]]}",
+            "memory": 28140000,
+            "memoryDisplay": "28.1 MB",
+            "memoryPercentile": 90.7525,
+            "memoryDistribution": "{\"lang\": \"python\", \"distribution\": [[\"27900\", 0.0638], [\"28000\", 0.8929], [\"28100\", 8.2908], [\"28200\", 28.7628], [\"28300\", 33.9286], [\"28400\", 19.324]]}",
+            "code": "class Solution(object):\n    def countNodes(self, root):\n        \"\"\"\n        :type root: Optional[TreeNode]\n        :rtype: int\n        \"\"\"\n        # Helper function to compute the height of the tree\n        def getHeight(node):\n            height = 0\n            while node:\n                height += 1\n                node = node.left\n            return height\n\n        if not root:\n            return 0\n\n        left_height = getHeight(root.left)\n        right_height = getHeight(root.right)\n\n        if left_height == right_height:\n            # Left subtree is full binary tree with 2^left_height - 1 nodes\n            return (1 << left_height) + self.countNodes(root.right)\n        else:\n            # Right subtree is full binary tree with 2^right_height - 1 nodes\n            return (1 << right_height) + self.countNodes(root.left)\n",
+            "timestamp": 1749157482,
+            "statusCode": 10,
+            "user": {
+                "username": "IvanAssis",
+                "profile": {
+                    "realName": "IvanAssis",
+                    "userAvatar": "https://assets.leetcode.com/users/default_avatar.jpg"
+                }
+            },
+            "lang": {
+                "name": "python",
+                "verboseName": "Python"
+            },
+            "question": {
+                "questionId": "222",
+                "titleSlug": "count-complete-tree-nodes",
+                "hasFrontendPreview": false
+            },
+            "notes": "",
+            "flagType": "WHITE",
+            "topicTags": [],
+            "runtimeError": null,
+            "compileError": null,
+            "lastTestcase": "",
+            "codeOutput": "",
+            "expectedOutput": "",
+            "totalCorrect": 18,
+            "totalTestcases": 18,
+            "fullCodeOutput": null,
+            "testDescriptions": null,
+            "testBodies": null,
+            "testInfo": null,
+            "stdOutput": ""
+        }
+    }
+}

@@ -1,1 +1,48 @@
-{}
+{
+    "data": {
+        "submissionDetails": {
+            "runtime": 14,
+            "runtimeDisplay": "N/A",
+            "runtimePercentile": null,
+            "runtimeDistribution": "{\"lang\": \"python\", \"distribution\": [[\"1\", 0.1723], [\"2\", 0.5599], [\"3\", 16.3652], [\"4\", 14.3411], [\"5\", 8.6563], [\"6\", 9.9483], [\"7\", 33.0749], [\"8\", 8.9147], [\"9\", 2.8854]]}",
+            "memory": 12428000,
+            "memoryDisplay": "N/A",
+            "memoryPercentile": null,
+            "memoryDistribution": "{\"lang\": \"python\", \"distribution\": [[\"15100\", 2.4117], [\"15200\", 27.907], [\"15300\", 34.8407], [\"15400\", 29.6296], [\"15500\", 3.919]]}",
+            "code": "# Definition for a binary tree node.\nclass TreeNode(object):\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n\nclass Solution(object):\n    def sortedArrayToBST(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: Optional[TreeNode]\n        \"\"\"\n        if not nums:\n            return None\n        \n        mid = len(nums) // 2\n        root = TreeNode(nums[mid])  # Middle element becomes the root\n        root.left = self.sortedArrayToBST(nums[:mid])     # Left half forms left subtree\n        root.right = self.sortedArrayToBST(nums[mid+1:])  # Right half forms right subtree\n        return root\n",
+            "timestamp": 1749156987,
+            "statusCode": 15,
+            "user": {
+                "username": "IvanAssis",
+                "profile": {
+                    "realName": "IvanAssis",
+                    "userAvatar": "https://assets.leetcode.com/users/default_avatar.jpg"
+                }
+            },
+            "lang": {
+                "name": "python",
+                "verboseName": "Python"
+            },
+            "question": {
+                "questionId": "108",
+                "titleSlug": "convert-sorted-array-to-binary-search-tree",
+                "hasFrontendPreview": false
+            },
+            "notes": "",
+            "flagType": "WHITE",
+            "topicTags": [],
+            "runtimeError": "TypeError: <__main__.TreeNode object at 0x7f971245fdd0> is not valid value for the expected return type TreeNode\n    raise TypeError(str(ret) + \" is not valid value for the expected return type TreeNode\");\nLine 53 in _driver (Solution.py)\n    _driver()\nLine 61 in <module> (Solution.py)",
+            "compileError": null,
+            "lastTestcase": "[-10,-3,0,5,9]",
+            "codeOutput": "",
+            "expectedOutput": "[0,-3,9,-10,null,5]",
+            "totalCorrect": 0,
+            "totalTestcases": 31,
+            "fullCodeOutput": null,
+            "testDescriptions": null,
+            "testBodies": null,
+            "testInfo": null,
+            "stdOutput": ""
+        }
+    }
+}

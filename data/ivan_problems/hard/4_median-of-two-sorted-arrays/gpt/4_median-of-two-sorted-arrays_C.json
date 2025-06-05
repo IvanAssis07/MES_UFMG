@@ -1,1 +1,48 @@
-{}
+{
+    "data": {
+        "submissionDetails": {
+            "runtime": 0,
+            "runtimeDisplay": "0 ms",
+            "runtimePercentile": 100.0,
+            "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"0\", 57.2059], [\"1\", 6.3824], [\"2\", 3.7647], [\"3\", 7.3824], [\"4\", 3.5588], [\"5\", 0.6765], [\"6\", 0.5294], [\"7\", 0.9706], [\"8\", 0.2647], [\"9\", 0.1176], [\"11\", 0.1765], [\"12\", 0.0294], [\"13\", 0.0294], [\"15\", 0.1176], [\"17\", 0.0294], [\"18\", 0.0294], [\"19\", 0.0294], [\"20\", 0.0588], [\"21\", 0.0588], [\"23\", 0.0588], [\"25\", 0.0294], [\"26\", 0.0882], [\"27\", 0.0882], [\"28\", 0.0294], [\"29\", 0.0588], [\"30\", 0.0588], [\"31\", 0.0588], [\"32\", 0.1471], [\"33\", 0.0294], [\"34\", 0.0588], [\"35\", 0.1471], [\"36\", 0.0294], [\"38\", 0.0294], [\"39\", 0.0882], [\"40\", 0.0294], [\"41\", 0.0294], [\"42\", 0.0294], [\"43\", 0.1471], [\"44\", 0.0588], [\"45\", 0.0882], [\"46\", 0.0588], [\"47\", 0.2941], [\"48\", 0.2941], [\"49\", 0.1176], [\"50\", 0.2059], [\"51\", 0.4706], [\"52\", 0.2353], [\"53\", 0.0882], [\"54\", 0.3235], [\"55\", 0.5882], [\"56\", 0.1765], [\"57\", 0.3235], [\"58\", 0.1765], [\"59\", 0.8235], [\"60\", 0.4118], [\"61\", 0.1765], [\"62\", 0.2647], [\"63\", 0.9118], [\"64\", 0.3235], [\"65\", 0.3529], [\"66\", 0.5588], [\"67\", 1.2353], [\"68\", 0.3529], [\"69\", 0.3235], [\"70\", 0.2353], [\"71\", 0.9706], [\"72\", 0.3824], [\"73\", 0.2353], [\"74\", 0.2059], [\"75\", 0.5], [\"76\", 0.1765], [\"77\", 0.0588], [\"78\", 0.1765]]}",
+            "memory": 11176000,
+            "memoryDisplay": "11.2 MB",
+            "memoryPercentile": 87.3824,
+            "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"11000\", 0.2941], [\"11100\", 12.3235], [\"11200\", 30.2647], [\"11300\", 16.5882], [\"11400\", 6.6471], [\"11500\", 11.2353], [\"11600\", 8.4412], [\"11700\", 5.9118], [\"11800\", 2.2941]]}",
+            "code": "#include <stdio.h>\n#include <limits.h>\n\ndouble findMedianSortedArrays(int* nums1, int nums1Size, int* nums2, int nums2Size) {\n    // Ensure nums1 is smaller\n    if (nums1Size > nums2Size) {\n        return findMedianSortedArrays(nums2, nums2Size, nums1, nums1Size);\n    }\n    \n    int m = nums1Size;\n    int n = nums2Size;\n    int imin = 0, imax = m, half_len = (m + n + 1) / 2;\n    int max_of_left, min_of_right;\n    \n    while (imin <= imax) {\n        int i = (imin + imax) / 2;\n        int j = half_len - i;\n        \n        if (i < m && nums2[j - 1] > nums1[i]) {\n            // i is too small, must increase it\n            imin = i + 1;\n        } else if (i > 0 && nums1[i - 1] > nums2[j]) {\n            // i is too big, must decrease it\n            imax = i - 1;\n        } else {\n            // i is perfect\n            \n            if (i == 0) {\n                max_of_left = nums2[j - 1];\n            } else if (j == 0) {\n                max_of_left = nums1[i - 1];\n            } else {\n                max_of_left = nums1[i - 1] > nums2[j - 1] ? nums1[i - 1] : nums2[j - 1];\n            }\n            \n            if ((m + n) % 2 == 1) {\n                return max_of_left; // odd length\n            }\n            \n            if (i == m) {\n                min_of_right = nums2[j];\n            } else if (j == n) {\n                min_of_right = nums1[i];\n            } else {\n                min_of_right = nums1[i] < nums2[j] ? nums1[i] : nums2[j];\n            }\n            \n            return (max_of_left + min_of_right) / 2.0;\n        }\n    }\n    \n    // If we reach here, input was invalid\n    return 0.0;\n}\n",
+            "timestamp": 1749158127,
+            "statusCode": 10,
+            "user": {
+                "username": "IvanAssis",
+                "profile": {
+                    "realName": "IvanAssis",
+                    "userAvatar": "https://assets.leetcode.com/users/default_avatar.jpg"
+                }
+            },
+            "lang": {
+                "name": "c",
+                "verboseName": "C"
+            },
+            "question": {
+                "questionId": "4",
+                "titleSlug": "median-of-two-sorted-arrays",
+                "hasFrontendPreview": false
+            },
+            "notes": "",
+            "flagType": "WHITE",
+            "topicTags": [],
+            "runtimeError": null,
+            "compileError": null,
+            "lastTestcase": "",
+            "codeOutput": "",
+            "expectedOutput": "",
+            "totalCorrect": 2096,
+            "totalTestcases": 2096,
+            "fullCodeOutput": null,
+            "testDescriptions": null,
+            "testBodies": null,
+            "testInfo": null,
+            "stdOutput": ""
+        }
+    }
+}
