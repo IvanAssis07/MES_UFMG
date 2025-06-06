@@ -1,0 +1,48 @@
+{
+    "data": {
+        "submissionDetails": {
+            "runtime": 0,
+            "runtimeDisplay": "0 ms",
+            "runtimePercentile": 100.0,
+            "runtimeDistribution": "{\"lang\": \"python\", \"distribution\": [[\"0\", 80.6789], [\"1\", 4.0843], [\"2\", 2.5643], [\"3\", 5.2499], [\"4\", 3.7393]]}",
+            "memory": 12472000,
+            "memoryDisplay": "12.5 MB",
+            "memoryPercentile": 51.8369,
+            "memoryDistribution": "{\"lang\": \"python\", \"distribution\": [[\"12100\", 0.028], [\"12200\", 1.1843], [\"12300\", 18.1276], [\"12400\", 28.8232], [\"12500\", 41.8967]]}",
+            "code": "class Solution(object):\n    def strStr(self, haystack, needle):\n        \"\"\"\n        :type haystack: str\n        :type needle: str\n        :rtype: int\n        \"\"\"\n        if not needle:\n            return 0\n        \n        for i in range(len(haystack) - len(needle) + 1):\n            if haystack[i:i+len(needle)] == needle:\n                return i\n        return -1\n",
+            "timestamp": 1749156853,
+            "statusCode": 10,
+            "user": {
+                "username": "IvanAssis",
+                "profile": {
+                    "realName": "IvanAssis",
+                    "userAvatar": "https://assets.leetcode.com/users/default_avatar.jpg"
+                }
+            },
+            "lang": {
+                "name": "python",
+                "verboseName": "Python"
+            },
+            "question": {
+                "questionId": "28",
+                "titleSlug": "find-the-index-of-the-first-occurrence-in-a-string",
+                "hasFrontendPreview": false
+            },
+            "notes": "",
+            "flagType": "WHITE",
+            "topicTags": [],
+            "runtimeError": null,
+            "compileError": null,
+            "lastTestcase": "",
+            "codeOutput": "",
+            "expectedOutput": "",
+            "totalCorrect": 83,
+            "totalTestcases": 83,
+            "fullCodeOutput": null,
+            "testDescriptions": null,
+            "testBodies": null,
+            "testInfo": null,
+            "stdOutput": ""
+        }
+    }
+}

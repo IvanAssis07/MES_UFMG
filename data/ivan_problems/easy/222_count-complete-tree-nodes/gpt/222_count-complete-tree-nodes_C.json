@@ -1,0 +1,48 @@
+{
+    "data": {
+        "submissionDetails": {
+            "runtime": 0,
+            "runtimeDisplay": "0 ms",
+            "runtimePercentile": 100.0,
+            "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"0\", 93.7768], [\"1\", 1.073], [\"2\", 0.8584], [\"3\", 1.824], [\"4\", 1.1803]]}",
+            "memory": 20044000,
+            "memoryDisplay": "20 MB",
+            "memoryPercentile": 92.2747,
+            "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"20000\", 7.7253], [\"20100\", 37.1245], [\"20200\", 28.97], [\"20300\", 13.7339], [\"20400\", 7.7253]]}",
+            "code": "int treeHeight(struct TreeNode* root) {\n    int height = 0;\n    while (root) {\n        height++;\n        root = root->left;\n    }\n    return height;\n}\n\nint countNodes(struct TreeNode* root) {\n    if (!root) return 0;\n    \n    int leftHeight = treeHeight(root->left);\n    int rightHeight = treeHeight(root->right);\n    \n    if (leftHeight == rightHeight) {\n        // Left subtree is a perfect binary tree of height leftHeight\n        // So nodes in left subtree = 2^leftHeight - 1\n        // Plus 1 for root, plus count nodes in right subtree\n        return (1 << leftHeight) + countNodes(root->right);\n    } else {\n        // Right subtree is a perfect binary tree of height rightHeight\n        // So nodes in right subtree = 2^rightHeight - 1\n        // Plus 1 for root, plus count nodes in left subtree\n        return (1 << rightHeight) + countNodes(root->left);\n    }\n}\n",
+            "timestamp": 1749157558,
+            "statusCode": 10,
+            "user": {
+                "username": "IvanAssis",
+                "profile": {
+                    "realName": "IvanAssis",
+                    "userAvatar": "https://assets.leetcode.com/users/default_avatar.jpg"
+                }
+            },
+            "lang": {
+                "name": "c",
+                "verboseName": "C"
+            },
+            "question": {
+                "questionId": "222",
+                "titleSlug": "count-complete-tree-nodes",
+                "hasFrontendPreview": false
+            },
+            "notes": "",
+            "flagType": "WHITE",
+            "topicTags": [],
+            "runtimeError": null,
+            "compileError": null,
+            "lastTestcase": "",
+            "codeOutput": "",
+            "expectedOutput": "",
+            "totalCorrect": 18,
+            "totalTestcases": 18,
+            "fullCodeOutput": null,
+            "testDescriptions": null,
+            "testBodies": null,
+            "testInfo": null,
+            "stdOutput": ""
+        }
+    }
+}

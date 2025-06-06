@@ -1,0 +1,48 @@
+{
+    "data": {
+        "submissionDetails": {
+            "runtime": 0,
+            "runtimeDisplay": "0 ms",
+            "runtimePercentile": 100.0,
+            "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"0\", 98.7896], [\"1\", 0.4655], [\"2\", 0.6518], [\"3\", 0.0931]]}",
+            "memory": 8500000,
+            "memoryDisplay": "8.5 MB",
+            "memoryPercentile": 93.4823,
+            "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"8400\", 6.5177], [\"8500\", 32.1229], [\"8600\", 34.5438], [\"8700\", 10.2421], [\"8800\", 9.5903]]}",
+            "code": "struct TreeNode* invertTree(struct TreeNode* root) {\n    if (root == NULL) return NULL;\n\n    // Recursively invert the left and right subtrees\n    struct TreeNode* left = invertTree(root->left);\n    struct TreeNode* right = invertTree(root->right);\n\n    // Swap left and right children\n    root->left = right;\n    root->right = left;\n\n    return root;\n}\n",
+            "timestamp": 1749157766,
+            "statusCode": 10,
+            "user": {
+                "username": "IvanAssis",
+                "profile": {
+                    "realName": "IvanAssis",
+                    "userAvatar": "https://assets.leetcode.com/users/default_avatar.jpg"
+                }
+            },
+            "lang": {
+                "name": "c",
+                "verboseName": "C"
+            },
+            "question": {
+                "questionId": "226",
+                "titleSlug": "invert-binary-tree",
+                "hasFrontendPreview": false
+            },
+            "notes": "",
+            "flagType": "WHITE",
+            "topicTags": [],
+            "runtimeError": null,
+            "compileError": null,
+            "lastTestcase": "",
+            "codeOutput": "",
+            "expectedOutput": "",
+            "totalCorrect": 77,
+            "totalTestcases": 77,
+            "fullCodeOutput": null,
+            "testDescriptions": null,
+            "testBodies": null,
+            "testInfo": null,
+            "stdOutput": ""
+        }
+    }
+}
