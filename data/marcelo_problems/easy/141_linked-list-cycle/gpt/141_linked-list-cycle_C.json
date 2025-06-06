@@ -1,0 +1,48 @@
+{
+    "data": {
+        "submissionDetails": {
+            "runtime": 13,
+            "runtimeDisplay": "13 ms",
+            "runtimePercentile": 38.90789999999996,
+            "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"0\", 0.049], [\"2\", 0.0245], [\"3\", 1.6895], [\"4\", 2.2527], [\"5\", 0.2938], [\"6\", 7.1988], [\"7\", 7.4192], [\"8\", 2.9873], [\"9\", 13.712], [\"10\", 20.9354], [\"11\", 4.1381], [\"12\", 0.3918], [\"13\", 18.144], [\"14\", 15.7444]]}",
+            "memory": 11148000,
+            "memoryDisplay": "11.1 MB",
+            "memoryPercentile": 78.50139999999998,
+            "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"10800\", 0.049], [\"10900\", 0.049], [\"11000\", 0.4163], [\"11100\", 20.9843], [\"11200\", 39.8629], [\"11300\", 20.5681], [\"11400\", 9.2311]]}",
+            "code": "/**\n * Definition for singly-linked list.\n * struct ListNode {\n *     int val;\n *     struct ListNode *next;\n * };\n */\n\nbool hasCycle(struct ListNode *head) {\n    if (head == NULL || head->next == NULL)\n        return false;\n\n    struct ListNode *slow = head;\n    struct ListNode *fast = head->next;\n\n    while (slow != fast) {\n        if (fast == NULL || fast->next == NULL)\n            return false;\n        slow = slow->next;\n        fast = fast->next->next;\n    }\n\n    return true;\n}\n",
+            "timestamp": 1749246291,
+            "statusCode": 10,
+            "user": {
+                "username": "ZRlvkAicEr",
+                "profile": {
+                    "realName": "ZRlvkAicEr",
+                    "userAvatar": "https://assets.leetcode.com/users/ZRlvkAicEr/avatar_1749245074.png"
+                }
+            },
+            "lang": {
+                "name": "c",
+                "verboseName": "C"
+            },
+            "question": {
+                "questionId": "141",
+                "titleSlug": "linked-list-cycle",
+                "hasFrontendPreview": false
+            },
+            "notes": "",
+            "flagType": "WHITE",
+            "topicTags": [],
+            "runtimeError": null,
+            "compileError": null,
+            "lastTestcase": "",
+            "codeOutput": "",
+            "expectedOutput": "",
+            "totalCorrect": 29,
+            "totalTestcases": 29,
+            "fullCodeOutput": null,
+            "testDescriptions": null,
+            "testBodies": null,
+            "testInfo": null,
+            "stdOutput": ""
+        }
+    }
+}

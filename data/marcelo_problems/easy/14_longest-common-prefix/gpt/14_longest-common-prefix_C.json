@@ -1,0 +1,48 @@
+{
+    "data": {
+        "submissionDetails": {
+            "runtime": 0,
+            "runtimeDisplay": "0 ms",
+            "runtimePercentile": 100.0,
+            "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"0\", 91.0769], [\"1\", 1.9487], [\"2\", 1.6068], [\"3\", 2.9744], [\"4\", 0.8547]]}",
+            "memory": 8228000,
+            "memoryDisplay": "8.2 MB",
+            "memoryPercentile": 23.7948,
+            "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"8000\", 4.9915], [\"8100\", 40.4103], [\"8200\", 30.8034], [\"8300\", 15.453], [\"8400\", 6.5983]]}",
+            "code": "#include <stdio.h>\n#include <stdlib.h>\n#include <string.h>\n\nchar* longestCommonPrefix(char** strs, int strsSize) {\n    if (strsSize == 0) return \"\";\n\n    int prefixLen = 0;\n\n    while (1) {\n        char c = strs[0][prefixLen];\n        if (c == '\\0') break;\n\n        for (int i = 1; i < strsSize; ++i) {\n            if (strs[i][prefixLen] != c || strs[i][prefixLen] == '\\0') {\n                goto end;\n            }\n        }\n        prefixLen++;\n    }\n\nend:\n    // Allocate memory for the prefix (+1 for null-terminator)\n    char* prefix = (char*)malloc((prefixLen + 1) * sizeof(char));\n    strncpy(prefix, strs[0], prefixLen);\n    prefix[prefixLen] = '\\0';\n    return prefix;\n}\n",
+            "timestamp": 1749245139,
+            "statusCode": 10,
+            "user": {
+                "username": "ZRlvkAicEr",
+                "profile": {
+                    "realName": "ZRlvkAicEr",
+                    "userAvatar": "https://assets.leetcode.com/users/ZRlvkAicEr/avatar_1749245074.png"
+                }
+            },
+            "lang": {
+                "name": "c",
+                "verboseName": "C"
+            },
+            "question": {
+                "questionId": "14",
+                "titleSlug": "longest-common-prefix",
+                "hasFrontendPreview": false
+            },
+            "notes": "",
+            "flagType": "WHITE",
+            "topicTags": [],
+            "runtimeError": null,
+            "compileError": null,
+            "lastTestcase": "",
+            "codeOutput": "",
+            "expectedOutput": "",
+            "totalCorrect": 126,
+            "totalTestcases": 126,
+            "fullCodeOutput": null,
+            "testDescriptions": null,
+            "testBodies": null,
+            "testInfo": null,
+            "stdOutput": ""
+        }
+    }
+}

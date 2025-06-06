@@ -1,0 +1,48 @@
+{
+    "data": {
+        "submissionDetails": {
+            "runtime": 0,
+            "runtimeDisplay": "0 ms",
+            "runtimePercentile": 100.0,
+            "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"0\", 75.3769], [\"1\", 2.1776], [\"2\", 3.1826], [\"3\", 4.6901], [\"4\", 0.1675], [\"7\", 0.335], [\"9\", 0.1675], [\"10\", 0.5025], [\"12\", 0.5025], [\"14\", 0.1675], [\"15\", 0.335], [\"17\", 0.1675], [\"22\", 0.1675], [\"23\", 0.5025], [\"24\", 0.335], [\"25\", 0.335], [\"26\", 0.67], [\"27\", 4.1876]]}",
+            "memory": 8264000,
+            "memoryDisplay": "8.3 MB",
+            "memoryPercentile": 36.18090000000001,
+            "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"7900\", 0.335], [\"8000\", 11.8928], [\"8100\", 24.9581], [\"8200\", 26.6332], [\"8300\", 22.9481], [\"8400\", 5.1926]]}",
+            "code": "#include <stdbool.h>\n\nbool isIsomorphic(char* s, char* t) {\n    int s_map[256];\n    int t_map[256];\n    \n    for (int i = 0; i < 256; i++) {\n        s_map[i] = -1;\n        t_map[i] = -1;\n    }\n    \n    int i = 0;\n    while (s[i] != '\\0' && t[i] != '\\0') {\n        unsigned char c1 = (unsigned char)s[i];\n        unsigned char c2 = (unsigned char)t[i];\n        \n        if (s_map[c1] == -1) {\n            if (t_map[c2] != -1) {\n                return false;\n            }\n            s_map[c1] = c2;\n            t_map[c2] = c1;\n        } else {\n            if (s_map[c1] != c2) {\n                return false;\n            }\n        }\n        i++;\n    }\n    \n    if (s[i] != '\\0' || t[i] != '\\0') {\n        return false;\n    }\n    \n    return true;\n}",
+            "timestamp": 1749247209,
+            "statusCode": 10,
+            "user": {
+                "username": "ZRlvkAicEr",
+                "profile": {
+                    "realName": "ZRlvkAicEr",
+                    "userAvatar": "https://assets.leetcode.com/users/ZRlvkAicEr/avatar_1749245074.png"
+                }
+            },
+            "lang": {
+                "name": "c",
+                "verboseName": "C"
+            },
+            "question": {
+                "questionId": "205",
+                "titleSlug": "isomorphic-strings",
+                "hasFrontendPreview": false
+            },
+            "notes": "",
+            "flagType": "WHITE",
+            "topicTags": [],
+            "runtimeError": null,
+            "compileError": null,
+            "lastTestcase": "",
+            "codeOutput": "",
+            "expectedOutput": "",
+            "totalCorrect": 46,
+            "totalTestcases": 46,
+            "fullCodeOutput": null,
+            "testDescriptions": null,
+            "testBodies": null,
+            "testInfo": null,
+            "stdOutput": ""
+        }
+    }
+}

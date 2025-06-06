@@ -1,0 +1,48 @@
+{
+    "data": {
+        "submissionDetails": {
+            "runtime": 0,
+            "runtimeDisplay": "0 ms",
+            "runtimePercentile": 100.0,
+            "runtimeDistribution": "{\"lang\": \"python3\", \"distribution\": [[\"0\", 93.9781], [\"1\", 1.1359], [\"2\", 0.8338], [\"3\", 2.6061], [\"4\", 0.9587]]}",
+            "memory": 17724000,
+            "memoryDisplay": "17.7 MB",
+            "memoryPercentile": 61.0893,
+            "memoryDistribution": "{\"lang\": \"python3\", \"distribution\": [[\"17000\", 0.004], [\"17200\", 0.004], [\"17300\", 0.004], [\"17400\", 0.1047], [\"17500\", 1.2366], [\"17600\", 10.1788], [\"17700\", 27.3786], [\"17800\", 23.1572], [\"17900\", 20.0556]]}",
+            "code": "class Solution:\n    def lengthOfLastWord(self, s: str) -> int:\n        # Approach 1: Using built-in methods (most concise)\n        return len(s.strip().split()[-1])\n    \n    def lengthOfLastWordManual(self, s: str) -> int:\n        # Approach 2: Manual iteration (more efficient, O(1) space)\n        # Start from the end and skip trailing spaces\n        i = len(s) - 1\n        \n        # Skip trailing spaces\n        while i >= 0 and s[i] == ' ':\n            i -= 1\n        \n        # Count characters of the last word\n        length = 0\n        while i >= 0 and s[i] != ' ':\n            length += 1\n            i -= 1\n        \n        return length\n",
+            "timestamp": 1749245960,
+            "statusCode": 10,
+            "user": {
+                "username": "ZRlvkAicEr",
+                "profile": {
+                    "realName": "ZRlvkAicEr",
+                    "userAvatar": "https://assets.leetcode.com/users/ZRlvkAicEr/avatar_1749245074.png"
+                }
+            },
+            "lang": {
+                "name": "python3",
+                "verboseName": "Python3"
+            },
+            "question": {
+                "questionId": "58",
+                "titleSlug": "length-of-last-word",
+                "hasFrontendPreview": false
+            },
+            "notes": "",
+            "flagType": "WHITE",
+            "topicTags": [],
+            "runtimeError": null,
+            "compileError": null,
+            "lastTestcase": "",
+            "codeOutput": "",
+            "expectedOutput": "",
+            "totalCorrect": 60,
+            "totalTestcases": 60,
+            "fullCodeOutput": null,
+            "testDescriptions": null,
+            "testBodies": null,
+            "testInfo": null,
+            "stdOutput": ""
+        }
+    }
+}

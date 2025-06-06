@@ -1,0 +1,48 @@
+{
+    "data": {
+        "submissionDetails": {
+            "runtime": 47,
+            "runtimeDisplay": "47 ms",
+            "runtimePercentile": 66.50779999999997,
+            "runtimeDistribution": "{\"lang\": \"python3\", \"distribution\": [[\"0\", 0.2025], [\"1\", 0.0322], [\"2\", 0.0023], [\"3\", 0.0046], [\"7\", 0.0023], [\"21\", 0.0023], [\"22\", 0.0023], [\"23\", 0.0069], [\"26\", 0.0092], [\"27\", 0.0299], [\"28\", 0.0161], [\"29\", 0.0552], [\"30\", 0.0667], [\"31\", 0.2393], [\"32\", 0.168], [\"33\", 0.2324], [\"34\", 0.2853], [\"35\", 0.9111], [\"36\", 0.6373], [\"37\", 0.7708], [\"38\", 1.0883], [\"39\", 2.4687], [\"40\", 1.8153], [\"41\", 2.2501], [\"42\", 2.7931], [\"43\", 5.554], [\"44\", 4.4612], [\"45\", 4.4244], [\"46\", 4.9604], [\"47\", 8.4898], [\"48\", 6.7067], [\"49\", 5.5471], [\"50\", 6.0211], [\"51\", 7.8985], [\"52\", 6.3064], [\"53\", 4.758], [\"54\", 4.1161], [\"55\", 4.2104], [\"56\", 3.2602], [\"57\", 2.1673], [\"58\", 1.5231]]}",
+            "memory": 19868000,
+            "memoryDisplay": "19.9 MB",
+            "memoryPercentile": 56.545799999999986,
+            "memoryDistribution": "{\"lang\": \"python3\", \"distribution\": [[\"18500\", 0.0023], [\"18600\", 0.0115], [\"18700\", 0.0414], [\"18800\", 0.092], [\"18900\", 0.0713], [\"19000\", 0.023], [\"19100\", 0.0069], [\"19200\", 0.0069], [\"19300\", 0.0138], [\"19400\", 0.0943], [\"19500\", 0.3773], [\"19600\", 1.7624], [\"19700\", 11.6556], [\"19800\", 29.2955], [\"19900\", 27.777], [\"20000\", 12.3228], [\"20100\", 2.0293], [\"20200\", 3.0669], [\"20300\", 5.7312]]}",
+            "code": "# Definition for singly-linked list.\n# class ListNode:\n#     def __init__(self, x):\n#         self.val = x\n#         self.next = None\n\nclass Solution:\n    def hasCycle(self, head: Optional[ListNode]) -> bool:\n        \"\"\"\n        Floyd's Cycle Detection Algorithm (Tortoise and Hare)\n        \n        Time Complexity: O(n) where n is the number of nodes\n        Space Complexity: O(1) constant space\n        \n        The idea is to use two pointers:\n        - slow pointer moves one step at a time\n        - fast pointer moves two steps at a time\n        \n        If there's a cycle, the fast pointer will eventually catch up \n        to the slow pointer inside the cycle.\n        \"\"\"\n        if not head or not head.next:\n            return False\n        \n        slow = head\n        fast = head\n        \n        # Move pointers until fast reaches end or they meet\n        while fast and fast.next:\n            slow = slow.next        # Move slow pointer by 1\n            fast = fast.next.next   # Move fast pointer by 2\n            \n            # If pointers meet, there's a cycle\n            if slow == fast:\n                return True\n        \n        # If we reach here, fast pointer reached the end\n        return False\n\n# Alternative approach using a set (O(n) space)\nclass SolutionWithSet:\n    def hasCycle(self, head: Optional[ListNode]) -> bool:\n        \"\"\"\n        Hash Set approach\n        \n        Time Complexity: O(n)\n        Space Complexity: O(n) - uses extra space for the set\n        \"\"\"\n        if not head:\n            return False\n        \n        visited = set()\n        current = head\n        \n        while current:\n            if current in visited:\n                return True\n            visited.add(current)\n            current = current.next\n        \n        return False\n\n# Test cases demonstration\ndef create_linked_list_with_cycle(values, pos):\n    \"\"\"Helper function to create a linked list with a cycle for testing\"\"\"\n    if not values:\n        return None\n    \n    # Create nodes\n    nodes = [ListNode(val) for val in values]\n    \n    # Link nodes\n    for i in range(len(nodes) - 1):\n        nodes[i].next = nodes[i + 1]\n    \n    # Create cycle if pos is valid\n    if pos >= 0 and pos < len(nodes):\n        nodes[-1].next = nodes[pos]\n    \n    return nodes[0]\n\n# Example usage:\n# Test Case 1: [3,2,0,-4], pos = 1 -> True\n# Test Case 2: [1,2], pos = 0 -> True  \n# Test Case 3: [1], pos = -1 -> False",
+            "timestamp": 1749246508,
+            "statusCode": 10,
+            "user": {
+                "username": "ZRlvkAicEr",
+                "profile": {
+                    "realName": "ZRlvkAicEr",
+                    "userAvatar": "https://assets.leetcode.com/users/ZRlvkAicEr/avatar_1749245074.png"
+                }
+            },
+            "lang": {
+                "name": "python3",
+                "verboseName": "Python3"
+            },
+            "question": {
+                "questionId": "141",
+                "titleSlug": "linked-list-cycle",
+                "hasFrontendPreview": false
+            },
+            "notes": "",
+            "flagType": "WHITE",
+            "topicTags": [],
+            "runtimeError": null,
+            "compileError": null,
+            "lastTestcase": "",
+            "codeOutput": "",
+            "expectedOutput": "",
+            "totalCorrect": 29,
+            "totalTestcases": 29,
+            "fullCodeOutput": null,
+            "testDescriptions": null,
+            "testBodies": null,
+            "testInfo": null,
+            "stdOutput": ""
+        }
+    }
+}
