@@ -1,1 +1,48 @@
-{}
+{
+    "data": {
+        "submissionDetails": {
+            "runtime": 71,
+            "runtimeDisplay": "71 ms",
+            "runtimePercentile": 47.619100000000024,
+            "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"48\", 4.7619], [\"57\", 9.5238], [\"59\", 9.5238], [\"61\", 4.7619], [\"62\", 4.7619], [\"63\", 9.5238], [\"67\", 4.7619], [\"68\", 4.7619], [\"103\", 9.5238], [\"114\", 4.7619], [\"123\", 4.7619], [\"134\", 4.7619], [\"143\", 4.7619], [\"144\", 4.7619], [\"145\", 4.7619]]}",
+            "memory": 27776000,
+            "memoryDisplay": "27.8 MB",
+            "memoryPercentile": 47.619100000000024,
+            "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"16900\", 4.7619], [\"17000\", 4.7619], [\"21500\", 4.7619], [\"23400\", 4.7619], [\"23500\", 4.7619], [\"23700\", 4.7619], [\"23900\", 14.2857], [\"25900\", 4.7619], [\"27700\", 4.7619], [\"27800\", 14.2857], [\"27900\", 9.5238], [\"28000\", 4.7619], [\"29300\", 4.7619], [\"29400\", 4.7619]]}",
+            "code": "#include <stdio.h>\n#include <stdlib.h>\n\n// Define structure for projects\ntypedef struct {\n    int profit;\n    int capital;\n} Project;\n\n// Comparator for sorting projects by capital (ascending)\nint cmpCapital(const void* a, const void* b) {\n    return ((Project*)a)->capital - ((Project*)b)->capital;\n}\n\n// Max-heap functions for profits\nvoid swap(int* a, int* b) {\n    int tmp = *a;\n    *a = *b;\n    *b = tmp;\n}\n\nvoid maxHeapifyUp(int* heap, int index) {\n    while (index > 0) {\n        int parent = (index - 1) / 2;\n        if (heap[parent] >= heap[index]) break;\n        swap(&heap[parent], &heap[index]);\n        index = parent;\n    }\n}\n\nvoid maxHeapifyDown(int* heap, int size, int index) {\n    while (2 * index + 1 < size) {\n        int left = 2 * index + 1, right = 2 * index + 2, largest = index;\n        if (left < size && heap[left] > heap[largest]) largest = left;\n        if (right < size && heap[right] > heap[largest]) largest = right;\n        if (largest == index) break;\n        swap(&heap[largest], &heap[index]);\n        index = largest;\n    }\n}\n\nvoid maxHeapPush(int* heap, int* size, int value) {\n    heap[(*size)++] = value;\n    maxHeapifyUp(heap, *size - 1);\n}\n\nint maxHeapPop(int* heap, int* size) {\n    int top = heap[0];\n    heap[0] = heap[--(*size)];\n    maxHeapifyDown(heap, *size, 0);\n    return top;\n}\n\nint findMaximizedCapital(int k, int w, int* profits, int profitsSize, int* capital, int capitalSize) {\n    // Step 1: Pack projects\n    Project* projects = malloc(sizeof(Project) * profitsSize);\n    for (int i = 0; i < profitsSize; i++) {\n        projects[i].profit = profits[i];\n        projects[i].capital = capital[i];\n    }\n\n    // Step 2: Sort projects by capital\n    qsort(projects, profitsSize, sizeof(Project), cmpCapital);\n\n    // Max heap for profits\n    int* maxHeap = malloc(sizeof(int) * profitsSize);\n    int heapSize = 0;\n\n    int curr = 0;\n\n    // Step 3: Try to pick k projects\n    for (int i = 0; i < k; i++) {\n        // Add all projects we can afford into maxHeap\n        while (curr < profitsSize && projects[curr].capital <= w) {\n            maxHeapPush(maxHeap, &heapSize, projects[curr].profit);\n            curr++;\n        }\n\n        // If no projects can be done, break\n        if (heapSize == 0) break;\n\n        // Do the most profitable one\n        w += maxHeapPop(maxHeap, &heapSize);\n    }\n\n    free(projects);\n    free(maxHeap);\n    return w;\n}\n",
+            "timestamp": 1749305925,
+            "statusCode": 10,
+            "user": {
+                "username": "IvanAssis",
+                "profile": {
+                    "realName": "IvanAssis",
+                    "userAvatar": "https://assets.leetcode.com/users/default_avatar.jpg"
+                }
+            },
+            "lang": {
+                "name": "c",
+                "verboseName": "C"
+            },
+            "question": {
+                "questionId": "502",
+                "titleSlug": "ipo",
+                "hasFrontendPreview": false
+            },
+            "notes": "",
+            "flagType": "WHITE",
+            "topicTags": [],
+            "runtimeError": null,
+            "compileError": null,
+            "lastTestcase": "",
+            "codeOutput": "",
+            "expectedOutput": "",
+            "totalCorrect": 40,
+            "totalTestcases": 40,
+            "fullCodeOutput": null,
+            "testDescriptions": null,
+            "testBodies": null,
+            "testInfo": null,
+            "stdOutput": ""
+        }
+    }
+}

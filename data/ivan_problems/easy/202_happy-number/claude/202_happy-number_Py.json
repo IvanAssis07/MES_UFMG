@@ -1,1 +1,48 @@
-{}
+{
+    "data": {
+        "submissionDetails": {
+            "runtime": 0,
+            "runtimeDisplay": "0 ms",
+            "runtimePercentile": 100.0,
+            "runtimeDistribution": "{\"lang\": \"python3\", \"distribution\": [[\"0\", 44.6622], [\"1\", 6.4954], [\"2\", 6.4006], [\"3\", 26.3426], [\"4\", 9.8644]]}",
+            "memory": 17964000,
+            "memoryDisplay": "18 MB",
+            "memoryPercentile": 17.66840000000002,
+            "memoryDistribution": "{\"lang\": \"python3\", \"distribution\": [[\"17100\", 0.0059], [\"17200\", 0.0059], [\"17300\", 0.0118], [\"17400\", 0.1895], [\"17500\", 1.8888], [\"17600\", 11.2085], [\"17700\", 25.7623], [\"17800\", 22.8492], [\"17900\", 20.4097]]}",
+            "code": "class Solution:\n    def isHappy(self, n: int) -> bool:\n        \"\"\"\n        Approach 1: Using Floyd's Cycle Detection (Tortoise and Hare)\n        Time: O(log n), Space: O(1)\n        \"\"\"\n        def get_sum_of_squares(num):\n            total = 0\n            while num > 0:\n                digit = num % 10\n                total += digit * digit\n                num //= 10\n            return total\n        \n        slow = n\n        fast = n\n        \n        # Floyd's cycle detection\n        while True:\n            slow = get_sum_of_squares(slow)\n            fast = get_sum_of_squares(get_sum_of_squares(fast))\n            \n            if slow == fast:\n                break\n        \n        return slow == 1",
+            "timestamp": 1749302863,
+            "statusCode": 10,
+            "user": {
+                "username": "IvanAssis",
+                "profile": {
+                    "realName": "IvanAssis",
+                    "userAvatar": "https://assets.leetcode.com/users/default_avatar.jpg"
+                }
+            },
+            "lang": {
+                "name": "python3",
+                "verboseName": "Python3"
+            },
+            "question": {
+                "questionId": "202",
+                "titleSlug": "happy-number",
+                "hasFrontendPreview": false
+            },
+            "notes": "",
+            "flagType": "WHITE",
+            "topicTags": [],
+            "runtimeError": null,
+            "compileError": null,
+            "lastTestcase": "",
+            "codeOutput": "",
+            "expectedOutput": "",
+            "totalCorrect": 420,
+            "totalTestcases": 420,
+            "fullCodeOutput": null,
+            "testDescriptions": null,
+            "testBodies": null,
+            "testInfo": null,
+            "stdOutput": ""
+        }
+    }
+}

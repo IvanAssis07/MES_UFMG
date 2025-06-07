@@ -1,1 +1,48 @@
-{}
+{
+    "data": {
+        "submissionDetails": {
+            "runtime": 11,
+            "runtimeDisplay": "11 ms",
+            "runtimePercentile": 89.1892,
+            "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"4\", 1.8018], [\"6\", 1.8018], [\"7\", 3.6036], [\"8\", 1.8018], [\"9\", 0.9009], [\"10\", 0.9009], [\"11\", 4.5045], [\"12\", 0.9009], [\"13\", 0.9009], [\"14\", 0.9009], [\"15\", 4.5045], [\"19\", 1.8018], [\"20\", 0.9009], [\"23\", 2.7027], [\"26\", 2.7027], [\"27\", 1.8018], [\"30\", 1.8018], [\"31\", 0.9009], [\"34\", 0.9009], [\"35\", 0.9009], [\"37\", 0.9009], [\"38\", 1.8018], [\"43\", 0.9009], [\"45\", 0.9009], [\"47\", 2.7027], [\"48\", 0.9009], [\"50\", 0.9009], [\"51\", 1.8018], [\"52\", 0.9009], [\"54\", 2.7027], [\"55\", 2.7027], [\"56\", 1.8018], [\"57\", 0.9009], [\"59\", 0.9009], [\"61\", 0.9009], [\"63\", 0.9009], [\"66\", 0.9009], [\"67\", 0.9009], [\"73\", 0.9009], [\"92\", 0.9009], [\"95\", 0.9009], [\"99\", 0.9009], [\"100\", 0.9009], [\"106\", 1.8018], [\"109\", 1.8018], [\"111\", 0.9009], [\"113\", 0.9009], [\"114\", 0.9009], [\"115\", 0.9009], [\"123\", 1.8018], [\"124\", 0.9009], [\"126\", 0.9009], [\"127\", 2.7027], [\"129\", 2.7027], [\"130\", 1.8018], [\"131\", 0.9009], [\"132\", 0.9009], [\"135\", 0.9009], [\"138\", 1.8018], [\"171\", 0.9009], [\"175\", 0.9009], [\"179\", 1.8018], [\"182\", 1.8018], [\"185\", 0.9009]]}",
+            "memory": 8840000,
+            "memoryDisplay": "8.8 MB",
+            "memoryPercentile": 54.054100000000005,
+            "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"8600\", 3.6036], [\"8700\", 17.1171], [\"8800\", 25.2252], [\"8900\", 10.8108], [\"9000\", 6.3063], [\"9100\", 6.3063], [\"9200\", 3.6036], [\"9300\", 1.8018], [\"9400\", 0.9009], [\"9500\", 0.9009], [\"9600\", 0.9009], [\"10200\", 0.9009], [\"10500\", 0.9009], [\"10800\", 1.8018], [\"10900\", 0.9009], [\"11000\", 3.6036], [\"11200\", 0.9009], [\"13900\", 0.9009], [\"18300\", 0.9009], [\"19400\", 0.9009], [\"22700\", 0.9009], [\"22800\", 1.8018], [\"25300\", 0.9009], [\"25700\", 0.9009], [\"27000\", 0.9009]]}",
+            "code": "#include <stdio.h>\n#include <stdlib.h>\n\n// Function to calculate GCD for reducing fractions\nint gcd(int a, int b) {\n    if (a < 0) a = -a;\n    if (b < 0) b = -b;\n    while (b != 0) {\n        int temp = b;\n        b = a % b;\n        a = temp;\n    }\n    return a;\n}\n\nint maxPoints(int** points, int pointsSize, int* pointsColSize) {\n    if (pointsSize <= 2) return pointsSize;\n    \n    int maxCount = 2;  // At least 2 points can always form a line\n    \n    // For each point as a base point\n    for (int i = 0; i < pointsSize; i++) {\n        // Use a simple array to store slopes and counts\n        // We'll represent slope as dy/dx in reduced form\n        // For vertical lines, we'll use a special representation\n        \n        int slopes[300][3];  // [dy, dx, count] - reduced fraction dy/dx\n        int verticalCount = 1;  // Count of points on vertical line through point i\n        int slopeCount = 0;     // Number of different slopes\n        int currentMax = 1;\n        \n        // Compare with all other points\n        for (int j = i + 1; j < pointsSize; j++) {\n            int dx = points[j][0] - points[i][0];\n            int dy = points[j][1] - points[i][1];\n            \n            if (dx == 0) {\n                // Vertical line\n                verticalCount++;\n                if (verticalCount > currentMax) {\n                    currentMax = verticalCount;\n                }\n            } else {\n                // Calculate slope in reduced form\n                int g = gcd(dy, dx);\n                dy /= g;\n                dx /= g;\n                \n                // Make sure denominator is positive for consistent representation\n                if (dx < 0) {\n                    dx = -dx;\n                    dy = -dy;\n                }\n                \n                // Look for existing slope\n                int found = -1;\n                for (int k = 0; k < slopeCount; k++) {\n                    if (slopes[k][0] == dy && slopes[k][1] == dx) {\n                        found = k;\n                        break;\n                    }\n                }\n                \n                if (found >= 0) {\n                    // Increment existing slope count\n                    slopes[found][2]++;\n                    if (slopes[found][2] > currentMax) {\n                        currentMax = slopes[found][2];\n                    }\n                } else {\n                    // Add new slope\n                    slopes[slopeCount][0] = dy;\n                    slopes[slopeCount][1] = dx;\n                    slopes[slopeCount][2] = 2;  // Current point + point j\n                    if (2 > currentMax) {\n                        currentMax = 2;\n                    }\n                    slopeCount++;\n                }\n            }\n        }\n        \n        if (currentMax > maxCount) {\n            maxCount = currentMax;\n        }\n    }\n    \n    return maxCount;\n}",
+            "timestamp": 1749305202,
+            "statusCode": 10,
+            "user": {
+                "username": "IvanAssis",
+                "profile": {
+                    "realName": "IvanAssis",
+                    "userAvatar": "https://assets.leetcode.com/users/default_avatar.jpg"
+                }
+            },
+            "lang": {
+                "name": "c",
+                "verboseName": "C"
+            },
+            "question": {
+                "questionId": "149",
+                "titleSlug": "max-points-on-a-line",
+                "hasFrontendPreview": false
+            },
+            "notes": "",
+            "flagType": "WHITE",
+            "topicTags": [],
+            "runtimeError": null,
+            "compileError": null,
+            "lastTestcase": "",
+            "codeOutput": "",
+            "expectedOutput": "",
+            "totalCorrect": 41,
+            "totalTestcases": 41,
+            "fullCodeOutput": null,
+            "testDescriptions": null,
+            "testBodies": null,
+            "testInfo": null,
+            "stdOutput": ""
+        }
+    }
+}

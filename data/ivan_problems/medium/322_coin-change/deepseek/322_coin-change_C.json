@@ -1,1 +1,48 @@
-{}
+{
+    "data": {
+        "submissionDetails": {
+            "runtime": 22,
+            "runtimeDisplay": "22 ms",
+            "runtimePercentile": 88.2957,
+            "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"7\", 0.2053], [\"12\", 0.2053], [\"15\", 1.6427], [\"16\", 0.4107], [\"17\", 0.4107], [\"18\", 0.8214], [\"19\", 4.7228], [\"20\", 1.4374], [\"21\", 1.848], [\"22\", 1.6427], [\"23\", 9.6509], [\"24\", 4.3121], [\"25\", 2.6694], [\"26\", 5.3388], [\"27\", 19.7125], [\"28\", 3.0801], [\"29\", 4.3121], [\"30\", 4.3121], [\"31\", 9.2402], [\"32\", 2.0534], [\"33\", 1.6427], [\"34\", 2.0534], [\"35\", 4.9281], [\"36\", 1.0267], [\"37\", 1.232], [\"38\", 1.4374], [\"39\", 3.0801], [\"40\", 0.8214]]}",
+            "memory": 8168000,
+            "memoryDisplay": "8.2 MB",
+            "memoryPercentile": 53.1828,
+            "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"7900\", 5.9548], [\"8000\", 24.4353], [\"8100\", 16.4271], [\"8200\", 6.7762], [\"8300\", 4.5175], [\"8400\", 0.2053], [\"8500\", 0.8214], [\"8600\", 0.616], [\"8800\", 1.232], [\"8900\", 1.232], [\"9000\", 0.4107], [\"9100\", 0.616], [\"9200\", 0.616], [\"9300\", 0.8214], [\"9400\", 0.8214], [\"9500\", 0.2053], [\"9800\", 0.2053], [\"12400\", 2.6694], [\"12500\", 10.4723], [\"12600\", 7.8029], [\"12700\", 3.4908], [\"12800\", 3.2854], [\"12900\", 0.2053], [\"13200\", 0.2053], [\"13300\", 0.616]]}",
+            "code": "#include <limits.h>\n#include <string.h>\n\nint coinChange(int* coins, int coinsSize, int amount) {\n    int dp[amount + 1];\n    for (int i = 0; i <= amount; i++) {\n        dp[i] = amount + 1;\n    }\n    dp[0] = 0;\n    \n    for (int i = 1; i <= amount; i++) {\n        for (int j = 0; j < coinsSize; j++) {\n            if (coins[j] <= i) {\n                if (dp[i - coins[j]] + 1 < dp[i]) {\n                    dp[i] = dp[i - coins[j]] + 1;\n                }\n            }\n        }\n    }\n    \n    return dp[amount] > amount ? -1 : dp[amount];\n}",
+            "timestamp": 1749307682,
+            "statusCode": 10,
+            "user": {
+                "username": "IvanAssis",
+                "profile": {
+                    "realName": "IvanAssis",
+                    "userAvatar": "https://assets.leetcode.com/users/default_avatar.jpg"
+                }
+            },
+            "lang": {
+                "name": "c",
+                "verboseName": "C"
+            },
+            "question": {
+                "questionId": "322",
+                "titleSlug": "coin-change",
+                "hasFrontendPreview": false
+            },
+            "notes": "",
+            "flagType": "WHITE",
+            "topicTags": [],
+            "runtimeError": null,
+            "compileError": null,
+            "lastTestcase": "",
+            "codeOutput": "",
+            "expectedOutput": "",
+            "totalCorrect": 189,
+            "totalTestcases": 189,
+            "fullCodeOutput": null,
+            "testDescriptions": null,
+            "testBodies": null,
+            "testInfo": null,
+            "stdOutput": ""
+        }
+    }
+}

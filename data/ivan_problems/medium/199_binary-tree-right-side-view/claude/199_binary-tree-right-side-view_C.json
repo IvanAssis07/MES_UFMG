@@ -1,1 +1,48 @@
-{}
+{
+    "data": {
+        "submissionDetails": {
+            "runtime": 0,
+            "runtimeDisplay": "0 ms",
+            "runtimePercentile": 100.0,
+            "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"0\", 85.2713], [\"1\", 1.938], [\"2\", 2.3256], [\"3\", 5.814], [\"4\", 2.3256]]}",
+            "memory": 10444000,
+            "memoryDisplay": "10.4 MB",
+            "memoryPercentile": 17.829399999999993,
+            "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"9400\", 0.7752], [\"9500\", 7.3643], [\"9600\", 18.6047], [\"9700\", 10.0775], [\"9800\", 12.7907], [\"9900\", 11.6279], [\"10000\", 5.0388], [\"10100\", 7.3643], [\"10200\", 2.3256], [\"10300\", 3.4884], [\"10400\", 2.7132], [\"10500\", 1.1628], [\"10600\", 1.1628], [\"10700\", 0.7752], [\"10900\", 0.7752], [\"11000\", 0.7752], [\"11200\", 0.3876], [\"11300\", 0.7752], [\"11400\", 1.938], [\"11500\", 0.7752], [\"11600\", 0.3876], [\"11700\", 0.3876], [\"11900\", 0.3876], [\"12000\", 0.3876], [\"12200\", 0.7752], [\"12300\", 0.7752], [\"12600\", 1.1628]]}",
+            "code": "/**\n * Definition for a binary tree node.\n * struct TreeNode {\n *     int val;\n *     struct TreeNode *left;\n *     struct TreeNode *right;\n * };\n */\n/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\n\n#include <stdlib.h>\n\nint* rightSideView(struct TreeNode* root, int* returnSize) {\n    *returnSize = 0;\n    \n    // Handle empty tree\n    if (!root) {\n        return NULL;\n    }\n    \n    // Allocate result array (max 100 nodes as per constraints)\n    int* result = (int*)malloc(100 * sizeof(int));\n    \n    // Queue for BFS - store nodes and their levels\n    struct TreeNode* queue[100];\n    int levels[100];\n    int front = 0, rear = 0;\n    \n    // Start BFS\n    queue[rear] = root;\n    levels[rear] = 0;\n    rear++;\n    \n    int currentLevel = -1;\n    \n    while (front < rear) {\n        struct TreeNode* node = queue[front];\n        int level = levels[front];\n        front++;\n        \n        // If this is a new level, or we're at the same level (overwrite with rightmost)\n        if (level > currentLevel) {\n            // New level encountered\n            result[*returnSize] = node->val;\n            (*returnSize)++;\n            currentLevel = level;\n        } else if (level == currentLevel) {\n            // Same level - update with current node (rightmost so far)\n            result[*returnSize - 1] = node->val;\n        }\n        \n        // Add children to queue (left first, then right)\n        // This ensures right nodes are processed after left nodes at same level\n        if (node->left) {\n            queue[rear] = node->left;\n            levels[rear] = level + 1;\n            rear++;\n        }\n        \n        if (node->right) {\n            queue[rear] = node->right;\n            levels[rear] = level + 1;\n            rear++;\n        }\n    }\n    \n    return result;\n}\n\n// Alternative solution using reverse level order (right to left)\nint* rightSideViewAlternative(struct TreeNode* root, int* returnSize) {\n    *returnSize = 0;\n    \n    if (!root) {\n        return NULL;\n    }\n    \n    int* result = (int*)malloc(100 * sizeof(int));\n    struct TreeNode* queue[100];\n    int front = 0, rear = 0;\n    \n    queue[rear++] = root;\n    \n    while (front < rear) {\n        int levelSize = rear - front;\n        \n        // Process all nodes at current level\n        for (int i = 0; i < levelSize; i++) {\n            struct TreeNode* node = queue[front++];\n            \n            // First node we see at each level is the rightmost\n            if (i == 0) {\n                result[(*returnSize)++] = node->val;\n            }\n            \n            // Add children (right first for this approach)\n            if (node->right) {\n                queue[rear++] = node->right;\n            }\n            if (node->left) {\n                queue[rear++] = node->left;\n            }\n        }\n    }\n    \n    return result;\n}",
+            "timestamp": 1749306962,
+            "statusCode": 10,
+            "user": {
+                "username": "IvanAssis",
+                "profile": {
+                    "realName": "IvanAssis",
+                    "userAvatar": "https://assets.leetcode.com/users/default_avatar.jpg"
+                }
+            },
+            "lang": {
+                "name": "c",
+                "verboseName": "C"
+            },
+            "question": {
+                "questionId": "199",
+                "titleSlug": "binary-tree-right-side-view",
+                "hasFrontendPreview": false
+            },
+            "notes": "",
+            "flagType": "WHITE",
+            "topicTags": [],
+            "runtimeError": null,
+            "compileError": null,
+            "lastTestcase": "",
+            "codeOutput": "",
+            "expectedOutput": "",
+            "totalCorrect": 217,
+            "totalTestcases": 217,
+            "fullCodeOutput": null,
+            "testDescriptions": null,
+            "testBodies": null,
+            "testInfo": null,
+            "stdOutput": ""
+        }
+    }
+}

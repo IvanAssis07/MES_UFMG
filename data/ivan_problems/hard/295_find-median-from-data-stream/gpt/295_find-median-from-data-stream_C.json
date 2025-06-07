@@ -1,1 +1,48 @@
-{}
+{
+    "data": {
+        "submissionDetails": {
+            "runtime": 72,
+            "runtimeDisplay": "72 ms",
+            "runtimePercentile": 24.752400000000037,
+            "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"25\", 0.9901], [\"32\", 0.9901], [\"37\", 0.9901], [\"38\", 1.9802], [\"39\", 0.9901], [\"41\", 0.9901], [\"43\", 2.9703], [\"44\", 1.9802], [\"46\", 0.9901], [\"48\", 2.9703], [\"49\", 0.9901], [\"50\", 3.9604], [\"51\", 4.9505], [\"52\", 3.9604], [\"53\", 2.9703], [\"54\", 1.9802], [\"55\", 1.9802], [\"56\", 3.9604], [\"58\", 0.9901], [\"59\", 0.9901], [\"60\", 2.9703], [\"61\", 2.9703], [\"62\", 0.9901], [\"63\", 1.9802], [\"64\", 4.9505], [\"65\", 1.9802], [\"66\", 1.9802], [\"67\", 2.9703], [\"68\", 6.9307], [\"69\", 0.9901], [\"70\", 2.9703], [\"71\", 0.9901], [\"72\", 1.9802], [\"73\", 1.9802], [\"74\", 0.9901], [\"75\", 1.9802], [\"78\", 0.9901], [\"79\", 1.9802], [\"82\", 1.9802], [\"83\", 0.9901], [\"84\", 1.9802], [\"85\", 0.9901], [\"91\", 0.9901], [\"93\", 0.9901], [\"94\", 0.9901]]}",
+            "memory": 85832000,
+            "memoryDisplay": "85.8 MB",
+            "memoryPercentile": 87.12870000000002,
+            "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"84000\", 1.9802], [\"84300\", 0.9901], [\"85200\", 0.9901], [\"85300\", 3.9604], [\"85500\", 0.9901], [\"85600\", 0.9901], [\"85700\", 0.9901], [\"85800\", 1.9802], [\"85900\", 11.8812], [\"86000\", 22.7723], [\"86100\", 11.8812], [\"86200\", 9.901], [\"86300\", 2.9703], [\"86800\", 0.9901], [\"86900\", 7.9208], [\"87000\", 3.9604], [\"87100\", 1.9802], [\"87200\", 4.9505], [\"87300\", 0.9901]]}",
+            "code": "#include <stdlib.h>\n#include <stdio.h>\n#include <limits.h>\n#include <math.h>\n\n#define MAX_SIZE 50000\n\ntypedef struct {\n    int low[MAX_SIZE];   // Max-heap\n    int high[MAX_SIZE];  // Min-heap\n    int lowSize;\n    int highSize;\n} MedianFinder;\n\n// Helper functions\nvoid swap(int *a, int *b) {\n    int t = *a;\n    *a = *b;\n    *b = t;\n}\n\n// Max-heap insert\nvoid maxHeapPush(int *heap, int *size, int val) {\n    int i = (*size)++;\n    heap[i] = val;\n    while (i > 0 && heap[i] > heap[(i - 1) / 2]) {\n        swap(&heap[i], &heap[(i - 1) / 2]);\n        i = (i - 1) / 2;\n    }\n}\n\n// Max-heap pop\nint maxHeapPop(int *heap, int *size) {\n    int top = heap[0];\n    heap[0] = heap[--(*size)];\n    int i = 0;\n    while (2 * i + 1 < *size) {\n        int j = 2 * i + 1;\n        if (j + 1 < *size && heap[j + 1] > heap[j]) j++;\n        if (heap[i] >= heap[j]) break;\n        swap(&heap[i], &heap[j]);\n        i = j;\n    }\n    return top;\n}\n\n// Min-heap insert\nvoid minHeapPush(int *heap, int *size, int val) {\n    int i = (*size)++;\n    heap[i] = val;\n    while (i > 0 && heap[i] < heap[(i - 1) / 2]) {\n        swap(&heap[i], &heap[(i - 1) / 2]);\n        i = (i - 1) / 2;\n    }\n}\n\n// Min-heap pop\nint minHeapPop(int *heap, int *size) {\n    int top = heap[0];\n    heap[0] = heap[--(*size)];\n    int i = 0;\n    while (2 * i + 1 < *size) {\n        int j = 2 * i + 1;\n        if (j + 1 < *size && heap[j + 1] < heap[j]) j++;\n        if (heap[i] <= heap[j]) break;\n        swap(&heap[i], &heap[j]);\n        i = j;\n    }\n    return top;\n}\n\n// Public functions\nMedianFinder* medianFinderCreate() {\n    MedianFinder* mf = (MedianFinder*)malloc(sizeof(MedianFinder));\n    mf->lowSize = mf->highSize = 0;\n    return mf;\n}\n\nvoid medianFinderAddNum(MedianFinder* obj, int num) {\n    if (obj->lowSize == 0 || num <= obj->low[0]) {\n        maxHeapPush(obj->low, &obj->lowSize, num);\n    } else {\n        minHeapPush(obj->high, &obj->highSize, num);\n    }\n\n    // Balance heaps\n    if (obj->lowSize > obj->highSize + 1) {\n        int top = maxHeapPop(obj->low, &obj->lowSize);\n        minHeapPush(obj->high, &obj->highSize, top);\n    } else if (obj->highSize > obj->lowSize) {\n        int top = minHeapPop(obj->high, &obj->highSize);\n        maxHeapPush(obj->low, &obj->lowSize, top);\n    }\n}\n\ndouble medianFinderFindMedian(MedianFinder* obj) {\n    if (obj->lowSize > obj->highSize) {\n        return obj->low[0];\n    } else {\n        return ((double)obj->low[0] + (double)obj->high[0]) / 2.0;\n    }\n}\n\nvoid medianFinderFree(MedianFinder* obj) {\n    free(obj);\n}\n",
+            "timestamp": 1749305501,
+            "statusCode": 10,
+            "user": {
+                "username": "IvanAssis",
+                "profile": {
+                    "realName": "IvanAssis",
+                    "userAvatar": "https://assets.leetcode.com/users/default_avatar.jpg"
+                }
+            },
+            "lang": {
+                "name": "c",
+                "verboseName": "C"
+            },
+            "question": {
+                "questionId": "295",
+                "titleSlug": "find-median-from-data-stream",
+                "hasFrontendPreview": false
+            },
+            "notes": "",
+            "flagType": "WHITE",
+            "topicTags": [],
+            "runtimeError": null,
+            "compileError": null,
+            "lastTestcase": "",
+            "codeOutput": "",
+            "expectedOutput": "",
+            "totalCorrect": 21,
+            "totalTestcases": 21,
+            "fullCodeOutput": null,
+            "testDescriptions": null,
+            "testBodies": null,
+            "testInfo": null,
+            "stdOutput": ""
+        }
+    }
+}

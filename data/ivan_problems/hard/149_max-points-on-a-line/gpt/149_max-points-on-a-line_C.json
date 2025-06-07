@@ -1,1 +1,48 @@
-{}
+{
+    "data": {
+        "submissionDetails": {
+            "runtime": 7,
+            "runtimeDisplay": "7 ms",
+            "runtimePercentile": 96.3964,
+            "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"4\", 1.8018], [\"6\", 1.8018], [\"7\", 3.6036], [\"8\", 1.8018], [\"9\", 0.9009], [\"10\", 0.9009], [\"11\", 4.5045], [\"12\", 0.9009], [\"13\", 0.9009], [\"14\", 0.9009], [\"15\", 4.5045], [\"19\", 1.8018], [\"20\", 0.9009], [\"23\", 2.7027], [\"26\", 2.7027], [\"27\", 1.8018], [\"30\", 1.8018], [\"31\", 0.9009], [\"34\", 0.9009], [\"35\", 0.9009], [\"37\", 0.9009], [\"38\", 1.8018], [\"43\", 0.9009], [\"45\", 0.9009], [\"47\", 2.7027], [\"48\", 0.9009], [\"50\", 0.9009], [\"51\", 1.8018], [\"52\", 0.9009], [\"54\", 2.7027], [\"55\", 2.7027], [\"56\", 1.8018], [\"57\", 0.9009], [\"59\", 0.9009], [\"61\", 0.9009], [\"63\", 0.9009], [\"66\", 0.9009], [\"67\", 0.9009], [\"73\", 0.9009], [\"92\", 0.9009], [\"95\", 0.9009], [\"99\", 0.9009], [\"100\", 0.9009], [\"106\", 1.8018], [\"109\", 1.8018], [\"111\", 0.9009], [\"113\", 0.9009], [\"114\", 0.9009], [\"115\", 0.9009], [\"123\", 1.8018], [\"124\", 0.9009], [\"126\", 0.9009], [\"127\", 2.7027], [\"129\", 2.7027], [\"130\", 1.8018], [\"131\", 0.9009], [\"132\", 0.9009], [\"135\", 0.9009], [\"138\", 1.8018], [\"171\", 0.9009], [\"175\", 0.9009], [\"179\", 1.8018], [\"182\", 1.8018], [\"185\", 0.9009]]}",
+            "memory": 8840000,
+            "memoryDisplay": "8.8 MB",
+            "memoryPercentile": 54.054100000000005,
+            "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"8600\", 3.6036], [\"8700\", 17.1171], [\"8800\", 25.2252], [\"8900\", 10.8108], [\"9000\", 6.3063], [\"9100\", 6.3063], [\"9200\", 3.6036], [\"9300\", 1.8018], [\"9400\", 0.9009], [\"9500\", 0.9009], [\"9600\", 0.9009], [\"10200\", 0.9009], [\"10500\", 0.9009], [\"10800\", 1.8018], [\"10900\", 0.9009], [\"11000\", 3.6036], [\"11200\", 0.9009], [\"13900\", 0.9009], [\"18300\", 0.9009], [\"19400\", 0.9009], [\"22700\", 0.9009], [\"22800\", 1.8018], [\"25300\", 0.9009], [\"25700\", 0.9009], [\"27000\", 0.9009]]}",
+            "code": "#include <stdio.h>\n#include <stdlib.h>\n#include <limits.h>\n\nint gcd(int a, int b) {\n    if (b == 0) return a;\n    return gcd(b, a % b);\n}\n\n// Define a structure to represent a slope as a reduced fraction dy/dx\ntypedef struct {\n    int dx, dy;\n} Slope;\n\n// Compare two slopes\nint equalSlope(Slope a, Slope b) {\n    return a.dx == b.dx && a.dy == b.dy;\n}\n\nint maxPoints(int** points, int pointsSize, int* pointsColSize) {\n    if (pointsSize <= 2) return pointsSize;\n    int max = 0;\n\n    for (int i = 0; i < pointsSize; i++) {\n        int overlap = 0, vertical = 0;\n        int slopeCount = 0;\n        Slope slopes[pointsSize]; // Enough space for hash map\n        int counts[pointsSize];\n\n        for (int j = i + 1; j < pointsSize; j++) {\n            int dx = points[j][0] - points[i][0];\n            int dy = points[j][1] - points[i][1];\n\n            if (dx == 0 && dy == 0) {\n                overlap++;\n            } else if (dx == 0) {\n                vertical++;\n            } else {\n                int d = gcd(dx, dy);\n                dx /= d;\n                dy /= d;\n\n                // Normalize direction (to avoid (-1, -2) vs (1, 2))\n                if (dx < 0) {\n                    dx = -dx;\n                    dy = -dy;\n                }\n\n                // Check if the slope already exists\n                int found = 0;\n                for (int k = 0; k < slopeCount; k++) {\n                    if (slopes[k].dx == dx && slopes[k].dy == dy) {\n                        counts[k]++;\n                        found = 1;\n                        break;\n                    }\n                }\n                if (!found) {\n                    slopes[slopeCount].dx = dx;\n                    slopes[slopeCount].dy = dy;\n                    counts[slopeCount] = 1;\n                    slopeCount++;\n                }\n            }\n        }\n\n        int currMax = vertical;\n        for (int k = 0; k < slopeCount; k++) {\n            if (counts[k] > currMax) currMax = counts[k];\n        }\n\n        if (currMax + overlap + 1 > max)\n            max = currMax + overlap + 1;\n    }\n\n    return max;\n}\n",
+            "timestamp": 1749305166,
+            "statusCode": 10,
+            "user": {
+                "username": "IvanAssis",
+                "profile": {
+                    "realName": "IvanAssis",
+                    "userAvatar": "https://assets.leetcode.com/users/default_avatar.jpg"
+                }
+            },
+            "lang": {
+                "name": "c",
+                "verboseName": "C"
+            },
+            "question": {
+                "questionId": "149",
+                "titleSlug": "max-points-on-a-line",
+                "hasFrontendPreview": false
+            },
+            "notes": "",
+            "flagType": "WHITE",
+            "topicTags": [],
+            "runtimeError": null,
+            "compileError": null,
+            "lastTestcase": "",
+            "codeOutput": "",
+            "expectedOutput": "",
+            "totalCorrect": 41,
+            "totalTestcases": 41,
+            "fullCodeOutput": null,
+            "testDescriptions": null,
+            "testBodies": null,
+            "testInfo": null,
+            "stdOutput": ""
+        }
+    }
+}

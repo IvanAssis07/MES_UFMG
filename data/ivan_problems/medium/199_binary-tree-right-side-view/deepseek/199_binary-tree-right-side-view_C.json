@@ -1,1 +1,48 @@
-{}
+{
+    "data": {
+        "submissionDetails": {
+            "runtime": 0,
+            "runtimeDisplay": "0 ms",
+            "runtimePercentile": 100.0,
+            "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"0\", 85.2713], [\"1\", 1.938], [\"2\", 2.3256], [\"3\", 5.814], [\"4\", 2.3256]]}",
+            "memory": 9796000,
+            "memoryDisplay": "9.8 MB",
+            "memoryPercentile": 63.17829999999999,
+            "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"9400\", 0.7752], [\"9500\", 7.3643], [\"9600\", 18.6047], [\"9700\", 10.0775], [\"9800\", 12.7907], [\"9900\", 11.6279], [\"10000\", 5.0388], [\"10100\", 7.3643], [\"10200\", 2.3256], [\"10300\", 3.4884], [\"10400\", 2.7132], [\"10500\", 1.1628], [\"10600\", 1.1628], [\"10700\", 0.7752], [\"10900\", 0.7752], [\"11000\", 0.7752], [\"11200\", 0.3876], [\"11300\", 0.7752], [\"11400\", 1.938], [\"11500\", 0.7752], [\"11600\", 0.3876], [\"11700\", 0.3876], [\"11900\", 0.3876], [\"12000\", 0.3876], [\"12200\", 0.7752], [\"12300\", 0.7752], [\"12600\", 1.1628]]}",
+            "code": "#include <stdlib.h>\n\n\ntypedef struct QueueNode {\n    struct TreeNode *treeNode;\n    struct QueueNode *next;\n} QueueNode;\n\ntypedef struct {\n    QueueNode *front;\n    QueueNode *rear;\n} Queue;\n\nQueue* createQueue() {\n    Queue *q = (Queue*)malloc(sizeof(Queue));\n    q->front = q->rear = NULL;\n    return q;\n}\n\nvoid enqueue(Queue *q, struct TreeNode *treeNode) {\n    QueueNode *newNode = (QueueNode*)malloc(sizeof(QueueNode));\n    newNode->treeNode = treeNode;\n    newNode->next = NULL;\n    if (q->rear == NULL) {\n        q->front = q->rear = newNode;\n    } else {\n        q->rear->next = newNode;\n        q->rear = newNode;\n    }\n}\n\nstruct TreeNode* dequeue(Queue *q) {\n    if (q->front == NULL) {\n        return NULL;\n    }\n    QueueNode *temp = q->front;\n    struct TreeNode *node = temp->treeNode;\n    q->front = q->front->next;\n    if (q->front == NULL) {\n        q->rear = NULL;\n    }\n    free(temp);\n    return node;\n}\n\nint isEmpty(Queue *q) {\n    return q->front == NULL;\n}\n\nint* rightSideView(struct TreeNode* root, int* returnSize) {\n    if (root == NULL) {\n        *returnSize = 0;\n        return NULL;\n    }\n\n    Queue *q = createQueue();\n    enqueue(q, root);\n    int *result = (int*)malloc(100 * sizeof(int));\n    *returnSize = 0;\n\n    while (!isEmpty(q)) {\n        int levelSize = 0;\n        QueueNode *current = q->front;\n        while (current != NULL) {\n            levelSize++;\n            current = current->next;\n        }\n\n        struct TreeNode *lastNode = NULL;\n        for (int i = 0; i < levelSize; i++) {\n            lastNode = dequeue(q);\n            if (lastNode->left != NULL) {\n                enqueue(q, lastNode->left);\n            }\n            if (lastNode->right != NULL) {\n                enqueue(q, lastNode->right);\n            }\n        }\n        result[(*returnSize)++] = lastNode->val;\n    }\n\n    free(q);\n    return result;\n}",
+            "timestamp": 1749306997,
+            "statusCode": 10,
+            "user": {
+                "username": "IvanAssis",
+                "profile": {
+                    "realName": "IvanAssis",
+                    "userAvatar": "https://assets.leetcode.com/users/default_avatar.jpg"
+                }
+            },
+            "lang": {
+                "name": "c",
+                "verboseName": "C"
+            },
+            "question": {
+                "questionId": "199",
+                "titleSlug": "binary-tree-right-side-view",
+                "hasFrontendPreview": false
+            },
+            "notes": "",
+            "flagType": "WHITE",
+            "topicTags": [],
+            "runtimeError": null,
+            "compileError": null,
+            "lastTestcase": "",
+            "codeOutput": "",
+            "expectedOutput": "",
+            "totalCorrect": 217,
+            "totalTestcases": 217,
+            "fullCodeOutput": null,
+            "testDescriptions": null,
+            "testBodies": null,
+            "testInfo": null,
+            "stdOutput": ""
+        }
+    }
+}
