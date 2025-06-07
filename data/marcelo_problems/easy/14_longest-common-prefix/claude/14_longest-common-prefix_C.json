@@ -1,0 +1,48 @@
+{
+    "data": {
+        "submissionDetails": {
+            "runtime": 0,
+            "runtimeDisplay": "0 ms",
+            "runtimePercentile": 100.0,
+            "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"0\", 91.0769], [\"1\", 1.9487], [\"2\", 1.6068], [\"3\", 2.9744], [\"4\", 0.8547]]}",
+            "memory": 8088000,
+            "memoryDisplay": "8.1 MB",
+            "memoryPercentile": 95.0085,
+            "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"8000\", 4.9915], [\"8100\", 40.4103], [\"8200\", 30.8034], [\"8300\", 15.453], [\"8400\", 6.5983]]}",
+            "code": "#include <stdio.h>\n#include <stdlib.h>\n#include <string.h>\n\nchar* longestCommonPrefix(char** strs, int strsSize) {\n    // Handle edge cases\n    if (strsSize == 0) {\n        char* result = (char*)malloc(1);\n        result[0] = '\\0';\n        return result;\n    }\n    \n    if (strsSize == 1) {\n        char* result = (char*)malloc(strlen(strs[0]) + 1);\n        strcpy(result, strs[0]);\n        return result;\n    }\n    \n    // Find the length of the shortest string to avoid buffer overflow\n    int minLen = strlen(strs[0]);\n    for (int i = 1; i < strsSize; i++) {\n        int len = strlen(strs[i]);\n        if (len < minLen) {\n            minLen = len;\n        }\n    }\n    \n    // If any string is empty, return empty string\n    if (minLen == 0) {\n        char* result = (char*)malloc(1);\n        result[0] = '\\0';\n        return result;\n    }\n    \n    // Find the longest common prefix\n    int prefixLen = 0;\n    for (int i = 0; i < minLen; i++) {\n        char currentChar = strs[0][i];\n        \n        // Check if this character is common across all strings\n        for (int j = 1; j < strsSize; j++) {\n            if (strs[j][i] != currentChar) {\n                // Found a mismatch, stop here\n                char* result = (char*)malloc(prefixLen + 1);\n                strncpy(result, strs[0], prefixLen);\n                result[prefixLen] = '\\0';\n                return result;\n            }\n        }\n        prefixLen++;\n    }\n    \n    // All characters up to minLen are common\n    char* result = (char*)malloc(prefixLen + 1);\n    strncpy(result, strs[0], prefixLen);\n    result[prefixLen] = '\\0';\n    return result;\n}",
+            "timestamp": 1749245313,
+            "statusCode": 10,
+            "user": {
+                "username": "ZRlvkAicEr",
+                "profile": {
+                    "realName": "ZRlvkAicEr",
+                    "userAvatar": "https://assets.leetcode.com/users/ZRlvkAicEr/avatar_1749245074.png"
+                }
+            },
+            "lang": {
+                "name": "c",
+                "verboseName": "C"
+            },
+            "question": {
+                "questionId": "14",
+                "titleSlug": "longest-common-prefix",
+                "hasFrontendPreview": false
+            },
+            "notes": "",
+            "flagType": "WHITE",
+            "topicTags": [],
+            "runtimeError": null,
+            "compileError": null,
+            "lastTestcase": "",
+            "codeOutput": "",
+            "expectedOutput": "",
+            "totalCorrect": 126,
+            "totalTestcases": 126,
+            "fullCodeOutput": null,
+            "testDescriptions": null,
+            "testBodies": null,
+            "testInfo": null,
+            "stdOutput": ""
+        }
+    }
+}

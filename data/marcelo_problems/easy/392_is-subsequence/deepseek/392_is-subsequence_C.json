@@ -1,0 +1,48 @@
+{
+    "data": {
+        "submissionDetails": {
+            "runtime": 0,
+            "runtimeDisplay": "0 ms",
+            "runtimePercentile": 100.0,
+            "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"0\", 86.7166], [\"1\", 2.3386], [\"2\", 3.4612], [\"3\", 4.0225], [\"4\", 1.4032]]}",
+            "memory": 7804000,
+            "memoryDisplay": "7.8 MB",
+            "memoryPercentile": 51.63709999999999,
+            "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"7600\", 0.0935], [\"7700\", 4.3966], [\"7800\", 43.8728], [\"7900\", 33.0215], [\"8000\", 8.5126]]}",
+            "code": "bool isSubsequence(char* s, char* t) {\n    if (*s == '\\0') {\n        return true;\n    }\n    \n    int s_index = 0;\n    int t_index = 0;\n    \n    while (t[t_index] != '\\0') {\n        if (s[s_index] == t[t_index]) {\n            s_index++;\n            if (s[s_index] == '\\0') {\n                return true;\n            }\n        }\n        t_index++;\n    }\n    \n    return false;\n}",
+            "timestamp": 1749247408,
+            "statusCode": 10,
+            "user": {
+                "username": "ZRlvkAicEr",
+                "profile": {
+                    "realName": "ZRlvkAicEr",
+                    "userAvatar": "https://assets.leetcode.com/users/ZRlvkAicEr/avatar_1749245074.png"
+                }
+            },
+            "lang": {
+                "name": "c",
+                "verboseName": "C"
+            },
+            "question": {
+                "questionId": "392",
+                "titleSlug": "is-subsequence",
+                "hasFrontendPreview": false
+            },
+            "notes": "",
+            "flagType": "WHITE",
+            "topicTags": [],
+            "runtimeError": null,
+            "compileError": null,
+            "lastTestcase": "",
+            "codeOutput": "",
+            "expectedOutput": "",
+            "totalCorrect": 21,
+            "totalTestcases": 21,
+            "fullCodeOutput": null,
+            "testDescriptions": null,
+            "testBodies": null,
+            "testInfo": null,
+            "stdOutput": ""
+        }
+    }
+}

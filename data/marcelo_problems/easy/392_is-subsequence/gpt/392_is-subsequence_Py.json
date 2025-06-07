@@ -1,0 +1,48 @@
+{
+    "data": {
+        "submissionDetails": {
+            "runtime": 0,
+            "runtimeDisplay": "0 ms",
+            "runtimePercentile": 100.0,
+            "runtimeDistribution": "{\"lang\": \"python3\", \"distribution\": [[\"0\", 62.1161], [\"1\", 7.8989], [\"2\", 4.8239], [\"3\", 15.8983], [\"4\", 5.418]]}",
+            "memory": 17764000,
+            "memoryDisplay": "17.8 MB",
+            "memoryPercentile": 67.07799999999999,
+            "memoryDistribution": "{\"lang\": \"python3\", \"distribution\": [[\"17100\", 0.0042], [\"17300\", 0.0126], [\"17400\", 0.0879], [\"17500\", 0.9999], [\"17600\", 7.5433], [\"17700\", 24.2741], [\"17800\", 25.2531], [\"17900\", 17.873], [\"18000\", 18.6972]]}",
+            "code": "class Solution:\n    def isSubsequence(self, s: str, t: str) -> bool:\n        i, j = 0, 0  # i -> index in s, j -> index in t\n        while i < len(s) and j < len(t):\n            if s[i] == t[j]:\n                i += 1\n            j += 1\n        return i == len(s)\n",
+            "timestamp": 1749247474,
+            "statusCode": 10,
+            "user": {
+                "username": "ZRlvkAicEr",
+                "profile": {
+                    "realName": "ZRlvkAicEr",
+                    "userAvatar": "https://assets.leetcode.com/users/ZRlvkAicEr/avatar_1749245074.png"
+                }
+            },
+            "lang": {
+                "name": "python3",
+                "verboseName": "Python3"
+            },
+            "question": {
+                "questionId": "392",
+                "titleSlug": "is-subsequence",
+                "hasFrontendPreview": false
+            },
+            "notes": "",
+            "flagType": "WHITE",
+            "topicTags": [],
+            "runtimeError": null,
+            "compileError": null,
+            "lastTestcase": "",
+            "codeOutput": "",
+            "expectedOutput": "",
+            "totalCorrect": 21,
+            "totalTestcases": 21,
+            "fullCodeOutput": null,
+            "testDescriptions": null,
+            "testBodies": null,
+            "testInfo": null,
+            "stdOutput": ""
+        }
+    }
+}

@@ -1,0 +1,48 @@
+{
+    "data": {
+        "submissionDetails": {
+            "runtime": 0,
+            "runtimeDisplay": "0 ms",
+            "runtimePercentile": 100.0,
+            "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"0\", 91.0769], [\"1\", 1.9487], [\"2\", 1.6068], [\"3\", 2.9744], [\"4\", 0.8547]]}",
+            "memory": 8468000,
+            "memoryDisplay": "8.5 MB",
+            "memoryPercentile": 1.7434999999999992,
+            "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"8000\", 4.9915], [\"8100\", 40.4103], [\"8200\", 30.8034], [\"8300\", 15.453], [\"8400\", 6.5983]]}",
+            "code": "#include <stdlib.h>\n#include <string.h>\n\nchar* longestCommonPrefix(char** strs, int strsSize) {\n    if (strsSize == 0) {\n        char* result = malloc(1);\n        result[0] = '\\0';\n        return result;\n    }\n    \n    if (strsSize == 1) {\n        return strdup(strs[0]);\n    }\n    \n    int prefixLen = 0;\n    int firstStrLen = strlen(strs[0]);\n    \n    for (int i = 0; i < firstStrLen; i++) {\n        char currentChar = strs[0][i];\n        int match = 1;\n        \n        for (int j = 1; j < strsSize; j++) {\n            if (i >= strlen(strs[j]) || strs[j][i] != currentChar) {\n                match = 0;\n                break;\n            }\n        }\n        \n        if (match) {\n            prefixLen++;\n        } else {\n            break;\n        }\n    }\n    \n    char* result = malloc(prefixLen + 1);\n    if (prefixLen > 0) {\n        strncpy(result, strs[0], prefixLen);\n    }\n    result[prefixLen] = '\\0';\n    \n    return result;\n}",
+            "timestamp": 1749245234,
+            "statusCode": 10,
+            "user": {
+                "username": "ZRlvkAicEr",
+                "profile": {
+                    "realName": "ZRlvkAicEr",
+                    "userAvatar": "https://assets.leetcode.com/users/ZRlvkAicEr/avatar_1749245074.png"
+                }
+            },
+            "lang": {
+                "name": "c",
+                "verboseName": "C"
+            },
+            "question": {
+                "questionId": "14",
+                "titleSlug": "longest-common-prefix",
+                "hasFrontendPreview": false
+            },
+            "notes": "",
+            "flagType": "WHITE",
+            "topicTags": [],
+            "runtimeError": null,
+            "compileError": null,
+            "lastTestcase": "",
+            "codeOutput": "",
+            "expectedOutput": "",
+            "totalCorrect": 126,
+            "totalTestcases": 126,
+            "fullCodeOutput": null,
+            "testDescriptions": null,
+            "testBodies": null,
+            "testInfo": null,
+            "stdOutput": ""
+        }
+    }
+}
