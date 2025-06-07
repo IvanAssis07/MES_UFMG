@@ -1,1 +1,48 @@
-{}
+{
+    "data": {
+        "submissionDetails": {
+            "runtime": 21,
+            "runtimeDisplay": "21 ms",
+            "runtimePercentile": 23.21159999999997,
+            "runtimeDistribution": "{\"lang\": \"python\", \"distribution\": [[\"0\", 1.0219], [\"1\", 0.146], [\"2\", 1.0219], [\"3\", 1.3139], [\"4\", 3.9416], [\"5\", 1.1679], [\"6\", 1.7518], [\"7\", 3.6496], [\"8\", 7.2993], [\"9\", 2.9197], [\"10\", 2.9197], [\"11\", 5.5474], [\"12\", 7.1533], [\"13\", 4.0876], [\"14\", 3.9416], [\"15\", 7.4453], [\"16\", 6.1314], [\"17\", 3.5036], [\"18\", 2.4818], [\"19\", 5.1095], [\"20\", 4.2336], [\"21\", 1.8978], [\"22\", 1.4599], [\"23\", 3.7956], [\"24\", 2.3358], [\"25\", 0.8759], [\"26\", 1.1679], [\"27\", 2.1898], [\"28\", 1.3139], [\"29\", 0.7299], [\"30\", 0.146], [\"31\", 1.1679], [\"32\", 0.438], [\"33\", 0.292], [\"34\", 0.292]]}",
+            "memory": 21200000,
+            "memoryDisplay": "21.2 MB",
+            "memoryPercentile": 31.6787,
+            "memoryDistribution": "{\"lang\": \"python\", \"distribution\": [[\"20300\", 0.146], [\"20400\", 0.146], [\"20500\", 0.292], [\"20600\", 0.146], [\"20700\", 0.292], [\"20900\", 1.7518], [\"21000\", 29.4891], [\"21100\", 36.0584]]}",
+            "code": "# Definition for a binary tree node.\n# class TreeNode(object):\n#     def __init__(self, val=0, left=None, right=None):\n#         self.val = val\n#         self.left = left\n#         self.right = right\n\nclass BSTIterator(object):\n\n    def __init__(self, root):\n        \"\"\"\n        :type root: Optional[TreeNode]\n        \"\"\"\n        self.stack = []\n        self._push_left_branch(root)\n\n    def _push_left_branch(self, node):\n        \"\"\"\n        Helper function to push all left children to the stack\n        \"\"\"\n        while node:\n            self.stack.append(node)\n            node = node.left\n\n    def next(self):\n        \"\"\"\n        :rtype: int\n        \"\"\"\n        node = self.stack.pop()\n        val = node.val\n        if node.right:\n            self._push_left_branch(node.right)\n        return val\n\n    def hasNext(self):\n        \"\"\"\n        :rtype: bool\n        \"\"\"\n        return len(self.stack) > 0\n",
+            "timestamp": 1749338044,
+            "statusCode": 10,
+            "user": {
+                "username": "yosQbj5lkC",
+                "profile": {
+                    "realName": "Henrique Freitas",
+                    "userAvatar": "https://assets.leetcode.com/users/yosQbj5lkC/avatar_1748722942.png"
+                }
+            },
+            "lang": {
+                "name": "python",
+                "verboseName": "Python"
+            },
+            "question": {
+                "questionId": "173",
+                "titleSlug": "binary-search-tree-iterator",
+                "hasFrontendPreview": false
+            },
+            "notes": "",
+            "flagType": "WHITE",
+            "topicTags": [],
+            "runtimeError": null,
+            "compileError": null,
+            "lastTestcase": "",
+            "codeOutput": "",
+            "expectedOutput": "",
+            "totalCorrect": 61,
+            "totalTestcases": 61,
+            "fullCodeOutput": null,
+            "testDescriptions": null,
+            "testBodies": null,
+            "testInfo": null,
+            "stdOutput": ""
+        }
+    }
+}

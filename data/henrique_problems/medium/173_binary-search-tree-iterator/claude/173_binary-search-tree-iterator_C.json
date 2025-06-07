@@ -1,1 +1,48 @@
-{}
+{
+    "data": {
+        "submissionDetails": {
+            "runtime": 3,
+            "runtimeDisplay": "3 ms",
+            "runtimePercentile": 75.4385,
+            "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"0\", 18.4211], [\"1\", 3.5088], [\"2\", 2.6316], [\"3\", 13.1579], [\"4\", 14.0351], [\"5\", 9.6491], [\"6\", 2.6316], [\"7\", 7.0175], [\"8\", 8.7719], [\"9\", 2.6316], [\"10\", 3.5088], [\"11\", 5.2632], [\"12\", 2.6316], [\"14\", 0.8772]]}",
+            "memory": 21440000,
+            "memoryDisplay": "21.4 MB",
+            "memoryPercentile": 86.8421,
+            "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"21200\", 0.8772], [\"21300\", 4.386], [\"21400\", 7.8947], [\"21500\", 12.2807], [\"21600\", 6.1404], [\"21700\", 1.7544], [\"21800\", 4.386], [\"21900\", 8.7719], [\"22000\", 5.2632], [\"22100\", 6.1404], [\"22200\", 3.5088], [\"22300\", 7.0175], [\"22500\", 2.6316], [\"22600\", 1.7544], [\"22800\", 1.7544], [\"22900\", 1.7544], [\"27600\", 0.8772], [\"27700\", 0.8772], [\"28100\", 1.7544], [\"28200\", 5.2632], [\"28300\", 5.2632], [\"28400\", 2.6316], [\"28500\", 0.8772], [\"28600\", 0.8772]]}",
+            "code": "#include <stdio.h>\n#include <stdlib.h>\n#include <stdbool.h>\n\n\ntypedef struct {\n    struct TreeNode** stack;\n    int top;\n    int capacity;\n} BSTIterator;\n\n// Helper function to push all left nodes starting from node onto the stack\nvoid pushLeftNodes(BSTIterator* obj, struct TreeNode* node) {\n    while (node != NULL) {\n        // Resize stack if needed\n        if (obj->top >= obj->capacity - 1) {\n            obj->capacity *= 2;\n            obj->stack = (struct TreeNode**)realloc(obj->stack, obj->capacity * sizeof(struct TreeNode*));\n        }\n        obj->stack[++obj->top] = node;\n        node = node->left;\n    }\n}\n\nBSTIterator* bSTIteratorCreate(struct TreeNode* root) {\n    BSTIterator* obj = (BSTIterator*)malloc(sizeof(BSTIterator));\n    obj->capacity = 100;  // Initial capacity\n    obj->stack = (struct TreeNode**)malloc(obj->capacity * sizeof(struct TreeNode*));\n    obj->top = -1;\n    \n    // Push all left nodes starting from root\n    pushLeftNodes(obj, root);\n    \n    return obj;\n}\n\nint bSTIteratorNext(BSTIterator* obj) {\n    // Pop the top node from stack\n    struct TreeNode* node = obj->stack[obj->top--];\n    int result = node->val;\n    \n    // If the popped node has a right child, push all left nodes of right subtree\n    if (node->right != NULL) {\n        pushLeftNodes(obj, node->right);\n    }\n    \n    return result;\n}\n\nbool bSTIteratorHasNext(BSTIterator* obj) {\n    return obj->top >= 0;\n}\n\nvoid bSTIteratorFree(BSTIterator* obj) {\n    free(obj->stack);\n    free(obj);\n}\n\n// Helper function to create a new tree node\nstruct TreeNode* createNode(int val) {\n    struct TreeNode* node = (struct TreeNode*)malloc(sizeof(struct TreeNode));\n    node->val = val;\n    node->left = NULL;\n    node->right = NULL;\n    return node;\n}\n\n",
+            "timestamp": 1749337940,
+            "statusCode": 10,
+            "user": {
+                "username": "yosQbj5lkC",
+                "profile": {
+                    "realName": "Henrique Freitas",
+                    "userAvatar": "https://assets.leetcode.com/users/yosQbj5lkC/avatar_1748722942.png"
+                }
+            },
+            "lang": {
+                "name": "c",
+                "verboseName": "C"
+            },
+            "question": {
+                "questionId": "173",
+                "titleSlug": "binary-search-tree-iterator",
+                "hasFrontendPreview": false
+            },
+            "notes": "",
+            "flagType": "WHITE",
+            "topicTags": [],
+            "runtimeError": null,
+            "compileError": null,
+            "lastTestcase": "",
+            "codeOutput": "",
+            "expectedOutput": "",
+            "totalCorrect": 61,
+            "totalTestcases": 61,
+            "fullCodeOutput": null,
+            "testDescriptions": null,
+            "testBodies": null,
+            "testInfo": null,
+            "stdOutput": ""
+        }
+    }
+}
