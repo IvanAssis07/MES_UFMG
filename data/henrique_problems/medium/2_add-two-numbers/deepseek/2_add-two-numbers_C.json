@@ -1,1 +1,48 @@
-{}
+{
+    "data": {
+        "submissionDetails": {
+            "runtime": 1,
+            "runtimeDisplay": "1 ms",
+            "runtimePercentile": 49.481,
+            "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"0\", 50.519], [\"1\", 7.8484], [\"2\", 6.0082], [\"3\", 13.4948], [\"4\", 10.2076], [\"5\", 2.1705], [\"6\", 1.4627]]}",
+            "memory": 12644000,
+            "memoryDisplay": "12.6 MB",
+            "memoryPercentile": 68.63780000000001,
+            "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"11900\", 0.0315], [\"12000\", 1.0538], [\"12100\", 2.1076], [\"12200\", 0.9594], [\"12300\", 0.5505], [\"12400\", 0.2674], [\"12500\", 3.2243], [\"12600\", 23.1677], [\"12700\", 33.7685], [\"12800\", 16.609], [\"12900\", 9.8301]]}",
+            "code": "#include <stdlib.h>\n\nstruct ListNode* addTwoNumbers(struct ListNode* l1, struct ListNode* l2) {\n    struct ListNode* dummy = (struct ListNode*)malloc(sizeof(struct ListNode));\n    dummy->val = 0;\n    dummy->next = NULL;\n    struct ListNode* current = dummy;\n    int carry = 0;\n    \n    while (l1 != NULL || l2 != NULL || carry != 0) {\n        int val1 = (l1 != NULL) ? l1->val : 0;\n        int val2 = (l2 != NULL) ? l2->val : 0;\n        int sum = val1 + val2 + carry;\n        carry = sum / 10;\n        int digit = sum % 10;\n        \n        struct ListNode* newNode = (struct ListNode*)malloc(sizeof(struct ListNode));\n        newNode->val = digit;\n        newNode->next = NULL;\n        current->next = newNode;\n        current = current->next;\n        \n        if (l1 != NULL) l1 = l1->next;\n        if (l2 != NULL) l2 = l2->next;\n    }\n    \n    struct ListNode* result = dummy->next;\n    free(dummy);\n    return result;\n}",
+            "timestamp": 1749335790,
+            "statusCode": 10,
+            "user": {
+                "username": "yosQbj5lkC",
+                "profile": {
+                    "realName": "Henrique Freitas",
+                    "userAvatar": "https://assets.leetcode.com/users/yosQbj5lkC/avatar_1748722942.png"
+                }
+            },
+            "lang": {
+                "name": "c",
+                "verboseName": "C"
+            },
+            "question": {
+                "questionId": "2",
+                "titleSlug": "add-two-numbers",
+                "hasFrontendPreview": false
+            },
+            "notes": "",
+            "flagType": "WHITE",
+            "topicTags": [],
+            "runtimeError": null,
+            "compileError": null,
+            "lastTestcase": "",
+            "codeOutput": "",
+            "expectedOutput": "",
+            "totalCorrect": 1569,
+            "totalTestcases": 1569,
+            "fullCodeOutput": null,
+            "testDescriptions": null,
+            "testBodies": null,
+            "testInfo": null,
+            "stdOutput": ""
+        }
+    }
+}

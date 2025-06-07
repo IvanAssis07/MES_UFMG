@@ -1,1 +1,48 @@
-{}
+{
+    "data": {
+        "submissionDetails": {
+            "runtime": 8,
+            "runtimeDisplay": "8 ms",
+            "runtimePercentile": 55.733299999999986,
+            "runtimeDistribution": "{\"lang\": \"python\", \"distribution\": [[\"0\", 5.4912], [\"1\", 2.0163], [\"2\", 2.0408], [\"3\", 6.9682], [\"4\", 8.5065], [\"5\", 4.6209], [\"6\", 4.5719], [\"7\", 10.0509], [\"8\", 9.2235], [\"9\", 4.5474], [\"10\", 4.241], [\"11\", 8.0162], [\"12\", 5.4422], [\"13\", 2.5617], [\"14\", 2.1205], [\"15\", 4.4003], [\"16\", 2.4637], [\"17\", 1.336], [\"18\", 0.9806], [\"19\", 2.0224], [\"20\", 1.0296], [\"21\", 0.5271], [\"22\", 0.4719], [\"23\", 0.9928]]}",
+            "memory": 12468000,
+            "memoryDisplay": "12.5 MB",
+            "memoryPercentile": 84.19439999999999,
+            "memoryDistribution": "{\"lang\": \"python\", \"distribution\": [[\"12100\", 0.0123], [\"12200\", 0.0306], [\"12300\", 0.8764], [\"12400\", 14.8863], [\"12500\", 29.8891], [\"12600\", 39.0268]]}",
+            "code": "\nclass Solution(object):\n    def addTwoNumbers(self, l1, l2):\n        \"\"\"\n        :type l1: Optional[ListNode]\n        :type l2: Optional[ListNode]\n        :rtype: Optional[ListNode]\n        \"\"\"\n        dummy_head = ListNode(0)\n        current = dummy_head\n        carry = 0\n\n        while l1 or l2 or carry:\n            x = l1.val if l1 else 0\n            y = l2.val if l2 else 0\n\n            total = x + y + carry\n            carry = total // 10\n\n            current.next = ListNode(total % 10)\n            current = current.next\n\n            if l1: l1 = l1.next\n            if l2: l2 = l2.next\n\n        return dummy_head.next\n",
+            "timestamp": 1749257872,
+            "statusCode": 10,
+            "user": {
+                "username": "yosQbj5lkC",
+                "profile": {
+                    "realName": "Henrique Freitas",
+                    "userAvatar": "https://assets.leetcode.com/users/yosQbj5lkC/avatar_1748722942.png"
+                }
+            },
+            "lang": {
+                "name": "python",
+                "verboseName": "Python"
+            },
+            "question": {
+                "questionId": "2",
+                "titleSlug": "add-two-numbers",
+                "hasFrontendPreview": false
+            },
+            "notes": "",
+            "flagType": "WHITE",
+            "topicTags": [],
+            "runtimeError": null,
+            "compileError": null,
+            "lastTestcase": "",
+            "codeOutput": "",
+            "expectedOutput": "",
+            "totalCorrect": 1569,
+            "totalTestcases": 1569,
+            "fullCodeOutput": null,
+            "testDescriptions": null,
+            "testBodies": null,
+            "testInfo": null,
+            "stdOutput": ""
+        }
+    }
+}
