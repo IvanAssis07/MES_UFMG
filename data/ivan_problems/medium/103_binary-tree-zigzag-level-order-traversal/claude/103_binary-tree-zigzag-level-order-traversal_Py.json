@@ -1,1 +1,48 @@
-{}
+{
+    "data": {
+        "submissionDetails": {
+            "runtime": 0,
+            "runtimeDisplay": "0 ms",
+            "runtimePercentile": 100.0,
+            "runtimeDistribution": "{\"lang\": \"python3\", \"distribution\": [[\"0\", 88.028], [\"1\", 3.2519], [\"2\", 1.9439], [\"3\", 3.8696], [\"4\", 1.9257]]}",
+            "memory": 18232000,
+            "memoryDisplay": "18.2 MB",
+            "memoryPercentile": 8.638299999999997,
+            "memoryDistribution": "{\"lang\": \"python3\", \"distribution\": [[\"17500\", 0.0091], [\"17600\", 0.0273], [\"17700\", 0.4723], [\"17800\", 4.133], [\"17900\", 18.4213], [\"18000\", 28.1134], [\"18100\", 19.0117], [\"18200\", 21.1736]]}",
+            "code": "# Definition for a binary tree node.\n# class TreeNode:\n#     def __init__(self, val=0, left=None, right=None):\n#         self.val = val\n#         self.left = left\n#         self.right = right\n\nfrom collections import deque\nfrom typing import Optional, List\n\nclass Solution:\n    def zigzagLevelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:\n        if not root:\n            return []\n        \n        result = []\n        queue = deque([root])\n        left_to_right = True\n        \n        while queue:\n            level_size = len(queue)\n            level_nodes = []\n            \n            # Process all nodes at current level\n            for _ in range(level_size):\n                node = queue.popleft()\n                level_nodes.append(node.val)\n                \n                # Add children for next level\n                if node.left:\n                    queue.append(node.left)\n                if node.right:\n                    queue.append(node.right)\n            \n            # Add level to result based on direction\n            if left_to_right:\n                result.append(level_nodes)\n            else:\n                result.append(level_nodes[::-1])  # Reverse the list\n            \n            # Alternate direction for next level\n            left_to_right = not left_to_right\n        \n        return result",
+            "timestamp": 1749306430,
+            "statusCode": 10,
+            "user": {
+                "username": "IvanAssis",
+                "profile": {
+                    "realName": "IvanAssis",
+                    "userAvatar": "https://assets.leetcode.com/users/default_avatar.jpg"
+                }
+            },
+            "lang": {
+                "name": "python3",
+                "verboseName": "Python3"
+            },
+            "question": {
+                "questionId": "103",
+                "titleSlug": "binary-tree-zigzag-level-order-traversal",
+                "hasFrontendPreview": false
+            },
+            "notes": "",
+            "flagType": "WHITE",
+            "topicTags": [],
+            "runtimeError": null,
+            "compileError": null,
+            "lastTestcase": "",
+            "codeOutput": "",
+            "expectedOutput": "",
+            "totalCorrect": 33,
+            "totalTestcases": 33,
+            "fullCodeOutput": null,
+            "testDescriptions": null,
+            "testBodies": null,
+            "testInfo": null,
+            "stdOutput": ""
+        }
+    }
+}

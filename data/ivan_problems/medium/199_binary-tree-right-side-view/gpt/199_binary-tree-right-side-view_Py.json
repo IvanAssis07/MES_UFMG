@@ -1,1 +1,48 @@
-{}
+{
+    "data": {
+        "submissionDetails": {
+            "runtime": 0,
+            "runtimeDisplay": "0 ms",
+            "runtimePercentile": 100.0,
+            "runtimeDistribution": "{\"lang\": \"python3\", \"distribution\": [[\"0\", 86.04], [\"1\", 3.4141], [\"2\", 1.8209], [\"3\", 5.5174], [\"4\", 2.3983]]}",
+            "memory": 17712000,
+            "memoryDisplay": "17.7 MB",
+            "memoryPercentile": 59.970600000000005,
+            "memoryDistribution": "{\"lang\": \"python3\", \"distribution\": [[\"17200\", 0.0042], [\"17300\", 0.0126], [\"17400\", 0.118], [\"17500\", 1.4837], [\"17600\", 10.432], [\"17700\", 27.9789], [\"17800\", 22.4489], [\"17900\", 20.8051]]}",
+            "code": "from typing import Optional, List\nfrom collections import deque\n\n# Definition for a binary tree node.\n# class TreeNode:\n#     def __init__(self, val=0, left=None, right=None):\n#         self.val = val\n#         self.left = left\n#         self.right = righ\n\nclass Solution:\n    def rightSideView(self, root: Optional[TreeNode]) -> List[int]:\n        if not root:\n            return []\n        \n        result = []\n        queue = deque([root])\n        \n        while queue:\n            level_length = len(queue)\n            for i in range(level_length):\n                node = queue.popleft()\n                # The last node in the current level is the rightmost node\n                if i == level_length - 1:\n                    result.append(node.val)\n                if node.left:\n                    queue.append(node.left)\n                if node.right:\n                    queue.append(node.right)\n        \n        return result\n",
+            "timestamp": 1749307059,
+            "statusCode": 10,
+            "user": {
+                "username": "IvanAssis",
+                "profile": {
+                    "realName": "IvanAssis",
+                    "userAvatar": "https://assets.leetcode.com/users/default_avatar.jpg"
+                }
+            },
+            "lang": {
+                "name": "python3",
+                "verboseName": "Python3"
+            },
+            "question": {
+                "questionId": "199",
+                "titleSlug": "binary-tree-right-side-view",
+                "hasFrontendPreview": false
+            },
+            "notes": "",
+            "flagType": "WHITE",
+            "topicTags": [],
+            "runtimeError": null,
+            "compileError": null,
+            "lastTestcase": "",
+            "codeOutput": "",
+            "expectedOutput": "",
+            "totalCorrect": 217,
+            "totalTestcases": 217,
+            "fullCodeOutput": null,
+            "testDescriptions": null,
+            "testBodies": null,
+            "testInfo": null,
+            "stdOutput": ""
+        }
+    }
+}

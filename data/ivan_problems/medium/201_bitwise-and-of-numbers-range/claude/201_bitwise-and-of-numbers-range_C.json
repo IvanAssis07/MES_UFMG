@@ -1,1 +1,48 @@
-{}
+{
+    "data": {
+        "submissionDetails": {
+            "runtime": 998,
+            "runtimeDisplay": "N/A",
+            "runtimePercentile": null,
+            "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"0\", 61.0811], [\"1\", 10.0], [\"2\", 4.5946], [\"3\", 8.9189], [\"4\", 8.1081], [\"5\", 1.3514], [\"6\", 0.8108]]}",
+            "memory": 7156000,
+            "memoryDisplay": "N/A",
+            "memoryPercentile": null,
+            "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"10100\", 0.2703], [\"10200\", 17.8378], [\"10300\", 36.7568], [\"10400\", 29.4595], [\"10500\", 6.7568]]}",
+            "code": "int rangeBitwiseAnd(int left, int right) {\n    // Keep removing the rightmost bit until left and right are equal\n    // This finds the common prefix of their binary representations\n    while (left != right) {\n        // Remove the rightmost set bit from right\n        right = right & (right - 1);\n    }\n    return left;\n}",
+            "timestamp": 1749307271,
+            "statusCode": 14,
+            "user": {
+                "username": "IvanAssis",
+                "profile": {
+                    "realName": "IvanAssis",
+                    "userAvatar": "https://assets.leetcode.com/users/default_avatar.jpg"
+                }
+            },
+            "lang": {
+                "name": "c",
+                "verboseName": "C"
+            },
+            "question": {
+                "questionId": "201",
+                "titleSlug": "bitwise-and-of-numbers-range",
+                "hasFrontendPreview": false
+            },
+            "notes": "",
+            "flagType": "WHITE",
+            "topicTags": [],
+            "runtimeError": null,
+            "compileError": null,
+            "lastTestcase": "5\n7",
+            "codeOutput": "",
+            "expectedOutput": "4",
+            "totalCorrect": 0,
+            "totalTestcases": 8271,
+            "fullCodeOutput": null,
+            "testDescriptions": null,
+            "testBodies": null,
+            "testInfo": null,
+            "stdOutput": ""
+        }
+    }
+}
