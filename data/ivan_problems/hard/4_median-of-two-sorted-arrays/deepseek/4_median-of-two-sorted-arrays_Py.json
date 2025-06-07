@@ -1,1 +1,48 @@
-{}
+{
+    "data": {
+        "submissionDetails": {
+            "runtime": 0,
+            "runtimeDisplay": "0 ms",
+            "runtimePercentile": 100.0,
+            "runtimeDistribution": "{\"lang\": \"python3\", \"distribution\": [[\"0\", 35.4807], [\"1\", 6.233], [\"2\", 5.5242], [\"3\", 17.8153], [\"4\", 11.37], [\"5\", 3.3913], [\"6\", 2.6731], [\"7\", 7.2417], [\"8\", 2.7355], [\"9\", 0.9712], [\"10\", 0.6433]]}",
+            "memory": 18116000,
+            "memoryDisplay": "18.1 MB",
+            "memoryPercentile": 39.89329999999998,
+            "memoryDistribution": "{\"lang\": \"python3\", \"distribution\": [[\"17400\", 0.0062], [\"17500\", 0.0062], [\"17600\", 0.025], [\"17700\", 0.1686], [\"17800\", 2.492], [\"17900\", 13.9212], [\"18000\", 24.1327], [\"18100\", 19.3548], [\"18200\", 20.351], [\"18300\", 13.965]]}",
+            "code": "class Solution:\n    def findMedianSortedArrays(self, nums1: List[int], nums2: List[int]) -> float:\n        # Ensure nums1 is the smaller array to simplify the algorithm\n        if len(nums1) > len(nums2):\n            nums1, nums2 = nums2, nums1\n        \n        m, n = len(nums1), len(nums2)\n        left, right = 0, m\n        \n        while left <= right:\n            partitionX = (left + right) // 2\n            partitionY = (m + n + 1) // 2 - partitionX\n            \n            # Handle edge cases where partitionX is 0 or m\n            maxLeftX = float('-inf') if partitionX == 0 else nums1[partitionX - 1]\n            minRightX = float('inf') if partitionX == m else nums1[partitionX]\n            \n            maxLeftY = float('-inf') if partitionY == 0 else nums2[partitionY - 1]\n            minRightY = float('inf') if partitionY == n else nums2[partitionY]\n            \n            if maxLeftX <= minRightY and maxLeftY <= minRightX:\n                # Found the correct partition\n                if (m + n) % 2 == 0:\n                    return (max(maxLeftX, maxLeftY) + min(minRightX, minRightY)) / 2\n                else:\n                    return max(maxLeftX, maxLeftY)\n            elif maxLeftX > minRightY:\n                right = partitionX - 1\n            else:\n                left = partitionX + 1\n        \n        # The code should always return in the loop, but to avoid compiler warnings\n        return 0.0",
+            "timestamp": 1749304696,
+            "statusCode": 10,
+            "user": {
+                "username": "IvanAssis",
+                "profile": {
+                    "realName": "IvanAssis",
+                    "userAvatar": "https://assets.leetcode.com/users/default_avatar.jpg"
+                }
+            },
+            "lang": {
+                "name": "python3",
+                "verboseName": "Python3"
+            },
+            "question": {
+                "questionId": "4",
+                "titleSlug": "median-of-two-sorted-arrays",
+                "hasFrontendPreview": false
+            },
+            "notes": "",
+            "flagType": "WHITE",
+            "topicTags": [],
+            "runtimeError": null,
+            "compileError": null,
+            "lastTestcase": "",
+            "codeOutput": "",
+            "expectedOutput": "",
+            "totalCorrect": 2096,
+            "totalTestcases": 2096,
+            "fullCodeOutput": null,
+            "testDescriptions": null,
+            "testBodies": null,
+            "testInfo": null,
+            "stdOutput": ""
+        }
+    }
+}
