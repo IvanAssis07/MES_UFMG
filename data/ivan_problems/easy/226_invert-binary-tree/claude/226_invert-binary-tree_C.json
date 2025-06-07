@@ -1,1 +1,48 @@
-{}
+{
+    "data": {
+        "submissionDetails": {
+            "runtime": 0,
+            "runtimeDisplay": "0 ms",
+            "runtimePercentile": 100.0,
+            "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"0\", 98.7884], [\"1\", 0.466], [\"2\", 0.6524], [\"3\", 0.0932]]}",
+            "memory": 8504000,
+            "memoryDisplay": "8.5 MB",
+            "memoryPercentile": 61.88249999999999,
+            "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"8400\", 6.3374], [\"8500\", 31.7801], [\"8600\", 34.8555], [\"8700\", 10.3448], [\"8800\", 9.7856]]}",
+            "code": "/**\n * Definition for a binary tree node.\n * struct TreeNode {\n *     int val;\n *     struct TreeNode *left;\n *     struct TreeNode *right;\n * };\n */\nstruct TreeNode* invertTree(struct TreeNode* root) {\n    // Base case: if root is NULL, return NULL\n    if (root == NULL) {\n        return NULL;\n    }\n    \n    // Recursively invert the left and right subtrees\n    struct TreeNode* left = invertTree(root->left);\n    struct TreeNode* right = invertTree(root->right);\n    \n    // Swap the left and right children\n    root->left = right;\n    root->right = left;\n    \n    // Return the root\n    return root;\n}",
+            "timestamp": 1749304178,
+            "statusCode": 10,
+            "user": {
+                "username": "IvanAssis",
+                "profile": {
+                    "realName": "IvanAssis",
+                    "userAvatar": "https://assets.leetcode.com/users/default_avatar.jpg"
+                }
+            },
+            "lang": {
+                "name": "c",
+                "verboseName": "C"
+            },
+            "question": {
+                "questionId": "226",
+                "titleSlug": "invert-binary-tree",
+                "hasFrontendPreview": false
+            },
+            "notes": "",
+            "flagType": "WHITE",
+            "topicTags": [],
+            "runtimeError": null,
+            "compileError": null,
+            "lastTestcase": "",
+            "codeOutput": "",
+            "expectedOutput": "",
+            "totalCorrect": 77,
+            "totalTestcases": 77,
+            "fullCodeOutput": null,
+            "testDescriptions": null,
+            "testBodies": null,
+            "testInfo": null,
+            "stdOutput": ""
+        }
+    }
+}

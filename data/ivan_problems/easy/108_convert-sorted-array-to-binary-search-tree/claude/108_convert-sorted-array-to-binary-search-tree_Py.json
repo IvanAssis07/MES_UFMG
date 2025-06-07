@@ -1,1 +1,48 @@
-{}
+{
+    "data": {
+        "submissionDetails": {
+            "runtime": 39,
+            "runtimeDisplay": "N/A",
+            "runtimePercentile": null,
+            "runtimeDistribution": "{\"lang\": \"python3\", \"distribution\": [[\"0\", 13.296], [\"1\", 5.2393], [\"2\", 8.1918], [\"3\", 46.2273], [\"4\", 18.4388], [\"5\", 3.2806]]}",
+            "memory": 17840000,
+            "memoryDisplay": "N/A",
+            "memoryPercentile": null,
+            "memoryDistribution": "{\"lang\": \"python3\", \"distribution\": [[\"18500\", 0.0193], [\"18600\", 0.0482], [\"18700\", 1.0903], [\"18800\", 6.8699], [\"18900\", 17.0494], [\"19000\", 18.8634], [\"19100\", 25.6368], [\"19200\", 14.7144]]}",
+            "code": "# Definition for a binary tree node.\n# class TreeNode:\n#     def __init__(self, val=0, left=None, right=None):\n#         self.val = val\n#         self.left = left\n#         self.right = right\n\nfrom typing import List, Optional\n\nclass TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n\nclass Solution:\n    def sortedArrayToBST(self, nums: List[int]) -> Optional[TreeNode]:\n        def helper(left: int, right: int) -> Optional[TreeNode]:\n            # Base case: if left > right, no elements to process\n            if left > right:\n                return None\n            \n            # Find the middle element to maintain balance\n            mid = left + (right - left) // 2\n            \n            # Create new node with middle element as root\n            root = TreeNode(nums[mid])\n            \n            # Recursively build left and right subtrees\n            root.left = helper(left, mid - 1)\n            root.right = helper(mid + 1, right)\n            \n            return root\n        \n        if not nums:\n            return None\n        \n        return helper(0, len(nums) - 1)",
+            "timestamp": 1749302596,
+            "statusCode": 15,
+            "user": {
+                "username": "IvanAssis",
+                "profile": {
+                    "realName": "IvanAssis",
+                    "userAvatar": "https://assets.leetcode.com/users/default_avatar.jpg"
+                }
+            },
+            "lang": {
+                "name": "python3",
+                "verboseName": "Python3"
+            },
+            "question": {
+                "questionId": "108",
+                "titleSlug": "convert-sorted-array-to-binary-search-tree",
+                "hasFrontendPreview": false
+            },
+            "notes": "",
+            "flagType": "WHITE",
+            "topicTags": [],
+            "runtimeError": "TypeError: <__main__.TreeNode object at 0x7f377e141750> is not valid value for the expected return type TreeNode\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    raise TypeError(str(ret) + \" is not valid value for the expected return type TreeNode\");\nLine 69 in _driver (Solution.py)\n    _driver()\nLine 78 in <module> (Solution.py)\nDuring handling of the above exception, another exception occurred:\nException: Type <class '__main__.TreeNode'> cannot be serialized\nLine 138 in serializer_node (./python3/__serializer__.py)\nLine 181 in _serialize_default (./python3/__serializer__.py)\nLine 200 in _serialize (./python3/__serializer__.py)\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    out = ser._serialize(ret, 'TreeNode')\nLine 67 in _driver (Solution.py)",
+            "compileError": null,
+            "lastTestcase": "[-10,-3,0,5,9]",
+            "codeOutput": "",
+            "expectedOutput": "[0,-3,9,-10,null,5]",
+            "totalCorrect": 0,
+            "totalTestcases": 31,
+            "fullCodeOutput": null,
+            "testDescriptions": null,
+            "testBodies": null,
+            "testInfo": null,
+            "stdOutput": ""
+        }
+    }
+}

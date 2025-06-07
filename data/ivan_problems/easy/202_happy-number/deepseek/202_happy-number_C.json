@@ -1,1 +1,48 @@
-{}
+{
+    "data": {
+        "submissionDetails": {
+            "runtime": 0,
+            "runtimeDisplay": "0 ms",
+            "runtimePercentile": 100.0,
+            "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"0\", 92.4585], [\"1\", 1.193], [\"2\", 1.8747], [\"3\", 1.9173], [\"4\", 0.213]]}",
+            "memory": 8920000,
+            "memoryDisplay": "8.9 MB",
+            "memoryPercentile": 5.027700000000008,
+            "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"7500\", 0.1278], [\"7600\", 12.0153], [\"7700\", 38.8581], [\"7800\", 22.7098], [\"7900\", 10.3963], [\"8000\", 8.8198], [\"8100\", 1.0652], [\"8200\", 0.5539], [\"8300\", 0.4261]]}",
+            "code": "#include <stdbool.h>\n#include <stdlib.h>\n\nint sumOfSquares(int n) {\n    int sum = 0;\n    while (n > 0) {\n        int digit = n % 10;\n        sum += digit * digit;\n        n /= 10;\n    }\n    return sum;\n}\n\nbool isHappy(int n) {\n    int seen[1000] = {0}; // Assuming the numbers won't exceed a reasonable cycle length\n    int count = 0;\n    \n    while (n != 1) {\n        n = sumOfSquares(n);\n        // Check if we've seen this number before\n        for (int i = 0; i < count; i++) {\n            if (seen[i] == n) {\n                return false;\n            }\n        }\n        seen[count++] = n;\n        if (count >= 1000) {\n            return false; // Prevent infinite loop in case of unexpected large cycles\n        }\n    }\n    return true;\n}",
+            "timestamp": 1749302752,
+            "statusCode": 10,
+            "user": {
+                "username": "IvanAssis",
+                "profile": {
+                    "realName": "IvanAssis",
+                    "userAvatar": "https://assets.leetcode.com/users/default_avatar.jpg"
+                }
+            },
+            "lang": {
+                "name": "c",
+                "verboseName": "C"
+            },
+            "question": {
+                "questionId": "202",
+                "titleSlug": "happy-number",
+                "hasFrontendPreview": false
+            },
+            "notes": "",
+            "flagType": "WHITE",
+            "topicTags": [],
+            "runtimeError": null,
+            "compileError": null,
+            "lastTestcase": "",
+            "codeOutput": "",
+            "expectedOutput": "",
+            "totalCorrect": 420,
+            "totalTestcases": 420,
+            "fullCodeOutput": null,
+            "testDescriptions": null,
+            "testBodies": null,
+            "testInfo": null,
+            "stdOutput": ""
+        }
+    }
+}

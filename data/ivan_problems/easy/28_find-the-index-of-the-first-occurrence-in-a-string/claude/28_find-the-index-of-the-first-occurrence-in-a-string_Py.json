@@ -1,1 +1,48 @@
-{}
+{
+    "data": {
+        "submissionDetails": {
+            "runtime": 0,
+            "runtimeDisplay": "0 ms",
+            "runtimePercentile": 100.0,
+            "runtimeDistribution": "{\"lang\": \"python3\", \"distribution\": [[\"0\", 87.2686], [\"1\", 2.3999], [\"2\", 1.5096], [\"3\", 5.8273], [\"4\", 1.9776]]}",
+            "memory": 17804000,
+            "memoryDisplay": "17.8 MB",
+            "memoryPercentile": 32.9511,
+            "memoryDistribution": "{\"lang\": \"python3\", \"distribution\": [[\"17100\", 0.007], [\"17200\", 0.007], [\"17300\", 0.0211], [\"17400\", 0.2076], [\"17500\", 3.0157], [\"17600\", 14.9588], [\"17700\", 30.1464], [\"17800\", 18.6853], [\"17900\", 22.2183]]}",
+            "code": "class Solution:\n    def strStr(self, haystack: str, needle: str) -> int:\n        # Handle edge case: empty needle\n        if not needle:\n            return 0\n        \n        # Get lengths of both strings\n        haystack_len = len(haystack)\n        needle_len = len(needle)\n        \n        # If needle is longer than haystack, it can't be found\n        if needle_len > haystack_len:\n            return -1\n        \n        # Search for needle in haystack\n        for i in range(haystack_len - needle_len + 1):\n            # Check if needle matches starting at position i\n            if haystack[i:i + needle_len] == needle:\n                return i\n        \n        return -1  # Needle not found",
+            "timestamp": 1749302092,
+            "statusCode": 10,
+            "user": {
+                "username": "IvanAssis",
+                "profile": {
+                    "realName": "IvanAssis",
+                    "userAvatar": "https://assets.leetcode.com/users/default_avatar.jpg"
+                }
+            },
+            "lang": {
+                "name": "python3",
+                "verboseName": "Python3"
+            },
+            "question": {
+                "questionId": "28",
+                "titleSlug": "find-the-index-of-the-first-occurrence-in-a-string",
+                "hasFrontendPreview": false
+            },
+            "notes": "",
+            "flagType": "WHITE",
+            "topicTags": [],
+            "runtimeError": null,
+            "compileError": null,
+            "lastTestcase": "",
+            "codeOutput": "",
+            "expectedOutput": "",
+            "totalCorrect": 83,
+            "totalTestcases": 83,
+            "fullCodeOutput": null,
+            "testDescriptions": null,
+            "testBodies": null,
+            "testInfo": null,
+            "stdOutput": ""
+        }
+    }
+}

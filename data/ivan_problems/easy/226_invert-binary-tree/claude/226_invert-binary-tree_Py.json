@@ -1,1 +1,48 @@
-{}
+{
+    "data": {
+        "submissionDetails": {
+            "runtime": 0,
+            "runtimeDisplay": "0 ms",
+            "runtimePercentile": 100.0,
+            "runtimeDistribution": "{\"lang\": \"python3\", \"distribution\": [[\"0\", 96.099], [\"1\", 0.9024], [\"2\", 0.5162], [\"3\", 1.6313], [\"4\", 0.7408]]}",
+            "memory": 17604000,
+            "memoryDisplay": "17.6 MB",
+            "memoryPercentile": 81.421,
+            "memoryDistribution": "{\"lang\": \"python3\", \"distribution\": [[\"16900\", 0.0039], [\"17100\", 0.0039], [\"17200\", 0.0039], [\"17300\", 0.0315], [\"17400\", 0.2798], [\"17500\", 3.042], [\"17600\", 15.214], [\"17700\", 31.2397], [\"17800\", 18.5279], [\"17900\", 22.6929]]}",
+            "code": "from typing import Optional\nfrom collections import deque\n\nclass Solution:\n    def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:\n        # Base case: if root is None, return None\n        if not root:\n            return None\n        \n        # Recursively invert the left and right subtrees\n        left = self.invertTree(root.left)\n        right = self.invertTree(root.right)\n        \n        # Swap the left and right children\n        root.left = right\n        root.right = left\n        \n        # Return the root\n        return root",
+            "timestamp": 1749304297,
+            "statusCode": 10,
+            "user": {
+                "username": "IvanAssis",
+                "profile": {
+                    "realName": "IvanAssis",
+                    "userAvatar": "https://assets.leetcode.com/users/default_avatar.jpg"
+                }
+            },
+            "lang": {
+                "name": "python3",
+                "verboseName": "Python3"
+            },
+            "question": {
+                "questionId": "226",
+                "titleSlug": "invert-binary-tree",
+                "hasFrontendPreview": false
+            },
+            "notes": "",
+            "flagType": "WHITE",
+            "topicTags": [],
+            "runtimeError": null,
+            "compileError": null,
+            "lastTestcase": "",
+            "codeOutput": "",
+            "expectedOutput": "",
+            "totalCorrect": 77,
+            "totalTestcases": 77,
+            "fullCodeOutput": null,
+            "testDescriptions": null,
+            "testBodies": null,
+            "testInfo": null,
+            "stdOutput": ""
+        }
+    }
+}

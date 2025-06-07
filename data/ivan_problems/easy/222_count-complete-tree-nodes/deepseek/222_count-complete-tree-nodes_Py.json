@@ -1,1 +1,48 @@
-{}
+{
+    "data": {
+        "submissionDetails": {
+            "runtime": 0,
+            "runtimeDisplay": "0 ms",
+            "runtimePercentile": 100.0,
+            "runtimeDistribution": "{\"lang\": \"python3\", \"distribution\": [[\"0\", 39.3873], [\"1\", 2.102], [\"2\", 2.8839], [\"3\", 12.8557], [\"4\", 12.202], [\"5\", 4.2681], [\"6\", 3.6529], [\"7\", 7.9467], [\"8\", 3.9349], [\"9\", 1.5893], [\"10\", 1.3074], [\"11\", 2.5763]]}",
+            "memory": 23324000,
+            "memoryDisplay": "23.3 MB",
+            "memoryPercentile": 39.61810000000002,
+            "memoryDistribution": "{\"lang\": \"python3\", \"distribution\": [[\"22100\", 0.0128], [\"22200\", 0.0128], [\"22800\", 0.0128], [\"22900\", 0.0256], [\"23000\", 0.2307], [\"23100\", 3.3453], [\"23200\", 14.2015], [\"23300\", 42.5404], [\"23400\", 30.0179]]}",
+            "code": "# Definition for a binary tree node.\n# class TreeNode:\n#     def __init__(self, val=0, left=None, right=None):\n#         self.val = val\n#         self.left = left\n#         self.right = right\nclass Solution:\n    def countNodes(self, root: Optional[TreeNode]) -> int:\n        if not root:\n            return 0\n        \n        left_depth = self.get_depth(root.left)\n        right_depth = self.get_depth(root.right)\n        \n        if left_depth == right_depth:\n            # Left subtree is perfect\n            return (1 << left_depth) + self.countNodes(root.right)\n        else:\n            # Right subtree is perfect\n            return (1 << right_depth) + self.countNodes(root.left)\n    \n    def get_depth(self, node):\n        depth = 0\n        while node:\n            depth += 1\n            node = node.left\n        return depth",
+            "timestamp": 1749304054,
+            "statusCode": 10,
+            "user": {
+                "username": "IvanAssis",
+                "profile": {
+                    "realName": "IvanAssis",
+                    "userAvatar": "https://assets.leetcode.com/users/default_avatar.jpg"
+                }
+            },
+            "lang": {
+                "name": "python3",
+                "verboseName": "Python3"
+            },
+            "question": {
+                "questionId": "222",
+                "titleSlug": "count-complete-tree-nodes",
+                "hasFrontendPreview": false
+            },
+            "notes": "",
+            "flagType": "WHITE",
+            "topicTags": [],
+            "runtimeError": null,
+            "compileError": null,
+            "lastTestcase": "",
+            "codeOutput": "",
+            "expectedOutput": "",
+            "totalCorrect": 18,
+            "totalTestcases": 18,
+            "fullCodeOutput": null,
+            "testDescriptions": null,
+            "testBodies": null,
+            "testInfo": null,
+            "stdOutput": ""
+        }
+    }
+}
