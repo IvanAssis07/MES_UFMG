@@ -1,48 +1,48 @@
 {
-    "data": {
-        "submissionDetails": {
-            "runtime": 0,
-            "runtimeDisplay": "0 ms",
-            "runtimePercentile": 100.0,
-            "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"0\", 75.3769], [\"1\", 2.1776], [\"2\", 3.1826], [\"3\", 4.6901], [\"4\", 0.1675], [\"7\", 0.335], [\"9\", 0.1675], [\"10\", 0.5025], [\"12\", 0.5025], [\"14\", 0.1675], [\"15\", 0.335], [\"17\", 0.1675], [\"22\", 0.1675], [\"23\", 0.5025], [\"24\", 0.335], [\"25\", 0.335], [\"26\", 0.67], [\"27\", 4.1876]]}",
-            "memory": 8176000,
-            "memoryDisplay": "8.2 MB",
-            "memoryPercentile": 62.81410000000001,
-            "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"7900\", 0.335], [\"8000\", 11.8928], [\"8100\", 24.9581], [\"8200\", 26.6332], [\"8300\", 22.9481], [\"8400\", 5.1926]]}",
-            "code": "bool isIsomorphic(char* s, char* t) {\n    // Arrays to store mappings and track used characters\n    // Using 256 to cover all ASCII characters\n    int mapS[256];  // Maps characters from s to t\n    bool usedT[256]; // Tracks which characters in t are already mapped\n    \n    // Initialize arrays\n    for (int i = 0; i < 256; i++) {\n        mapS[i] = -1;  // -1 indicates no mapping yet\n        usedT[i] = false;\n    }\n    \n    // Iterate through both strings simultaneously\n    for (int i = 0; s[i] != '\\0'; i++) {\n        char charS = s[i];\n        char charT = t[i];\n        \n        // If charS already has a mapping\n        if (mapS[charS] != -1) {\n            // Check if it maps to the same character in t\n            if (mapS[charS] != charT) {\n                return false;\n            }\n        } else {\n            // charS doesn't have a mapping yet\n            // Check if charT is already used by another character\n            if (usedT[charT]) {\n                return false;\n            }\n            \n            // Create the mapping\n            mapS[charS] = charT;\n            usedT[charT] = true;\n        }\n    }\n    \n    return true;\n}",
-            "timestamp": 1749247021,
-            "statusCode": 10,
-            "user": {
-                "username": "ZRlvkAicEr",
-                "profile": {
-                    "realName": "ZRlvkAicEr",
-                    "userAvatar": "https://assets.leetcode.com/users/ZRlvkAicEr/avatar_1749245074.png"
-                }
-            },
-            "lang": {
-                "name": "c",
-                "verboseName": "C"
-            },
-            "question": {
-                "questionId": "205",
-                "titleSlug": "isomorphic-strings",
-                "hasFrontendPreview": false
-            },
-            "notes": "",
-            "flagType": "WHITE",
-            "topicTags": [],
-            "runtimeError": null,
-            "compileError": null,
-            "lastTestcase": "",
-            "codeOutput": "",
-            "expectedOutput": "",
-            "totalCorrect": 46,
-            "totalTestcases": 46,
-            "fullCodeOutput": null,
-            "testDescriptions": null,
-            "testBodies": null,
-            "testInfo": null,
-            "stdOutput": ""
+  "data": {
+    "submissionDetails": {
+      "runtime": 0,
+      "runtimeDisplay": "0 ms",
+      "runtimePercentile": 100.0,
+      "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"0\", 75.3769], [\"1\", 2.1776], [\"2\", 3.1826], [\"3\", 4.6901], [\"4\", 0.1675], [\"7\", 0.335], [\"9\", 0.1675], [\"10\", 0.5025], [\"12\", 0.5025], [\"14\", 0.1675], [\"15\", 0.335], [\"17\", 0.1675], [\"22\", 0.1675], [\"23\", 0.5025], [\"24\", 0.335], [\"25\", 0.335], [\"26\", 0.67], [\"27\", 4.1876]]}",
+      "memory": 8176000,
+      "memoryDisplay": "8.2 MB",
+      "memoryPercentile": 62.81410000000001,
+      "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"7900\", 0.335], [\"8000\", 11.8928], [\"8100\", 24.9581], [\"8200\", 26.6332], [\"8300\", 22.9481], [\"8400\", 5.1926]]}",
+      "code": "bool isIsomorphic(char* s, char* t) {\n    // Arrays to store mappings and track used characters\n    // Using 256 to cover all ASCII characters\n    int mapS[256];  // Maps characters from s to t\n    bool usedT[256]; // Tracks which characters in t are already mapped\n    \n    // Initialize arrays\n    for (int i = 0; i < 256; i++) {\n        mapS[i] = -1;  // -1 indicates no mapping yet\n        usedT[i] = false;\n    }\n    \n    // Iterate through both strings simultaneously\n    for (int i = 0; s[i] != '\\0'; i++) {\n        char charS = s[i];\n        char charT = t[i];\n        \n        // If charS already has a mapping\n        if (mapS[charS] != -1) {\n            // Check if it maps to the same character in t\n            if (mapS[charS] != charT) {\n                return false;\n            }\n        } else {\n            // charS doesn't have a mapping yet\n            // Check if charT is already used by another character\n            if (usedT[charT]) {\n                return false;\n            }\n            \n            // Create the mapping\n            mapS[charS] = charT;\n            usedT[charT] = true;\n        }\n    }\n    \n    return true;\n}",
+      "timestamp": 1749247021,
+      "statusCode": 10,
+      "user": {
+        "username": "ZRlvkAicEr",
+        "profile": {
+          "realName": "ZRlvkAicEr",
+          "userAvatar": "https://assets.leetcode.com/users/ZRlvkAicEr/avatar_1749245074.png"
         }
+      },
+      "lang": {
+        "name": "c",
+        "verboseName": "C"
+      },
+      "question": {
+        "questionId": "205",
+        "titleSlug": "isomorphic-strings",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null,
+      "lastTestcase": "",
+      "codeOutput": "",
+      "expectedOutput": "",
+      "totalCorrect": 46,
+      "totalTestcases": 46,
+      "fullCodeOutput": null,
+      "testDescriptions": null,
+      "testBodies": null,
+      "testInfo": null,
+      "stdOutput": ""
     }
+  }
 }

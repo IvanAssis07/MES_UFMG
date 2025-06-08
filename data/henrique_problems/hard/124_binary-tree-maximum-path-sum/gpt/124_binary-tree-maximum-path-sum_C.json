@@ -1,1 +1,45 @@
-{}
+{
+  "data": {
+    "submissionDetails": {
+      "runtime": 0,
+      "runtimeDisplay": "0 ms",
+      "runtimePercentile": 100.0,
+      "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"0\", 78.5942], [\"1\", 5.1118], [\"2\", 2.2364], [\"3\", 3.8339], [\"4\", 5.7508]]}",
+      "memory": 16876000,
+      "memoryDisplay": "16.9 MB",
+      "memoryPercentile": 97.1246,
+      "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"16800\", 2.8754], [\"16900\", 31.9489], [\"17000\", 39.2971], [\"17100\", 9.9042], [\"17200\", 9.2652]]}",
+      "code": "#include <limits.h>\n\n\n// Helper function to compute max of two integers\nint max(int a, int b) {\n    return a > b ? a : b;\n}\n\n// Global variable to store the max path sum\nint maxSum;\n\n// Recursive function to compute max gain from each node\nint maxGain(struct TreeNode* node) {\n    if (node == NULL) return 0;\n\n    // Recursively get max gain from left and right subtrees\n    int leftGain = max(maxGain(node->left), 0);   // Ignore paths with negative sum\n    int rightGain = max(maxGain(node->right), 0);\n\n    // Path sum that passes through the current node (can\u2019t be extended upwards)\n    int currentPathSum = node->val + leftGain + rightGain;\n\n    // Update global max if needed\n    if (currentPathSum > maxSum)\n        maxSum = currentPathSum;\n\n    // Return max gain if continuing the same path upwards\n    return node->val + max(leftGain, rightGain);\n}\n\n// Main function\nint maxPathSum(struct TreeNode* root) {\n    maxSum = INT_MIN; // Initialize to smallest possible int\n    maxGain(root);\n    return maxSum;\n}\n",
+      "timestamp": 1749412220,
+      "statusCode": 10,
+      "user": {
+        "username": "yosQbj5lkC",
+        "profile": {
+          "realName": "Henrique Freitas",
+          "userAvatar": "https://assets.leetcode.com/users/yosQbj5lkC/avatar_1748722942.png"
+        }
+      },
+      "lang": { "name": "c", "verboseName": "C" },
+      "question": {
+        "questionId": "124",
+        "titleSlug": "binary-tree-maximum-path-sum",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null,
+      "lastTestcase": "",
+      "codeOutput": "",
+      "expectedOutput": "",
+      "totalCorrect": 96,
+      "totalTestcases": 96,
+      "fullCodeOutput": null,
+      "testDescriptions": null,
+      "testBodies": null,
+      "testInfo": null,
+      "stdOutput": ""
+    }
+  }
+}

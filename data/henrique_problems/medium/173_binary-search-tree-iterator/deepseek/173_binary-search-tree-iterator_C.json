@@ -1,48 +1,48 @@
 {
-    "data": {
-        "submissionDetails": {
-            "runtime": 1,
-            "runtimeDisplay": "1 ms",
-            "runtimePercentile": 81.5789,
-            "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"0\", 18.4211], [\"1\", 3.5088], [\"2\", 2.6316], [\"3\", 13.1579], [\"4\", 14.0351], [\"5\", 9.6491], [\"6\", 2.6316], [\"7\", 7.0175], [\"8\", 8.7719], [\"9\", 2.6316], [\"10\", 3.5088], [\"11\", 5.2632], [\"12\", 2.6316], [\"14\", 0.8772]]}",
-            "memory": 21720000,
-            "memoryDisplay": "21.7 MB",
-            "memoryPercentile": 66.6666,
-            "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"21200\", 0.8772], [\"21300\", 4.386], [\"21400\", 7.8947], [\"21500\", 12.2807], [\"21600\", 6.1404], [\"21700\", 1.7544], [\"21800\", 4.386], [\"21900\", 8.7719], [\"22000\", 5.2632], [\"22100\", 6.1404], [\"22200\", 3.5088], [\"22300\", 7.0175], [\"22500\", 2.6316], [\"22600\", 1.7544], [\"22800\", 1.7544], [\"22900\", 1.7544], [\"27600\", 0.8772], [\"27700\", 0.8772], [\"28100\", 1.7544], [\"28200\", 5.2632], [\"28300\", 5.2632], [\"28400\", 2.6316], [\"28500\", 0.8772], [\"28600\", 0.8772]]}",
-            "code": "#include <stdlib.h>\n#include <stdbool.h>\n\n\n\ntypedef struct {\n    struct TreeNode** stack;\n    int top;\n    int capacity;\n} BSTIterator;\n\nvoid push(BSTIterator* iter, struct TreeNode* node) {\n    if (iter->top == iter->capacity - 1) {\n        iter->capacity *= 2;\n        iter->stack = realloc(iter->stack, iter->capacity * sizeof(struct TreeNode*));\n    }\n    iter->stack[++iter->top] = node;\n}\n\nstruct TreeNode* pop(BSTIterator* iter) {\n    return iter->stack[iter->top--];\n}\n\nBSTIterator* bSTIteratorCreate(struct TreeNode* root) {\n    BSTIterator* iter = malloc(sizeof(BSTIterator));\n    iter->capacity = 10;\n    iter->stack = malloc(iter->capacity * sizeof(struct TreeNode*));\n    iter->top = -1;\n    \n    // Push all left nodes onto the stack\n    while (root != NULL) {\n        push(iter, root);\n        root = root->left;\n    }\n    \n    return iter;\n}\n\nint bSTIteratorNext(BSTIterator* obj) {\n    struct TreeNode* node = pop(obj);\n    int result = node->val;\n    \n    // Push all left nodes of the right subtree\n    node = node->right;\n    while (node != NULL) {\n        push(obj, node);\n        node = node->left;\n    }\n    \n    return result;\n}\n\nbool bSTIteratorHasNext(BSTIterator* obj) {\n    return obj->top != -1;\n}\n\nvoid bSTIteratorFree(BSTIterator* obj) {\n    free(obj->stack);\n    free(obj);\n}\n\n/**\n * Your BSTIterator struct will be instantiated and called as such:\n * BSTIterator* obj = bSTIteratorCreate(root);\n * int param_1 = bSTIteratorNext(obj);\n * bool param_2 = bSTIteratorHasNext(obj);\n * bSTIteratorFree(obj);\n */",
-            "timestamp": 1749337973,
-            "statusCode": 10,
-            "user": {
-                "username": "yosQbj5lkC",
-                "profile": {
-                    "realName": "Henrique Freitas",
-                    "userAvatar": "https://assets.leetcode.com/users/yosQbj5lkC/avatar_1748722942.png"
-                }
-            },
-            "lang": {
-                "name": "c",
-                "verboseName": "C"
-            },
-            "question": {
-                "questionId": "173",
-                "titleSlug": "binary-search-tree-iterator",
-                "hasFrontendPreview": false
-            },
-            "notes": "",
-            "flagType": "WHITE",
-            "topicTags": [],
-            "runtimeError": null,
-            "compileError": null,
-            "lastTestcase": "",
-            "codeOutput": "",
-            "expectedOutput": "",
-            "totalCorrect": 61,
-            "totalTestcases": 61,
-            "fullCodeOutput": null,
-            "testDescriptions": null,
-            "testBodies": null,
-            "testInfo": null,
-            "stdOutput": ""
+  "data": {
+    "submissionDetails": {
+      "runtime": 1,
+      "runtimeDisplay": "1 ms",
+      "runtimePercentile": 81.5789,
+      "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"0\", 18.4211], [\"1\", 3.5088], [\"2\", 2.6316], [\"3\", 13.1579], [\"4\", 14.0351], [\"5\", 9.6491], [\"6\", 2.6316], [\"7\", 7.0175], [\"8\", 8.7719], [\"9\", 2.6316], [\"10\", 3.5088], [\"11\", 5.2632], [\"12\", 2.6316], [\"14\", 0.8772]]}",
+      "memory": 21720000,
+      "memoryDisplay": "21.7 MB",
+      "memoryPercentile": 66.6666,
+      "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"21200\", 0.8772], [\"21300\", 4.386], [\"21400\", 7.8947], [\"21500\", 12.2807], [\"21600\", 6.1404], [\"21700\", 1.7544], [\"21800\", 4.386], [\"21900\", 8.7719], [\"22000\", 5.2632], [\"22100\", 6.1404], [\"22200\", 3.5088], [\"22300\", 7.0175], [\"22500\", 2.6316], [\"22600\", 1.7544], [\"22800\", 1.7544], [\"22900\", 1.7544], [\"27600\", 0.8772], [\"27700\", 0.8772], [\"28100\", 1.7544], [\"28200\", 5.2632], [\"28300\", 5.2632], [\"28400\", 2.6316], [\"28500\", 0.8772], [\"28600\", 0.8772]]}",
+      "code": "#include <stdlib.h>\n#include <stdbool.h>\n\n\n\ntypedef struct {\n    struct TreeNode** stack;\n    int top;\n    int capacity;\n} BSTIterator;\n\nvoid push(BSTIterator* iter, struct TreeNode* node) {\n    if (iter->top == iter->capacity - 1) {\n        iter->capacity *= 2;\n        iter->stack = realloc(iter->stack, iter->capacity * sizeof(struct TreeNode*));\n    }\n    iter->stack[++iter->top] = node;\n}\n\nstruct TreeNode* pop(BSTIterator* iter) {\n    return iter->stack[iter->top--];\n}\n\nBSTIterator* bSTIteratorCreate(struct TreeNode* root) {\n    BSTIterator* iter = malloc(sizeof(BSTIterator));\n    iter->capacity = 10;\n    iter->stack = malloc(iter->capacity * sizeof(struct TreeNode*));\n    iter->top = -1;\n    \n    // Push all left nodes onto the stack\n    while (root != NULL) {\n        push(iter, root);\n        root = root->left;\n    }\n    \n    return iter;\n}\n\nint bSTIteratorNext(BSTIterator* obj) {\n    struct TreeNode* node = pop(obj);\n    int result = node->val;\n    \n    // Push all left nodes of the right subtree\n    node = node->right;\n    while (node != NULL) {\n        push(obj, node);\n        node = node->left;\n    }\n    \n    return result;\n}\n\nbool bSTIteratorHasNext(BSTIterator* obj) {\n    return obj->top != -1;\n}\n\nvoid bSTIteratorFree(BSTIterator* obj) {\n    free(obj->stack);\n    free(obj);\n}\n\n/**\n * Your BSTIterator struct will be instantiated and called as such:\n * BSTIterator* obj = bSTIteratorCreate(root);\n * int param_1 = bSTIteratorNext(obj);\n * bool param_2 = bSTIteratorHasNext(obj);\n * bSTIteratorFree(obj);\n */",
+      "timestamp": 1749337973,
+      "statusCode": 10,
+      "user": {
+        "username": "yosQbj5lkC",
+        "profile": {
+          "realName": "Henrique Freitas",
+          "userAvatar": "https://assets.leetcode.com/users/yosQbj5lkC/avatar_1748722942.png"
         }
+      },
+      "lang": {
+        "name": "c",
+        "verboseName": "C"
+      },
+      "question": {
+        "questionId": "173",
+        "titleSlug": "binary-search-tree-iterator",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null,
+      "lastTestcase": "",
+      "codeOutput": "",
+      "expectedOutput": "",
+      "totalCorrect": 61,
+      "totalTestcases": 61,
+      "fullCodeOutput": null,
+      "testDescriptions": null,
+      "testBodies": null,
+      "testInfo": null,
+      "stdOutput": ""
     }
+  }
 }

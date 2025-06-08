@@ -1,1 +1,45 @@
-{"data":{"submissionDetails":{"runtime":0,"runtimeDisplay":"0 ms","runtimePercentile":100.0,"runtimeDistribution":"{\"lang\": \"c\", \"distribution\": [[\"0\", 61.3636], [\"1\", 1.1364], [\"2\", 7.9545], [\"3\", 7.9545], [\"4\", 5.6818], [\"6\", 2.2727], [\"7\", 4.5455], [\"8\", 2.2727]]}","memory":17164000,"memoryDisplay":"17.2 MB","memoryPercentile":29.545200000000015,"memoryDistribution":"{\"lang\": \"c\", \"distribution\": [[\"14400\", 1.1364], [\"14500\", 1.1364], [\"14600\", 5.6818], [\"14700\", 4.5455], [\"14800\", 2.2727], [\"14900\", 1.1364], [\"15100\", 5.6818], [\"15200\", 2.2727], [\"15400\", 2.2727], [\"15500\", 1.1364], [\"15600\", 2.2727], [\"15700\", 4.5455], [\"15800\", 13.6364], [\"15900\", 4.5455], [\"16000\", 3.4091], [\"16100\", 4.5455], [\"16300\", 1.1364], [\"16400\", 2.2727], [\"16500\", 2.2727], [\"16600\", 2.2727], [\"16700\", 1.1364], [\"16800\", 1.1364], [\"17200\", 3.4091], [\"17300\", 1.1364], [\"17400\", 2.2727], [\"17500\", 1.1364], [\"18400\", 1.1364], [\"18500\", 1.1364], [\"18800\", 2.2727], [\"19100\", 1.1364], [\"19200\", 1.1364], [\"20800\", 1.1364], [\"22700\", 1.1364], [\"24100\", 2.2727], [\"24200\", 1.1364], [\"24400\", 1.1364], [\"25500\", 2.2727]]}","code":"#include <stdlib.h>\n\n/**\n * Definition for a binary tree node.\n * struct TreeNode {\n *     int val;\n *     struct TreeNode *left;\n *     struct TreeNode *right;\n * };\n */\n\ntypedef struct TreeNode TreeNode;\n\ndouble* averageOfLevels(TreeNode* root, int* returnSize) {\n    if (!root) {\n        *returnSize = 0;\n        return NULL;\n    }\n\n    TreeNode** queue = (TreeNode**)malloc(10000 * sizeof(TreeNode*));\n    int front = 0, rear = 0;\n    queue[rear++] = root;\n    double* averages = (double*)malloc(10000 * sizeof(double));\n    int levelCount = 0;\n\n    while (front < rear) {\n        int levelLength = rear - front;\n        double sum = 0.0;\n        for (int i = 0; i < levelLength; ++i) {\n            TreeNode* node = queue[front++];\n            sum += node->val;\n            if (node->left) queue[rear++] = node->left;\n            if (node->right) queue[rear++] = node->right;\n        }\n        averages[levelCount++] = sum / levelLength;\n    }\n\n    *returnSize = levelCount;\n    free(queue);\n    return averages;\n}","timestamp":1748911744,"statusCode":10,"user":{"username":"yosQbj5lkC","profile":{"realName":"Henrique Freitas","userAvatar":"https://assets.leetcode.com/users/yosQbj5lkC/avatar_1748722942.png"}},"lang":{"name":"c","verboseName":"C"},"question":{"questionId":"637","titleSlug":"average-of-levels-in-binary-tree","hasFrontendPreview":false},"notes":"","flagType":"WHITE","topicTags":[],"runtimeError":null,"compileError":null,"lastTestcase":"","codeOutput":"","expectedOutput":"","totalCorrect":66,"totalTestcases":66,"fullCodeOutput":null,"testDescriptions":null,"testBodies":null,"testInfo":null,"stdOutput":""}}}
+{
+  "data": {
+    "submissionDetails": {
+      "runtime": 0,
+      "runtimeDisplay": "0 ms",
+      "runtimePercentile": 100.0,
+      "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"0\", 61.3636], [\"1\", 1.1364], [\"2\", 7.9545], [\"3\", 7.9545], [\"4\", 5.6818], [\"6\", 2.2727], [\"7\", 4.5455], [\"8\", 2.2727]]}",
+      "memory": 17164000,
+      "memoryDisplay": "17.2 MB",
+      "memoryPercentile": 29.545200000000015,
+      "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"14400\", 1.1364], [\"14500\", 1.1364], [\"14600\", 5.6818], [\"14700\", 4.5455], [\"14800\", 2.2727], [\"14900\", 1.1364], [\"15100\", 5.6818], [\"15200\", 2.2727], [\"15400\", 2.2727], [\"15500\", 1.1364], [\"15600\", 2.2727], [\"15700\", 4.5455], [\"15800\", 13.6364], [\"15900\", 4.5455], [\"16000\", 3.4091], [\"16100\", 4.5455], [\"16300\", 1.1364], [\"16400\", 2.2727], [\"16500\", 2.2727], [\"16600\", 2.2727], [\"16700\", 1.1364], [\"16800\", 1.1364], [\"17200\", 3.4091], [\"17300\", 1.1364], [\"17400\", 2.2727], [\"17500\", 1.1364], [\"18400\", 1.1364], [\"18500\", 1.1364], [\"18800\", 2.2727], [\"19100\", 1.1364], [\"19200\", 1.1364], [\"20800\", 1.1364], [\"22700\", 1.1364], [\"24100\", 2.2727], [\"24200\", 1.1364], [\"24400\", 1.1364], [\"25500\", 2.2727]]}",
+      "code": "#include <stdlib.h>\n\n/**\n * Definition for a binary tree node.\n * struct TreeNode {\n *     int val;\n *     struct TreeNode *left;\n *     struct TreeNode *right;\n * };\n */\n\ntypedef struct TreeNode TreeNode;\n\ndouble* averageOfLevels(TreeNode* root, int* returnSize) {\n    if (!root) {\n        *returnSize = 0;\n        return NULL;\n    }\n\n    TreeNode** queue = (TreeNode**)malloc(10000 * sizeof(TreeNode*));\n    int front = 0, rear = 0;\n    queue[rear++] = root;\n    double* averages = (double*)malloc(10000 * sizeof(double));\n    int levelCount = 0;\n\n    while (front < rear) {\n        int levelLength = rear - front;\n        double sum = 0.0;\n        for (int i = 0; i < levelLength; ++i) {\n            TreeNode* node = queue[front++];\n            sum += node->val;\n            if (node->left) queue[rear++] = node->left;\n            if (node->right) queue[rear++] = node->right;\n        }\n        averages[levelCount++] = sum / levelLength;\n    }\n\n    *returnSize = levelCount;\n    free(queue);\n    return averages;\n}",
+      "timestamp": 1748911744,
+      "statusCode": 10,
+      "user": {
+        "username": "yosQbj5lkC",
+        "profile": {
+          "realName": "Henrique Freitas",
+          "userAvatar": "https://assets.leetcode.com/users/yosQbj5lkC/avatar_1748722942.png"
+        }
+      },
+      "lang": { "name": "c", "verboseName": "C" },
+      "question": {
+        "questionId": "637",
+        "titleSlug": "average-of-levels-in-binary-tree",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null,
+      "lastTestcase": "",
+      "codeOutput": "",
+      "expectedOutput": "",
+      "totalCorrect": 66,
+      "totalTestcases": 66,
+      "fullCodeOutput": null,
+      "testDescriptions": null,
+      "testBodies": null,
+      "testInfo": null,
+      "stdOutput": ""
+    }
+  }
+}

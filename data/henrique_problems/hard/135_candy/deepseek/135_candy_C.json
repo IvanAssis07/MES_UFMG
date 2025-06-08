@@ -1,1 +1,45 @@
-{}
+{
+  "data": {
+    "submissionDetails": {
+      "runtime": 0,
+      "runtimeDisplay": "0 ms",
+      "runtimePercentile": 100.0,
+      "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"0\", 64.9741], [\"1\", 6.6321], [\"2\", 4.1451], [\"3\", 9.8446], [\"4\", 5.1813], [\"5\", 1.0363], [\"6\", 0.7254], [\"7\", 1.0363], [\"8\", 0.2073], [\"9\", 0.1036], [\"11\", 0.3109], [\"15\", 0.1036], [\"16\", 0.2073], [\"19\", 0.1036], [\"59\", 0.1036]]}",
+      "memory": 9936000,
+      "memoryDisplay": "9.9 MB",
+      "memoryPercentile": 11.917099999999987,
+      "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"9000\", 0.1036], [\"9100\", 1.8653], [\"9200\", 14.3005], [\"9300\", 17.3057], [\"9400\", 7.4611], [\"9500\", 3.7306], [\"9600\", 2.2798], [\"9700\", 11.399], [\"9800\", 19.5855], [\"9900\", 10.0518], [\"10000\", 3.2124], [\"10100\", 3.0052], [\"10200\", 0.4145]]}",
+      "code": "int candy(int* ratings, int ratingsSize) {\n    if (ratingsSize == 0) return 0;\n    \n    int* candies = (int*)malloc(ratingsSize * sizeof(int));\n    for (int i = 0; i < ratingsSize; i++) {\n        candies[i] = 1;\n    }\n    \n    // Left to right pass\n    for (int i = 1; i < ratingsSize; i++) {\n        if (ratings[i] > ratings[i - 1]) {\n            candies[i] = candies[i - 1] + 1;\n        }\n    }\n    \n    // Right to left pass\n    for (int i = ratingsSize - 2; i >= 0; i--) {\n        if (ratings[i] > ratings[i + 1]) {\n            if (candies[i] <= candies[i + 1]) {\n                candies[i] = candies[i + 1] + 1;\n            }\n        }\n    }\n    \n    int total = 0;\n    for (int i = 0; i < ratingsSize; i++) {\n        total += candies[i];\n    }\n    \n    free(candies);\n    return total;\n}",
+      "timestamp": 1749412723,
+      "statusCode": 10,
+      "user": {
+        "username": "yosQbj5lkC",
+        "profile": {
+          "realName": "Henrique Freitas",
+          "userAvatar": "https://assets.leetcode.com/users/yosQbj5lkC/avatar_1748722942.png"
+        }
+      },
+      "lang": { "name": "c", "verboseName": "C" },
+      "question": {
+        "questionId": "135",
+        "titleSlug": "candy",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null,
+      "lastTestcase": "",
+      "codeOutput": "",
+      "expectedOutput": "",
+      "totalCorrect": 49,
+      "totalTestcases": 49,
+      "fullCodeOutput": null,
+      "testDescriptions": null,
+      "testBodies": null,
+      "testInfo": null,
+      "stdOutput": ""
+    }
+  }
+}

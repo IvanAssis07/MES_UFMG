@@ -1,48 +1,48 @@
 {
-    "data": {
-        "submissionDetails": {
-            "runtime": 0,
-            "runtimeDisplay": "0 ms",
-            "runtimePercentile": 100.0,
-            "runtimeDistribution": "{\"lang\": \"python3\", \"distribution\": [[\"0\", 39.3873], [\"1\", 2.102], [\"2\", 2.8839], [\"3\", 12.8557], [\"4\", 12.202], [\"5\", 4.2681], [\"6\", 3.6529], [\"7\", 7.9467], [\"8\", 3.9349], [\"9\", 1.5893], [\"10\", 1.3074], [\"11\", 2.5763]]}",
-            "memory": 23300000,
-            "memoryDisplay": "23.3 MB",
-            "memoryPercentile": 82.15850000000002,
-            "memoryDistribution": "{\"lang\": \"python3\", \"distribution\": [[\"22100\", 0.0128], [\"22200\", 0.0128], [\"22800\", 0.0128], [\"22900\", 0.0256], [\"23000\", 0.2307], [\"23100\", 3.3453], [\"23200\", 14.2015], [\"23300\", 42.5404], [\"23400\", 30.0179]]}",
-            "code": "# Definition for a binary tree node.\n# class TreeNode:\n#     def __init__(self, val=0, left=None, right=None):\n#         self.val = val\n#         self.left = left\n#         self.right = right\n\nfrom typing import Optional\n\nclass TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n\nclass Solution:\n    def countNodes(self, root: Optional[TreeNode]) -> int:\n        \"\"\"\n        Approach 1: Height Comparison Method\n        Time Complexity: O(log\u00b2n)\n        Space Complexity: O(log n) for recursion stack\n        \"\"\"\n        if not root:\n            return 0\n        \n        def get_left_height(node):\n            \"\"\"Get height by going left\"\"\"\n            height = 0\n            while node:\n                height += 1\n                node = node.left\n            return height\n        \n        def get_right_height(node):\n            \"\"\"Get height by going right\"\"\"\n            height = 0\n            while node:\n                height += 1\n                node = node.right\n            return height\n        \n        left_height = get_left_height(root)\n        right_height = get_right_height(root)\n        \n        # If left and right heights are equal, it's a perfect binary tree\n        if left_height == right_height:\n            return (1 << left_height) - 1  # 2^height - 1\n        \n        # Otherwise, recursively count left and right subtrees\n        return 1 + self.countNodes(root.left) + self.countNodes(root.right)",
-            "timestamp": 1749304013,
-            "statusCode": 10,
-            "user": {
-                "username": "IvanAssis",
-                "profile": {
-                    "realName": "IvanAssis",
-                    "userAvatar": "https://assets.leetcode.com/users/default_avatar.jpg"
-                }
-            },
-            "lang": {
-                "name": "python3",
-                "verboseName": "Python3"
-            },
-            "question": {
-                "questionId": "222",
-                "titleSlug": "count-complete-tree-nodes",
-                "hasFrontendPreview": false
-            },
-            "notes": "",
-            "flagType": "WHITE",
-            "topicTags": [],
-            "runtimeError": null,
-            "compileError": null,
-            "lastTestcase": "",
-            "codeOutput": "",
-            "expectedOutput": "",
-            "totalCorrect": 18,
-            "totalTestcases": 18,
-            "fullCodeOutput": null,
-            "testDescriptions": null,
-            "testBodies": null,
-            "testInfo": null,
-            "stdOutput": ""
+  "data": {
+    "submissionDetails": {
+      "runtime": 0,
+      "runtimeDisplay": "0 ms",
+      "runtimePercentile": 100.0,
+      "runtimeDistribution": "{\"lang\": \"python3\", \"distribution\": [[\"0\", 39.3873], [\"1\", 2.102], [\"2\", 2.8839], [\"3\", 12.8557], [\"4\", 12.202], [\"5\", 4.2681], [\"6\", 3.6529], [\"7\", 7.9467], [\"8\", 3.9349], [\"9\", 1.5893], [\"10\", 1.3074], [\"11\", 2.5763]]}",
+      "memory": 23300000,
+      "memoryDisplay": "23.3 MB",
+      "memoryPercentile": 82.15850000000002,
+      "memoryDistribution": "{\"lang\": \"python3\", \"distribution\": [[\"22100\", 0.0128], [\"22200\", 0.0128], [\"22800\", 0.0128], [\"22900\", 0.0256], [\"23000\", 0.2307], [\"23100\", 3.3453], [\"23200\", 14.2015], [\"23300\", 42.5404], [\"23400\", 30.0179]]}",
+      "code": "# Definition for a binary tree node.\n# class TreeNode:\n#     def __init__(self, val=0, left=None, right=None):\n#         self.val = val\n#         self.left = left\n#         self.right = right\n\nfrom typing import Optional\n\nclass TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n\nclass Solution:\n    def countNodes(self, root: Optional[TreeNode]) -> int:\n        \"\"\"\n        Approach 1: Height Comparison Method\n        Time Complexity: O(log\u00b2n)\n        Space Complexity: O(log n) for recursion stack\n        \"\"\"\n        if not root:\n            return 0\n        \n        def get_left_height(node):\n            \"\"\"Get height by going left\"\"\"\n            height = 0\n            while node:\n                height += 1\n                node = node.left\n            return height\n        \n        def get_right_height(node):\n            \"\"\"Get height by going right\"\"\"\n            height = 0\n            while node:\n                height += 1\n                node = node.right\n            return height\n        \n        left_height = get_left_height(root)\n        right_height = get_right_height(root)\n        \n        # If left and right heights are equal, it's a perfect binary tree\n        if left_height == right_height:\n            return (1 << left_height) - 1  # 2^height - 1\n        \n        # Otherwise, recursively count left and right subtrees\n        return 1 + self.countNodes(root.left) + self.countNodes(root.right)",
+      "timestamp": 1749304013,
+      "statusCode": 10,
+      "user": {
+        "username": "IvanAssis",
+        "profile": {
+          "realName": "IvanAssis",
+          "userAvatar": "https://assets.leetcode.com/users/default_avatar.jpg"
         }
+      },
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "question": {
+        "questionId": "222",
+        "titleSlug": "count-complete-tree-nodes",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null,
+      "lastTestcase": "",
+      "codeOutput": "",
+      "expectedOutput": "",
+      "totalCorrect": 18,
+      "totalTestcases": 18,
+      "fullCodeOutput": null,
+      "testDescriptions": null,
+      "testBodies": null,
+      "testInfo": null,
+      "stdOutput": ""
     }
+  }
 }

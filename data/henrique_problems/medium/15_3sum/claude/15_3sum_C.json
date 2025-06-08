@@ -1,48 +1,48 @@
 {
-    "data": {
-        "submissionDetails": {
-            "runtime": 71,
-            "runtimeDisplay": "71 ms",
-            "runtimePercentile": 16.208599999999993,
-            "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"24\", 1.717], [\"27\", 1.8544], [\"31\", 2.7472], [\"34\", 4.3956], [\"37\", 3.3654], [\"41\", 7.6922999999999995], [\"44\", 17.3078], [\"47\", 12.5687], [\"51\", 13.7363], [\"54\", 8.928600000000001], [\"57\", 5.7005], [\"60\", 1.3737], [\"64\", 1.099], [\"67\", 1.3049], [\"70\", 1.0302], [\"74\", 0.8241], [\"77\", 0.41209999999999997], [\"80\", 0.3435], [\"84\", 0.4121], [\"87\", 0.6868], [\"90\", 0.1374], [\"93\", 0.4808], [\"97\", 0.5495], [\"100\", 0.4808], [\"103\", 0.4121], [\"107\", 0.5494], [\"110\", 0.5495], [\"113\", 0.0687], [\"117\", 0.0687], [\"120\", 0.2061], [\"123\", 0.1374], [\"126\", 0.2748], [\"130\", 0.1374], [\"133\", 0.0687], [\"136\", 0.0687], [\"140\", 0.1374], [\"143\", 0.1374], [\"146\", 0.2747], [\"150\", 0.0687], [\"153\", 0.1374], [\"156\", 0.1374], [\"159\", 0.0687], [\"163\", 0.0687], [\"166\", 0.0687], [\"169\", 0.0687], [\"173\", 0.0687], [\"176\", 0.0687], [\"179\", 0.0687], [\"183\", 0.0687], [\"186\", 0.0687], [\"189\", 0.0687], [\"192\", 0.0687], [\"196\", 0.0687], [\"199\", 0.0687], [\"202\", 0.0687], [\"206\", 0.1374], [\"209\", 0.0687], [\"212\", 0.0687], [\"216\", 0.0687], [\"219\", 0.0687], [\"222\", 0.0687], [\"225\", 0.0687], [\"229\", 0.1374], [\"232\", 0.0687], [\"235\", 0.0687], [\"239\", 0.0687], [\"242\", 0.0687], [\"245\", 0.0687], [\"249\", 0.0687], [\"252\", 0.0687], [\"255\", 0.1374], [\"258\", 0.0687], [\"262\", 0.0687]]}",
-            "memory": 69596000,
-            "memoryDisplay": "69.6 MB",
-            "memoryPercentile": 5.012800000000006,
-            "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"34209\", 1.305], [\"34628\", 1.2363], [\"35046\", 1.5110000000000001], [\"35465\", 7.555], [\"35884\", 14.354299999999999], [\"36303\", 3.0221000000000005], [\"36721\", 2.2665], [\"37140\", 3.7088], [\"37559\", 1.3736], [\"37978\", 0.9615], [\"38396\", 20.604300000000002], [\"38815\", 6.456000000000001], [\"39234\", 0.6181], [\"39653\", 1.1676], [\"40071\", 10.0961], [\"40490\", 2.4039], [\"40909\", 0.41209999999999997], [\"41328\", 0.0687], [\"41746\", 0.2747], [\"42165\", 0.2061], [\"42584\", 0.1374], [\"43003\", 0.2061], [\"43421\", 0.2061], [\"43840\", 0.1374], [\"44259\", 0.2748], [\"44678\", 0.0687], [\"45096\", 0.8929], [\"45515\", 0.41209999999999997], [\"45934\", 0.2061], [\"46353\", 0.2061], [\"46771\", 0.0687], [\"47190\", 0.2061], [\"47609\", 0.1374], [\"48028\", 0.2747], [\"48446\", 0.9615], [\"48865\", 1.0989], [\"49284\", 0.9615], [\"49703\", 1.0989], [\"50121\", 0.1374], [\"50540\", 0.1374], [\"50959\", 0.2747], [\"51378\", 0.1374], [\"51796\", 0.0687], [\"52215\", 0.0687], [\"52634\", 0.0687], [\"53053\", 0.0687], [\"53471\", 0.0687], [\"53890\", 0.0687], [\"54309\", 0.0687], [\"54728\", 0.0687], [\"55146\", 0.0687], [\"55565\", 0.0687], [\"55984\", 0.1374], [\"56403\", 0.0687], [\"56821\", 0.1374], [\"57240\", 0.0687], [\"57659\", 0.0687], [\"58078\", 0.3434], [\"58496\", 1.1676], [\"58915\", 1.3049], [\"59334\", 0.6181], [\"59753\", 0.7555], [\"60171\", 0.1374], [\"60590\", 0.0687], [\"61009\", 0.0687], [\"61428\", 0.1374], [\"61846\", 0.4121], [\"62265\", 0.2747], [\"62684\", 0.0687], [\"63103\", 0.206], [\"63521\", 0.206], [\"63940\", 0.0687], [\"64359\", 0.0687], [\"64778\", 0.0687]]}",
-            "code": "#include <stdio.h>\n#include <stdlib.h>\n\n// Comparison function for qsort\nint compare(const void* a, const void* b) {\n    return (*(int*)a - *(int*)b);\n}\n\n/**\n * Return an array of arrays of size *returnSize.\n * The sizes of the arrays are returned as *returnColumnSizes array.\n * Note: Both returned array and *columnSizes array must be malloced, assume caller calls free().\n */\nint** threeSum(int* nums, int numsSize, int* returnSize, int** returnColumnSizes) {\n    *returnSize = 0;\n    \n    // Edge case: less than 3 elements\n    if (numsSize < 3) {\n        *returnColumnSizes = NULL;\n        return NULL;\n    }\n    \n    // Sort the array\n    qsort(nums, numsSize, sizeof(int), compare);\n    \n    // Allocate memory for result (worst case: all combinations)\n    int maxTriplets = numsSize * numsSize;\n    int** result = (int**)malloc(maxTriplets * sizeof(int*));\n    *returnColumnSizes = (int*)malloc(maxTriplets * sizeof(int));\n    \n    // Find all unique triplets\n    for (int i = 0; i < numsSize - 2; i++) {\n        // Skip duplicate values for first element\n        if (i > 0 && nums[i] == nums[i - 1]) {\n            continue;\n        }\n        \n        int left = i + 1;\n        int right = numsSize - 1;\n        \n        while (left < right) {\n            int sum = nums[i] + nums[left] + nums[right];\n            \n            if (sum == 0) {\n                // Found a triplet\n                result[*returnSize] = (int*)malloc(3 * sizeof(int));\n                result[*returnSize][0] = nums[i];\n                result[*returnSize][1] = nums[left];\n                result[*returnSize][2] = nums[right];\n                (*returnColumnSizes)[*returnSize] = 3;\n                (*returnSize)++;\n                \n                // Skip duplicates for left pointer\n                while (left < right && nums[left] == nums[left + 1]) {\n                    left++;\n                }\n                // Skip duplicates for right pointer\n                while (left < right && nums[right] == nums[right - 1]) {\n                    right--;\n                }\n                \n                left++;\n                right--;\n            }\n            else if (sum < 0) {\n                left++;  // Need larger sum\n            }\n            else {\n                right--; // Need smaller sum\n            }\n        }\n    }\n    \n    // Resize arrays to actual size needed\n    if (*returnSize == 0) {\n        free(result);\n        free(*returnColumnSizes);\n        *returnColumnSizes = NULL;\n        return NULL;\n    }\n    \n    result = (int**)realloc(result, (*returnSize) * sizeof(int*));\n    *returnColumnSizes = (int*)realloc(*returnColumnSizes, (*returnSize) * sizeof(int));\n    \n    return result;\n}\n\n// Helper function to print array\nvoid printArray(int* nums, int size) {\n    printf(\"[\");\n    for (int i = 0; i < size; i++) {\n        printf(\"%d\", nums[i]);\n        if (i < size - 1) printf(\",\");\n    }\n    printf(\"]\\n\");\n}\n\n// Helper function to free memory\nvoid freeResults(int** result, int* returnColumnSizes, int returnSize) {\n    if (result) {\n        for (int i = 0; i < returnSize; i++) {\n            free(result[i]);\n        }\n        free(result);\n    }\n    if (returnColumnSizes) {\n        free(returnColumnSizes);\n    }\n}\n",
-            "timestamp": 1749258253,
-            "statusCode": 10,
-            "user": {
-                "username": "yosQbj5lkC",
-                "profile": {
-                    "realName": "Henrique Freitas",
-                    "userAvatar": "https://assets.leetcode.com/users/yosQbj5lkC/avatar_1748722942.png"
-                }
-            },
-            "lang": {
-                "name": "c",
-                "verboseName": "C"
-            },
-            "question": {
-                "questionId": "15",
-                "titleSlug": "3sum",
-                "hasFrontendPreview": false
-            },
-            "notes": "",
-            "flagType": "WHITE",
-            "topicTags": [],
-            "runtimeError": null,
-            "compileError": null,
-            "lastTestcase": "",
-            "codeOutput": "",
-            "expectedOutput": "",
-            "totalCorrect": 314,
-            "totalTestcases": 314,
-            "fullCodeOutput": null,
-            "testDescriptions": null,
-            "testBodies": null,
-            "testInfo": null,
-            "stdOutput": ""
+  "data": {
+    "submissionDetails": {
+      "runtime": 71,
+      "runtimeDisplay": "71 ms",
+      "runtimePercentile": 16.208599999999993,
+      "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"24\", 1.717], [\"27\", 1.8544], [\"31\", 2.7472], [\"34\", 4.3956], [\"37\", 3.3654], [\"41\", 7.6922999999999995], [\"44\", 17.3078], [\"47\", 12.5687], [\"51\", 13.7363], [\"54\", 8.928600000000001], [\"57\", 5.7005], [\"60\", 1.3737], [\"64\", 1.099], [\"67\", 1.3049], [\"70\", 1.0302], [\"74\", 0.8241], [\"77\", 0.41209999999999997], [\"80\", 0.3435], [\"84\", 0.4121], [\"87\", 0.6868], [\"90\", 0.1374], [\"93\", 0.4808], [\"97\", 0.5495], [\"100\", 0.4808], [\"103\", 0.4121], [\"107\", 0.5494], [\"110\", 0.5495], [\"113\", 0.0687], [\"117\", 0.0687], [\"120\", 0.2061], [\"123\", 0.1374], [\"126\", 0.2748], [\"130\", 0.1374], [\"133\", 0.0687], [\"136\", 0.0687], [\"140\", 0.1374], [\"143\", 0.1374], [\"146\", 0.2747], [\"150\", 0.0687], [\"153\", 0.1374], [\"156\", 0.1374], [\"159\", 0.0687], [\"163\", 0.0687], [\"166\", 0.0687], [\"169\", 0.0687], [\"173\", 0.0687], [\"176\", 0.0687], [\"179\", 0.0687], [\"183\", 0.0687], [\"186\", 0.0687], [\"189\", 0.0687], [\"192\", 0.0687], [\"196\", 0.0687], [\"199\", 0.0687], [\"202\", 0.0687], [\"206\", 0.1374], [\"209\", 0.0687], [\"212\", 0.0687], [\"216\", 0.0687], [\"219\", 0.0687], [\"222\", 0.0687], [\"225\", 0.0687], [\"229\", 0.1374], [\"232\", 0.0687], [\"235\", 0.0687], [\"239\", 0.0687], [\"242\", 0.0687], [\"245\", 0.0687], [\"249\", 0.0687], [\"252\", 0.0687], [\"255\", 0.1374], [\"258\", 0.0687], [\"262\", 0.0687]]}",
+      "memory": 69596000,
+      "memoryDisplay": "69.6 MB",
+      "memoryPercentile": 5.012800000000006,
+      "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"34209\", 1.305], [\"34628\", 1.2363], [\"35046\", 1.5110000000000001], [\"35465\", 7.555], [\"35884\", 14.354299999999999], [\"36303\", 3.0221000000000005], [\"36721\", 2.2665], [\"37140\", 3.7088], [\"37559\", 1.3736], [\"37978\", 0.9615], [\"38396\", 20.604300000000002], [\"38815\", 6.456000000000001], [\"39234\", 0.6181], [\"39653\", 1.1676], [\"40071\", 10.0961], [\"40490\", 2.4039], [\"40909\", 0.41209999999999997], [\"41328\", 0.0687], [\"41746\", 0.2747], [\"42165\", 0.2061], [\"42584\", 0.1374], [\"43003\", 0.2061], [\"43421\", 0.2061], [\"43840\", 0.1374], [\"44259\", 0.2748], [\"44678\", 0.0687], [\"45096\", 0.8929], [\"45515\", 0.41209999999999997], [\"45934\", 0.2061], [\"46353\", 0.2061], [\"46771\", 0.0687], [\"47190\", 0.2061], [\"47609\", 0.1374], [\"48028\", 0.2747], [\"48446\", 0.9615], [\"48865\", 1.0989], [\"49284\", 0.9615], [\"49703\", 1.0989], [\"50121\", 0.1374], [\"50540\", 0.1374], [\"50959\", 0.2747], [\"51378\", 0.1374], [\"51796\", 0.0687], [\"52215\", 0.0687], [\"52634\", 0.0687], [\"53053\", 0.0687], [\"53471\", 0.0687], [\"53890\", 0.0687], [\"54309\", 0.0687], [\"54728\", 0.0687], [\"55146\", 0.0687], [\"55565\", 0.0687], [\"55984\", 0.1374], [\"56403\", 0.0687], [\"56821\", 0.1374], [\"57240\", 0.0687], [\"57659\", 0.0687], [\"58078\", 0.3434], [\"58496\", 1.1676], [\"58915\", 1.3049], [\"59334\", 0.6181], [\"59753\", 0.7555], [\"60171\", 0.1374], [\"60590\", 0.0687], [\"61009\", 0.0687], [\"61428\", 0.1374], [\"61846\", 0.4121], [\"62265\", 0.2747], [\"62684\", 0.0687], [\"63103\", 0.206], [\"63521\", 0.206], [\"63940\", 0.0687], [\"64359\", 0.0687], [\"64778\", 0.0687]]}",
+      "code": "#include <stdio.h>\n#include <stdlib.h>\n\n// Comparison function for qsort\nint compare(const void* a, const void* b) {\n    return (*(int*)a - *(int*)b);\n}\n\n/**\n * Return an array of arrays of size *returnSize.\n * The sizes of the arrays are returned as *returnColumnSizes array.\n * Note: Both returned array and *columnSizes array must be malloced, assume caller calls free().\n */\nint** threeSum(int* nums, int numsSize, int* returnSize, int** returnColumnSizes) {\n    *returnSize = 0;\n    \n    // Edge case: less than 3 elements\n    if (numsSize < 3) {\n        *returnColumnSizes = NULL;\n        return NULL;\n    }\n    \n    // Sort the array\n    qsort(nums, numsSize, sizeof(int), compare);\n    \n    // Allocate memory for result (worst case: all combinations)\n    int maxTriplets = numsSize * numsSize;\n    int** result = (int**)malloc(maxTriplets * sizeof(int*));\n    *returnColumnSizes = (int*)malloc(maxTriplets * sizeof(int));\n    \n    // Find all unique triplets\n    for (int i = 0; i < numsSize - 2; i++) {\n        // Skip duplicate values for first element\n        if (i > 0 && nums[i] == nums[i - 1]) {\n            continue;\n        }\n        \n        int left = i + 1;\n        int right = numsSize - 1;\n        \n        while (left < right) {\n            int sum = nums[i] + nums[left] + nums[right];\n            \n            if (sum == 0) {\n                // Found a triplet\n                result[*returnSize] = (int*)malloc(3 * sizeof(int));\n                result[*returnSize][0] = nums[i];\n                result[*returnSize][1] = nums[left];\n                result[*returnSize][2] = nums[right];\n                (*returnColumnSizes)[*returnSize] = 3;\n                (*returnSize)++;\n                \n                // Skip duplicates for left pointer\n                while (left < right && nums[left] == nums[left + 1]) {\n                    left++;\n                }\n                // Skip duplicates for right pointer\n                while (left < right && nums[right] == nums[right - 1]) {\n                    right--;\n                }\n                \n                left++;\n                right--;\n            }\n            else if (sum < 0) {\n                left++;  // Need larger sum\n            }\n            else {\n                right--; // Need smaller sum\n            }\n        }\n    }\n    \n    // Resize arrays to actual size needed\n    if (*returnSize == 0) {\n        free(result);\n        free(*returnColumnSizes);\n        *returnColumnSizes = NULL;\n        return NULL;\n    }\n    \n    result = (int**)realloc(result, (*returnSize) * sizeof(int*));\n    *returnColumnSizes = (int*)realloc(*returnColumnSizes, (*returnSize) * sizeof(int));\n    \n    return result;\n}\n\n// Helper function to print array\nvoid printArray(int* nums, int size) {\n    printf(\"[\");\n    for (int i = 0; i < size; i++) {\n        printf(\"%d\", nums[i]);\n        if (i < size - 1) printf(\",\");\n    }\n    printf(\"]\\n\");\n}\n\n// Helper function to free memory\nvoid freeResults(int** result, int* returnColumnSizes, int returnSize) {\n    if (result) {\n        for (int i = 0; i < returnSize; i++) {\n            free(result[i]);\n        }\n        free(result);\n    }\n    if (returnColumnSizes) {\n        free(returnColumnSizes);\n    }\n}\n",
+      "timestamp": 1749258253,
+      "statusCode": 10,
+      "user": {
+        "username": "yosQbj5lkC",
+        "profile": {
+          "realName": "Henrique Freitas",
+          "userAvatar": "https://assets.leetcode.com/users/yosQbj5lkC/avatar_1748722942.png"
         }
+      },
+      "lang": {
+        "name": "c",
+        "verboseName": "C"
+      },
+      "question": {
+        "questionId": "15",
+        "titleSlug": "3sum",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null,
+      "lastTestcase": "",
+      "codeOutput": "",
+      "expectedOutput": "",
+      "totalCorrect": 314,
+      "totalTestcases": 314,
+      "fullCodeOutput": null,
+      "testDescriptions": null,
+      "testBodies": null,
+      "testInfo": null,
+      "stdOutput": ""
     }
+  }
 }

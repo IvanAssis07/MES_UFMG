@@ -1,48 +1,48 @@
 {
-    "data": {
-        "submissionDetails": {
-            "runtime": 35,
-            "runtimeDisplay": "35 ms",
-            "runtimePercentile": 18.275299999999977,
-            "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"7\", 0.2053], [\"12\", 0.2053], [\"15\", 1.6427], [\"16\", 0.4107], [\"17\", 0.4107], [\"18\", 0.8214], [\"19\", 4.7228], [\"20\", 1.4374], [\"21\", 1.848], [\"22\", 1.6427], [\"23\", 9.6509], [\"24\", 4.3121], [\"25\", 2.6694], [\"26\", 5.3388], [\"27\", 19.7125], [\"28\", 3.0801], [\"29\", 4.3121], [\"30\", 4.3121], [\"31\", 9.2402], [\"32\", 2.0534], [\"33\", 1.6427], [\"34\", 2.0534], [\"35\", 4.9281], [\"36\", 1.0267], [\"37\", 1.232], [\"38\", 1.4374], [\"39\", 3.0801], [\"40\", 0.8214]]}",
-            "memory": 12524000,
-            "memoryDisplay": "12.5 MB",
-            "memoryPercentile": 20.94460000000001,
-            "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"7900\", 5.9548], [\"8000\", 24.4353], [\"8100\", 16.4271], [\"8200\", 6.7762], [\"8300\", 4.5175], [\"8400\", 0.2053], [\"8500\", 0.8214], [\"8600\", 0.616], [\"8800\", 1.232], [\"8900\", 1.232], [\"9000\", 0.4107], [\"9100\", 0.616], [\"9200\", 0.616], [\"9300\", 0.8214], [\"9400\", 0.8214], [\"9500\", 0.2053], [\"9800\", 0.2053], [\"12400\", 2.6694], [\"12500\", 10.4723], [\"12600\", 7.8029], [\"12700\", 3.4908], [\"12800\", 3.2854], [\"12900\", 0.2053], [\"13200\", 0.2053], [\"13300\", 0.616]]}",
-            "code": "#include <stdio.h>\n#include <stdlib.h>\n#include <limits.h>\n\nint coinChange(int* coins, int coinsSize, int amount) {\n    // Base case: if amount is 0, no coins needed\n    if (amount == 0) return 0;\n    \n    // Create dp array where dp[i] represents minimum coins needed for amount i\n    // Initialize with amount + 1 (impossible value, since max coins needed is amount)\n    int* dp = (int*)malloc((amount + 1) * sizeof(int));\n    \n    // Initialize all values to amount + 1 (representing infinity)\n    for (int i = 0; i <= amount; i++) {\n        dp[i] = amount + 1;\n    }\n    \n    // Base case: 0 coins needed to make amount 0\n    dp[0] = 0;\n    \n    // Fill dp array for each amount from 1 to target amount\n    for (int i = 1; i <= amount; i++) {\n        // Try each coin denomination\n        for (int j = 0; j < coinsSize; j++) {\n            // If current coin value is <= current amount\n            if (coins[j] <= i) {\n                // Update dp[i] with minimum of current value or \n                // 1 + coins needed for (i - coins[j])\n                dp[i] = (dp[i] < dp[i - coins[j]] + 1) ? dp[i] : dp[i - coins[j]] + 1;\n            }\n        }\n    }\n    \n    // If dp[amount] is still amount + 1, it means amount cannot be formed\n    int result = (dp[amount] > amount) ? -1 : dp[amount];\n    \n    free(dp);\n    return result;\n}",
-            "timestamp": 1749307665,
-            "statusCode": 10,
-            "user": {
-                "username": "IvanAssis",
-                "profile": {
-                    "realName": "IvanAssis",
-                    "userAvatar": "https://assets.leetcode.com/users/default_avatar.jpg"
-                }
-            },
-            "lang": {
-                "name": "c",
-                "verboseName": "C"
-            },
-            "question": {
-                "questionId": "322",
-                "titleSlug": "coin-change",
-                "hasFrontendPreview": false
-            },
-            "notes": "",
-            "flagType": "WHITE",
-            "topicTags": [],
-            "runtimeError": null,
-            "compileError": null,
-            "lastTestcase": "",
-            "codeOutput": "",
-            "expectedOutput": "",
-            "totalCorrect": 189,
-            "totalTestcases": 189,
-            "fullCodeOutput": null,
-            "testDescriptions": null,
-            "testBodies": null,
-            "testInfo": null,
-            "stdOutput": ""
+  "data": {
+    "submissionDetails": {
+      "runtime": 35,
+      "runtimeDisplay": "35 ms",
+      "runtimePercentile": 18.275299999999977,
+      "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"7\", 0.2053], [\"12\", 0.2053], [\"15\", 1.6427], [\"16\", 0.4107], [\"17\", 0.4107], [\"18\", 0.8214], [\"19\", 4.7228], [\"20\", 1.4374], [\"21\", 1.848], [\"22\", 1.6427], [\"23\", 9.6509], [\"24\", 4.3121], [\"25\", 2.6694], [\"26\", 5.3388], [\"27\", 19.7125], [\"28\", 3.0801], [\"29\", 4.3121], [\"30\", 4.3121], [\"31\", 9.2402], [\"32\", 2.0534], [\"33\", 1.6427], [\"34\", 2.0534], [\"35\", 4.9281], [\"36\", 1.0267], [\"37\", 1.232], [\"38\", 1.4374], [\"39\", 3.0801], [\"40\", 0.8214]]}",
+      "memory": 12524000,
+      "memoryDisplay": "12.5 MB",
+      "memoryPercentile": 20.94460000000001,
+      "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"7900\", 5.9548], [\"8000\", 24.4353], [\"8100\", 16.4271], [\"8200\", 6.7762], [\"8300\", 4.5175], [\"8400\", 0.2053], [\"8500\", 0.8214], [\"8600\", 0.616], [\"8800\", 1.232], [\"8900\", 1.232], [\"9000\", 0.4107], [\"9100\", 0.616], [\"9200\", 0.616], [\"9300\", 0.8214], [\"9400\", 0.8214], [\"9500\", 0.2053], [\"9800\", 0.2053], [\"12400\", 2.6694], [\"12500\", 10.4723], [\"12600\", 7.8029], [\"12700\", 3.4908], [\"12800\", 3.2854], [\"12900\", 0.2053], [\"13200\", 0.2053], [\"13300\", 0.616]]}",
+      "code": "#include <stdio.h>\n#include <stdlib.h>\n#include <limits.h>\n\nint coinChange(int* coins, int coinsSize, int amount) {\n    // Base case: if amount is 0, no coins needed\n    if (amount == 0) return 0;\n    \n    // Create dp array where dp[i] represents minimum coins needed for amount i\n    // Initialize with amount + 1 (impossible value, since max coins needed is amount)\n    int* dp = (int*)malloc((amount + 1) * sizeof(int));\n    \n    // Initialize all values to amount + 1 (representing infinity)\n    for (int i = 0; i <= amount; i++) {\n        dp[i] = amount + 1;\n    }\n    \n    // Base case: 0 coins needed to make amount 0\n    dp[0] = 0;\n    \n    // Fill dp array for each amount from 1 to target amount\n    for (int i = 1; i <= amount; i++) {\n        // Try each coin denomination\n        for (int j = 0; j < coinsSize; j++) {\n            // If current coin value is <= current amount\n            if (coins[j] <= i) {\n                // Update dp[i] with minimum of current value or \n                // 1 + coins needed for (i - coins[j])\n                dp[i] = (dp[i] < dp[i - coins[j]] + 1) ? dp[i] : dp[i - coins[j]] + 1;\n            }\n        }\n    }\n    \n    // If dp[amount] is still amount + 1, it means amount cannot be formed\n    int result = (dp[amount] > amount) ? -1 : dp[amount];\n    \n    free(dp);\n    return result;\n}",
+      "timestamp": 1749307665,
+      "statusCode": 10,
+      "user": {
+        "username": "IvanAssis",
+        "profile": {
+          "realName": "IvanAssis",
+          "userAvatar": "https://assets.leetcode.com/users/default_avatar.jpg"
         }
+      },
+      "lang": {
+        "name": "c",
+        "verboseName": "C"
+      },
+      "question": {
+        "questionId": "322",
+        "titleSlug": "coin-change",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null,
+      "lastTestcase": "",
+      "codeOutput": "",
+      "expectedOutput": "",
+      "totalCorrect": 189,
+      "totalTestcases": 189,
+      "fullCodeOutput": null,
+      "testDescriptions": null,
+      "testBodies": null,
+      "testInfo": null,
+      "stdOutput": ""
     }
+  }
 }

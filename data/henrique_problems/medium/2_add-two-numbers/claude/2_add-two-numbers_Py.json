@@ -1,48 +1,48 @@
 {
-    "data": {
-        "submissionDetails": {
-            "runtime": 19,
-            "runtimeDisplay": "N/A",
-            "runtimePercentile": null,
-            "runtimeDistribution": "{\"lang\": \"python\", \"distribution\": [[\"0\", 5.4912], [\"1\", 2.0163], [\"2\", 2.0408], [\"3\", 6.9682], [\"4\", 8.5065], [\"5\", 4.6209], [\"6\", 4.5719], [\"7\", 10.0509], [\"8\", 9.2235], [\"9\", 4.5474], [\"10\", 4.241], [\"11\", 8.0162], [\"12\", 5.4422], [\"13\", 2.5617], [\"14\", 2.1205], [\"15\", 4.4003], [\"16\", 2.4637], [\"17\", 1.336], [\"18\", 0.9806], [\"19\", 2.0224], [\"20\", 1.0296], [\"21\", 0.5271], [\"22\", 0.4719], [\"23\", 0.9928]]}",
-            "memory": 12388000,
-            "memoryDisplay": "N/A",
-            "memoryPercentile": null,
-            "memoryDistribution": "{\"lang\": \"python\", \"distribution\": [[\"12100\", 0.0123], [\"12200\", 0.0306], [\"12300\", 0.8764], [\"12400\", 14.8863], [\"12500\", 29.8891], [\"12600\", 39.0268]]}",
-            "code": "# Definition for singly-linked list.\nclass ListNode(object):\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\nclass Solution(object):\n    def addTwoNumbers(self, l1, l2):\n        \"\"\"\n        :type l1: Optional[ListNode]\n        :type l2: Optional[ListNode]\n        :rtype: Optional[ListNode]\n        \"\"\"\n        # Create dummy head to simplify list construction\n        dummy = ListNode(0)\n        current = dummy\n        carry = 0\n        \n        # Process both lists while at least one has nodes or there's a carry\n        while l1 or l2 or carry:\n            # Calculate sum of current digits plus carry\n            digit_sum = carry\n            \n            if l1:\n                digit_sum += l1.val\n                l1 = l1.next\n            \n            if l2:\n                digit_sum += l2.val\n                l2 = l2.next\n            \n            # Calculate new carry and current digit\n            carry = digit_sum // 10\n            digit = digit_sum % 10\n            \n            # Create new node and link it\n            current.next = ListNode(digit)\n            current = current.next\n        \n        # Return the actual head (skip dummy)\n        return dummy.next\n",
-            "timestamp": 1749257929,
-            "statusCode": 15,
-            "user": {
-                "username": "yosQbj5lkC",
-                "profile": {
-                    "realName": "Henrique Freitas",
-                    "userAvatar": "https://assets.leetcode.com/users/yosQbj5lkC/avatar_1748722942.png"
-                }
-            },
-            "lang": {
-                "name": "python",
-                "verboseName": "Python"
-            },
-            "question": {
-                "questionId": "2",
-                "titleSlug": "add-two-numbers",
-                "hasFrontendPreview": false
-            },
-            "notes": "",
-            "flagType": "WHITE",
-            "topicTags": [],
-            "runtimeError": "TypeError: <__main__.ListNode object at 0x7f6cf4a92f10> is not valid value for the expected return type ListNode\n    raise TypeError(str(ret) + \" is not valid value for the expected return type ListNode\");\nLine 78 in _driver (Solution.py)\n    _driver()\nLine 86 in <module> (Solution.py)",
-            "compileError": null,
-            "lastTestcase": "[2,4,3]\n[5,6,4]",
-            "codeOutput": "",
-            "expectedOutput": "[7,0,8]",
-            "totalCorrect": 0,
-            "totalTestcases": 1569,
-            "fullCodeOutput": null,
-            "testDescriptions": null,
-            "testBodies": null,
-            "testInfo": null,
-            "stdOutput": ""
+  "data": {
+    "submissionDetails": {
+      "runtime": 19,
+      "runtimeDisplay": "N/A",
+      "runtimePercentile": null,
+      "runtimeDistribution": "{\"lang\": \"python\", \"distribution\": [[\"0\", 5.4912], [\"1\", 2.0163], [\"2\", 2.0408], [\"3\", 6.9682], [\"4\", 8.5065], [\"5\", 4.6209], [\"6\", 4.5719], [\"7\", 10.0509], [\"8\", 9.2235], [\"9\", 4.5474], [\"10\", 4.241], [\"11\", 8.0162], [\"12\", 5.4422], [\"13\", 2.5617], [\"14\", 2.1205], [\"15\", 4.4003], [\"16\", 2.4637], [\"17\", 1.336], [\"18\", 0.9806], [\"19\", 2.0224], [\"20\", 1.0296], [\"21\", 0.5271], [\"22\", 0.4719], [\"23\", 0.9928]]}",
+      "memory": 12388000,
+      "memoryDisplay": "N/A",
+      "memoryPercentile": null,
+      "memoryDistribution": "{\"lang\": \"python\", \"distribution\": [[\"12100\", 0.0123], [\"12200\", 0.0306], [\"12300\", 0.8764], [\"12400\", 14.8863], [\"12500\", 29.8891], [\"12600\", 39.0268]]}",
+      "code": "# Definition for singly-linked list.\nclass ListNode(object):\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\nclass Solution(object):\n    def addTwoNumbers(self, l1, l2):\n        \"\"\"\n        :type l1: Optional[ListNode]\n        :type l2: Optional[ListNode]\n        :rtype: Optional[ListNode]\n        \"\"\"\n        # Create dummy head to simplify list construction\n        dummy = ListNode(0)\n        current = dummy\n        carry = 0\n        \n        # Process both lists while at least one has nodes or there's a carry\n        while l1 or l2 or carry:\n            # Calculate sum of current digits plus carry\n            digit_sum = carry\n            \n            if l1:\n                digit_sum += l1.val\n                l1 = l1.next\n            \n            if l2:\n                digit_sum += l2.val\n                l2 = l2.next\n            \n            # Calculate new carry and current digit\n            carry = digit_sum // 10\n            digit = digit_sum % 10\n            \n            # Create new node and link it\n            current.next = ListNode(digit)\n            current = current.next\n        \n        # Return the actual head (skip dummy)\n        return dummy.next\n",
+      "timestamp": 1749257929,
+      "statusCode": 15,
+      "user": {
+        "username": "yosQbj5lkC",
+        "profile": {
+          "realName": "Henrique Freitas",
+          "userAvatar": "https://assets.leetcode.com/users/yosQbj5lkC/avatar_1748722942.png"
         }
+      },
+      "lang": {
+        "name": "python",
+        "verboseName": "Python"
+      },
+      "question": {
+        "questionId": "2",
+        "titleSlug": "add-two-numbers",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": "TypeError: <__main__.ListNode object at 0x7f6cf4a92f10> is not valid value for the expected return type ListNode\n    raise TypeError(str(ret) + \" is not valid value for the expected return type ListNode\");\nLine 78 in _driver (Solution.py)\n    _driver()\nLine 86 in <module> (Solution.py)",
+      "compileError": null,
+      "lastTestcase": "[2,4,3]\n[5,6,4]",
+      "codeOutput": "",
+      "expectedOutput": "[7,0,8]",
+      "totalCorrect": 0,
+      "totalTestcases": 1569,
+      "fullCodeOutput": null,
+      "testDescriptions": null,
+      "testBodies": null,
+      "testInfo": null,
+      "stdOutput": ""
     }
+  }
 }

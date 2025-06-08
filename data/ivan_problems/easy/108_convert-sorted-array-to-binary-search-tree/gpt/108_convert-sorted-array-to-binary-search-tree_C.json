@@ -1,48 +1,48 @@
 {
-    "data": {
-        "submissionDetails": {
-            "runtime": 0,
-            "runtimeDisplay": "N/A",
-            "runtimePercentile": null,
-            "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"0\", 17.1364], [\"1\", 3.8331], [\"2\", 7.2153], [\"3\", 34.4983], [\"4\", 22.5479], [\"5\", 3.9459], [\"6\", 5.7497]]}",
-            "memory": 0,
-            "memoryDisplay": "N/A",
-            "memoryPercentile": null,
-            "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"10700\", 0.2255], [\"10800\", 0.451], [\"10900\", 1.0147], [\"11000\", 0.7892], [\"11200\", 0.5637], [\"11300\", 0.1127], [\"11400\", 0.1127], [\"15700\", 1.4656], [\"15800\", 21.7587], [\"15900\", 39.2334], [\"16000\", 20.7441], [\"16100\", 7.6663]]}",
-            "code": "#include <stdlib.h>\n\n// Definition for a binary tree node.\nstruct TreeNode {\n    int val;\n    struct TreeNode *left;\n    struct TreeNode *right;\n};\n\n// Helper function to recursively build the tree\nstruct TreeNode* buildBST(int* nums, int left, int right) {\n    if (left > right) {\n        return NULL;\n    }\n\n    int mid = left + (right - left) / 2;\n\n    struct TreeNode* root = (struct TreeNode*)malloc(sizeof(struct TreeNode));\n    root->val = nums[mid];\n    root->left = buildBST(nums, left, mid - 1);\n    root->right = buildBST(nums, mid + 1, right);\n\n    return root;\n}\n\n// Main function to be called\nstruct TreeNode* sortedArrayToBST(int* nums, int numsSize) {\n    return buildBST(nums, 0, numsSize - 1);\n}\n",
-            "timestamp": 1749157101,
-            "statusCode": 20,
-            "user": {
-                "username": "IvanAssis",
-                "profile": {
-                    "realName": "IvanAssis",
-                    "userAvatar": "https://assets.leetcode.com/users/default_avatar.jpg"
-                }
-            },
-            "lang": {
-                "name": "c",
-                "verboseName": "C"
-            },
-            "question": {
-                "questionId": "108",
-                "titleSlug": "convert-sorted-array-to-binary-search-tree",
-                "hasFrontendPreview": false
-            },
-            "notes": "",
-            "flagType": "WHITE",
-            "topicTags": [],
-            "runtimeError": null,
-            "compileError": "Line 4: Char 8: error: redefinition of \u2018struct TreeNode\u2019 [solution.c]\n    4 | struct TreeNode {\n      |        ^~~~~~~~",
-            "lastTestcase": null,
-            "codeOutput": "{\"compile_error\": \"Line 4: Char 8: error: redefinition of \\u2018struct TreeNode\\u2019 [solution.c]\\n    4 | struct TreeNode {\\n      |        ^~~~~~~~\"}",
-            "expectedOutput": null,
-            "totalCorrect": null,
-            "totalTestcases": 0,
-            "fullCodeOutput": null,
-            "testDescriptions": null,
-            "testBodies": null,
-            "testInfo": null,
-            "stdOutput": null
+  "data": {
+    "submissionDetails": {
+      "runtime": 0,
+      "runtimeDisplay": "N/A",
+      "runtimePercentile": null,
+      "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"0\", 17.1364], [\"1\", 3.8331], [\"2\", 7.2153], [\"3\", 34.4983], [\"4\", 22.5479], [\"5\", 3.9459], [\"6\", 5.7497]]}",
+      "memory": 0,
+      "memoryDisplay": "N/A",
+      "memoryPercentile": null,
+      "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"10700\", 0.2255], [\"10800\", 0.451], [\"10900\", 1.0147], [\"11000\", 0.7892], [\"11200\", 0.5637], [\"11300\", 0.1127], [\"11400\", 0.1127], [\"15700\", 1.4656], [\"15800\", 21.7587], [\"15900\", 39.2334], [\"16000\", 20.7441], [\"16100\", 7.6663]]}",
+      "code": "#include <stdlib.h>\n\n// Definition for a binary tree node.\nstruct TreeNode {\n    int val;\n    struct TreeNode *left;\n    struct TreeNode *right;\n};\n\n// Helper function to recursively build the tree\nstruct TreeNode* buildBST(int* nums, int left, int right) {\n    if (left > right) {\n        return NULL;\n    }\n\n    int mid = left + (right - left) / 2;\n\n    struct TreeNode* root = (struct TreeNode*)malloc(sizeof(struct TreeNode));\n    root->val = nums[mid];\n    root->left = buildBST(nums, left, mid - 1);\n    root->right = buildBST(nums, mid + 1, right);\n\n    return root;\n}\n\n// Main function to be called\nstruct TreeNode* sortedArrayToBST(int* nums, int numsSize) {\n    return buildBST(nums, 0, numsSize - 1);\n}\n",
+      "timestamp": 1749157101,
+      "statusCode": 20,
+      "user": {
+        "username": "IvanAssis",
+        "profile": {
+          "realName": "IvanAssis",
+          "userAvatar": "https://assets.leetcode.com/users/default_avatar.jpg"
         }
+      },
+      "lang": {
+        "name": "c",
+        "verboseName": "C"
+      },
+      "question": {
+        "questionId": "108",
+        "titleSlug": "convert-sorted-array-to-binary-search-tree",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": "Line 4: Char 8: error: redefinition of \u2018struct TreeNode\u2019 [solution.c]\n    4 | struct TreeNode {\n      |        ^~~~~~~~",
+      "lastTestcase": null,
+      "codeOutput": "{\"compile_error\": \"Line 4: Char 8: error: redefinition of \\u2018struct TreeNode\\u2019 [solution.c]\\n    4 | struct TreeNode {\\n      |        ^~~~~~~~\"}",
+      "expectedOutput": null,
+      "totalCorrect": null,
+      "totalTestcases": 0,
+      "fullCodeOutput": null,
+      "testDescriptions": null,
+      "testBodies": null,
+      "testInfo": null,
+      "stdOutput": null
     }
+  }
 }

@@ -1,48 +1,48 @@
 {
-    "data": {
-        "submissionDetails": {
-            "runtime": 0,
-            "runtimeDisplay": "0 ms",
-            "runtimePercentile": 100.0,
-            "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"0\", 92.4585], [\"1\", 1.193], [\"2\", 1.8747], [\"3\", 1.9173], [\"4\", 0.213]]}",
-            "memory": 7772000,
-            "memoryDisplay": "7.8 MB",
-            "memoryPercentile": 48.99880000000001,
-            "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"7500\", 0.1278], [\"7600\", 12.0153], [\"7700\", 38.8581], [\"7800\", 22.7098], [\"7900\", 10.3963], [\"8000\", 8.8198], [\"8100\", 1.0652], [\"8200\", 0.5539], [\"8300\", 0.4261]]}",
-            "code": "\n#include <stdio.h>\n#include <stdbool.h>\n\n// Helper function to calculate sum of squares of digits\nint getSumOfSquares(int n) {\n    int sum = 0;\n    while (n > 0) {\n        int digit = n % 10;\n        sum += digit * digit;\n        n /= 10;\n    }\n    return sum;\n}\n\nbool isHappy(int n) {\n    // Use Floyd's cycle detection algorithm (tortoise and hare)\n    int slow = n;\n    int fast = n;\n    \n    do {\n        slow = getSumOfSquares(slow);              // moves one step\n        fast = getSumOfSquares(getSumOfSquares(fast)); // moves two steps\n    } while (slow != fast);\n    \n    // If we end up at 1, it's a happy number\n    return slow == 1;\n}",
-            "timestamp": 1749302721,
-            "statusCode": 10,
-            "user": {
-                "username": "IvanAssis",
-                "profile": {
-                    "realName": "IvanAssis",
-                    "userAvatar": "https://assets.leetcode.com/users/default_avatar.jpg"
-                }
-            },
-            "lang": {
-                "name": "c",
-                "verboseName": "C"
-            },
-            "question": {
-                "questionId": "202",
-                "titleSlug": "happy-number",
-                "hasFrontendPreview": false
-            },
-            "notes": "",
-            "flagType": "WHITE",
-            "topicTags": [],
-            "runtimeError": null,
-            "compileError": null,
-            "lastTestcase": "",
-            "codeOutput": "",
-            "expectedOutput": "",
-            "totalCorrect": 420,
-            "totalTestcases": 420,
-            "fullCodeOutput": null,
-            "testDescriptions": null,
-            "testBodies": null,
-            "testInfo": null,
-            "stdOutput": ""
+  "data": {
+    "submissionDetails": {
+      "runtime": 0,
+      "runtimeDisplay": "0 ms",
+      "runtimePercentile": 100.0,
+      "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"0\", 92.4585], [\"1\", 1.193], [\"2\", 1.8747], [\"3\", 1.9173], [\"4\", 0.213]]}",
+      "memory": 7772000,
+      "memoryDisplay": "7.8 MB",
+      "memoryPercentile": 48.99880000000001,
+      "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"7500\", 0.1278], [\"7600\", 12.0153], [\"7700\", 38.8581], [\"7800\", 22.7098], [\"7900\", 10.3963], [\"8000\", 8.8198], [\"8100\", 1.0652], [\"8200\", 0.5539], [\"8300\", 0.4261]]}",
+      "code": "\n#include <stdio.h>\n#include <stdbool.h>\n\n// Helper function to calculate sum of squares of digits\nint getSumOfSquares(int n) {\n    int sum = 0;\n    while (n > 0) {\n        int digit = n % 10;\n        sum += digit * digit;\n        n /= 10;\n    }\n    return sum;\n}\n\nbool isHappy(int n) {\n    // Use Floyd's cycle detection algorithm (tortoise and hare)\n    int slow = n;\n    int fast = n;\n    \n    do {\n        slow = getSumOfSquares(slow);              // moves one step\n        fast = getSumOfSquares(getSumOfSquares(fast)); // moves two steps\n    } while (slow != fast);\n    \n    // If we end up at 1, it's a happy number\n    return slow == 1;\n}",
+      "timestamp": 1749302721,
+      "statusCode": 10,
+      "user": {
+        "username": "IvanAssis",
+        "profile": {
+          "realName": "IvanAssis",
+          "userAvatar": "https://assets.leetcode.com/users/default_avatar.jpg"
         }
+      },
+      "lang": {
+        "name": "c",
+        "verboseName": "C"
+      },
+      "question": {
+        "questionId": "202",
+        "titleSlug": "happy-number",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null,
+      "lastTestcase": "",
+      "codeOutput": "",
+      "expectedOutput": "",
+      "totalCorrect": 420,
+      "totalTestcases": 420,
+      "fullCodeOutput": null,
+      "testDescriptions": null,
+      "testBodies": null,
+      "testInfo": null,
+      "stdOutput": ""
     }
+  }
 }

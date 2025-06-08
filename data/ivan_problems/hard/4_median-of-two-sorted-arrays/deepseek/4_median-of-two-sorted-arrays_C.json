@@ -1,48 +1,48 @@
 {
-    "data": {
-        "submissionDetails": {
-            "runtime": 0,
-            "runtimeDisplay": "0 ms",
-            "runtimePercentile": 100.0,
-            "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"0\", 57.1802], [\"1\", 6.3824], [\"2\", 3.8874], [\"3\", 7.4267], [\"4\", 3.5393], [\"5\", 0.6672], [\"6\", 0.5222], [\"7\", 0.9574], [\"8\", 0.2611], [\"9\", 0.116], [\"11\", 0.1741], [\"12\", 0.029], [\"13\", 0.029], [\"15\", 0.116], [\"17\", 0.029], [\"18\", 0.029], [\"19\", 0.029], [\"20\", 0.058], [\"21\", 0.058], [\"23\", 0.058], [\"25\", 0.029], [\"26\", 0.087], [\"27\", 0.087], [\"28\", 0.029], [\"29\", 0.058], [\"30\", 0.058], [\"31\", 0.058], [\"32\", 0.1451], [\"33\", 0.029], [\"34\", 0.058], [\"35\", 0.1741], [\"36\", 0.029], [\"38\", 0.029], [\"39\", 0.087], [\"40\", 0.058], [\"41\", 0.029], [\"42\", 0.029], [\"43\", 0.1451], [\"44\", 0.058], [\"45\", 0.087], [\"46\", 0.058], [\"47\", 0.2901], [\"48\", 0.2901], [\"49\", 0.1451], [\"50\", 0.2031], [\"51\", 0.4642], [\"52\", 0.2321], [\"53\", 0.087], [\"54\", 0.3191], [\"55\", 0.5802], [\"56\", 0.1741], [\"57\", 0.3191], [\"58\", 0.1741], [\"59\", 0.8413], [\"60\", 0.4062], [\"61\", 0.1741], [\"62\", 0.2901], [\"63\", 0.8993], [\"64\", 0.3191], [\"65\", 0.3191], [\"66\", 0.5512], [\"67\", 1.2185], [\"68\", 0.3481], [\"69\", 0.3191], [\"70\", 0.2321], [\"71\", 0.9864], [\"72\", 0.3771], [\"73\", 0.2321], [\"74\", 0.2031], [\"75\", 0.4932], [\"76\", 0.1741], [\"77\", 0.058], [\"78\", 0.1741]]}",
-            "memory": 11072000,
-            "memoryDisplay": "11.1 MB",
-            "memoryPercentile": 99.7389,
-            "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"11000\", 0.2611], [\"11100\", 12.2425], [\"11200\", 30.1422], [\"11300\", 16.5651], [\"11400\", 6.6725], [\"11500\", 11.4012], [\"11600\", 8.5872], [\"11700\", 5.8892], [\"11800\", 2.2918]]}",
-            "code": "double findMedianSortedArrays(int* nums1, int nums1Size, int* nums2, int nums2Size) {\n    // Ensure nums1 is the smaller array to simplify the algorithm\n    if (nums1Size > nums2Size) {\n        return findMedianSortedArrays(nums2, nums2Size, nums1, nums1Size);\n    }\n    \n    int m = nums1Size;\n    int n = nums2Size;\n    int left = 0, right = m;\n    int partitionX, partitionY;\n    int maxLeftX, minRightX, maxLeftY, minRightY;\n    \n    while (left <= right) {\n        partitionX = (left + right) / 2;\n        partitionY = (m + n + 1) / 2 - partitionX;\n        \n        // Handle edge cases where partitionX is 0 or m\n        maxLeftX = (partitionX == 0) ? INT_MIN : nums1[partitionX - 1];\n        minRightX = (partitionX == m) ? INT_MAX : nums1[partitionX];\n        \n        maxLeftY = (partitionY == 0) ? INT_MIN : nums2[partitionY - 1];\n        minRightY = (partitionY == n) ? INT_MAX : nums2[partitionY];\n        \n        if (maxLeftX <= minRightY && maxLeftY <= minRightX) {\n            // Found the correct partition\n            if ((m + n) % 2 == 0) {\n                return (double)((fmax(maxLeftX, maxLeftY) + fmin(minRightX, minRightY)) / 2.0);\n            } else {\n                return (double)fmax(maxLeftX, maxLeftY);\n            }\n        } else if (maxLeftX > minRightY) {\n            right = partitionX - 1;\n        } else {\n            left = partitionX + 1;\n        }\n    }\n    \n    // The code should always return in the loop, but to avoid compiler warnings\n    return 0.0;\n}",
-            "timestamp": 1749304552,
-            "statusCode": 10,
-            "user": {
-                "username": "IvanAssis",
-                "profile": {
-                    "realName": "IvanAssis",
-                    "userAvatar": "https://assets.leetcode.com/users/default_avatar.jpg"
-                }
-            },
-            "lang": {
-                "name": "c",
-                "verboseName": "C"
-            },
-            "question": {
-                "questionId": "4",
-                "titleSlug": "median-of-two-sorted-arrays",
-                "hasFrontendPreview": false
-            },
-            "notes": "",
-            "flagType": "WHITE",
-            "topicTags": [],
-            "runtimeError": null,
-            "compileError": null,
-            "lastTestcase": "",
-            "codeOutput": "",
-            "expectedOutput": "",
-            "totalCorrect": 2096,
-            "totalTestcases": 2096,
-            "fullCodeOutput": null,
-            "testDescriptions": null,
-            "testBodies": null,
-            "testInfo": null,
-            "stdOutput": ""
+  "data": {
+    "submissionDetails": {
+      "runtime": 0,
+      "runtimeDisplay": "0 ms",
+      "runtimePercentile": 100.0,
+      "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"0\", 57.1802], [\"1\", 6.3824], [\"2\", 3.8874], [\"3\", 7.4267], [\"4\", 3.5393], [\"5\", 0.6672], [\"6\", 0.5222], [\"7\", 0.9574], [\"8\", 0.2611], [\"9\", 0.116], [\"11\", 0.1741], [\"12\", 0.029], [\"13\", 0.029], [\"15\", 0.116], [\"17\", 0.029], [\"18\", 0.029], [\"19\", 0.029], [\"20\", 0.058], [\"21\", 0.058], [\"23\", 0.058], [\"25\", 0.029], [\"26\", 0.087], [\"27\", 0.087], [\"28\", 0.029], [\"29\", 0.058], [\"30\", 0.058], [\"31\", 0.058], [\"32\", 0.1451], [\"33\", 0.029], [\"34\", 0.058], [\"35\", 0.1741], [\"36\", 0.029], [\"38\", 0.029], [\"39\", 0.087], [\"40\", 0.058], [\"41\", 0.029], [\"42\", 0.029], [\"43\", 0.1451], [\"44\", 0.058], [\"45\", 0.087], [\"46\", 0.058], [\"47\", 0.2901], [\"48\", 0.2901], [\"49\", 0.1451], [\"50\", 0.2031], [\"51\", 0.4642], [\"52\", 0.2321], [\"53\", 0.087], [\"54\", 0.3191], [\"55\", 0.5802], [\"56\", 0.1741], [\"57\", 0.3191], [\"58\", 0.1741], [\"59\", 0.8413], [\"60\", 0.4062], [\"61\", 0.1741], [\"62\", 0.2901], [\"63\", 0.8993], [\"64\", 0.3191], [\"65\", 0.3191], [\"66\", 0.5512], [\"67\", 1.2185], [\"68\", 0.3481], [\"69\", 0.3191], [\"70\", 0.2321], [\"71\", 0.9864], [\"72\", 0.3771], [\"73\", 0.2321], [\"74\", 0.2031], [\"75\", 0.4932], [\"76\", 0.1741], [\"77\", 0.058], [\"78\", 0.1741]]}",
+      "memory": 11072000,
+      "memoryDisplay": "11.1 MB",
+      "memoryPercentile": 99.7389,
+      "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"11000\", 0.2611], [\"11100\", 12.2425], [\"11200\", 30.1422], [\"11300\", 16.5651], [\"11400\", 6.6725], [\"11500\", 11.4012], [\"11600\", 8.5872], [\"11700\", 5.8892], [\"11800\", 2.2918]]}",
+      "code": "double findMedianSortedArrays(int* nums1, int nums1Size, int* nums2, int nums2Size) {\n    // Ensure nums1 is the smaller array to simplify the algorithm\n    if (nums1Size > nums2Size) {\n        return findMedianSortedArrays(nums2, nums2Size, nums1, nums1Size);\n    }\n    \n    int m = nums1Size;\n    int n = nums2Size;\n    int left = 0, right = m;\n    int partitionX, partitionY;\n    int maxLeftX, minRightX, maxLeftY, minRightY;\n    \n    while (left <= right) {\n        partitionX = (left + right) / 2;\n        partitionY = (m + n + 1) / 2 - partitionX;\n        \n        // Handle edge cases where partitionX is 0 or m\n        maxLeftX = (partitionX == 0) ? INT_MIN : nums1[partitionX - 1];\n        minRightX = (partitionX == m) ? INT_MAX : nums1[partitionX];\n        \n        maxLeftY = (partitionY == 0) ? INT_MIN : nums2[partitionY - 1];\n        minRightY = (partitionY == n) ? INT_MAX : nums2[partitionY];\n        \n        if (maxLeftX <= minRightY && maxLeftY <= minRightX) {\n            // Found the correct partition\n            if ((m + n) % 2 == 0) {\n                return (double)((fmax(maxLeftX, maxLeftY) + fmin(minRightX, minRightY)) / 2.0);\n            } else {\n                return (double)fmax(maxLeftX, maxLeftY);\n            }\n        } else if (maxLeftX > minRightY) {\n            right = partitionX - 1;\n        } else {\n            left = partitionX + 1;\n        }\n    }\n    \n    // The code should always return in the loop, but to avoid compiler warnings\n    return 0.0;\n}",
+      "timestamp": 1749304552,
+      "statusCode": 10,
+      "user": {
+        "username": "IvanAssis",
+        "profile": {
+          "realName": "IvanAssis",
+          "userAvatar": "https://assets.leetcode.com/users/default_avatar.jpg"
         }
+      },
+      "lang": {
+        "name": "c",
+        "verboseName": "C"
+      },
+      "question": {
+        "questionId": "4",
+        "titleSlug": "median-of-two-sorted-arrays",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null,
+      "lastTestcase": "",
+      "codeOutput": "",
+      "expectedOutput": "",
+      "totalCorrect": 2096,
+      "totalTestcases": 2096,
+      "fullCodeOutput": null,
+      "testDescriptions": null,
+      "testBodies": null,
+      "testInfo": null,
+      "stdOutput": ""
     }
+  }
 }

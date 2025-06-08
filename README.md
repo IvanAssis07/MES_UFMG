@@ -1,12 +1,12 @@
 # Comparação de LLMs na Resolução de Desafios de Programação usados em Recrutamento
 
 ## Grupo formado por:
+
 Henrique da Fonseca Diniz Freitas (2021031688)
 
 Ivan Vilaça de Assis (2021421931)
 
 Marcelo Augusto Mrad Marteleto (2021031548)
-
 
 ## Objetivo
 
@@ -46,8 +46,8 @@ Além de comparar modelos amplamente discutidos na literatura, como o **GPT-4o**
 - **Formato dos Prompts**:
   - Cada prompt contém **apenas o enunciado original** da questão no LeetCode e a **linguagem de programação desejada**.
   - Nenhuma instrução adicional será fornecida (zero-shot).
-  
 - **Linguagens utilizadas**:
+
   - **Python**
   - **C**
 
@@ -63,7 +63,6 @@ Além de comparar modelos amplamente discutidos na literatura, como o **GPT-4o**
   - **Aceitação total**: Passou todos os testes
   - **Aceitação parcial**: Passou pelo menos 50% dos testes
   - **Rejeição**: Falhou mais de 50% dos testes
-  
 - Para cada modelo será registrada:
   - **Taxa de acerto total (%)**
   - **Distribuição de desempenho por nível de dificuldade**
