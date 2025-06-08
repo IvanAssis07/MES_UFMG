@@ -4,11 +4,11 @@
       "runtime": 0,
       "runtimeDisplay": "0 ms",
       "runtimePercentile": 100.0,
-      "runtimeDistribution": "{\"lang\": \"python\", \"distribution\": [[\"0\", 27.4957], [\"1\", 4.7365], [\"2\", 4.3964], [\"3\", 15.7396], [\"4\", 12.9706], [\"5\", 4.3478], [\"6\", 3.5949], [\"7\", 10.0316], [\"8\", 3.2548], [\"9\", 1.4088], [\"10\", 1.1659], [\"11\", 2.9876], [\"12\", 0.6801], [\"13\", 0.4858], [\"14\", 0.2429], [\"15\", 0.7044], [\"16\", 0.3401], [\"17\", 0.17], [\"18\", 0.0972]]}",
+      "runtimeDistribution": "{\"lang\": \"python3\", \"distribution\": [[\"0\", 27.4957], [\"1\", 4.7365], [\"2\", 4.3964], [\"3\", 15.7396], [\"4\", 12.9706], [\"5\", 4.3478], [\"6\", 3.5949], [\"7\", 10.0316], [\"8\", 3.2548], [\"9\", 1.4088], [\"10\", 1.1659], [\"11\", 2.9876], [\"12\", 0.6801], [\"13\", 0.4858], [\"14\", 0.2429], [\"15\", 0.7044], [\"16\", 0.3401], [\"17\", 0.17], [\"18\", 0.0972]]}",
       "memory": 12328000,
       "memoryDisplay": "12.3 MB",
       "memoryPercentile": 79.93690000000001,
-      "memoryDistribution": "{\"lang\": \"python\", \"distribution\": [[\"12100\", 0.0486], [\"12200\", 1.3359], [\"12300\", 18.6786], [\"12400\", 28.6859], [\"12500\", 40.9521]]}",
+      "memoryDistribution": "{\"lang\": \"python3\", \"distribution\": [[\"12100\", 0.0486], [\"12200\", 1.3359], [\"12300\", 18.6786], [\"12400\", 28.6859], [\"12500\", 40.9521]]}",
       "code": "class Solution(object):\n    def isHappy(self, n):\n        \"\"\"\n        :type n: int\n        :rtype: bool\n        \"\"\"\n        def get_next(number):\n            total_sum = 0\n            while number > 0:\n                digit = number % 10\n                total_sum += digit * digit\n                number //= 10\n            return total_sum\n\n        seen = set()\n        while n != 1 and n not in seen:\n            seen.add(n)\n            n = get_next(n)\n        return n == 1\n",
       "timestamp": 1749157380,
       "statusCode": 10,
@@ -20,7 +20,7 @@
         }
       },
       "lang": {
-        "name": "python",
+        "name": "python3",
         "verboseName": "Python"
       },
       "question": {

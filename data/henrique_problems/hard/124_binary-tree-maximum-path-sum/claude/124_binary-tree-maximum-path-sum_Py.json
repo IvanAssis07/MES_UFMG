@@ -4,11 +4,11 @@
       "runtime": 23,
       "runtimeDisplay": "23 ms",
       "runtimePercentile": 76.1421,
-      "runtimeDistribution": "{\"lang\": \"python\", \"distribution\": [[\"0\", 0.1269], [\"11\", 0.1904], [\"12\", 0.3807], [\"13\", 0.0635], [\"14\", 0.0635], [\"15\", 1.3325], [\"16\", 1.5228], [\"17\", 1.0152], [\"18\", 1.3959], [\"19\", 5.203], [\"20\", 5.2665], [\"21\", 3.1726], [\"22\", 4.1244], [\"23\", 13.3883], [\"24\", 12.2462], [\"25\", 5.6472], [\"26\", 5.5838], [\"27\", 11.0406], [\"28\", 9.1371], [\"29\", 2.665], [\"30\", 2.9822], [\"31\", 4.5051], [\"32\", 2.0305], [\"33\", 0.5711], [\"34\", 0.4442]]}",
+      "runtimeDistribution": "{\"lang\": \"python3\", \"distribution\": [[\"0\", 0.1269], [\"11\", 0.1904], [\"12\", 0.3807], [\"13\", 0.0635], [\"14\", 0.0635], [\"15\", 1.3325], [\"16\", 1.5228], [\"17\", 1.0152], [\"18\", 1.3959], [\"19\", 5.203], [\"20\", 5.2665], [\"21\", 3.1726], [\"22\", 4.1244], [\"23\", 13.3883], [\"24\", 12.2462], [\"25\", 5.6472], [\"26\", 5.5838], [\"27\", 11.0406], [\"28\", 9.1371], [\"29\", 2.665], [\"30\", 2.9822], [\"31\", 4.5051], [\"32\", 2.0305], [\"33\", 0.5711], [\"34\", 0.4442]]}",
       "memory": 25404000,
       "memoryDisplay": "25.4 MB",
       "memoryPercentile": 58.8198,
-      "memoryDistribution": "{\"lang\": \"python\", \"distribution\": [[\"24400\", 0.1269], [\"24600\", 0.1904], [\"24700\", 0.1904], [\"24800\", 2.2208], [\"24900\", 4.5685], [\"25000\", 4.4416], [\"25100\", 2.2843], [\"25200\", 1.2056], [\"25300\", 8.3756], [\"25400\", 17.5761], [\"25500\", 24.4289], [\"25600\", 12.2462], [\"25700\", 5.901], [\"25800\", 5.5203], [\"25900\", 1.5863], [\"26000\", 0.5711], [\"26100\", 0.4442], [\"26200\", 0.4442], [\"26300\", 0.7614], [\"26400\", 0.5711], [\"26500\", 0.1904], [\"26700\", 0.8249]]}",
+      "memoryDistribution": "{\"lang\": \"python3\", \"distribution\": [[\"24400\", 0.1269], [\"24600\", 0.1904], [\"24700\", 0.1904], [\"24800\", 2.2208], [\"24900\", 4.5685], [\"25000\", 4.4416], [\"25100\", 2.2843], [\"25200\", 1.2056], [\"25300\", 8.3756], [\"25400\", 17.5761], [\"25500\", 24.4289], [\"25600\", 12.2462], [\"25700\", 5.901], [\"25800\", 5.5203], [\"25900\", 1.5863], [\"26000\", 0.5711], [\"26100\", 0.4442], [\"26200\", 0.4442], [\"26300\", 0.7614], [\"26400\", 0.5711], [\"26500\", 0.1904], [\"26700\", 0.8249]]}",
       "code": "class Solution(object):\n    def maxPathSum(self, root):\n        \"\"\"\n        :type root: Optional[TreeNode]\n        :rtype: int\n        \"\"\"\n        # Initialize the maximum path sum to negative infinity\n        self.max_sum = float('-inf')\n        \n        def max_path_helper(node):\n            \"\"\"\n            Helper function that returns the maximum path sum starting from \n            current node and going down to one of its subtrees\n            \"\"\"\n            if not node:\n                return 0\n            \n            # Get maximum path sum from left and right subtrees\n            # Only include positive contributions (ignore negative paths)\n            left_max = max(max_path_helper(node.left), 0)\n            right_max = max(max_path_helper(node.right), 0)\n            \n            # Calculate the maximum path sum that passes through current node\n            # This includes the node itself plus both left and right subtrees\n            current_path_sum = node.val + left_max + right_max\n            \n            # Update global maximum if current path is better\n            self.max_sum = max(self.max_sum, current_path_sum)\n            \n            # Return the maximum path sum that starts from current node\n            # and goes down to one subtree (can be used by parent nodes)\n            return node.val + max(left_max, right_max)\n        \n        # Start the recursive traversal\n        max_path_helper(root)\n        return self.max_sum",
       "timestamp": 1749412455,
       "statusCode": 10,
@@ -19,7 +19,7 @@
           "userAvatar": "https://assets.leetcode.com/users/yosQbj5lkC/avatar_1748722942.png"
         }
       },
-      "lang": { "name": "python", "verboseName": "Python" },
+      "lang": { "name": "python3", "verboseName": "Python" },
       "question": {
         "questionId": "124",
         "titleSlug": "binary-tree-maximum-path-sum",
