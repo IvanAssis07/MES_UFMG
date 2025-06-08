@@ -1,1 +1,45 @@
-{}
+{
+  "data": {
+    "submissionDetails": {
+      "runtime": 0,
+      "runtimeDisplay": "0 ms",
+      "runtimePercentile": 100.0,
+      "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"0\", 30.8333], [\"1\", 2.5], [\"2\", 3.3333], [\"3\", 10.0], [\"4\", 13.3333], [\"5\", 4.1667], [\"6\", 1.6667], [\"7\", 5.0], [\"8\", 5.0], [\"9\", 0.8333], [\"10\", 2.5], [\"11\", 8.3333], [\"12\", 0.8333], [\"13\", 4.1667], [\"14\", 0.8333], [\"15\", 1.6667]]}",
+      "memory": 14732000,
+      "memoryDisplay": "14.7 MB",
+      "memoryPercentile": 75.0,
+      "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"14600\", 0.8333], [\"14700\", 24.1667], [\"14800\", 21.6667], [\"14900\", 12.5], [\"15000\", 4.1667], [\"15100\", 1.6667], [\"15500\", 0.8333], [\"17800\", 0.8333], [\"18000\", 1.6667], [\"18100\", 1.6667], [\"18200\", 0.8333], [\"20800\", 0.8333], [\"20900\", 7.5], [\"21000\", 7.5], [\"21100\", 5.0], [\"21200\", 0.8333]]}",
+      "code": "\nint maxProfit(int* prices, int pricesSize) {\n    if (pricesSize <= 1) {\n        return 0;\n    }\n    \n    int buy1 = -prices[0];  \n    int sell1 = 0; \n    int buy2 = -prices[0];   \n    int sell2 = 0;       \n    \n    for (int i = 1; i < pricesSize; i++) {\n\n        sell2 = (sell2 > buy2 + prices[i]) ? sell2 : buy2 + prices[i];\n        \n        buy2 = (buy2 > sell1 - prices[i]) ? buy2 : sell1 - prices[i];\n        \n        sell1 = (sell1 > buy1 + prices[i]) ? sell1 : buy1 + prices[i];\n        \n        buy1 = (buy1 > -prices[i]) ? buy1 : -prices[i];\n    }\n    \n    return sell2;\n}",
+      "timestamp": 1749411868,
+      "statusCode": 10,
+      "user": {
+        "username": "yosQbj5lkC",
+        "profile": {
+          "realName": "Henrique Freitas",
+          "userAvatar": "https://assets.leetcode.com/users/yosQbj5lkC/avatar_1748722942.png"
+        }
+      },
+      "lang": { "name": "c", "verboseName": "C" },
+      "question": {
+        "questionId": "123",
+        "titleSlug": "best-time-to-buy-and-sell-stock-iii",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null,
+      "lastTestcase": "",
+      "codeOutput": "",
+      "expectedOutput": "",
+      "totalCorrect": 214,
+      "totalTestcases": 214,
+      "fullCodeOutput": null,
+      "testDescriptions": null,
+      "testBodies": null,
+      "testInfo": null,
+      "stdOutput": ""
+    }
+  }
+}

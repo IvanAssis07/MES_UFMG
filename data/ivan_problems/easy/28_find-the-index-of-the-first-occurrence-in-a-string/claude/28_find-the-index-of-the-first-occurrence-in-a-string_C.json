@@ -1,1 +1,48 @@
-{}
+{
+  "data": {
+    "submissionDetails": {
+      "runtime": 0,
+      "runtimeDisplay": "0 ms",
+      "runtimePercentile": 100.0,
+      "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"0\", 95.7035], [\"1\", 0.4539], [\"2\", 1.6339], [\"3\", 0.6959], [\"4\", 0.121]]}",
+      "memory": 7936000,
+      "memoryDisplay": "7.9 MB",
+      "memoryPercentile": 70.0454,
+      "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"7800\", 1.18], [\"7900\", 28.7746], [\"8000\", 40.2723], [\"8100\", 19.6067], [\"8200\", 9.1074]]}",
+      "code": "int strStr(char* haystack, char* needle) {\n    // Handle edge case: empty needle\n    if (*needle == '\\0') {\n        return 0;\n    }\n    \n    // Get lengths of both strings\n    int haystack_len = 0, needle_len = 0;\n    while (haystack[haystack_len] != '\\0') haystack_len++;\n    while (needle[needle_len] != '\\0') needle_len++;\n    \n    // If needle is longer than haystack, it can't be found\n    if (needle_len > haystack_len) {\n        return -1;\n    }\n    \n    // Search for needle in haystack\n    for (int i = 0; i <= haystack_len - needle_len; i++) {\n        int j;\n        // Check if needle matches starting at position i\n        for (j = 0; j < needle_len; j++) {\n            if (haystack[i + j] != needle[j]) {\n                break;\n            }\n        }\n        // If we matched the entire needle\n        if (j == needle_len) {\n            return i;\n        }\n    }\n    \n    return -1; // Needle not found\n}",
+      "timestamp": 1749301965,
+      "statusCode": 10,
+      "user": {
+        "username": "IvanAssis",
+        "profile": {
+          "realName": "IvanAssis",
+          "userAvatar": "https://assets.leetcode.com/users/default_avatar.jpg"
+        }
+      },
+      "lang": {
+        "name": "c",
+        "verboseName": "C"
+      },
+      "question": {
+        "questionId": "28",
+        "titleSlug": "find-the-index-of-the-first-occurrence-in-a-string",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null,
+      "lastTestcase": "",
+      "codeOutput": "",
+      "expectedOutput": "",
+      "totalCorrect": 83,
+      "totalTestcases": 83,
+      "fullCodeOutput": null,
+      "testDescriptions": null,
+      "testBodies": null,
+      "testInfo": null,
+      "stdOutput": ""
+    }
+  }
+}

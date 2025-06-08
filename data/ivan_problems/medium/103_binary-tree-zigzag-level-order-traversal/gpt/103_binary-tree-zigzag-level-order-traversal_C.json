@@ -1,1 +1,48 @@
-{}
+{
+  "data": {
+    "submissionDetails": {
+      "runtime": 0,
+      "runtimeDisplay": "N/A",
+      "runtimePercentile": null,
+      "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"0\", 81.5603], [\"1\", 4.9645], [\"2\", 7.8014], [\"3\", 2.8369], [\"14\", 0.7092]]}",
+      "memory": 0,
+      "memoryDisplay": "N/A",
+      "memoryPercentile": null,
+      "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"10700\", 1.4184], [\"10800\", 5.6738], [\"10900\", 2.8369], [\"11000\", 2.1277], [\"11100\", 6.383], [\"11200\", 5.6738], [\"11300\", 3.5461], [\"11400\", 5.6738], [\"11500\", 3.5461], [\"11600\", 12.0567], [\"11700\", 14.1844], [\"11800\", 10.6383], [\"11900\", 6.383], [\"12000\", 2.1277], [\"12100\", 0.7092], [\"12200\", 0.7092], [\"12300\", 2.8369], [\"12500\", 0.7092], [\"12600\", 1.4184], [\"12700\", 0.7092], [\"13100\", 0.7092], [\"13300\", 0.7092], [\"13400\", 1.4184], [\"13500\", 0.7092], [\"13700\", 1.4184]]}",
+      "code": "#include <stdio.h>\n#include <stdlib.h>\n#include <stdbool.h>\n\n// Definition for a binary tree node.\nstruct TreeNode {\n    int val;\n    struct TreeNode *left;\n    struct TreeNode *right;\n};\n\n// Queue structure for BFS\nstruct QueueNode {\n    struct TreeNode *node;\n    struct QueueNode *next;\n};\n\ntypedef struct {\n    struct QueueNode *front;\n    struct QueueNode *rear;\n    int size;\n} Queue;\n\nQueue* createQueue() {\n    Queue* q = (Queue*)malloc(sizeof(Queue));\n    q->front = q->rear = NULL;\n    q->size = 0;\n    return q;\n}\n\nvoid enqueue(Queue* q, struct TreeNode* node) {\n    struct QueueNode* temp = (struct QueueNode*)malloc(sizeof(struct QueueNode));\n    temp->node = node;\n    temp->next = NULL;\n    if (q->rear) {\n        q->rear->next = temp;\n    } else {\n        q->front = temp;\n    }\n    q->rear = temp;\n    q->size++;\n}\n\nstruct TreeNode* dequeue(Queue* q) {\n    if (!q->front) return NULL;\n    struct QueueNode* temp = q->front;\n    struct TreeNode* node = temp->node;\n    q->front = q->front->next;\n    if (!q->front) q->rear = NULL;\n    free(temp);\n    q->size--;\n    return node;\n}\n\nbool isEmpty(Queue* q) {\n    return q->size == 0;\n}\n\nvoid freeQueue(Queue* q) {\n    while (!isEmpty(q)) dequeue(q);\n    free(q);\n}\n\n// Zigzag level-order traversal\nint** zigzagLevelOrder(struct TreeNode* root, int* returnSize, int** returnColumnSizes) {\n    if (!root) {\n        *returnSize = 0;\n        *returnColumnSizes = NULL;\n        return NULL;\n    }\n\n    int** result = (int**)malloc(2000 * sizeof(int*));\n    *returnColumnSizes = (int*)malloc(2000 * sizeof(int));\n    *returnSize = 0;\n\n    Queue* q = createQueue();\n    enqueue(q, root);\n    bool leftToRight = true;\n\n    while (!isEmpty(q)) {\n        int levelSize = q->size;\n        int* level = (int*)malloc(levelSize * sizeof(int));\n\n        for (int i = 0; i < levelSize; ++i) {\n            struct TreeNode* node = dequeue(q);\n            int index = leftToRight ? i : (levelSize - 1 - i);\n            level[index] = node->val;\n\n            if (node->left) enqueue(q, node->left);\n            if (node->right) enqueue(q, node->right);\n        }\n\n        result[*returnSize] = level;\n        (*returnColumnSizes)[*returnSize] = levelSize;\n        (*returnSize)++;\n        leftToRight = !leftToRight;\n    }\n\n    freeQueue(q);\n    return result;\n}\n",
+      "timestamp": 1749306239,
+      "statusCode": 20,
+      "user": {
+        "username": "IvanAssis",
+        "profile": {
+          "realName": "IvanAssis",
+          "userAvatar": "https://assets.leetcode.com/users/default_avatar.jpg"
+        }
+      },
+      "lang": {
+        "name": "c",
+        "verboseName": "C"
+      },
+      "question": {
+        "questionId": "103",
+        "titleSlug": "binary-tree-zigzag-level-order-traversal",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": "Line 6: Char 8: error: redefinition of \u2018struct TreeNode\u2019 [solution.c]\n    6 | struct TreeNode {\n      |        ^~~~~~~~",
+      "lastTestcase": null,
+      "codeOutput": "{\"compile_error\": \"Line 6: Char 8: error: redefinition of \\u2018struct TreeNode\\u2019 [solution.c]\\n    6 | struct TreeNode {\\n      |        ^~~~~~~~\"}",
+      "expectedOutput": null,
+      "totalCorrect": null,
+      "totalTestcases": 0,
+      "fullCodeOutput": null,
+      "testDescriptions": null,
+      "testBodies": null,
+      "testInfo": null,
+      "stdOutput": null
+    }
+  }
+}

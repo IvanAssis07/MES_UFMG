@@ -1,48 +1,48 @@
 {
-    "data": {
-        "submissionDetails": {
-            "runtime": 0,
-            "runtimeDisplay": "0 ms",
-            "runtimePercentile": 100.0,
-            "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"0\", 95.4748], [\"1\", 0.5935], [\"2\", 1.1128], [\"3\", 1.7433], [\"4\", 0.5564]]}",
-            "memory": 8020000,
-            "memoryDisplay": "8 MB",
-            "memoryPercentile": 32.3442,
-            "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"7800\", 0.6677], [\"7900\", 23.1825], [\"8000\", 43.8056], [\"8100\", 19.3249], [\"8200\", 10.3487]]}",
-            "code": "int lengthOfLastWord(char* s) {\n    int length = 0;\n    int i = strlen(s) - 1;\n    \n    // Skip trailing spaces\n    while (i >= 0 && s[i] == ' ') {\n        i--;\n    }\n    \n    // Count the length of the last word\n    while (i >= 0 && s[i] != ' ') {\n        length++;\n        i--;\n    }\n    \n    return length;\n}",
-            "timestamp": 1749245799,
-            "statusCode": 10,
-            "user": {
-                "username": "ZRlvkAicEr",
-                "profile": {
-                    "realName": "ZRlvkAicEr",
-                    "userAvatar": "https://assets.leetcode.com/users/ZRlvkAicEr/avatar_1749245074.png"
-                }
-            },
-            "lang": {
-                "name": "c",
-                "verboseName": "C"
-            },
-            "question": {
-                "questionId": "58",
-                "titleSlug": "length-of-last-word",
-                "hasFrontendPreview": false
-            },
-            "notes": "",
-            "flagType": "WHITE",
-            "topicTags": [],
-            "runtimeError": null,
-            "compileError": null,
-            "lastTestcase": "",
-            "codeOutput": "",
-            "expectedOutput": "",
-            "totalCorrect": 60,
-            "totalTestcases": 60,
-            "fullCodeOutput": null,
-            "testDescriptions": null,
-            "testBodies": null,
-            "testInfo": null,
-            "stdOutput": ""
+  "data": {
+    "submissionDetails": {
+      "runtime": 0,
+      "runtimeDisplay": "0 ms",
+      "runtimePercentile": 100.0,
+      "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"0\", 95.4748], [\"1\", 0.5935], [\"2\", 1.1128], [\"3\", 1.7433], [\"4\", 0.5564]]}",
+      "memory": 8020000,
+      "memoryDisplay": "8 MB",
+      "memoryPercentile": 32.3442,
+      "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"7800\", 0.6677], [\"7900\", 23.1825], [\"8000\", 43.8056], [\"8100\", 19.3249], [\"8200\", 10.3487]]}",
+      "code": "int lengthOfLastWord(char* s) {\n    int length = 0;\n    int i = strlen(s) - 1;\n    \n    // Skip trailing spaces\n    while (i >= 0 && s[i] == ' ') {\n        i--;\n    }\n    \n    // Count the length of the last word\n    while (i >= 0 && s[i] != ' ') {\n        length++;\n        i--;\n    }\n    \n    return length;\n}",
+      "timestamp": 1749245799,
+      "statusCode": 10,
+      "user": {
+        "username": "ZRlvkAicEr",
+        "profile": {
+          "realName": "ZRlvkAicEr",
+          "userAvatar": "https://assets.leetcode.com/users/ZRlvkAicEr/avatar_1749245074.png"
         }
+      },
+      "lang": {
+        "name": "c",
+        "verboseName": "C"
+      },
+      "question": {
+        "questionId": "58",
+        "titleSlug": "length-of-last-word",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null,
+      "lastTestcase": "",
+      "codeOutput": "",
+      "expectedOutput": "",
+      "totalCorrect": 60,
+      "totalTestcases": 60,
+      "fullCodeOutput": null,
+      "testDescriptions": null,
+      "testBodies": null,
+      "testInfo": null,
+      "stdOutput": ""
     }
+  }
 }

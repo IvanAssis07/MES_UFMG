@@ -1,48 +1,48 @@
 {
-    "data": {
-        "submissionDetails": {
-            "runtime": 0,
-            "runtimeDisplay": "0 ms",
-            "runtimePercentile": 100.0,
-            "runtimeDistribution": "{\"lang\": \"python3\", \"distribution\": [[\"0\", 61.6305], [\"1\", 5.2636], [\"2\", 4.3366], [\"3\", 17.3419], [\"4\", 6.2356]]}",
-            "memory": 18016000,
-            "memoryDisplay": "18 MB",
-            "memoryPercentile": 8.154799999999994,
-            "memoryDistribution": "{\"lang\": \"python3\", \"distribution\": [[\"17000\", 0.0022], [\"17300\", 0.0135], [\"17400\", 0.0314], [\"17500\", 0.3142], [\"17600\", 3.5824], [\"17700\", 17.407], [\"17800\", 30.4662], [\"17900\", 17.8717], [\"18000\", 22.1566]]}",
-            "code": "class Solution:\n    def longestCommonPrefix(self, strs: List[str]) -> str:\n        if not strs:\n            return \"\"\n        \n        # Start with the first string as reference\n        prefix = strs[0]\n        \n        # Compare with each subsequent string\n        for i in range(1, len(strs)):\n            # Reduce prefix length until it matches the start of current string\n            while prefix and not strs[i].startswith(prefix):\n                prefix = prefix[:-1]\n            \n            # If prefix becomes empty, no common prefix exists\n            if not prefix:\n                break\n        \n        return prefix\n\n# Alternative solution using character-by-character comparison\nclass Solution2:\n    def longestCommonPrefix(self, strs: List[str]) -> str:\n        if not strs:\n            return \"\"\n        \n        # Find the minimum length to avoid index out of bounds\n        min_len = min(len(s) for s in strs)\n        \n        for i in range(min_len):\n            char = strs[0][i]\n            # Check if all strings have the same character at position i\n            for s in strs[1:]:\n                if s[i] != char:\n                    return strs[0][:i]\n        \n        return strs[0][:min_len]\n\n# Test the solutions\n",
-            "timestamp": 1749245647,
-            "statusCode": 10,
-            "user": {
-                "username": "ZRlvkAicEr",
-                "profile": {
-                    "realName": "ZRlvkAicEr",
-                    "userAvatar": "https://assets.leetcode.com/users/ZRlvkAicEr/avatar_1749245074.png"
-                }
-            },
-            "lang": {
-                "name": "python3",
-                "verboseName": "Python3"
-            },
-            "question": {
-                "questionId": "14",
-                "titleSlug": "longest-common-prefix",
-                "hasFrontendPreview": false
-            },
-            "notes": "",
-            "flagType": "WHITE",
-            "topicTags": [],
-            "runtimeError": null,
-            "compileError": null,
-            "lastTestcase": "",
-            "codeOutput": "",
-            "expectedOutput": "",
-            "totalCorrect": 126,
-            "totalTestcases": 126,
-            "fullCodeOutput": null,
-            "testDescriptions": null,
-            "testBodies": null,
-            "testInfo": null,
-            "stdOutput": ""
+  "data": {
+    "submissionDetails": {
+      "runtime": 0,
+      "runtimeDisplay": "0 ms",
+      "runtimePercentile": 100.0,
+      "runtimeDistribution": "{\"lang\": \"python3\", \"distribution\": [[\"0\", 61.6305], [\"1\", 5.2636], [\"2\", 4.3366], [\"3\", 17.3419], [\"4\", 6.2356]]}",
+      "memory": 18016000,
+      "memoryDisplay": "18 MB",
+      "memoryPercentile": 8.154799999999994,
+      "memoryDistribution": "{\"lang\": \"python3\", \"distribution\": [[\"17000\", 0.0022], [\"17300\", 0.0135], [\"17400\", 0.0314], [\"17500\", 0.3142], [\"17600\", 3.5824], [\"17700\", 17.407], [\"17800\", 30.4662], [\"17900\", 17.8717], [\"18000\", 22.1566]]}",
+      "code": "class Solution:\n    def longestCommonPrefix(self, strs: List[str]) -> str:\n        if not strs:\n            return \"\"\n        \n        # Start with the first string as reference\n        prefix = strs[0]\n        \n        # Compare with each subsequent string\n        for i in range(1, len(strs)):\n            # Reduce prefix length until it matches the start of current string\n            while prefix and not strs[i].startswith(prefix):\n                prefix = prefix[:-1]\n            \n            # If prefix becomes empty, no common prefix exists\n            if not prefix:\n                break\n        \n        return prefix\n\n# Alternative solution using character-by-character comparison\nclass Solution2:\n    def longestCommonPrefix(self, strs: List[str]) -> str:\n        if not strs:\n            return \"\"\n        \n        # Find the minimum length to avoid index out of bounds\n        min_len = min(len(s) for s in strs)\n        \n        for i in range(min_len):\n            char = strs[0][i]\n            # Check if all strings have the same character at position i\n            for s in strs[1:]:\n                if s[i] != char:\n                    return strs[0][:i]\n        \n        return strs[0][:min_len]\n\n# Test the solutions\n",
+      "timestamp": 1749245647,
+      "statusCode": 10,
+      "user": {
+        "username": "ZRlvkAicEr",
+        "profile": {
+          "realName": "ZRlvkAicEr",
+          "userAvatar": "https://assets.leetcode.com/users/ZRlvkAicEr/avatar_1749245074.png"
         }
+      },
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "question": {
+        "questionId": "14",
+        "titleSlug": "longest-common-prefix",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null,
+      "lastTestcase": "",
+      "codeOutput": "",
+      "expectedOutput": "",
+      "totalCorrect": 126,
+      "totalTestcases": 126,
+      "fullCodeOutput": null,
+      "testDescriptions": null,
+      "testBodies": null,
+      "testInfo": null,
+      "stdOutput": ""
     }
+  }
 }

@@ -1,1 +1,48 @@
-{}
+{
+  "data": {
+    "submissionDetails": {
+      "runtime": 0,
+      "runtimeDisplay": "0 ms",
+      "runtimePercentile": 100.0,
+      "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"0\", 57.1802], [\"1\", 6.3824], [\"2\", 3.8874], [\"3\", 7.4267], [\"4\", 3.5393], [\"5\", 0.6672], [\"6\", 0.5222], [\"7\", 0.9574], [\"8\", 0.2611], [\"9\", 0.116], [\"11\", 0.1741], [\"12\", 0.029], [\"13\", 0.029], [\"15\", 0.116], [\"17\", 0.029], [\"18\", 0.029], [\"19\", 0.029], [\"20\", 0.058], [\"21\", 0.058], [\"23\", 0.058], [\"25\", 0.029], [\"26\", 0.087], [\"27\", 0.087], [\"28\", 0.029], [\"29\", 0.058], [\"30\", 0.058], [\"31\", 0.058], [\"32\", 0.1451], [\"33\", 0.029], [\"34\", 0.058], [\"35\", 0.1741], [\"36\", 0.029], [\"38\", 0.029], [\"39\", 0.087], [\"40\", 0.058], [\"41\", 0.029], [\"42\", 0.029], [\"43\", 0.1451], [\"44\", 0.058], [\"45\", 0.087], [\"46\", 0.058], [\"47\", 0.2901], [\"48\", 0.2901], [\"49\", 0.1451], [\"50\", 0.2031], [\"51\", 0.4642], [\"52\", 0.2321], [\"53\", 0.087], [\"54\", 0.3191], [\"55\", 0.5802], [\"56\", 0.1741], [\"57\", 0.3191], [\"58\", 0.1741], [\"59\", 0.8413], [\"60\", 0.4062], [\"61\", 0.1741], [\"62\", 0.2901], [\"63\", 0.8993], [\"64\", 0.3191], [\"65\", 0.3191], [\"66\", 0.5512], [\"67\", 1.2185], [\"68\", 0.3481], [\"69\", 0.3191], [\"70\", 0.2321], [\"71\", 0.9864], [\"72\", 0.3771], [\"73\", 0.2321], [\"74\", 0.2031], [\"75\", 0.4932], [\"76\", 0.1741], [\"77\", 0.058], [\"78\", 0.1741]]}",
+      "memory": 11152000,
+      "memoryDisplay": "11.2 MB",
+      "memoryPercentile": 87.4964,
+      "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"11000\", 0.2611], [\"11100\", 12.2425], [\"11200\", 30.1422], [\"11300\", 16.5651], [\"11400\", 6.6725], [\"11500\", 11.4012], [\"11600\", 8.5872], [\"11700\", 5.8892], [\"11800\", 2.2918]]}",
+      "code": "#include <stdio.h>\n#include <limits.h>\n\ndouble findMedianSortedArrays(int* nums1, int nums1Size, int* nums2, int nums2Size) {\n    // Ensure nums1 is the smaller array for optimization\n    if (nums1Size > nums2Size) {\n        return findMedianSortedArrays(nums2, nums2Size, nums1, nums1Size);\n    }\n    \n    int m = nums1Size;\n    int n = nums2Size;\n    int left = 0, right = m;\n    \n    while (left <= right) {\n        // Partition nums1 at cut1 and nums2 at cut2\n        int cut1 = (left + right) / 2;\n        int cut2 = (m + n + 1) / 2 - cut1;\n        \n        // Calculate boundary values\n        int left1 = (cut1 == 0) ? INT_MIN : nums1[cut1 - 1];\n        int left2 = (cut2 == 0) ? INT_MIN : nums2[cut2 - 1];\n        int right1 = (cut1 == m) ? INT_MAX : nums1[cut1];\n        int right2 = (cut2 == n) ? INT_MAX : nums2[cut2];\n        \n        // Check if we found the correct partition\n        if (left1 <= right2 && left2 <= right1) {\n            // Found the correct partition\n            if ((m + n) % 2 == 1) {\n                // Odd total length - return max of left partition\n                return (left1 > left2) ? left1 : left2;\n            } else {\n                // Even total length - return average of middle two elements\n                int maxLeft = (left1 > left2) ? left1 : left2;\n                int minRight = (right1 < right2) ? right1 : right2;\n                return (maxLeft + minRight) / 2.0;\n            }\n        }\n        // Adjust binary search boundaries\n        else if (left1 > right2) {\n            // We took too many elements from nums1, reduce cut1\n            right = cut1 - 1;\n        } else {\n            // We took too few elements from nums1, increase cut1\n            left = cut1 + 1;\n        }\n    }\n    \n    return 0.0; // Should never reach here for valid input\n}",
+      "timestamp": 1749304531,
+      "statusCode": 10,
+      "user": {
+        "username": "IvanAssis",
+        "profile": {
+          "realName": "IvanAssis",
+          "userAvatar": "https://assets.leetcode.com/users/default_avatar.jpg"
+        }
+      },
+      "lang": {
+        "name": "c",
+        "verboseName": "C"
+      },
+      "question": {
+        "questionId": "4",
+        "titleSlug": "median-of-two-sorted-arrays",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null,
+      "lastTestcase": "",
+      "codeOutput": "",
+      "expectedOutput": "",
+      "totalCorrect": 2096,
+      "totalTestcases": 2096,
+      "fullCodeOutput": null,
+      "testDescriptions": null,
+      "testBodies": null,
+      "testInfo": null,
+      "stdOutput": ""
+    }
+  }
+}

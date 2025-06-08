@@ -1,1 +1,48 @@
-{}
+{
+  "data": {
+    "submissionDetails": {
+      "runtime": 47,
+      "runtimeDisplay": "47 ms",
+      "runtimePercentile": 29.84530000000001,
+      "runtimeDistribution": "{\"lang\": \"python3\", \"distribution\": [[\"0\", 0.0631], [\"10\", 0.009], [\"20\", 0.0045], [\"22\", 0.0045], [\"23\", 0.0315], [\"24\", 0.0315], [\"25\", 0.0406], [\"26\", 0.0946], [\"27\", 0.2118], [\"28\", 0.1127], [\"29\", 0.2163], [\"30\", 0.4596], [\"31\", 0.9058], [\"32\", 0.6174], [\"33\", 1.095], [\"34\", 1.9693], [\"35\", 2.51], [\"36\", 1.6854], [\"37\", 3.4564], [\"38\", 5.0065], [\"39\", 5.2319], [\"40\", 3.7222], [\"41\", 6.5838], [\"42\", 8.1745], [\"43\", 7.8771], [\"44\", 5.1012], [\"45\", 6.7685], [\"46\", 8.17], [\"47\", 6.7009], [\"48\", 4.6595], [\"49\", 4.3756], [\"50\", 4.628], [\"51\", 3.222]]}",
+      "memory": 18320000,
+      "memoryDisplay": "18.3 MB",
+      "memoryPercentile": 16.21839999999999,
+      "memoryDistribution": "{\"lang\": \"python3\", \"distribution\": [[\"17700\", 0.018], [\"17800\", 0.1757], [\"17900\", 2.5866], [\"18000\", 15.1773], [\"18100\", 24.8209], [\"18200\", 17.7009], [\"18300\", 23.3022]]}",
+      "code": "\"\"\"\n# Definition for a Node.\nclass Node:\n    def __init__(self, val = 0, neighbors = None):\n        self.val = val\n        self.neighbors = neighbors if neighbors is not None else []\n\"\"\"\n\nfrom typing import Optional\n\nclass Solution:\n    def cloneGraph(self, node: Optional['Node']) -> Optional['Node']:\n        if not node:\n            return None\n        \n        # HashMap to store original node -> cloned node mapping\n        cloned = {}\n        \n        def dfs(node):\n            # If node is already cloned, return the clone\n            if node in cloned:\n                return cloned[node]\n            \n            # Create clone of current node\n            clone = Node(node.val)\n            cloned[node] = clone\n            \n            # Clone all neighbors\n            for neighbor in node.neighbors:\n                clone.neighbors.append(dfs(neighbor))\n            \n            return clone\n        \n        return dfs(node)",
+      "timestamp": 1749306803,
+      "statusCode": 10,
+      "user": {
+        "username": "IvanAssis",
+        "profile": {
+          "realName": "IvanAssis",
+          "userAvatar": "https://assets.leetcode.com/users/default_avatar.jpg"
+        }
+      },
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "question": {
+        "questionId": "133",
+        "titleSlug": "clone-graph",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null,
+      "lastTestcase": "",
+      "codeOutput": "",
+      "expectedOutput": "",
+      "totalCorrect": 22,
+      "totalTestcases": 22,
+      "fullCodeOutput": null,
+      "testDescriptions": null,
+      "testBodies": null,
+      "testInfo": null,
+      "stdOutput": ""
+    }
+  }
+}

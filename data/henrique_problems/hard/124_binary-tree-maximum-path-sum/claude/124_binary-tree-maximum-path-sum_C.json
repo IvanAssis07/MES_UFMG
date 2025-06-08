@@ -1,1 +1,45 @@
-{}
+{
+  "data": {
+    "submissionDetails": {
+      "runtime": 0,
+      "runtimeDisplay": "0 ms",
+      "runtimePercentile": 100.0,
+      "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"0\", 78.5942], [\"1\", 5.1118], [\"2\", 2.2364], [\"3\", 3.8339], [\"4\", 5.7508]]}",
+      "memory": 17124000,
+      "memoryDisplay": "17.1 MB",
+      "memoryPercentile": 15.974400000000006,
+      "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"16800\", 2.8754], [\"16900\", 31.9489], [\"17000\", 39.2971], [\"17100\", 9.9042], [\"17200\", 9.2652]]}",
+      "code": "\n// Global variable to keep track of maximum path sum\nint globalMax;\n\n/**\n * Helper function that returns the maximum path sum starting from current node\n * and going down to one of its subtrees (or just the node itself)\n */\nint maxPathSumHelper(struct TreeNode* node) {\n    if (node == NULL) {\n        return 0;\n    }\n    \n    // Get maximum path sum from left and right subtrees\n    // Use 0 if the subtree path sum is negative (don't include negative paths)\n    int leftMax = maxPathSumHelper(node->left);\n    int rightMax = maxPathSumHelper(node->right);\n    \n    // Only include positive contributions from subtrees\n    leftMax = leftMax > 0 ? leftMax : 0;\n    rightMax = rightMax > 0 ? rightMax : 0;\n    \n    // Calculate the maximum path sum that passes through current node\n    // This includes the node itself plus both left and right subtrees\n    int currentPathSum = node->val + leftMax + rightMax;\n    \n    // Update global maximum if current path is better\n    if (currentPathSum > globalMax) {\n        globalMax = currentPathSum;\n    }\n    \n    // Return the maximum path sum that starts from current node\n    // and goes down to one subtree (can be used by parent nodes)\n    int leftPath = node->val + leftMax;\n    int rightPath = node->val + rightMax;\n    return leftPath > rightPath ? leftPath : rightPath;\n}\n\nint maxPathSum(struct TreeNode* root) {\n    // Initialize global maximum to minimum integer value\n    globalMax = INT_MIN;\n    \n    // Start the recursive traversal\n    maxPathSumHelper(root);\n    \n    return globalMax;\n}\n\n// Helper function to create a new tree node\nstruct TreeNode* createNode(int val) {\n    struct TreeNode* node = (struct TreeNode*)malloc(sizeof(struct TreeNode));\n    node->val = val;\n    node->left = NULL;\n    node->right = NULL;\n    return node;\n}",
+      "timestamp": 1749412265,
+      "statusCode": 10,
+      "user": {
+        "username": "yosQbj5lkC",
+        "profile": {
+          "realName": "Henrique Freitas",
+          "userAvatar": "https://assets.leetcode.com/users/yosQbj5lkC/avatar_1748722942.png"
+        }
+      },
+      "lang": { "name": "c", "verboseName": "C" },
+      "question": {
+        "questionId": "124",
+        "titleSlug": "binary-tree-maximum-path-sum",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null,
+      "lastTestcase": "",
+      "codeOutput": "",
+      "expectedOutput": "",
+      "totalCorrect": 96,
+      "totalTestcases": 96,
+      "fullCodeOutput": null,
+      "testDescriptions": null,
+      "testBodies": null,
+      "testInfo": null,
+      "stdOutput": ""
+    }
+  }
+}

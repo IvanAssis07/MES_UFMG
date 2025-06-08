@@ -1,48 +1,48 @@
 {
-    "data": {
-        "submissionDetails": {
-            "runtime": 0,
-            "runtimeDisplay": "0 ms",
-            "runtimePercentile": 100.0,
-            "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"0\", 75.3769], [\"1\", 2.1776], [\"2\", 3.1826], [\"3\", 4.6901], [\"4\", 0.1675], [\"7\", 0.335], [\"9\", 0.1675], [\"10\", 0.5025], [\"12\", 0.5025], [\"14\", 0.1675], [\"15\", 0.335], [\"17\", 0.1675], [\"22\", 0.1675], [\"23\", 0.5025], [\"24\", 0.335], [\"25\", 0.335], [\"26\", 0.67], [\"27\", 4.1876]]}",
-            "memory": 8128000,
-            "memoryDisplay": "8.1 MB",
-            "memoryPercentile": 62.81410000000001,
-            "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"7900\", 0.335], [\"8000\", 11.8928], [\"8100\", 24.9581], [\"8200\", 26.6332], [\"8300\", 22.9481], [\"8400\", 5.1926]]}",
-            "code": "#include <stdbool.h>\n#include <string.h>\n\nbool isIsomorphic(char* s, char* t) {\n    char s_to_t[256] = {0};  // Map from s -> t\n    char t_to_s[256] = {0};  // Map from t -> s\n    \n    int len = strlen(s);\n    for (int i = 0; i < len; i++) {\n        char c1 = s[i];\n        char c2 = t[i];\n        \n        if (s_to_t[(unsigned char)c1] == 0 && t_to_s[(unsigned char)c2] == 0) {\n            // If both characters are not mapped yet\n            s_to_t[(unsigned char)c1] = c2;\n            t_to_s[(unsigned char)c2] = c1;\n        } else {\n            // If they are already mapped, check consistency\n            if (s_to_t[(unsigned char)c1] != c2 || t_to_s[(unsigned char)c2] != c1) {\n                return false;\n            }\n        }\n    }\n    \n    return true;\n}\n",
-            "timestamp": 1749246949,
-            "statusCode": 10,
-            "user": {
-                "username": "ZRlvkAicEr",
-                "profile": {
-                    "realName": "ZRlvkAicEr",
-                    "userAvatar": "https://assets.leetcode.com/users/ZRlvkAicEr/avatar_1749245074.png"
-                }
-            },
-            "lang": {
-                "name": "c",
-                "verboseName": "C"
-            },
-            "question": {
-                "questionId": "205",
-                "titleSlug": "isomorphic-strings",
-                "hasFrontendPreview": false
-            },
-            "notes": "",
-            "flagType": "WHITE",
-            "topicTags": [],
-            "runtimeError": null,
-            "compileError": null,
-            "lastTestcase": "",
-            "codeOutput": "",
-            "expectedOutput": "",
-            "totalCorrect": 46,
-            "totalTestcases": 46,
-            "fullCodeOutput": null,
-            "testDescriptions": null,
-            "testBodies": null,
-            "testInfo": null,
-            "stdOutput": ""
+  "data": {
+    "submissionDetails": {
+      "runtime": 0,
+      "runtimeDisplay": "0 ms",
+      "runtimePercentile": 100.0,
+      "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"0\", 75.3769], [\"1\", 2.1776], [\"2\", 3.1826], [\"3\", 4.6901], [\"4\", 0.1675], [\"7\", 0.335], [\"9\", 0.1675], [\"10\", 0.5025], [\"12\", 0.5025], [\"14\", 0.1675], [\"15\", 0.335], [\"17\", 0.1675], [\"22\", 0.1675], [\"23\", 0.5025], [\"24\", 0.335], [\"25\", 0.335], [\"26\", 0.67], [\"27\", 4.1876]]}",
+      "memory": 8128000,
+      "memoryDisplay": "8.1 MB",
+      "memoryPercentile": 62.81410000000001,
+      "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"7900\", 0.335], [\"8000\", 11.8928], [\"8100\", 24.9581], [\"8200\", 26.6332], [\"8300\", 22.9481], [\"8400\", 5.1926]]}",
+      "code": "#include <stdbool.h>\n#include <string.h>\n\nbool isIsomorphic(char* s, char* t) {\n    char s_to_t[256] = {0};  // Map from s -> t\n    char t_to_s[256] = {0};  // Map from t -> s\n    \n    int len = strlen(s);\n    for (int i = 0; i < len; i++) {\n        char c1 = s[i];\n        char c2 = t[i];\n        \n        if (s_to_t[(unsigned char)c1] == 0 && t_to_s[(unsigned char)c2] == 0) {\n            // If both characters are not mapped yet\n            s_to_t[(unsigned char)c1] = c2;\n            t_to_s[(unsigned char)c2] = c1;\n        } else {\n            // If they are already mapped, check consistency\n            if (s_to_t[(unsigned char)c1] != c2 || t_to_s[(unsigned char)c2] != c1) {\n                return false;\n            }\n        }\n    }\n    \n    return true;\n}\n",
+      "timestamp": 1749246949,
+      "statusCode": 10,
+      "user": {
+        "username": "ZRlvkAicEr",
+        "profile": {
+          "realName": "ZRlvkAicEr",
+          "userAvatar": "https://assets.leetcode.com/users/ZRlvkAicEr/avatar_1749245074.png"
         }
+      },
+      "lang": {
+        "name": "c",
+        "verboseName": "C"
+      },
+      "question": {
+        "questionId": "205",
+        "titleSlug": "isomorphic-strings",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null,
+      "lastTestcase": "",
+      "codeOutput": "",
+      "expectedOutput": "",
+      "totalCorrect": 46,
+      "totalTestcases": 46,
+      "fullCodeOutput": null,
+      "testDescriptions": null,
+      "testBodies": null,
+      "testInfo": null,
+      "stdOutput": ""
     }
+  }
 }

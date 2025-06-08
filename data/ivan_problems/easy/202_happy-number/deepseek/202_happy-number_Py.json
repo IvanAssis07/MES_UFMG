@@ -1,1 +1,48 @@
-{}
+{
+  "data": {
+    "submissionDetails": {
+      "runtime": 3,
+      "runtimeDisplay": "3 ms",
+      "runtimePercentile": 42.4418,
+      "runtimeDistribution": "{\"lang\": \"python3\", \"distribution\": [[\"0\", 44.6622], [\"1\", 6.4954], [\"2\", 6.4006], [\"3\", 26.3426], [\"4\", 9.8644]]}",
+      "memory": 17776000,
+      "memoryDisplay": "17.8 MB",
+      "memoryPercentile": 60.92730000000002,
+      "memoryDistribution": "{\"lang\": \"python3\", \"distribution\": [[\"17100\", 0.0059], [\"17200\", 0.0059], [\"17300\", 0.0118], [\"17400\", 0.1895], [\"17500\", 1.8888], [\"17600\", 11.2085], [\"17700\", 25.7623], [\"17800\", 22.8492], [\"17900\", 20.4097]]}",
+      "code": "class Solution:\n    def isHappy(self, n: int) -> bool:\n        seen = set()\n        while n != 1:\n            if n in seen:\n                return False\n            seen.add(n)\n            n = sum(int(digit) ** 2 for digit in str(n))\n        return True",
+      "timestamp": 1749302896,
+      "statusCode": 10,
+      "user": {
+        "username": "IvanAssis",
+        "profile": {
+          "realName": "IvanAssis",
+          "userAvatar": "https://assets.leetcode.com/users/default_avatar.jpg"
+        }
+      },
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "question": {
+        "questionId": "202",
+        "titleSlug": "happy-number",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null,
+      "lastTestcase": "",
+      "codeOutput": "",
+      "expectedOutput": "",
+      "totalCorrect": 420,
+      "totalTestcases": 420,
+      "fullCodeOutput": null,
+      "testDescriptions": null,
+      "testBodies": null,
+      "testInfo": null,
+      "stdOutput": ""
+    }
+  }
+}

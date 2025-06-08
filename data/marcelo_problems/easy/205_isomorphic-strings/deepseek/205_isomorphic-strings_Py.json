@@ -1,48 +1,48 @@
 {
-    "data": {
-        "submissionDetails": {
-            "runtime": 3,
-            "runtimeDisplay": "3 ms",
-            "runtimePercentile": 95.2328,
-            "runtimeDistribution": "{\"lang\": \"python3\", \"distribution\": [[\"0\", 1.9989], [\"1\", 0.9136], [\"2\", 1.8547], [\"3\", 21.9604], [\"4\", 8.0712], [\"5\", 4.8496], [\"6\", 5.6189], [\"7\", 28.4517], [\"8\", 5.2686], [\"9\", 2.6515], [\"10\", 1.9096], [\"11\", 7.6453], [\"12\", 1.2364], [\"13\", 0.6594], [\"14\", 0.5427]]}",
-            "memory": 17964000,
-            "memoryDisplay": "18 MB",
-            "memoryPercentile": 55.10369999999999,
-            "memoryDistribution": "{\"lang\": \"python3\", \"distribution\": [[\"17400\", 0.0069], [\"17500\", 0.0618], [\"17600\", 0.4396], [\"17700\", 3.8742], [\"17800\", 15.9431], [\"17900\", 24.5707], [\"18000\", 17.4955], [\"18100\", 19.4738], [\"18200\", 9.1496], [\"18300\", 2.7064]]}",
-            "code": "class Solution:\n    def isIsomorphic(self, s: str, t: str) -> bool:\n        if len(s) != len(t):\n            return False\n        \n        s_to_t_map = {}\n        t_to_s_map = {}\n        \n        for char_s, char_t in zip(s, t):\n            if char_s in s_to_t_map:\n                if s_to_t_map[char_s] != char_t:\n                    return False\n            else:\n                if char_t in t_to_s_map:\n                    return False\n                s_to_t_map[char_s] = char_t\n                t_to_s_map[char_t] = char_s\n        \n        return True",
-            "timestamp": 1749246885,
-            "statusCode": 10,
-            "user": {
-                "username": "ZRlvkAicEr",
-                "profile": {
-                    "realName": "ZRlvkAicEr",
-                    "userAvatar": "https://assets.leetcode.com/users/ZRlvkAicEr/avatar_1749245074.png"
-                }
-            },
-            "lang": {
-                "name": "python3",
-                "verboseName": "Python3"
-            },
-            "question": {
-                "questionId": "205",
-                "titleSlug": "isomorphic-strings",
-                "hasFrontendPreview": false
-            },
-            "notes": "",
-            "flagType": "WHITE",
-            "topicTags": [],
-            "runtimeError": null,
-            "compileError": null,
-            "lastTestcase": "",
-            "codeOutput": "",
-            "expectedOutput": "",
-            "totalCorrect": 46,
-            "totalTestcases": 46,
-            "fullCodeOutput": null,
-            "testDescriptions": null,
-            "testBodies": null,
-            "testInfo": null,
-            "stdOutput": ""
+  "data": {
+    "submissionDetails": {
+      "runtime": 3,
+      "runtimeDisplay": "3 ms",
+      "runtimePercentile": 95.2328,
+      "runtimeDistribution": "{\"lang\": \"python3\", \"distribution\": [[\"0\", 1.9989], [\"1\", 0.9136], [\"2\", 1.8547], [\"3\", 21.9604], [\"4\", 8.0712], [\"5\", 4.8496], [\"6\", 5.6189], [\"7\", 28.4517], [\"8\", 5.2686], [\"9\", 2.6515], [\"10\", 1.9096], [\"11\", 7.6453], [\"12\", 1.2364], [\"13\", 0.6594], [\"14\", 0.5427]]}",
+      "memory": 17964000,
+      "memoryDisplay": "18 MB",
+      "memoryPercentile": 55.10369999999999,
+      "memoryDistribution": "{\"lang\": \"python3\", \"distribution\": [[\"17400\", 0.0069], [\"17500\", 0.0618], [\"17600\", 0.4396], [\"17700\", 3.8742], [\"17800\", 15.9431], [\"17900\", 24.5707], [\"18000\", 17.4955], [\"18100\", 19.4738], [\"18200\", 9.1496], [\"18300\", 2.7064]]}",
+      "code": "class Solution:\n    def isIsomorphic(self, s: str, t: str) -> bool:\n        if len(s) != len(t):\n            return False\n        \n        s_to_t_map = {}\n        t_to_s_map = {}\n        \n        for char_s, char_t in zip(s, t):\n            if char_s in s_to_t_map:\n                if s_to_t_map[char_s] != char_t:\n                    return False\n            else:\n                if char_t in t_to_s_map:\n                    return False\n                s_to_t_map[char_s] = char_t\n                t_to_s_map[char_t] = char_s\n        \n        return True",
+      "timestamp": 1749246885,
+      "statusCode": 10,
+      "user": {
+        "username": "ZRlvkAicEr",
+        "profile": {
+          "realName": "ZRlvkAicEr",
+          "userAvatar": "https://assets.leetcode.com/users/ZRlvkAicEr/avatar_1749245074.png"
         }
+      },
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "question": {
+        "questionId": "205",
+        "titleSlug": "isomorphic-strings",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null,
+      "lastTestcase": "",
+      "codeOutput": "",
+      "expectedOutput": "",
+      "totalCorrect": 46,
+      "totalTestcases": 46,
+      "fullCodeOutput": null,
+      "testDescriptions": null,
+      "testBodies": null,
+      "testInfo": null,
+      "stdOutput": ""
     }
+  }
 }

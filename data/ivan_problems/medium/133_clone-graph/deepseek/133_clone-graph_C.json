@@ -1,1 +1,48 @@
-{}
+{
+  "data": {
+    "submissionDetails": {
+      "runtime": 7,
+      "runtimeDisplay": "7 ms",
+      "runtimePercentile": 35.555599999999984,
+      "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"0\", 18.3333], [\"2\", 1.6667], [\"3\", 39.4444], [\"4\", 4.4444], [\"5\", 0.5556], [\"7\", 20.5556], [\"8\", 7.7778], [\"9\", 1.1111], [\"10\", 1.1111]]}",
+      "memory": 10692000,
+      "memoryDisplay": "10.7 MB",
+      "memoryPercentile": 99.4444,
+      "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"10600\", 0.5556], [\"10700\", 3.8889], [\"10800\", 9.4444], [\"10900\", 32.2222], [\"11000\", 18.3333], [\"11100\", 13.8889], [\"11200\", 9.4444], [\"11300\", 2.2222], [\"11500\", 1.1111], [\"11600\", 1.1111], [\"11700\", 1.6667], [\"14600\", 0.5556]]}",
+      "code": "#include <stdlib.h>\n#include <string.h>\n\n#define MAX_NODES 101\n\n\nstruct Node* cloneGraph(struct Node* s) {\n    if (s == NULL) return NULL;\n    \n    struct Node* visited[MAX_NODES] = {NULL};\n    struct Node* queue[MAX_NODES];\n    int front = 0, rear = 0;\n    \n    // Create the clone of the starting node\n    struct Node* cloneNode = (struct Node*)malloc(sizeof(struct Node));\n    cloneNode->val = s->val;\n    cloneNode->numNeighbors = s->numNeighbors;\n    cloneNode->neighbors = (struct Node**)malloc(sizeof(struct Node*) * cloneNode->numNeighbors);\n    \n    visited[cloneNode->val] = cloneNode;\n    queue[rear++] = s;\n    \n    while (front < rear) {\n        struct Node* current = queue[front++];\n        struct Node* currentClone = visited[current->val];\n        \n        for (int i = 0; i < current->numNeighbors; i++) {\n            struct Node* neighbor = current->neighbors[i];\n            if (visited[neighbor->val] == NULL) {\n                // Create the clone of the neighbor if it doesn't exist\n                struct Node* neighborClone = (struct Node*)malloc(sizeof(struct Node));\n                neighborClone->val = neighbor->val;\n                neighborClone->numNeighbors = neighbor->numNeighbors;\n                neighborClone->neighbors = (struct Node**)malloc(sizeof(struct Node*) * neighborClone->numNeighbors);\n                visited[neighbor->val] = neighborClone;\n                queue[rear++] = neighbor;\n            }\n            // Add the neighbor's clone to the current clone's neighbors\n            currentClone->neighbors[i] = visited[neighbor->val];\n        }\n    }\n    \n    return cloneNode;\n}",
+      "timestamp": 1749306704,
+      "statusCode": 10,
+      "user": {
+        "username": "IvanAssis",
+        "profile": {
+          "realName": "IvanAssis",
+          "userAvatar": "https://assets.leetcode.com/users/default_avatar.jpg"
+        }
+      },
+      "lang": {
+        "name": "c",
+        "verboseName": "C"
+      },
+      "question": {
+        "questionId": "133",
+        "titleSlug": "clone-graph",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null,
+      "lastTestcase": "",
+      "codeOutput": "",
+      "expectedOutput": "",
+      "totalCorrect": 22,
+      "totalTestcases": 22,
+      "fullCodeOutput": null,
+      "testDescriptions": null,
+      "testBodies": null,
+      "testInfo": null,
+      "stdOutput": ""
+    }
+  }
+}

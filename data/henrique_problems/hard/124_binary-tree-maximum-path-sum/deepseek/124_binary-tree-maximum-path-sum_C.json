@@ -1,1 +1,45 @@
-{}
+{
+  "data": {
+    "submissionDetails": {
+      "runtime": 0,
+      "runtimeDisplay": "0 ms",
+      "runtimePercentile": 100.0,
+      "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"0\", 78.5942], [\"1\", 5.1118], [\"2\", 2.2364], [\"3\", 3.8339], [\"4\", 5.7508]]}",
+      "memory": 16988000,
+      "memoryDisplay": "17 MB",
+      "memoryPercentile": 65.1757,
+      "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"16800\", 2.8754], [\"16900\", 31.9489], [\"17000\", 39.2971], [\"17100\", 9.9042], [\"17200\", 9.2652]]}",
+      "code": "#include <limits.h>\n\n\n\nint helper(struct TreeNode* root, int* maxSum) {\n    if (root == NULL) return 0;\n    \n    int leftSum = helper(root->left, maxSum);\n    int rightSum = helper(root->right, maxSum);\n    \n    // Calculate the maximum path sum that includes the current node\n    int currentMax = root->val;\n    if (leftSum > 0) currentMax += leftSum;\n    if (rightSum > 0) currentMax += rightSum;\n    \n    // Update the global maximum path sum\n    if (currentMax > *maxSum) {\n        *maxSum = currentMax;\n    }\n    \n    // Return the maximum path sum that can be extended to the parent node\n    int maxChild = leftSum > rightSum ? leftSum : rightSum;\n    if (maxChild > 0) {\n        return root->val + maxChild;\n    } else {\n        return root->val;\n    }\n}\n\nint maxPathSum(struct TreeNode* root) {\n    int maxSum = INT_MIN;\n    helper(root, &maxSum);\n    return maxSum;\n}",
+      "timestamp": 1749412296,
+      "statusCode": 10,
+      "user": {
+        "username": "yosQbj5lkC",
+        "profile": {
+          "realName": "Henrique Freitas",
+          "userAvatar": "https://assets.leetcode.com/users/yosQbj5lkC/avatar_1748722942.png"
+        }
+      },
+      "lang": { "name": "c", "verboseName": "C" },
+      "question": {
+        "questionId": "124",
+        "titleSlug": "binary-tree-maximum-path-sum",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null,
+      "lastTestcase": "",
+      "codeOutput": "",
+      "expectedOutput": "",
+      "totalCorrect": 96,
+      "totalTestcases": 96,
+      "fullCodeOutput": null,
+      "testDescriptions": null,
+      "testBodies": null,
+      "testInfo": null,
+      "stdOutput": ""
+    }
+  }
+}

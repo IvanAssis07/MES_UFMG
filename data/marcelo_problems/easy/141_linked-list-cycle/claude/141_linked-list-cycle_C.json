@@ -1,48 +1,48 @@
 {
-    "data": {
-        "submissionDetails": {
-            "runtime": 10,
-            "runtimeDisplay": "10 ms",
-            "runtimePercentile": 64.37319999999997,
-            "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"0\", 0.049], [\"2\", 0.0245], [\"3\", 1.6895], [\"4\", 2.2527], [\"5\", 0.2938], [\"6\", 7.1988], [\"7\", 7.4192], [\"8\", 2.9873], [\"9\", 13.712], [\"10\", 20.9354], [\"11\", 4.1381], [\"12\", 0.3918], [\"13\", 18.144], [\"14\", 15.7444]]}",
-            "memory": 11320000,
-            "memoryDisplay": "11.3 MB",
-            "memoryPercentile": 18.07039999999997,
-            "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"10800\", 0.049], [\"10900\", 0.049], [\"11000\", 0.4163], [\"11100\", 20.9843], [\"11200\", 39.8629], [\"11300\", 20.5681], [\"11400\", 9.2311]]}",
-            "code": "/**\n * Definition for singly-linked list.\n * struct ListNode {\n *     int val;\n *     struct ListNode *next;\n * };\n */\n\nbool hasCycle(struct ListNode *head) {\n    // Handle edge cases: empty list or single node without cycle\n    if (head == NULL || head->next == NULL) {\n        return false;\n    }\n    \n    // Floyd's Cycle Detection Algorithm (Tortoise and Hare)\n    struct ListNode *slow = head;  // tortoise - moves 1 step at a time\n    struct ListNode *fast = head;  // hare - moves 2 steps at a time\n    \n    // Move pointers until fast reaches end or they meet\n    while (fast != NULL && fast->next != NULL) {\n        slow = slow->next;           // move slow pointer 1 step\n        fast = fast->next->next;     // move fast pointer 2 steps\n        \n        // If pointers meet, there's a cycle\n        if (slow == fast) {\n            return true;\n        }\n    }\n    \n    // Fast pointer reached end, no cycle exists\n    return false;\n}\n\n/*\nAlgorithm Explanation:\n1. Use two pointers: slow (tortoise) and fast (hare)\n2. Slow pointer moves 1 step at a time\n3. Fast pointer moves 2 steps at a time\n4. If there's a cycle, fast will eventually catch up to slow\n5. If there's no cycle, fast will reach the end (NULL)\n\nTime Complexity: O(n) where n is the number of nodes\nSpace Complexity: O(1) - only using two pointers\n\nExample walkthrough for [3,2,0,-4] with cycle at pos 1:\n- Initial: slow=3, fast=3\n- Step 1: slow=2, fast=0\n- Step 2: slow=0, fast=2  \n- Step 3: slow=-4, fast=-4 (they meet - cycle detected!)\n*/",
-            "timestamp": 1749246390,
-            "statusCode": 10,
-            "user": {
-                "username": "ZRlvkAicEr",
-                "profile": {
-                    "realName": "ZRlvkAicEr",
-                    "userAvatar": "https://assets.leetcode.com/users/ZRlvkAicEr/avatar_1749245074.png"
-                }
-            },
-            "lang": {
-                "name": "c",
-                "verboseName": "C"
-            },
-            "question": {
-                "questionId": "141",
-                "titleSlug": "linked-list-cycle",
-                "hasFrontendPreview": false
-            },
-            "notes": "",
-            "flagType": "WHITE",
-            "topicTags": [],
-            "runtimeError": null,
-            "compileError": null,
-            "lastTestcase": "",
-            "codeOutput": "",
-            "expectedOutput": "",
-            "totalCorrect": 29,
-            "totalTestcases": 29,
-            "fullCodeOutput": null,
-            "testDescriptions": null,
-            "testBodies": null,
-            "testInfo": null,
-            "stdOutput": ""
+  "data": {
+    "submissionDetails": {
+      "runtime": 10,
+      "runtimeDisplay": "10 ms",
+      "runtimePercentile": 64.37319999999997,
+      "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"0\", 0.049], [\"2\", 0.0245], [\"3\", 1.6895], [\"4\", 2.2527], [\"5\", 0.2938], [\"6\", 7.1988], [\"7\", 7.4192], [\"8\", 2.9873], [\"9\", 13.712], [\"10\", 20.9354], [\"11\", 4.1381], [\"12\", 0.3918], [\"13\", 18.144], [\"14\", 15.7444]]}",
+      "memory": 11320000,
+      "memoryDisplay": "11.3 MB",
+      "memoryPercentile": 18.07039999999997,
+      "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"10800\", 0.049], [\"10900\", 0.049], [\"11000\", 0.4163], [\"11100\", 20.9843], [\"11200\", 39.8629], [\"11300\", 20.5681], [\"11400\", 9.2311]]}",
+      "code": "/**\n * Definition for singly-linked list.\n * struct ListNode {\n *     int val;\n *     struct ListNode *next;\n * };\n */\n\nbool hasCycle(struct ListNode *head) {\n    // Handle edge cases: empty list or single node without cycle\n    if (head == NULL || head->next == NULL) {\n        return false;\n    }\n    \n    // Floyd's Cycle Detection Algorithm (Tortoise and Hare)\n    struct ListNode *slow = head;  // tortoise - moves 1 step at a time\n    struct ListNode *fast = head;  // hare - moves 2 steps at a time\n    \n    // Move pointers until fast reaches end or they meet\n    while (fast != NULL && fast->next != NULL) {\n        slow = slow->next;           // move slow pointer 1 step\n        fast = fast->next->next;     // move fast pointer 2 steps\n        \n        // If pointers meet, there's a cycle\n        if (slow == fast) {\n            return true;\n        }\n    }\n    \n    // Fast pointer reached end, no cycle exists\n    return false;\n}\n\n/*\nAlgorithm Explanation:\n1. Use two pointers: slow (tortoise) and fast (hare)\n2. Slow pointer moves 1 step at a time\n3. Fast pointer moves 2 steps at a time\n4. If there's a cycle, fast will eventually catch up to slow\n5. If there's no cycle, fast will reach the end (NULL)\n\nTime Complexity: O(n) where n is the number of nodes\nSpace Complexity: O(1) - only using two pointers\n\nExample walkthrough for [3,2,0,-4] with cycle at pos 1:\n- Initial: slow=3, fast=3\n- Step 1: slow=2, fast=0\n- Step 2: slow=0, fast=2  \n- Step 3: slow=-4, fast=-4 (they meet - cycle detected!)\n*/",
+      "timestamp": 1749246390,
+      "statusCode": 10,
+      "user": {
+        "username": "ZRlvkAicEr",
+        "profile": {
+          "realName": "ZRlvkAicEr",
+          "userAvatar": "https://assets.leetcode.com/users/ZRlvkAicEr/avatar_1749245074.png"
         }
+      },
+      "lang": {
+        "name": "c",
+        "verboseName": "C"
+      },
+      "question": {
+        "questionId": "141",
+        "titleSlug": "linked-list-cycle",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null,
+      "lastTestcase": "",
+      "codeOutput": "",
+      "expectedOutput": "",
+      "totalCorrect": 29,
+      "totalTestcases": 29,
+      "fullCodeOutput": null,
+      "testDescriptions": null,
+      "testBodies": null,
+      "testInfo": null,
+      "stdOutput": ""
     }
+  }
 }

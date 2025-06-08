@@ -1,1 +1,48 @@
-{}
+{
+  "data": {
+    "submissionDetails": {
+      "runtime": 0,
+      "runtimeDisplay": "0 ms",
+      "runtimePercentile": 100.0,
+      "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"0\", 93.7701], [\"1\", 1.0741], [\"2\", 0.8593], [\"3\", 1.826], [\"4\", 1.1815]]}",
+      "memory": 20092000,
+      "memoryDisplay": "20.1 MB",
+      "memoryPercentile": 92.3738,
+      "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"20000\", 7.6262], [\"20100\", 37.3792], [\"20200\", 28.8937], [\"20300\", 13.6412], [\"20400\", 7.7336]]}",
+      "code": "#include <math.h>\n\n/**\n * Definition for a binary tree node.\n * struct TreeNode {\n *     int val;\n *     struct TreeNode *left;\n *     struct TreeNode *right;\n * };\n */\n\nint leftDepth(struct TreeNode* node) {\n    int depth = 0;\n    while (node != NULL) {\n        depth++;\n        node = node->left;\n    }\n    return depth;\n}\n\nint rightDepth(struct TreeNode* node) {\n    int depth = 0;\n    while (node != NULL) {\n        depth++;\n        node = node->right;\n    }\n    return depth;\n}\n\nint countNodes(struct TreeNode* root) {\n    if (root == NULL) {\n        return 0;\n    }\n    int left = leftDepth(root);\n    int right = rightDepth(root);\n    if (left == right) {\n        return (1 << left) - 1;\n    } else {\n        return 1 + countNodes(root->left) + countNodes(root->right);\n    }\n}",
+      "timestamp": 1749303075,
+      "statusCode": 10,
+      "user": {
+        "username": "IvanAssis",
+        "profile": {
+          "realName": "IvanAssis",
+          "userAvatar": "https://assets.leetcode.com/users/default_avatar.jpg"
+        }
+      },
+      "lang": {
+        "name": "c",
+        "verboseName": "C"
+      },
+      "question": {
+        "questionId": "222",
+        "titleSlug": "count-complete-tree-nodes",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null,
+      "lastTestcase": "",
+      "codeOutput": "",
+      "expectedOutput": "",
+      "totalCorrect": 18,
+      "totalTestcases": 18,
+      "fullCodeOutput": null,
+      "testDescriptions": null,
+      "testBodies": null,
+      "testInfo": null,
+      "stdOutput": ""
+    }
+  }
+}

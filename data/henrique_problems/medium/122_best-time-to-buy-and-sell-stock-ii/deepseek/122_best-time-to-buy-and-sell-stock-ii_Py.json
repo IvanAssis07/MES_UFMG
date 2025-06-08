@@ -1,1 +1,48 @@
-{}
+{
+  "data": {
+    "submissionDetails": {
+      "runtime": 0,
+      "runtimeDisplay": "0 ms",
+      "runtimePercentile": 100.0,
+      "runtimeDistribution": "{\"lang\": \"python\", \"distribution\": [[\"0\", 40.9617], [\"1\", 8.0622], [\"2\", 6.5437], [\"3\", 20.4447], [\"4\", 12.5271], [\"5\", 1.5184], [\"6\", 0.94], [\"7\", 2.838], [\"8\", 0.6688], [\"9\", 0.1446], [\"10\", 0.0723]]}",
+      "memory": 13768000,
+      "memoryDisplay": "13.8 MB",
+      "memoryPercentile": 14.931299999999979,
+      "memoryDistribution": "{\"lang\": \"python\", \"distribution\": [[\"12800\", 0.0181], [\"12900\", 0.5604], [\"13000\", 3.1815], [\"13100\", 5.1699], [\"13200\", 6.3991], [\"13300\", 1.4642], [\"13400\", 0.705], [\"13500\", 12.3644], [\"13600\", 24.5481], [\"13700\", 30.658]]}",
+      "code": "class Solution(object):\n    def maxProfit(self, prices):\n        \"\"\"\n        :type prices: List[int]\n        :rtype: int\n        \"\"\"\n        profit = 0\n        for i in range(1, len(prices)):\n            if prices[i] > prices[i - 1]:\n                profit += prices[i] - prices[i - 1]\n        return profit\n",
+      "timestamp": 1749337625,
+      "statusCode": 10,
+      "user": {
+        "username": "yosQbj5lkC",
+        "profile": {
+          "realName": "Henrique Freitas",
+          "userAvatar": "https://assets.leetcode.com/users/yosQbj5lkC/avatar_1748722942.png"
+        }
+      },
+      "lang": {
+        "name": "python",
+        "verboseName": "Python"
+      },
+      "question": {
+        "questionId": "122",
+        "titleSlug": "best-time-to-buy-and-sell-stock-ii",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null,
+      "lastTestcase": "",
+      "codeOutput": "",
+      "expectedOutput": "",
+      "totalCorrect": 202,
+      "totalTestcases": 202,
+      "fullCodeOutput": null,
+      "testDescriptions": null,
+      "testBodies": null,
+      "testInfo": null,
+      "stdOutput": ""
+    }
+  }
+}

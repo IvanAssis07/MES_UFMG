@@ -1,1 +1,48 @@
-{}
+{
+  "data": {
+    "submissionDetails": {
+      "runtime": 0,
+      "runtimeDisplay": "0 ms",
+      "runtimePercentile": 100.0,
+      "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"0\", 48.7585], [\"1\", 3.386], [\"2\", 4.7404], [\"3\", 9.0293], [\"4\", 7.2235], [\"5\", 1.8059], [\"6\", 2.2573], [\"7\", 4.5147], [\"8\", 1.3544], [\"10\", 1.5801], [\"11\", 2.9345], [\"12\", 1.3544], [\"13\", 0.6772], [\"14\", 0.6772], [\"15\", 2.4831], [\"16\", 0.4515], [\"19\", 0.6772], [\"21\", 0.2257], [\"23\", 0.2257], [\"36\", 0.2257], [\"38\", 0.2257]]}",
+      "memory": 13140000,
+      "memoryDisplay": "13.1 MB",
+      "memoryPercentile": 56.88500000000002,
+      "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"12700\", 52.59579999999999], [\"13900\", 10.835199999999997], [\"15100\", 1.8058], [\"16300\", 1.1286], [\"17500\", 0.9028], [\"18700\", 1.8059], [\"19900\", 6.5463], [\"21100\", 1.8059], [\"22300\", 1.5801], [\"23500\", 0.4515], [\"24700\", 0.2257], [\"25900\", 0.2257], [\"27100\", 0.2257], [\"28300\", 0.2257], [\"29500\", 1.8058], [\"30700\", 0.2257], [\"31900\", 0.2257], [\"33100\", 0.2257], [\"34300\", 0.4515], [\"35500\", 0.2257], [\"36700\", 0.2257], [\"37900\", 0.2257], [\"39100\", 0.2257], [\"40300\", 4.7402999999999995], [\"41500\", 0.4515], [\"42700\", 0.6772], [\"43900\", 0.9029], [\"45100\", 0.4515], [\"46300\", 1.1287], [\"47500\", 1.3543], [\"48700\", 0.2257], [\"49900\", 0.2257], [\"51100\", 0.2257], [\"52300\", 0.2257]]}",
+      "code": "#include <stdio.h>\n#include <stdlib.h>\n\n/**\n * Return an array of arrays of size *returnSize.\n * The sizes of the arrays are returned as *returnColumnSizes array.\n * Note: Both returned array and *columnSizes array must be malloced, assume caller calls free().\n */\nint** levelOrder(struct TreeNode* root, int* returnSize, int** returnColumnSizes) {\n    *returnSize = 0;\n    \n    // Handle empty tree\n    if (root == NULL) {\n        *returnColumnSizes = NULL;\n        return NULL;\n    }\n    \n    // Allocate memory for result (max 2000 nodes means max ~11 levels for balanced tree)\n    int maxLevels = 2000;\n    int** result = (int**)malloc(maxLevels * sizeof(int*));\n    *returnColumnSizes = (int*)malloc(maxLevels * sizeof(int));\n    \n    // Use array-based queue for BFS (more efficient than linked list)\n    struct TreeNode** queue = (struct TreeNode**)malloc(2000 * sizeof(struct TreeNode*));\n    int front = 0, rear = 0;\n    \n    // Start with root\n    queue[rear++] = root;\n    \n    while (front < rear) {\n        int levelSize = rear - front;\n        \n        // Allocate memory for current level\n        result[*returnSize] = (int*)malloc(levelSize * sizeof(int));\n        (*returnColumnSizes)[*returnSize] = levelSize;\n        \n        // Process all nodes at current level\n        int nextRear = rear;  // Mark where next level starts\n        \n        for (int i = 0; i < levelSize; i++) {\n            struct TreeNode* current = queue[front++];\n            result[*returnSize][i] = current->val;\n            \n            // Add children to queue for next level\n            if (current->left != NULL) {\n                queue[nextRear++] = current->left;\n            }\n            if (current->right != NULL) {\n                queue[nextRear++] = current->right;\n            }\n        }\n        \n        rear = nextRear;  // Update rear for next level\n        (*returnSize)++;\n    }\n    \n    // Clean up queue\n    free(queue);\n    \n    // Resize arrays to actual size needed\n    if (*returnSize > 0) {\n        result = (int**)realloc(result, (*returnSize) * sizeof(int*));\n        *returnColumnSizes = (int*)realloc(*returnColumnSizes, (*returnSize) * sizeof(int));\n    }\n    \n    return result;\n}\n\n// Alternative solution using recursive approach to find depth first\nint getDepth(struct TreeNode* root) {\n    if (root == NULL) return 0;\n    int leftDepth = getDepth(root->left);\n    int rightDepth = getDepth(root->right);\n    return 1 + (leftDepth > rightDepth ? leftDepth : rightDepth);\n}\n\nvoid fillLevel(struct TreeNode* root, int level, int* arr, int* index) {\n    if (root == NULL) return;\n    if (level == 0) {\n        arr[(*index)++] = root->val;\n        return;\n    }\n    fillLevel(root->left, level - 1, arr, index);\n    fillLevel(root->right, level - 1, arr, index);\n}\n\nint countNodesAtLevel(struct TreeNode* root, int level) {\n    if (root == NULL) return 0;\n    if (level == 0) return 1;\n    return countNodesAtLevel(root->left, level - 1) + \n           countNodesAtLevel(root->right, level - 1);\n}\n\n// Recursive solution (less efficient but educational)\nint** levelOrderRecursive(struct TreeNode* root, int* returnSize, int** returnColumnSizes) {\n    *returnSize = 0;\n    \n    if (root == NULL) {\n        *returnColumnSizes = NULL;\n        return NULL;\n    }\n    \n    int depth = getDepth(root);\n    *returnSize = depth;\n    \n    int** result = (int**)malloc(depth * sizeof(int*));\n    *returnColumnSizes = (int*)malloc(depth * sizeof(int));\n    \n    for (int level = 0; level < depth; level++) {\n        int nodeCount = countNodesAtLevel(root, level);\n        result[level] = (int*)malloc(nodeCount * sizeof(int));\n        (*returnColumnSizes)[level] = nodeCount;\n        \n        int index = 0;\n        fillLevel(root, level, result[level], &index);\n    }\n    \n    return result;\n}\n\n// Helper functions for testing\nstruct TreeNode* createNode(int val) {\n    struct TreeNode* node = (struct TreeNode*)malloc(sizeof(struct TreeNode));\n    node->val = val;\n    node->left = node->right = NULL;\n    return node;\n}\n\nvoid printResults(int** result, int* returnColumnSizes, int returnSize) {\n    printf(\"[\");\n    for (int i = 0; i < returnSize; i++) {\n        printf(\"[\");\n        for (int j = 0; j < returnColumnSizes[i]; j++) {\n            printf(\"%d\", result[i][j]);\n            if (j < returnColumnSizes[i] - 1) printf(\",\");\n        }\n        printf(\"]\");\n        if (i < returnSize - 1) printf(\",\");\n    }\n    printf(\"]\\n\");\n}\n\nvoid freeResults(int** result, int* returnColumnSizes, int returnSize) {\n    if (result) {\n        for (int i = 0; i < returnSize; i++) {\n            free(result[i]);\n        }\n        free(result);\n    }\n    if (returnColumnSizes) {\n        free(returnColumnSizes);\n    }\n}\n\nvoid freeTree(struct TreeNode* root) {\n    if (root == NULL) return;\n    freeTree(root->left);\n    freeTree(root->right);\n    free(root);\n}\n",
+      "timestamp": 1749336880,
+      "statusCode": 10,
+      "user": {
+        "username": "yosQbj5lkC",
+        "profile": {
+          "realName": "Henrique Freitas",
+          "userAvatar": "https://assets.leetcode.com/users/yosQbj5lkC/avatar_1748722942.png"
+        }
+      },
+      "lang": {
+        "name": "c",
+        "verboseName": "C"
+      },
+      "question": {
+        "questionId": "102",
+        "titleSlug": "binary-tree-level-order-traversal",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null,
+      "lastTestcase": "",
+      "codeOutput": "",
+      "expectedOutput": "",
+      "totalCorrect": 35,
+      "totalTestcases": 35,
+      "fullCodeOutput": null,
+      "testDescriptions": null,
+      "testBodies": null,
+      "testInfo": null,
+      "stdOutput": ""
+    }
+  }
+}

@@ -1,48 +1,48 @@
 {
-    "data": {
-        "submissionDetails": {
-            "runtime": 0,
-            "runtimeDisplay": "0 ms",
-            "runtimePercentile": 100.0,
-            "runtimeDistribution": "{\"lang\": \"python\", \"distribution\": [[\"0\", 92.5918], [\"1\", 1.3429], [\"2\", 0.8281], [\"3\", 2.641], [\"4\", 2.3724]]}",
-            "memory": 12464000,
-            "memoryDisplay": "12.5 MB",
-            "memoryPercentile": 61.54880000000001,
-            "memoryDistribution": "{\"lang\": \"python\", \"distribution\": [[\"12200\", 0.291], [\"12300\", 6.9382], [\"12400\", 31.222], [\"12500\", 32.2739], [\"12600\", 28.3124]]}",
-            "code": "class Solution(object):\n    def invertTree(self, root):\n        \"\"\"\n        :type root: Optional[TreeNode]\n        :rtype: Optional[TreeNode]\n        \"\"\"\n        if root is None:\n            return None\n        \n        # Swap the left and right children\n        root.left, root.right = root.right, root.left\n        \n        # Recursively invert the left subtree\n        self.invertTree(root.left)\n        \n        # Recursively invert the right subtree\n        self.invertTree(root.right)\n        \n        return root\n",
-            "timestamp": 1749157925,
-            "statusCode": 10,
-            "user": {
-                "username": "IvanAssis",
-                "profile": {
-                    "realName": "IvanAssis",
-                    "userAvatar": "https://assets.leetcode.com/users/default_avatar.jpg"
-                }
-            },
-            "lang": {
-                "name": "python",
-                "verboseName": "Python"
-            },
-            "question": {
-                "questionId": "226",
-                "titleSlug": "invert-binary-tree",
-                "hasFrontendPreview": false
-            },
-            "notes": "",
-            "flagType": "WHITE",
-            "topicTags": [],
-            "runtimeError": null,
-            "compileError": null,
-            "lastTestcase": "",
-            "codeOutput": "",
-            "expectedOutput": "",
-            "totalCorrect": 77,
-            "totalTestcases": 77,
-            "fullCodeOutput": null,
-            "testDescriptions": null,
-            "testBodies": null,
-            "testInfo": null,
-            "stdOutput": ""
+  "data": {
+    "submissionDetails": {
+      "runtime": 0,
+      "runtimeDisplay": "0 ms",
+      "runtimePercentile": 100.0,
+      "runtimeDistribution": "{\"lang\": \"python\", \"distribution\": [[\"0\", 92.5918], [\"1\", 1.3429], [\"2\", 0.8281], [\"3\", 2.641], [\"4\", 2.3724]]}",
+      "memory": 12464000,
+      "memoryDisplay": "12.5 MB",
+      "memoryPercentile": 61.54880000000001,
+      "memoryDistribution": "{\"lang\": \"python\", \"distribution\": [[\"12200\", 0.291], [\"12300\", 6.9382], [\"12400\", 31.222], [\"12500\", 32.2739], [\"12600\", 28.3124]]}",
+      "code": "class Solution(object):\n    def invertTree(self, root):\n        \"\"\"\n        :type root: Optional[TreeNode]\n        :rtype: Optional[TreeNode]\n        \"\"\"\n        if root is None:\n            return None\n        \n        # Swap the left and right children\n        root.left, root.right = root.right, root.left\n        \n        # Recursively invert the left subtree\n        self.invertTree(root.left)\n        \n        # Recursively invert the right subtree\n        self.invertTree(root.right)\n        \n        return root\n",
+      "timestamp": 1749157925,
+      "statusCode": 10,
+      "user": {
+        "username": "IvanAssis",
+        "profile": {
+          "realName": "IvanAssis",
+          "userAvatar": "https://assets.leetcode.com/users/default_avatar.jpg"
         }
+      },
+      "lang": {
+        "name": "python",
+        "verboseName": "Python"
+      },
+      "question": {
+        "questionId": "226",
+        "titleSlug": "invert-binary-tree",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null,
+      "lastTestcase": "",
+      "codeOutput": "",
+      "expectedOutput": "",
+      "totalCorrect": 77,
+      "totalTestcases": 77,
+      "fullCodeOutput": null,
+      "testDescriptions": null,
+      "testBodies": null,
+      "testInfo": null,
+      "stdOutput": ""
     }
+  }
 }

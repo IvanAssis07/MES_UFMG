@@ -1,48 +1,48 @@
 {
-    "data": {
-        "submissionDetails": {
-            "runtime": 0,
-            "runtimeDisplay": "0 ms",
-            "runtimePercentile": 100.0,
-            "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"0\", 92.6149], [\"1\", 1.1164], [\"2\", 1.8033], [\"3\", 1.8892], [\"4\", 0.2147]]}",
-            "memory": 7896000,
-            "memoryDisplay": "7.9 MB",
-            "memoryPercentile": 26.148600000000005,
-            "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"7500\", 0.1288], [\"7600\", 12.1082], [\"7700\", 38.8579], [\"7800\", 22.7565], [\"7900\", 10.4337], [\"8000\", 8.845], [\"8100\", 1.0305], [\"8200\", 0.5582]]}",
-            "code": "#include <stdbool.h>\n\n// Helper function to compute the sum of the squares of digits\nint getNext(int n) {\n    int total = 0;\n    while (n > 0) {\n        int digit = n % 10;\n        total += digit * digit;\n        n /= 10;\n    }\n    return total;\n}\n\nbool isHappy(int n) {\n    // Use Floyd's Cycle Detection Algorithm (slow/fast pointer)\n    int slow = n;\n    int fast = getNext(n);\n\n    while (fast != 1 && slow != fast) {\n        slow = getNext(slow);\n        fast = getNext(getNext(fast));\n    }\n\n    return fast == 1;\n}\n",
-            "timestamp": 1749157318,
-            "statusCode": 10,
-            "user": {
-                "username": "IvanAssis",
-                "profile": {
-                    "realName": "IvanAssis",
-                    "userAvatar": "https://assets.leetcode.com/users/default_avatar.jpg"
-                }
-            },
-            "lang": {
-                "name": "c",
-                "verboseName": "C"
-            },
-            "question": {
-                "questionId": "202",
-                "titleSlug": "happy-number",
-                "hasFrontendPreview": false
-            },
-            "notes": "",
-            "flagType": "WHITE",
-            "topicTags": [],
-            "runtimeError": null,
-            "compileError": null,
-            "lastTestcase": "",
-            "codeOutput": "",
-            "expectedOutput": "",
-            "totalCorrect": 420,
-            "totalTestcases": 420,
-            "fullCodeOutput": null,
-            "testDescriptions": null,
-            "testBodies": null,
-            "testInfo": null,
-            "stdOutput": ""
+  "data": {
+    "submissionDetails": {
+      "runtime": 0,
+      "runtimeDisplay": "0 ms",
+      "runtimePercentile": 100.0,
+      "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"0\", 92.6149], [\"1\", 1.1164], [\"2\", 1.8033], [\"3\", 1.8892], [\"4\", 0.2147]]}",
+      "memory": 7896000,
+      "memoryDisplay": "7.9 MB",
+      "memoryPercentile": 26.148600000000005,
+      "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"7500\", 0.1288], [\"7600\", 12.1082], [\"7700\", 38.8579], [\"7800\", 22.7565], [\"7900\", 10.4337], [\"8000\", 8.845], [\"8100\", 1.0305], [\"8200\", 0.5582]]}",
+      "code": "#include <stdbool.h>\n\n// Helper function to compute the sum of the squares of digits\nint getNext(int n) {\n    int total = 0;\n    while (n > 0) {\n        int digit = n % 10;\n        total += digit * digit;\n        n /= 10;\n    }\n    return total;\n}\n\nbool isHappy(int n) {\n    // Use Floyd's Cycle Detection Algorithm (slow/fast pointer)\n    int slow = n;\n    int fast = getNext(n);\n\n    while (fast != 1 && slow != fast) {\n        slow = getNext(slow);\n        fast = getNext(getNext(fast));\n    }\n\n    return fast == 1;\n}\n",
+      "timestamp": 1749157318,
+      "statusCode": 10,
+      "user": {
+        "username": "IvanAssis",
+        "profile": {
+          "realName": "IvanAssis",
+          "userAvatar": "https://assets.leetcode.com/users/default_avatar.jpg"
         }
+      },
+      "lang": {
+        "name": "c",
+        "verboseName": "C"
+      },
+      "question": {
+        "questionId": "202",
+        "titleSlug": "happy-number",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null,
+      "lastTestcase": "",
+      "codeOutput": "",
+      "expectedOutput": "",
+      "totalCorrect": 420,
+      "totalTestcases": 420,
+      "fullCodeOutput": null,
+      "testDescriptions": null,
+      "testBodies": null,
+      "testInfo": null,
+      "stdOutput": ""
     }
+  }
 }

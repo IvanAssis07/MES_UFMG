@@ -1,1 +1,45 @@
-{"data":{"submissionDetails":{"runtime":0,"runtimeDisplay":"0 ms","runtimePercentile":100.0,"runtimeDistribution":"{\"lang\": \"c\", \"distribution\": [[\"0\", 61.3636], [\"1\", 1.1364], [\"2\", 7.9545], [\"3\", 7.9545], [\"4\", 5.6818], [\"6\", 2.2727], [\"7\", 4.5455], [\"8\", 2.2727]]}","memory":16496000,"memoryDisplay":"16.5 MB","memoryPercentile":36.36340000000002,"memoryDistribution":"{\"lang\": \"c\", \"distribution\": [[\"14400\", 1.1364], [\"14500\", 1.1364], [\"14600\", 5.6818], [\"14700\", 4.5455], [\"14800\", 2.2727], [\"14900\", 1.1364], [\"15100\", 5.6818], [\"15200\", 2.2727], [\"15400\", 2.2727], [\"15500\", 1.1364], [\"15600\", 2.2727], [\"15700\", 4.5455], [\"15800\", 13.6364], [\"15900\", 4.5455], [\"16000\", 3.4091], [\"16100\", 4.5455], [\"16300\", 1.1364], [\"16400\", 2.2727], [\"16500\", 2.2727], [\"16600\", 2.2727], [\"16700\", 1.1364], [\"16800\", 1.1364], [\"17200\", 3.4091], [\"17300\", 1.1364], [\"17400\", 2.2727], [\"17500\", 1.1364], [\"18400\", 1.1364], [\"18500\", 1.1364], [\"18800\", 2.2727], [\"19100\", 1.1364], [\"19200\", 1.1364], [\"20800\", 1.1364], [\"22700\", 1.1364], [\"24100\", 2.2727], [\"24200\", 1.1364], [\"24400\", 1.1364], [\"25500\", 2.2727]]}","code":"#include <stdio.h>\n#include <stdlib.h>\n\n\n\n// Estrutura para fila\ntypedef struct QueueNode {\n    struct TreeNode* node;\n    struct QueueNode* next;\n} QueueNode;\n\ntypedef struct {\n    QueueNode* front;\n    QueueNode* rear;\n    int size;\n} Queue;\n\n// Fun\u00e7\u00f5es auxiliares para manipular a fila\nQueue* createQueue() {\n    Queue* q = (Queue*) malloc(sizeof(Queue));\n    q->front = q->rear = NULL;\n    q->size = 0;\n    return q;\n}\n\nvoid enqueue(Queue* q, struct TreeNode* node) {\n    QueueNode* temp = (QueueNode*) malloc(sizeof(QueueNode));\n    temp->node = node;\n    temp->next = NULL;\n    if (q->rear) q->rear->next = temp;\n    q->rear = temp;\n    if (!q->front) q->front = temp;\n    q->size++;\n}\n\nstruct TreeNode* dequeue(Queue* q) {\n    if (!q->front) return NULL;\n    QueueNode* temp = q->front;\n    struct TreeNode* node = temp->node;\n    q->front = q->front->next;\n    if (!q->front) q->rear = NULL;\n    free(temp);\n    q->size--;\n    return node;\n}\n\nint isEmpty(Queue* q) {\n    return q->size == 0;\n}\n\n// Fun\u00e7\u00e3o principal\ndouble* averageOfLevels(struct TreeNode* root, int* returnSize) {\n    if (!root) {\n        *returnSize = 0;\n        return NULL;\n    }\n\n    double* result = (double*) malloc(10000 * sizeof(double));\n    *returnSize = 0;\n\n    Queue* q = createQueue();\n    enqueue(q, root);\n\n    while (!isEmpty(q)) {\n        int levelSize = q->size;\n        long long sum = 0;\n\n        for (int i = 0; i < levelSize; i++) {\n            struct TreeNode* node = dequeue(q);\n            sum += node->val;\n            if (node->left) enqueue(q, node->left);\n            if (node->right) enqueue(q, node->right);\n        }\n\n        result[*returnSize] = (double)sum / levelSize;\n        (*returnSize)++;\n    }\n\n    free(q);\n    return result;\n}\n","timestamp":1748911651,"statusCode":10,"user":{"username":"yosQbj5lkC","profile":{"realName":"Henrique Freitas","userAvatar":"https://assets.leetcode.com/users/yosQbj5lkC/avatar_1748722942.png"}},"lang":{"name":"c","verboseName":"C"},"question":{"questionId":"637","titleSlug":"average-of-levels-in-binary-tree","hasFrontendPreview":false},"notes":"","flagType":"WHITE","topicTags":[],"runtimeError":null,"compileError":null,"lastTestcase":"","codeOutput":"","expectedOutput":"","totalCorrect":66,"totalTestcases":66,"fullCodeOutput":null,"testDescriptions":null,"testBodies":null,"testInfo":null,"stdOutput":""}}}
+{
+  "data": {
+    "submissionDetails": {
+      "runtime": 0,
+      "runtimeDisplay": "0 ms",
+      "runtimePercentile": 100.0,
+      "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"0\", 61.3636], [\"1\", 1.1364], [\"2\", 7.9545], [\"3\", 7.9545], [\"4\", 5.6818], [\"6\", 2.2727], [\"7\", 4.5455], [\"8\", 2.2727]]}",
+      "memory": 16496000,
+      "memoryDisplay": "16.5 MB",
+      "memoryPercentile": 36.36340000000002,
+      "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"14400\", 1.1364], [\"14500\", 1.1364], [\"14600\", 5.6818], [\"14700\", 4.5455], [\"14800\", 2.2727], [\"14900\", 1.1364], [\"15100\", 5.6818], [\"15200\", 2.2727], [\"15400\", 2.2727], [\"15500\", 1.1364], [\"15600\", 2.2727], [\"15700\", 4.5455], [\"15800\", 13.6364], [\"15900\", 4.5455], [\"16000\", 3.4091], [\"16100\", 4.5455], [\"16300\", 1.1364], [\"16400\", 2.2727], [\"16500\", 2.2727], [\"16600\", 2.2727], [\"16700\", 1.1364], [\"16800\", 1.1364], [\"17200\", 3.4091], [\"17300\", 1.1364], [\"17400\", 2.2727], [\"17500\", 1.1364], [\"18400\", 1.1364], [\"18500\", 1.1364], [\"18800\", 2.2727], [\"19100\", 1.1364], [\"19200\", 1.1364], [\"20800\", 1.1364], [\"22700\", 1.1364], [\"24100\", 2.2727], [\"24200\", 1.1364], [\"24400\", 1.1364], [\"25500\", 2.2727]]}",
+      "code": "#include <stdio.h>\n#include <stdlib.h>\n\n\n\n// Estrutura para fila\ntypedef struct QueueNode {\n    struct TreeNode* node;\n    struct QueueNode* next;\n} QueueNode;\n\ntypedef struct {\n    QueueNode* front;\n    QueueNode* rear;\n    int size;\n} Queue;\n\n// Fun\u00e7\u00f5es auxiliares para manipular a fila\nQueue* createQueue() {\n    Queue* q = (Queue*) malloc(sizeof(Queue));\n    q->front = q->rear = NULL;\n    q->size = 0;\n    return q;\n}\n\nvoid enqueue(Queue* q, struct TreeNode* node) {\n    QueueNode* temp = (QueueNode*) malloc(sizeof(QueueNode));\n    temp->node = node;\n    temp->next = NULL;\n    if (q->rear) q->rear->next = temp;\n    q->rear = temp;\n    if (!q->front) q->front = temp;\n    q->size++;\n}\n\nstruct TreeNode* dequeue(Queue* q) {\n    if (!q->front) return NULL;\n    QueueNode* temp = q->front;\n    struct TreeNode* node = temp->node;\n    q->front = q->front->next;\n    if (!q->front) q->rear = NULL;\n    free(temp);\n    q->size--;\n    return node;\n}\n\nint isEmpty(Queue* q) {\n    return q->size == 0;\n}\n\n// Fun\u00e7\u00e3o principal\ndouble* averageOfLevels(struct TreeNode* root, int* returnSize) {\n    if (!root) {\n        *returnSize = 0;\n        return NULL;\n    }\n\n    double* result = (double*) malloc(10000 * sizeof(double));\n    *returnSize = 0;\n\n    Queue* q = createQueue();\n    enqueue(q, root);\n\n    while (!isEmpty(q)) {\n        int levelSize = q->size;\n        long long sum = 0;\n\n        for (int i = 0; i < levelSize; i++) {\n            struct TreeNode* node = dequeue(q);\n            sum += node->val;\n            if (node->left) enqueue(q, node->left);\n            if (node->right) enqueue(q, node->right);\n        }\n\n        result[*returnSize] = (double)sum / levelSize;\n        (*returnSize)++;\n    }\n\n    free(q);\n    return result;\n}\n",
+      "timestamp": 1748911651,
+      "statusCode": 10,
+      "user": {
+        "username": "yosQbj5lkC",
+        "profile": {
+          "realName": "Henrique Freitas",
+          "userAvatar": "https://assets.leetcode.com/users/yosQbj5lkC/avatar_1748722942.png"
+        }
+      },
+      "lang": { "name": "c", "verboseName": "C" },
+      "question": {
+        "questionId": "637",
+        "titleSlug": "average-of-levels-in-binary-tree",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null,
+      "lastTestcase": "",
+      "codeOutput": "",
+      "expectedOutput": "",
+      "totalCorrect": 66,
+      "totalTestcases": 66,
+      "fullCodeOutput": null,
+      "testDescriptions": null,
+      "testBodies": null,
+      "testInfo": null,
+      "stdOutput": ""
+    }
+  }
+}

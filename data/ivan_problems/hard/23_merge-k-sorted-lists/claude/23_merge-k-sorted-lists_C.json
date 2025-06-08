@@ -1,1 +1,48 @@
-{}
+{
+  "data": {
+    "submissionDetails": {
+      "runtime": 0,
+      "runtimeDisplay": "0 ms",
+      "runtimePercentile": 100.0,
+      "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"1\", 64.4165], [\"5\", 4.576700000000001], [\"8\", 0.5721], [\"12\", 0.34320000000000006], [\"16\", 0.1716], [\"19\", 0.34320000000000006], [\"23\", 0.1144], [\"26\", 0.0572], [\"30\", 0.1144], [\"33\", 0.0572], [\"37\", 0.1144], [\"41\", 0.0572], [\"44\", 0.0572], [\"48\", 0.0572], [\"51\", 0.0572], [\"55\", 0.0572], [\"58\", 0.0572], [\"62\", 0.0572], [\"66\", 0.0572], [\"69\", 0.0572], [\"73\", 0.1144], [\"76\", 0.0572], [\"80\", 0.1144], [\"84\", 0.1144], [\"87\", 0.0572], [\"91\", 0.0572], [\"94\", 0.0572], [\"98\", 0.0572], [\"101\", 0.0572], [\"105\", 0.1716], [\"109\", 0.1716], [\"112\", 0.0572], [\"116\", 0.1144], [\"119\", 0.1144], [\"123\", 0.0572], [\"126\", 0.1144], [\"130\", 0.4005], [\"134\", 0.1144], [\"137\", 0.1144], [\"141\", 0.1144], [\"144\", 0.8581], [\"148\", 0.1716], [\"151\", 0.0572], [\"155\", 0.1144], [\"159\", 0.7437], [\"162\", 0.286], [\"166\", 0.1144], [\"169\", 0.4577], [\"173\", 1.373], [\"176\", 2.2311], [\"180\", 2.0023], [\"184\", 1.2586], [\"187\", 1.4874], [\"191\", 1.2585000000000002], [\"194\", 0.8008], [\"198\", 0.34320000000000006], [\"201\", 0.2288], [\"205\", 0.2288], [\"209\", 0.2288], [\"212\", 0.5148], [\"216\", 0.2288], [\"219\", 0.1716], [\"223\", 0.34320000000000006], [\"227\", 0.1144], [\"230\", 0.40040000000000003], [\"234\", 0.28600000000000003], [\"237\", 0.2288], [\"241\", 0.6292], [\"244\", 0.1144], [\"248\", 0.5149], [\"252\", 0.1716], [\"255\", 0.5720000000000001], [\"259\", 0.7437], [\"262\", 0.1716], [\"266\", 0.5148], [\"269\", 0.5720000000000001], [\"273\", 0.3432], [\"277\", 0.0572], [\"280\", 0.28600000000000003], [\"284\", 0.0572]]}",
+      "memory": 13868000,
+      "memoryDisplay": "13.9 MB",
+      "memoryPercentile": 71.8536,
+      "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"13700\", 4.2906], [\"13800\", 23.8558], [\"13900\", 24.7712], [\"14000\", 14.7025], [\"14100\", 9.611], [\"14200\", 5.0343], [\"14300\", 2.4027], [\"14400\", 1.2586], [\"14500\", 1.6018], [\"14600\", 2.1167], [\"14700\", 1.7162], [\"14800\", 0.8581], [\"14900\", 1.2014], [\"15000\", 0.8581], [\"15100\", 0.0572], [\"15200\", 0.2288], [\"15400\", 0.1716], [\"15500\", 0.1144]]}",
+      "code": "/**\n * Definition for singly-linked list.\n * struct ListNode {\n *     int val;\n *     struct ListNode *next;\n * };\n */\n\n// Helper function to merge two sorted linked lists\nstruct ListNode* mergeTwoLists(struct ListNode* l1, struct ListNode* l2) {\n    // Create a dummy head to simplify the logic\n    struct ListNode dummy;\n    struct ListNode* tail = &dummy;\n    dummy.next = NULL;\n    \n    // Merge the two lists by comparing values\n    while (l1 != NULL && l2 != NULL) {\n        if (l1->val <= l2->val) {\n            tail->next = l1;\n            l1 = l1->next;\n        } else {\n            tail->next = l2;\n            l2 = l2->next;\n        }\n        tail = tail->next;\n    }\n    \n    // Attach the remaining nodes\n    if (l1 != NULL) {\n        tail->next = l1;\n    } else {\n        tail->next = l2;\n    }\n    \n    return dummy.next;\n}\n\nstruct ListNode* mergeKLists(struct ListNode** lists, int listsSize) {\n    // Handle edge cases\n    if (listsSize == 0) {\n        return NULL;\n    }\n    if (listsSize == 1) {\n        return lists[0];\n    }\n    \n    // Divide and conquer approach\n    // Keep merging pairs until we have one list\n    while (listsSize > 1) {\n        int mergedIdx = 0;\n        \n        // Merge pairs of lists\n        for (int i = 0; i < listsSize; i += 2) {\n            struct ListNode* l1 = lists[i];\n            struct ListNode* l2 = (i + 1 < listsSize) ? lists[i + 1] : NULL;\n            \n            lists[mergedIdx] = mergeTwoLists(l1, l2);\n            mergedIdx++;\n        }\n        \n        // Update the size for the next iteration\n        listsSize = mergedIdx;\n    }\n    \n    return lists[0];\n}",
+      "timestamp": 1749304881,
+      "statusCode": 10,
+      "user": {
+        "username": "IvanAssis",
+        "profile": {
+          "realName": "IvanAssis",
+          "userAvatar": "https://assets.leetcode.com/users/default_avatar.jpg"
+        }
+      },
+      "lang": {
+        "name": "c",
+        "verboseName": "C"
+      },
+      "question": {
+        "questionId": "23",
+        "titleSlug": "merge-k-sorted-lists",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null,
+      "lastTestcase": "",
+      "codeOutput": "",
+      "expectedOutput": "",
+      "totalCorrect": 134,
+      "totalTestcases": 134,
+      "fullCodeOutput": null,
+      "testDescriptions": null,
+      "testBodies": null,
+      "testInfo": null,
+      "stdOutput": ""
+    }
+  }
+}

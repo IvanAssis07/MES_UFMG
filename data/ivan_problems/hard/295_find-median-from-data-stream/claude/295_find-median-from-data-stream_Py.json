@@ -1,1 +1,48 @@
-{}
+{
+  "data": {
+    "submissionDetails": {
+      "runtime": 127,
+      "runtimeDisplay": "127 ms",
+      "runtimePercentile": 75.71479999999995,
+      "runtimeDistribution": "{\"lang\": \"python3\", \"distribution\": [[\"13\", 0.0852], [\"41\", 0.0077], [\"68\", 0.5266000000000001], [\"95\", 8.7923], [\"123\", 27.856600000000004], [\"150\", 29.103400000000004], [\"177\", 14.7184], [\"205\", 3.5013], [\"232\", 1.4718000000000002], [\"259\", 0.9680000000000003], [\"287\", 0.2705], [\"314\", 0.1778], [\"341\", 0.1081], [\"369\", 0.09259999999999999], [\"396\", 0.05399999999999999], [\"423\", 0.023100000000000002], [\"451\", 0.0771], [\"478\", 0.046299999999999994], [\"505\", 0.0462], [\"533\", 0.0308], [\"560\", 0.023100000000000002], [\"587\", 0.023100000000000002], [\"615\", 0.030899999999999997], [\"642\", 0.06949999999999999], [\"669\", 0.7744000000000001], [\"697\", 1.2704000000000002], [\"724\", 0.9602999999999996], [\"751\", 0.30940000000000006], [\"779\", 0.25520000000000004], [\"806\", 0.5031], [\"833\", 0.4100000000000001], [\"861\", 0.1545], [\"888\", 0.17010000000000006], [\"915\", 0.054099999999999995], [\"943\", 0.0693], [\"970\", 0.0077], [\"997\", 0.0077], [\"1025\", 0.0077], [\"1052\", 0.0308], [\"1079\", 0.0308], [\"1107\", 0.0077], [\"1134\", 0.0077], [\"1161\", 0.0077], [\"1189\", 0.0077], [\"1216\", 0.0077], [\"1243\", 0.0077], [\"1271\", 0.0077], [\"1298\", 0.0077], [\"1325\", 0.0077], [\"1353\", 0.0077], [\"1380\", 0.0077], [\"1407\", 0.0077], [\"1435\", 0.0077], [\"1462\", 0.0077], [\"1489\", 0.0077], [\"1517\", 0.0155], [\"1544\", 0.0077], [\"1571\", 0.0077], [\"1599\", 0.0155], [\"1626\", 0.0155], [\"1653\", 0.0077], [\"1681\", 0.0077], [\"1708\", 0.0077], [\"1735\", 0.0155], [\"1763\", 0.0155], [\"1790\", 0.0077], [\"1817\", 0.0077], [\"1845\", 0.0077], [\"1872\", 0.0232], [\"1899\", 0.0155], [\"1927\", 0.0155], [\"1954\", 0.0155], [\"1981\", 0.0155], [\"2009\", 0.0465], [\"2036\", 0.031], [\"2063\", 0.0155], [\"2091\", 0.0465], [\"2118\", 0.031], [\"2145\", 0.27870000000000006], [\"2173\", 1.0845]]}",
+      "memory": 40044000,
+      "memoryDisplay": "40 MB",
+      "memoryPercentile": 18.1271,
+      "memoryDistribution": "{\"lang\": \"python3\", \"distribution\": [[\"37400\", 0.0077], [\"37700\", 0.0077], [\"37800\", 0.0077], [\"38100\", 0.0155], [\"38200\", 0.0232], [\"38300\", 0.031], [\"38400\", 0.0232], [\"38500\", 0.0542], [\"38600\", 0.0775], [\"38700\", 0.3718], [\"38800\", 0.5655], [\"38900\", 1.0225], [\"39000\", 1.2472], [\"39100\", 2.4479], [\"39200\", 6.5923], [\"39300\", 11.3642], [\"39400\", 13.5022], [\"39500\", 9.5437], [\"39600\", 9.5747], [\"39700\", 11.1473], [\"39800\", 5.7092], [\"39900\", 3.5247], [\"40000\", 5.012], [\"40100\", 5.2831], [\"40200\", 4.4852], [\"40300\", 2.4944]]}",
+      "code": "import heapq\n\nclass MedianFinder:\n\n    def __init__(self):\n        \"\"\"\n        Initialize your data structure here.\n        \"\"\"\n        # Max heap for smaller half (negate values to use min heap as max heap)\n        self.small = []  \n        # Min heap for larger half\n        self.large = []  \n\n    def addNum(self, num: int) -> None:\n        \"\"\"\n        Adds a number into the data structure.\n        \"\"\"\n        # Add to small heap (max heap for smaller half)\n        # We negate the value to simulate max heap using min heap\n        heapq.heappush(self.small, -num)\n        \n        # Ensure max of small is <= min of large\n        # Move the largest from small to large\n        if self.small and self.large and (-self.small[0] > self.large[0]):\n            val = -heapq.heappop(self.small)\n            heapq.heappush(self.large, val)\n        \n        # Balance the sizes\n        # Small heap should have at most one more element than large heap\n        if len(self.small) > len(self.large) + 1:\n            val = -heapq.heappop(self.small)\n            heapq.heappush(self.large, val)\n        \n        if len(self.large) > len(self.small) + 1:\n            val = heapq.heappop(self.large)\n            heapq.heappush(self.small, -val)\n\n    def findMedian(self) -> float:\n        \"\"\"\n        Returns the median of current data stream.\n        \"\"\"\n        if len(self.small) > len(self.large):\n            return -self.small[0]\n        elif len(self.large) > len(self.small):\n            return self.large[0]\n        else:\n            # Equal sizes, return average of both tops\n            return (-self.small[0] + self.large[0]) / 2.0",
+      "timestamp": 1749305686,
+      "statusCode": 10,
+      "user": {
+        "username": "IvanAssis",
+        "profile": {
+          "realName": "IvanAssis",
+          "userAvatar": "https://assets.leetcode.com/users/default_avatar.jpg"
+        }
+      },
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "question": {
+        "questionId": "295",
+        "titleSlug": "find-median-from-data-stream",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null,
+      "lastTestcase": "",
+      "codeOutput": "",
+      "expectedOutput": "",
+      "totalCorrect": 21,
+      "totalTestcases": 21,
+      "fullCodeOutput": null,
+      "testDescriptions": null,
+      "testBodies": null,
+      "testInfo": null,
+      "stdOutput": ""
+    }
+  }
+}

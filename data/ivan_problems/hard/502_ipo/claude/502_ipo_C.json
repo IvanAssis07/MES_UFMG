@@ -1,1 +1,48 @@
-{}
+{
+  "data": {
+    "submissionDetails": {
+      "runtime": 59,
+      "runtimeDisplay": "59 ms",
+      "runtimePercentile": 85.71430000000001,
+      "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"48\", 4.7619], [\"57\", 9.5238], [\"59\", 9.5238], [\"61\", 4.7619], [\"62\", 4.7619], [\"63\", 9.5238], [\"67\", 4.7619], [\"68\", 4.7619], [\"103\", 9.5238], [\"114\", 4.7619], [\"123\", 4.7619], [\"134\", 4.7619], [\"143\", 4.7619], [\"144\", 4.7619], [\"145\", 4.7619]]}",
+      "memory": 27808000,
+      "memoryDisplay": "27.8 MB",
+      "memoryPercentile": 33.333400000000026,
+      "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"16900\", 4.7619], [\"17000\", 4.7619], [\"21500\", 4.7619], [\"23400\", 4.7619], [\"23500\", 4.7619], [\"23700\", 4.7619], [\"23900\", 14.2857], [\"25900\", 4.7619], [\"27700\", 4.7619], [\"27800\", 14.2857], [\"27900\", 9.5238], [\"28000\", 4.7619], [\"29300\", 4.7619], [\"29400\", 4.7619]]}",
+      "code": "#include <stdio.h>\n#include <stdlib.h>\n\n// Structure to represent a project\ntypedef struct {\n    int profit;\n    int capital;\n} Project;\n\n// Comparison function for sorting projects by capital (ascending)\nint compareByCapital(const void* a, const void* b) {\n    Project* p1 = (Project*)a;\n    Project* p2 = (Project*)b;\n    return p1->capital - p2->capital;\n}\n\n// Max heap implementation for profits\ntypedef struct {\n    int* data;\n    int size;\n    int capacity;\n} MaxHeap;\n\nMaxHeap* createMaxHeap(int capacity) {\n    MaxHeap* heap = (MaxHeap*)malloc(sizeof(MaxHeap));\n    heap->data = (int*)malloc(capacity * sizeof(int));\n    heap->size = 0;\n    heap->capacity = capacity;\n    return heap;\n}\n\nvoid swapInt(int* a, int* b) {\n    int temp = *a;\n    *a = *b;\n    *b = temp;\n}\n\nvoid maxHeapifyUp(MaxHeap* heap, int index) {\n    if (index == 0) return;\n    int parent = (index - 1) / 2;\n    if (heap->data[parent] < heap->data[index]) {\n        swapInt(&heap->data[parent], &heap->data[index]);\n        maxHeapifyUp(heap, parent);\n    }\n}\n\nvoid maxHeapifyDown(MaxHeap* heap, int index) {\n    int largest = index;\n    int left = 2 * index + 1;\n    int right = 2 * index + 2;\n    \n    if (left < heap->size && heap->data[left] > heap->data[largest]) {\n        largest = left;\n    }\n    if (right < heap->size && heap->data[right] > heap->data[largest]) {\n        largest = right;\n    }\n    \n    if (largest != index) {\n        swapInt(&heap->data[index], &heap->data[largest]);\n        maxHeapifyDown(heap, largest);\n    }\n}\n\nvoid pushMaxHeap(MaxHeap* heap, int value) {\n    if (heap->size >= heap->capacity) return;\n    heap->data[heap->size] = value;\n    maxHeapifyUp(heap, heap->size);\n    heap->size++;\n}\n\nint popMaxHeap(MaxHeap* heap) {\n    if (heap->size == 0) return -1;\n    int max = heap->data[0];\n    heap->data[0] = heap->data[heap->size - 1];\n    heap->size--;\n    maxHeapifyDown(heap, 0);\n    return max;\n}\n\nvoid freeMaxHeap(MaxHeap* heap) {\n    free(heap->data);\n    free(heap);\n}\n\nint findMaximizedCapital(int k, int w, int* profits, int profitsSize, int* capital, int capitalSize) {\n    int n = profitsSize;\n    \n    // Create array of projects and sort by capital requirement\n    Project* projects = (Project*)malloc(n * sizeof(Project));\n    for (int i = 0; i < n; i++) {\n        projects[i].profit = profits[i];\n        projects[i].capital = capital[i];\n    }\n    qsort(projects, n, sizeof(Project), compareByCapital);\n    \n    // Create max heap for profits\n    MaxHeap* profitHeap = createMaxHeap(n);\n    \n    int currentCapital = w;\n    int projectIndex = 0;\n    \n    // Execute at most k projects\n    for (int i = 0; i < k; i++) {\n        // Add all affordable projects to the profit heap\n        while (projectIndex < n && projects[projectIndex].capital <= currentCapital) {\n            pushMaxHeap(profitHeap, projects[projectIndex].profit);\n            projectIndex++;\n        }\n        \n        // If no projects are affordable, break\n        if (profitHeap->size == 0) {\n            break;\n        }\n        \n        // Take the project with maximum profit\n        int maxProfit = popMaxHeap(profitHeap);\n        currentCapital += maxProfit;\n    }\n    \n    // Cleanup\n    free(projects);\n    freeMaxHeap(profitHeap);\n    \n    return currentCapital;\n}\n",
+      "timestamp": 1749305953,
+      "statusCode": 10,
+      "user": {
+        "username": "IvanAssis",
+        "profile": {
+          "realName": "IvanAssis",
+          "userAvatar": "https://assets.leetcode.com/users/default_avatar.jpg"
+        }
+      },
+      "lang": {
+        "name": "c",
+        "verboseName": "C"
+      },
+      "question": {
+        "questionId": "502",
+        "titleSlug": "ipo",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null,
+      "lastTestcase": "",
+      "codeOutput": "",
+      "expectedOutput": "",
+      "totalCorrect": 40,
+      "totalTestcases": 40,
+      "fullCodeOutput": null,
+      "testDescriptions": null,
+      "testBodies": null,
+      "testInfo": null,
+      "stdOutput": ""
+    }
+  }
+}
