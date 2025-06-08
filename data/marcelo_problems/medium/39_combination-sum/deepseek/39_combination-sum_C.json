@@ -1,48 +1,48 @@
 {
-    "data": {
-        "submissionDetails": {
-            "runtime": 0,
-            "runtimeDisplay": "0 ms",
-            "runtimePercentile": 100.0,
-            "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"0\", 53.1183], [\"1\", 4.9462], [\"2\", 7.5269], [\"3\", 11.1828], [\"4\", 6.8817], [\"5\", 1.7204], [\"6\", 1.7204], [\"7\", 2.1505], [\"8\", 1.5054], [\"9\", 0.6452], [\"10\", 0.8602], [\"11\", 2.1505], [\"12\", 0.4301]]}",
-            "memory": 12176000,
-            "memoryDisplay": "12.2 MB",
-            "memoryPercentile": 74.6236,
-            "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"11500\", 0.2151], [\"11600\", 0.4301], [\"11700\", 0.2151], [\"11800\", 1.0753], [\"11900\", 2.5806], [\"12000\", 9.2473], [\"12100\", 11.6129], [\"12200\", 9.4624], [\"12300\", 7.957], [\"12400\", 3.6559], [\"12500\", 1.7204], [\"12600\", 0.6452], [\"12700\", 0.4301], [\"12900\", 1.2903], [\"13000\", 1.5054], [\"13100\", 1.9355], [\"13200\", 0.2151], [\"13300\", 0.4301], [\"13400\", 0.6452], [\"13500\", 0.6452], [\"13600\", 1.0753], [\"13700\", 0.4301], [\"13800\", 0.8602], [\"13900\", 0.4301], [\"14000\", 3.2258], [\"14100\", 3.871], [\"14200\", 4.086], [\"14300\", 2.3656], [\"14400\", 1.5054], [\"14500\", 1.9355], [\"14600\", 2.7957], [\"14700\", 1.9355], [\"14800\", 1.5054], [\"14900\", 4.5161], [\"15000\", 3.0108], [\"15100\", 2.7957], [\"15200\", 1.7204], [\"15300\", 0.4301]]}",
-            "code": "#include <stdlib.h>\n#include <string.h>\n\nint compare(const void* a, const void* b) {\n    return (*(int*)a - *(int*)b);\n}\n\nvoid backtrack(int* candidates, int candidatesSize, int target, int start, int currentSum, int* path, int pathSize, int** result, int* colSizes, int* resultCount) {\n    if (currentSum == target) {\n        int* newComb = (int*)malloc(pathSize * sizeof(int));\n        memcpy(newComb, path, pathSize * sizeof(int));\n        result[*resultCount] = newComb;\n        colSizes[*resultCount] = pathSize;\n        (*resultCount)++;\n        return;\n    }\n    \n    for (int i = start; i < candidatesSize; i++) {\n        if (currentSum + candidates[i] > target) \n            break;\n        \n        path[pathSize] = candidates[i];\n        backtrack(candidates, candidatesSize, target, i, currentSum + candidates[i], path, pathSize + 1, result, colSizes, resultCount);\n    }\n}\n\nint** combinationSum(int* candidates, int candidatesSize, int target, int* returnSize, int** returnColumnSizes) {\n    qsort(candidates, candidatesSize, sizeof(int), compare);\n    \n    int** result = (int**)malloc(150 * sizeof(int*));\n    *returnColumnSizes = (int*)malloc(150 * sizeof(int));\n    int resultCount = 0;\n    \n    int* path = (int*)malloc(40 * sizeof(int));\n    \n    backtrack(candidates, candidatesSize, target, 0, 0, path, 0, result, *returnColumnSizes, &resultCount);\n    \n    *returnSize = resultCount;\n    free(path);\n    return result;\n}",
-            "timestamp": 1749250249,
-            "statusCode": 10,
-            "user": {
-                "username": "ZRlvkAicEr",
-                "profile": {
-                    "realName": "ZRlvkAicEr",
-                    "userAvatar": "https://assets.leetcode.com/users/ZRlvkAicEr/avatar_1749245074.png"
-                }
-            },
-            "lang": {
-                "name": "c",
-                "verboseName": "C"
-            },
-            "question": {
-                "questionId": "39",
-                "titleSlug": "combination-sum",
-                "hasFrontendPreview": false
-            },
-            "notes": "",
-            "flagType": "WHITE",
-            "topicTags": [],
-            "runtimeError": null,
-            "compileError": null,
-            "lastTestcase": "",
-            "codeOutput": "",
-            "expectedOutput": "",
-            "totalCorrect": 160,
-            "totalTestcases": 160,
-            "fullCodeOutput": null,
-            "testDescriptions": null,
-            "testBodies": null,
-            "testInfo": null,
-            "stdOutput": ""
+  "data": {
+    "submissionDetails": {
+      "runtime": 0,
+      "runtimeDisplay": "0 ms",
+      "runtimePercentile": 100.0,
+      "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"0\", 53.1183], [\"1\", 4.9462], [\"2\", 7.5269], [\"3\", 11.1828], [\"4\", 6.8817], [\"5\", 1.7204], [\"6\", 1.7204], [\"7\", 2.1505], [\"8\", 1.5054], [\"9\", 0.6452], [\"10\", 0.8602], [\"11\", 2.1505], [\"12\", 0.4301]]}",
+      "memory": 12176000,
+      "memoryDisplay": "12.2 MB",
+      "memoryPercentile": 74.6236,
+      "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"11500\", 0.2151], [\"11600\", 0.4301], [\"11700\", 0.2151], [\"11800\", 1.0753], [\"11900\", 2.5806], [\"12000\", 9.2473], [\"12100\", 11.6129], [\"12200\", 9.4624], [\"12300\", 7.957], [\"12400\", 3.6559], [\"12500\", 1.7204], [\"12600\", 0.6452], [\"12700\", 0.4301], [\"12900\", 1.2903], [\"13000\", 1.5054], [\"13100\", 1.9355], [\"13200\", 0.2151], [\"13300\", 0.4301], [\"13400\", 0.6452], [\"13500\", 0.6452], [\"13600\", 1.0753], [\"13700\", 0.4301], [\"13800\", 0.8602], [\"13900\", 0.4301], [\"14000\", 3.2258], [\"14100\", 3.871], [\"14200\", 4.086], [\"14300\", 2.3656], [\"14400\", 1.5054], [\"14500\", 1.9355], [\"14600\", 2.7957], [\"14700\", 1.9355], [\"14800\", 1.5054], [\"14900\", 4.5161], [\"15000\", 3.0108], [\"15100\", 2.7957], [\"15200\", 1.7204], [\"15300\", 0.4301]]}",
+      "code": "#include <stdlib.h>\n#include <string.h>\n\nint compare(const void* a, const void* b) {\n    return (*(int*)a - *(int*)b);\n}\n\nvoid backtrack(int* candidates, int candidatesSize, int target, int start, int currentSum, int* path, int pathSize, int** result, int* colSizes, int* resultCount) {\n    if (currentSum == target) {\n        int* newComb = (int*)malloc(pathSize * sizeof(int));\n        memcpy(newComb, path, pathSize * sizeof(int));\n        result[*resultCount] = newComb;\n        colSizes[*resultCount] = pathSize;\n        (*resultCount)++;\n        return;\n    }\n    \n    for (int i = start; i < candidatesSize; i++) {\n        if (currentSum + candidates[i] > target) \n            break;\n        \n        path[pathSize] = candidates[i];\n        backtrack(candidates, candidatesSize, target, i, currentSum + candidates[i], path, pathSize + 1, result, colSizes, resultCount);\n    }\n}\n\nint** combinationSum(int* candidates, int candidatesSize, int target, int* returnSize, int** returnColumnSizes) {\n    qsort(candidates, candidatesSize, sizeof(int), compare);\n    \n    int** result = (int**)malloc(150 * sizeof(int*));\n    *returnColumnSizes = (int*)malloc(150 * sizeof(int));\n    int resultCount = 0;\n    \n    int* path = (int*)malloc(40 * sizeof(int));\n    \n    backtrack(candidates, candidatesSize, target, 0, 0, path, 0, result, *returnColumnSizes, &resultCount);\n    \n    *returnSize = resultCount;\n    free(path);\n    return result;\n}",
+      "timestamp": 1749250249,
+      "statusCode": 10,
+      "user": {
+        "username": "ZRlvkAicEr",
+        "profile": {
+          "realName": "ZRlvkAicEr",
+          "userAvatar": "https://assets.leetcode.com/users/ZRlvkAicEr/avatar_1749245074.png"
         }
+      },
+      "lang": {
+        "name": "c",
+        "verboseName": "C"
+      },
+      "question": {
+        "questionId": "39",
+        "titleSlug": "combination-sum",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null,
+      "lastTestcase": "",
+      "codeOutput": "",
+      "expectedOutput": "",
+      "totalCorrect": 160,
+      "totalTestcases": 160,
+      "fullCodeOutput": null,
+      "testDescriptions": null,
+      "testBodies": null,
+      "testInfo": null,
+      "stdOutput": ""
     }
+  }
 }

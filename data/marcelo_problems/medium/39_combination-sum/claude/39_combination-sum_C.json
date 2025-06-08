@@ -1,48 +1,48 @@
 {
-    "data": {
-        "submissionDetails": {
-            "runtime": 0,
-            "runtimeDisplay": "0 ms",
-            "runtimePercentile": 100.0,
-            "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"0\", 53.1183], [\"1\", 4.9462], [\"2\", 7.5269], [\"3\", 11.1828], [\"4\", 6.8817], [\"5\", 1.7204], [\"6\", 1.7204], [\"7\", 2.1505], [\"8\", 1.5054], [\"9\", 0.6452], [\"10\", 0.8602], [\"11\", 2.1505], [\"12\", 0.4301]]}",
-            "memory": 11820000,
-            "memoryDisplay": "11.8 MB",
-            "memoryPercentile": 98.06439999999999,
-            "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"11500\", 0.2151], [\"11600\", 0.4301], [\"11700\", 0.2151], [\"11800\", 1.0753], [\"11900\", 2.5806], [\"12000\", 9.2473], [\"12100\", 11.6129], [\"12200\", 9.4624], [\"12300\", 7.957], [\"12400\", 3.6559], [\"12500\", 1.7204], [\"12600\", 0.6452], [\"12700\", 0.4301], [\"12900\", 1.2903], [\"13000\", 1.5054], [\"13100\", 1.9355], [\"13200\", 0.2151], [\"13300\", 0.4301], [\"13400\", 0.6452], [\"13500\", 0.6452], [\"13600\", 1.0753], [\"13700\", 0.4301], [\"13800\", 0.8602], [\"13900\", 0.4301], [\"14000\", 3.2258], [\"14100\", 3.871], [\"14200\", 4.086], [\"14300\", 2.3656], [\"14400\", 1.5054], [\"14500\", 1.9355], [\"14600\", 2.7957], [\"14700\", 1.9355], [\"14800\", 1.5054], [\"14900\", 4.5161], [\"15000\", 3.0108], [\"15100\", 2.7957], [\"15200\", 1.7204], [\"15300\", 0.4301]]}",
-            "code": "\n#include <stdlib.h>\n\n// Helper function for backtracking\nvoid backtrack(int* candidates, int candidatesSize, int target, int start, \n               int* current, int currentSize, int*** result, int* returnSize, \n               int** returnColumnSizes, int* capacity) {\n    \n    // Base case: if target is 0, we found a valid combination\n    if (target == 0) {\n        // Resize result array if needed\n        if (*returnSize >= *capacity) {\n            *capacity *= 2;\n            *result = (int**)realloc(*result, *capacity * sizeof(int*));\n            *returnColumnSizes = (int*)realloc(*returnColumnSizes, *capacity * sizeof(int));\n        }\n        \n        // Allocate memory for the current combination\n        (*result)[*returnSize] = (int*)malloc(currentSize * sizeof(int));\n        (*returnColumnSizes)[*returnSize] = currentSize;\n        \n        // Copy current combination to result\n        for (int i = 0; i < currentSize; i++) {\n            (*result)[*returnSize][i] = current[i];\n        }\n        (*returnSize)++;\n        return;\n    }\n    \n    // Try each candidate starting from 'start' index\n    for (int i = start; i < candidatesSize; i++) {\n        // Skip if current candidate exceeds remaining target\n        if (candidates[i] > target) continue;\n        \n        // Add current candidate to the combination\n        current[currentSize] = candidates[i];\n        \n        // Recursively try to find combinations with remaining target\n        // Note: we pass 'i' (not i+1) because we can reuse the same number\n        backtrack(candidates, candidatesSize, target - candidates[i], i,\n                  current, currentSize + 1, result, returnSize, \n                  returnColumnSizes, capacity);\n    }\n}\n\n/**\n * Return an array of arrays of size *returnSize.\n * The sizes of the arrays are returned as *returnColumnSizes array.\n * Note: Both returned array and *columnSizes array must be malloced, assume caller calls free().\n */\nint** combinationSum(int* candidates, int candidatesSize, int target, int* returnSize, int** returnColumnSizes) {\n    // Initialize return values\n    *returnSize = 0;\n    \n    // Initial capacity for result arrays\n    int capacity = 10;\n    int** result = (int**)malloc(capacity * sizeof(int*));\n    *returnColumnSizes = (int*)malloc(capacity * sizeof(int));\n    \n    // Temporary array to store current combination\n    // Maximum possible size is target (if all candidates are 1, but min is 2)\n    int* current = (int*)malloc(target * sizeof(int));\n    \n    // Start backtracking\n    backtrack(candidates, candidatesSize, target, 0, current, 0, \n              &result, returnSize, returnColumnSizes, &capacity);\n    \n    // Free temporary array\n    free(current);\n    \n    return result;\n}",
-            "timestamp": 1749250034,
-            "statusCode": 10,
-            "user": {
-                "username": "ZRlvkAicEr",
-                "profile": {
-                    "realName": "ZRlvkAicEr",
-                    "userAvatar": "https://assets.leetcode.com/users/ZRlvkAicEr/avatar_1749245074.png"
-                }
-            },
-            "lang": {
-                "name": "c",
-                "verboseName": "C"
-            },
-            "question": {
-                "questionId": "39",
-                "titleSlug": "combination-sum",
-                "hasFrontendPreview": false
-            },
-            "notes": "",
-            "flagType": "WHITE",
-            "topicTags": [],
-            "runtimeError": null,
-            "compileError": null,
-            "lastTestcase": "",
-            "codeOutput": "",
-            "expectedOutput": "",
-            "totalCorrect": 160,
-            "totalTestcases": 160,
-            "fullCodeOutput": null,
-            "testDescriptions": null,
-            "testBodies": null,
-            "testInfo": null,
-            "stdOutput": ""
+  "data": {
+    "submissionDetails": {
+      "runtime": 0,
+      "runtimeDisplay": "0 ms",
+      "runtimePercentile": 100.0,
+      "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"0\", 53.1183], [\"1\", 4.9462], [\"2\", 7.5269], [\"3\", 11.1828], [\"4\", 6.8817], [\"5\", 1.7204], [\"6\", 1.7204], [\"7\", 2.1505], [\"8\", 1.5054], [\"9\", 0.6452], [\"10\", 0.8602], [\"11\", 2.1505], [\"12\", 0.4301]]}",
+      "memory": 11820000,
+      "memoryDisplay": "11.8 MB",
+      "memoryPercentile": 98.06439999999999,
+      "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"11500\", 0.2151], [\"11600\", 0.4301], [\"11700\", 0.2151], [\"11800\", 1.0753], [\"11900\", 2.5806], [\"12000\", 9.2473], [\"12100\", 11.6129], [\"12200\", 9.4624], [\"12300\", 7.957], [\"12400\", 3.6559], [\"12500\", 1.7204], [\"12600\", 0.6452], [\"12700\", 0.4301], [\"12900\", 1.2903], [\"13000\", 1.5054], [\"13100\", 1.9355], [\"13200\", 0.2151], [\"13300\", 0.4301], [\"13400\", 0.6452], [\"13500\", 0.6452], [\"13600\", 1.0753], [\"13700\", 0.4301], [\"13800\", 0.8602], [\"13900\", 0.4301], [\"14000\", 3.2258], [\"14100\", 3.871], [\"14200\", 4.086], [\"14300\", 2.3656], [\"14400\", 1.5054], [\"14500\", 1.9355], [\"14600\", 2.7957], [\"14700\", 1.9355], [\"14800\", 1.5054], [\"14900\", 4.5161], [\"15000\", 3.0108], [\"15100\", 2.7957], [\"15200\", 1.7204], [\"15300\", 0.4301]]}",
+      "code": "\n#include <stdlib.h>\n\n// Helper function for backtracking\nvoid backtrack(int* candidates, int candidatesSize, int target, int start, \n               int* current, int currentSize, int*** result, int* returnSize, \n               int** returnColumnSizes, int* capacity) {\n    \n    // Base case: if target is 0, we found a valid combination\n    if (target == 0) {\n        // Resize result array if needed\n        if (*returnSize >= *capacity) {\n            *capacity *= 2;\n            *result = (int**)realloc(*result, *capacity * sizeof(int*));\n            *returnColumnSizes = (int*)realloc(*returnColumnSizes, *capacity * sizeof(int));\n        }\n        \n        // Allocate memory for the current combination\n        (*result)[*returnSize] = (int*)malloc(currentSize * sizeof(int));\n        (*returnColumnSizes)[*returnSize] = currentSize;\n        \n        // Copy current combination to result\n        for (int i = 0; i < currentSize; i++) {\n            (*result)[*returnSize][i] = current[i];\n        }\n        (*returnSize)++;\n        return;\n    }\n    \n    // Try each candidate starting from 'start' index\n    for (int i = start; i < candidatesSize; i++) {\n        // Skip if current candidate exceeds remaining target\n        if (candidates[i] > target) continue;\n        \n        // Add current candidate to the combination\n        current[currentSize] = candidates[i];\n        \n        // Recursively try to find combinations with remaining target\n        // Note: we pass 'i' (not i+1) because we can reuse the same number\n        backtrack(candidates, candidatesSize, target - candidates[i], i,\n                  current, currentSize + 1, result, returnSize, \n                  returnColumnSizes, capacity);\n    }\n}\n\n/**\n * Return an array of arrays of size *returnSize.\n * The sizes of the arrays are returned as *returnColumnSizes array.\n * Note: Both returned array and *columnSizes array must be malloced, assume caller calls free().\n */\nint** combinationSum(int* candidates, int candidatesSize, int target, int* returnSize, int** returnColumnSizes) {\n    // Initialize return values\n    *returnSize = 0;\n    \n    // Initial capacity for result arrays\n    int capacity = 10;\n    int** result = (int**)malloc(capacity * sizeof(int*));\n    *returnColumnSizes = (int*)malloc(capacity * sizeof(int));\n    \n    // Temporary array to store current combination\n    // Maximum possible size is target (if all candidates are 1, but min is 2)\n    int* current = (int*)malloc(target * sizeof(int));\n    \n    // Start backtracking\n    backtrack(candidates, candidatesSize, target, 0, current, 0, \n              &result, returnSize, returnColumnSizes, &capacity);\n    \n    // Free temporary array\n    free(current);\n    \n    return result;\n}",
+      "timestamp": 1749250034,
+      "statusCode": 10,
+      "user": {
+        "username": "ZRlvkAicEr",
+        "profile": {
+          "realName": "ZRlvkAicEr",
+          "userAvatar": "https://assets.leetcode.com/users/ZRlvkAicEr/avatar_1749245074.png"
         }
+      },
+      "lang": {
+        "name": "c",
+        "verboseName": "C"
+      },
+      "question": {
+        "questionId": "39",
+        "titleSlug": "combination-sum",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null,
+      "lastTestcase": "",
+      "codeOutput": "",
+      "expectedOutput": "",
+      "totalCorrect": 160,
+      "totalTestcases": 160,
+      "fullCodeOutput": null,
+      "testDescriptions": null,
+      "testBodies": null,
+      "testInfo": null,
+      "stdOutput": ""
     }
+  }
 }

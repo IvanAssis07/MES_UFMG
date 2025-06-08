@@ -1,48 +1,48 @@
 {
-    "data": {
-        "submissionDetails": {
-            "runtime": 11,
-            "runtimeDisplay": "11 ms",
-            "runtimePercentile": 24.242200000000018,
-            "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"0\", 5.5556], [\"1\", 0.5051], [\"2\", 1.0101], [\"3\", 6.5657], [\"4\", 2.5253], [\"5\", 5.0505], [\"6\", 5.0505], [\"7\", 27.2727], [\"8\", 8.5859], [\"9\", 4.5455], [\"10\", 9.0909], [\"11\", 13.6364]]}",
-            "memory": 14540000,
-            "memoryDisplay": "14.5 MB",
-            "memoryPercentile": 12.62620000000001,
-            "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"10800\", 0.5051], [\"10900\", 2.0202], [\"11100\", 0.5051], [\"11200\", 1.0101], [\"14200\", 13.1313], [\"14300\", 31.3131], [\"14400\", 28.2828], [\"14500\", 10.6061], [\"14600\", 4.0404], [\"14700\", 2.0202], [\"14800\", 0.5051], [\"15200\", 0.5051], [\"15300\", 0.5051]]}",
-            "code": "#include <stdlib.h>\n#include <string.h>\n\n// Hash map for storing value to index in inorder array\ntypedef struct {\n    int key;\n    int val;\n} MapEntry;\n\ntypedef struct {\n    MapEntry* data;\n    int size;\n} HashMap;\n\nvoid mapInit(HashMap* map, int* inorder, int inorderSize) {\n    map->data = (MapEntry*)malloc(sizeof(MapEntry) * inorderSize);\n    map->size = inorderSize;\n    for (int i = 0; i < inorderSize; ++i) {\n        map->data[i].key = inorder[i];\n        map->data[i].val = i;\n    }\n}\n\nint mapGet(HashMap* map, int key) {\n    for (int i = 0; i < map->size; ++i) {\n        if (map->data[i].key == key) return map->data[i].val;\n    }\n    return -1;\n}\n\nstruct TreeNode* build(int* inorder, int* postorder, int inLeft, int inRight, int* postIndex, HashMap* map) {\n    if (inLeft > inRight) return NULL;\n\n    int rootVal = postorder[(*postIndex)--];\n    struct TreeNode* root = (struct TreeNode*)malloc(sizeof(struct TreeNode));\n    root->val = rootVal;\n    root->left = root->right = NULL;\n\n    int inIndex = mapGet(map, rootVal);\n\n    root->right = build(inorder, postorder, inIndex + 1, inRight, postIndex, map);\n    root->left = build(inorder, postorder, inLeft, inIndex - 1, postIndex, map);\n\n    return root;\n}\n\nstruct TreeNode* buildTree(int* inorder, int inorderSize, int* postorder, int postorderSize) {\n    HashMap map;\n    mapInit(&map, inorder, inorderSize);\n    int postIndex = postorderSize - 1;\n    return build(inorder, postorder, 0, inorderSize - 1, &postIndex, &map);\n}\n",
-            "timestamp": 1749414149,
-            "statusCode": 10,
-            "user": {
-                "username": "ZRlvkAicEr",
-                "profile": {
-                    "realName": "ZRlvkAicEr",
-                    "userAvatar": "https://assets.leetcode.com/users/ZRlvkAicEr/avatar_1749245074.png"
-                }
-            },
-            "lang": {
-                "name": "c",
-                "verboseName": "C"
-            },
-            "question": {
-                "questionId": "106",
-                "titleSlug": "construct-binary-tree-from-inorder-and-postorder-traversal",
-                "hasFrontendPreview": false
-            },
-            "notes": "",
-            "flagType": "WHITE",
-            "topicTags": [],
-            "runtimeError": null,
-            "compileError": null,
-            "lastTestcase": "",
-            "codeOutput": "",
-            "expectedOutput": "",
-            "totalCorrect": 202,
-            "totalTestcases": 202,
-            "fullCodeOutput": null,
-            "testDescriptions": null,
-            "testBodies": null,
-            "testInfo": null,
-            "stdOutput": ""
+  "data": {
+    "submissionDetails": {
+      "runtime": 11,
+      "runtimeDisplay": "11 ms",
+      "runtimePercentile": 24.242200000000018,
+      "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"0\", 5.5556], [\"1\", 0.5051], [\"2\", 1.0101], [\"3\", 6.5657], [\"4\", 2.5253], [\"5\", 5.0505], [\"6\", 5.0505], [\"7\", 27.2727], [\"8\", 8.5859], [\"9\", 4.5455], [\"10\", 9.0909], [\"11\", 13.6364]]}",
+      "memory": 14540000,
+      "memoryDisplay": "14.5 MB",
+      "memoryPercentile": 12.62620000000001,
+      "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"10800\", 0.5051], [\"10900\", 2.0202], [\"11100\", 0.5051], [\"11200\", 1.0101], [\"14200\", 13.1313], [\"14300\", 31.3131], [\"14400\", 28.2828], [\"14500\", 10.6061], [\"14600\", 4.0404], [\"14700\", 2.0202], [\"14800\", 0.5051], [\"15200\", 0.5051], [\"15300\", 0.5051]]}",
+      "code": "#include <stdlib.h>\n#include <string.h>\n\n// Hash map for storing value to index in inorder array\ntypedef struct {\n    int key;\n    int val;\n} MapEntry;\n\ntypedef struct {\n    MapEntry* data;\n    int size;\n} HashMap;\n\nvoid mapInit(HashMap* map, int* inorder, int inorderSize) {\n    map->data = (MapEntry*)malloc(sizeof(MapEntry) * inorderSize);\n    map->size = inorderSize;\n    for (int i = 0; i < inorderSize; ++i) {\n        map->data[i].key = inorder[i];\n        map->data[i].val = i;\n    }\n}\n\nint mapGet(HashMap* map, int key) {\n    for (int i = 0; i < map->size; ++i) {\n        if (map->data[i].key == key) return map->data[i].val;\n    }\n    return -1;\n}\n\nstruct TreeNode* build(int* inorder, int* postorder, int inLeft, int inRight, int* postIndex, HashMap* map) {\n    if (inLeft > inRight) return NULL;\n\n    int rootVal = postorder[(*postIndex)--];\n    struct TreeNode* root = (struct TreeNode*)malloc(sizeof(struct TreeNode));\n    root->val = rootVal;\n    root->left = root->right = NULL;\n\n    int inIndex = mapGet(map, rootVal);\n\n    root->right = build(inorder, postorder, inIndex + 1, inRight, postIndex, map);\n    root->left = build(inorder, postorder, inLeft, inIndex - 1, postIndex, map);\n\n    return root;\n}\n\nstruct TreeNode* buildTree(int* inorder, int inorderSize, int* postorder, int postorderSize) {\n    HashMap map;\n    mapInit(&map, inorder, inorderSize);\n    int postIndex = postorderSize - 1;\n    return build(inorder, postorder, 0, inorderSize - 1, &postIndex, &map);\n}\n",
+      "timestamp": 1749414149,
+      "statusCode": 10,
+      "user": {
+        "username": "ZRlvkAicEr",
+        "profile": {
+          "realName": "ZRlvkAicEr",
+          "userAvatar": "https://assets.leetcode.com/users/ZRlvkAicEr/avatar_1749245074.png"
         }
+      },
+      "lang": {
+        "name": "c",
+        "verboseName": "C"
+      },
+      "question": {
+        "questionId": "106",
+        "titleSlug": "construct-binary-tree-from-inorder-and-postorder-traversal",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null,
+      "lastTestcase": "",
+      "codeOutput": "",
+      "expectedOutput": "",
+      "totalCorrect": 202,
+      "totalTestcases": 202,
+      "fullCodeOutput": null,
+      "testDescriptions": null,
+      "testBodies": null,
+      "testInfo": null,
+      "stdOutput": ""
     }
+  }
 }

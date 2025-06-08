@@ -1,52 +1,48 @@
-<<<<<<< HEAD
 {
-    "data": {
-        "submissionDetails": {
-            "runtime": 32,
-            "runtimeDisplay": "32 ms",
-            "runtimePercentile": 42.5,
-            "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"8\", 1.25], [\"11\", 0.625], [\"13\", 0.625], [\"23\", 1.875], [\"24\", 0.625], [\"26\", 1.25], [\"27\", 10.0], [\"28\", 1.875], [\"29\", 5.0], [\"30\", 5.625], [\"31\", 28.75], [\"32\", 5.0], [\"33\", 5.625], [\"34\", 4.375], [\"35\", 11.25], [\"36\", 4.375], [\"37\", 1.875], [\"38\", 1.25], [\"39\", 2.5], [\"40\", 1.25]]}",
-            "memory": 156064000,
-            "memoryDisplay": "156.1 MB",
-            "memoryPercentile": 34.375,
-            "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"154100\", 0.625], [\"154200\", 1.25], [\"154600\", 0.625], [\"155800\", 15.625], [\"155900\", 28.75], [\"156000\", 18.75], [\"156100\", 5.625], [\"156200\", 5.625], [\"156400\", 1.25], [\"156500\", 0.625], [\"156600\", 0.625], [\"156700\", 1.875], [\"156800\", 3.75], [\"157000\", 0.625], [\"157800\", 1.25], [\"158300\", 1.25], [\"158400\", 1.875], [\"158600\", 1.25], [\"158700\", 0.625], [\"158800\", 1.875], [\"159700\", 0.625], [\"159800\", 0.625]]}",
-            "code": "#include <stdio.h>\n#include <stdlib.h>\n\n// Helper function to calculate binomial coefficient C(n, k)\nint binomial(int n, int k) {\n    if (k > n - k) k = n - k; // Take advantage of symmetry\n    long long result = 1;\n    for (int i = 0; i < k; i++) {\n        result = result * (n - i) / (i + 1);\n    }\n    return (int)result;\n}\n\n// Backtracking helper function\nvoid backtrack(int n, int k, int start, int* current, int currentSize, \n               int** result, int* resultIndex, int** returnColumnSizes) {\n    // Base case: if we have k numbers, add current combination to result\n    if (currentSize == k) {\n        result[*resultIndex] = (int*)malloc(k * sizeof(int));\n        for (int i = 0; i < k; i++) {\n            result[*resultIndex][i] = current[i];\n        }\n        (*returnColumnSizes)[*resultIndex] = k;\n        (*resultIndex)++;\n        return;\n    }\n    \n    // Try all numbers from start to n\n    // Optimization: we need (k - currentSize) more numbers,\n    // so we need at least (k - currentSize) numbers left: i <= n - (k - currentSize) + 1\n    for (int i = start; i <= n - (k - currentSize) + 1; i++) {\n        current[currentSize] = i;\n        backtrack(n, k, i + 1, current, currentSize + 1, result, resultIndex, returnColumnSizes);\n    }\n}\n\nint** combine(int n, int k, int* returnSize, int** returnColumnSizes) {\n    // Calculate total number of combinations C(n, k)\n    *returnSize = binomial(n, k);\n    \n    // Allocate memory for result array\n    int** result = (int**)malloc(*returnSize * sizeof(int*));\n    *returnColumnSizes = (int*)malloc(*returnSize * sizeof(int));\n    \n    // Temporary array to store current combination\n    int* current = (int*)malloc(k * sizeof(int));\n    int resultIndex = 0;\n    \n    // Start backtracking\n    backtrack(n, k, 1, current, 0, result, &resultIndex, returnColumnSizes);\n    \n    // Free temporary array\n    free(current);\n    \n    return result;\n}\n",
-            "timestamp": 1749413365,
-            "statusCode": 10,
-            "user": {
-                "username": "ZRlvkAicEr",
-                "profile": {
-                    "realName": "ZRlvkAicEr",
-                    "userAvatar": "https://assets.leetcode.com/users/ZRlvkAicEr/avatar_1749245074.png"
-                }
-            },
-            "lang": {
-                "name": "c",
-                "verboseName": "C"
-            },
-            "question": {
-                "questionId": "77",
-                "titleSlug": "combinations",
-                "hasFrontendPreview": false
-            },
-            "notes": "",
-            "flagType": "WHITE",
-            "topicTags": [],
-            "runtimeError": null,
-            "compileError": null,
-            "lastTestcase": "",
-            "codeOutput": "",
-            "expectedOutput": "",
-            "totalCorrect": 27,
-            "totalTestcases": 27,
-            "fullCodeOutput": null,
-            "testDescriptions": null,
-            "testBodies": null,
-            "testInfo": null,
-            "stdOutput": ""
+  "data": {
+    "submissionDetails": {
+      "runtime": 32,
+      "runtimeDisplay": "32 ms",
+      "runtimePercentile": 42.5,
+      "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"8\", 1.25], [\"11\", 0.625], [\"13\", 0.625], [\"23\", 1.875], [\"24\", 0.625], [\"26\", 1.25], [\"27\", 10.0], [\"28\", 1.875], [\"29\", 5.0], [\"30\", 5.625], [\"31\", 28.75], [\"32\", 5.0], [\"33\", 5.625], [\"34\", 4.375], [\"35\", 11.25], [\"36\", 4.375], [\"37\", 1.875], [\"38\", 1.25], [\"39\", 2.5], [\"40\", 1.25]]}",
+      "memory": 156064000,
+      "memoryDisplay": "156.1 MB",
+      "memoryPercentile": 34.375,
+      "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"154100\", 0.625], [\"154200\", 1.25], [\"154600\", 0.625], [\"155800\", 15.625], [\"155900\", 28.75], [\"156000\", 18.75], [\"156100\", 5.625], [\"156200\", 5.625], [\"156400\", 1.25], [\"156500\", 0.625], [\"156600\", 0.625], [\"156700\", 1.875], [\"156800\", 3.75], [\"157000\", 0.625], [\"157800\", 1.25], [\"158300\", 1.25], [\"158400\", 1.875], [\"158600\", 1.25], [\"158700\", 0.625], [\"158800\", 1.875], [\"159700\", 0.625], [\"159800\", 0.625]]}",
+      "code": "#include <stdio.h>\n#include <stdlib.h>\n\n// Helper function to calculate binomial coefficient C(n, k)\nint binomial(int n, int k) {\n    if (k > n - k) k = n - k; // Take advantage of symmetry\n    long long result = 1;\n    for (int i = 0; i < k; i++) {\n        result = result * (n - i) / (i + 1);\n    }\n    return (int)result;\n}\n\n// Backtracking helper function\nvoid backtrack(int n, int k, int start, int* current, int currentSize, \n               int** result, int* resultIndex, int** returnColumnSizes) {\n    // Base case: if we have k numbers, add current combination to result\n    if (currentSize == k) {\n        result[*resultIndex] = (int*)malloc(k * sizeof(int));\n        for (int i = 0; i < k; i++) {\n            result[*resultIndex][i] = current[i];\n        }\n        (*returnColumnSizes)[*resultIndex] = k;\n        (*resultIndex)++;\n        return;\n    }\n    \n    // Try all numbers from start to n\n    // Optimization: we need (k - currentSize) more numbers,\n    // so we need at least (k - currentSize) numbers left: i <= n - (k - currentSize) + 1\n    for (int i = start; i <= n - (k - currentSize) + 1; i++) {\n        current[currentSize] = i;\n        backtrack(n, k, i + 1, current, currentSize + 1, result, resultIndex, returnColumnSizes);\n    }\n}\n\nint** combine(int n, int k, int* returnSize, int** returnColumnSizes) {\n    // Calculate total number of combinations C(n, k)\n    *returnSize = binomial(n, k);\n    \n    // Allocate memory for result array\n    int** result = (int**)malloc(*returnSize * sizeof(int*));\n    *returnColumnSizes = (int*)malloc(*returnSize * sizeof(int));\n    \n    // Temporary array to store current combination\n    int* current = (int*)malloc(k * sizeof(int));\n    int resultIndex = 0;\n    \n    // Start backtracking\n    backtrack(n, k, 1, current, 0, result, &resultIndex, returnColumnSizes);\n    \n    // Free temporary array\n    free(current);\n    \n    return result;\n}\n",
+      "timestamp": 1749413365,
+      "statusCode": 10,
+      "user": {
+        "username": "ZRlvkAicEr",
+        "profile": {
+          "realName": "ZRlvkAicEr",
+          "userAvatar": "https://assets.leetcode.com/users/ZRlvkAicEr/avatar_1749245074.png"
         }
+      },
+      "lang": {
+        "name": "c",
+        "verboseName": "C"
+      },
+      "question": {
+        "questionId": "77",
+        "titleSlug": "combinations",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null,
+      "lastTestcase": "",
+      "codeOutput": "",
+      "expectedOutput": "",
+      "totalCorrect": 27,
+      "totalTestcases": 27,
+      "fullCodeOutput": null,
+      "testDescriptions": null,
+      "testBodies": null,
+      "testInfo": null,
+      "stdOutput": ""
     }
+  }
 }
-=======
-{}
->>>>>>> c2cc4181b1b21831bc80cda6f331f23438e0442e
