@@ -1,0 +1,48 @@
+{
+    "data": {
+        "submissionDetails": {
+            "runtime": 0,
+            "runtimeDisplay": "0 ms",
+            "runtimePercentile": 100.0,
+            "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"0\", 69.2982], [\"1\", 1.7544], [\"2\", 2.0468], [\"3\", 4.9708], [\"4\", 1.1696], [\"5\", 0.5848], [\"6\", 0.2924], [\"7\", 2.0468], [\"9\", 0.5848], [\"11\", 0.5848], [\"13\", 0.2924], [\"15\", 0.2924], [\"21\", 0.2924], [\"22\", 0.2924], [\"23\", 0.8772], [\"24\", 0.2924], [\"27\", 3.5088], [\"28\", 0.2924], [\"29\", 0.5848], [\"30\", 1.1696], [\"31\", 3.2164], [\"33\", 0.2924]]}",
+            "memory": 8296000,
+            "memoryDisplay": "8.3 MB",
+            "memoryPercentile": 88.8889,
+            "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"8200\", 11.1111], [\"8300\", 37.1345], [\"8400\", 27.4854], [\"8500\", 9.3567], [\"8600\", 9.3567]]}",
+            "code": "// Comparison function for qsort (descending order)\nint compare(const void *a, const void *b) {\n    return (*(int*)b - *(int*)a);\n}\n\nint hIndex(int* citations, int citationsSize) {\n    // Sort citations in descending order\n    qsort(citations, citationsSize, sizeof(int), compare);\n    \n    int h = 0;\n    \n    // Check each possible h-index value\n    for (int i = 0; i < citationsSize; i++) {\n        // At position i, we have (i+1) papers\n        // citations[i] is the citation count of the (i+1)th most cited paper\n        \n        // For h-index to be (i+1), we need:\n        // 1. At least (i+1) papers with >= (i+1) citations\n        // 2. citations[i] >= (i+1) (the (i+1)th paper has at least (i+1) citations)\n        \n        if (citations[i] >= i + 1) {\n            h = i + 1;  // We can achieve h-index of (i+1)\n        } else {\n            break;  // No point checking further as array is sorted\n        }\n    }\n    \n    return h;\n}",
+            "timestamp": 1749414848,
+            "statusCode": 10,
+            "user": {
+                "username": "ZRlvkAicEr",
+                "profile": {
+                    "realName": "ZRlvkAicEr",
+                    "userAvatar": "https://assets.leetcode.com/users/ZRlvkAicEr/avatar_1749245074.png"
+                }
+            },
+            "lang": {
+                "name": "c",
+                "verboseName": "C"
+            },
+            "question": {
+                "questionId": "274",
+                "titleSlug": "h-index",
+                "hasFrontendPreview": false
+            },
+            "notes": "",
+            "flagType": "WHITE",
+            "topicTags": [],
+            "runtimeError": null,
+            "compileError": null,
+            "lastTestcase": "",
+            "codeOutput": "",
+            "expectedOutput": "",
+            "totalCorrect": 83,
+            "totalTestcases": 83,
+            "fullCodeOutput": null,
+            "testDescriptions": null,
+            "testBodies": null,
+            "testInfo": null,
+            "stdOutput": ""
+        }
+    }
+}

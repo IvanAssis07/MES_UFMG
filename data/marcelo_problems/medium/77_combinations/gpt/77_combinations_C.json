@@ -1,1 +1,48 @@
-{}
+{
+    "data": {
+        "submissionDetails": {
+            "runtime": 34,
+            "runtimeDisplay": "34 ms",
+            "runtimePercentile": 31.875,
+            "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"8\", 1.25], [\"11\", 0.625], [\"13\", 0.625], [\"23\", 1.875], [\"24\", 0.625], [\"26\", 1.25], [\"27\", 10.0], [\"28\", 1.875], [\"29\", 5.0], [\"30\", 5.625], [\"31\", 28.75], [\"32\", 5.0], [\"33\", 5.625], [\"34\", 4.375], [\"35\", 11.25], [\"36\", 4.375], [\"37\", 1.875], [\"38\", 1.25], [\"39\", 2.5], [\"40\", 1.25]]}",
+            "memory": 156052000,
+            "memoryDisplay": "156.1 MB",
+            "memoryPercentile": 34.375,
+            "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"154100\", 0.625], [\"154200\", 1.25], [\"154600\", 0.625], [\"155800\", 15.625], [\"155900\", 28.75], [\"156000\", 18.75], [\"156100\", 5.625], [\"156200\", 5.625], [\"156400\", 1.25], [\"156500\", 0.625], [\"156600\", 0.625], [\"156700\", 1.875], [\"156800\", 3.75], [\"157000\", 0.625], [\"157800\", 1.25], [\"158300\", 1.25], [\"158400\", 1.875], [\"158600\", 1.25], [\"158700\", 0.625], [\"158800\", 1.875], [\"159700\", 0.625], [\"159800\", 0.625]]}",
+            "code": "#include <stdlib.h>\n\nvoid backtrack(int n, int k, int start, int* path, int pathSize, \n               int*** res, int* returnSize, int** returnColumnSizes) {\n    if (pathSize == k) {\n        (*res)[*returnSize] = (int*)malloc(sizeof(int) * k);\n        for (int i = 0; i < k; i++) {\n            (*res)[*returnSize][i] = path[i];\n        }\n        (*returnColumnSizes)[*returnSize] = k;\n        (*returnSize)++;\n        return;\n    }\n\n    for (int i = start; i <= n - (k - pathSize) + 1; i++) {\n        path[pathSize] = i;\n        backtrack(n, k, i + 1, path, pathSize + 1, res, returnSize, returnColumnSizes);\n    }\n}\n\nint** combine(int n, int k, int* returnSize, int** returnColumnSizes) {\n    int maxCombinations = 1;\n    for (int i = 0; i < k; i++) {\n        maxCombinations *= (n - i);\n        maxCombinations /= (i + 1);\n    }\n\n    int** result = (int**)malloc(sizeof(int*) * maxCombinations);\n    *returnColumnSizes = (int*)malloc(sizeof(int) * maxCombinations);\n    *returnSize = 0;\n\n    int* path = (int*)malloc(sizeof(int) * k);\n    backtrack(n, k, 1, path, 0, &result, returnSize, returnColumnSizes);\n\n    free(path);\n    return result;\n}\n",
+            "timestamp": 1749412951,
+            "statusCode": 10,
+            "user": {
+                "username": "ZRlvkAicEr",
+                "profile": {
+                    "realName": "ZRlvkAicEr",
+                    "userAvatar": "https://assets.leetcode.com/users/ZRlvkAicEr/avatar_1749245074.png"
+                }
+            },
+            "lang": {
+                "name": "c",
+                "verboseName": "C"
+            },
+            "question": {
+                "questionId": "77",
+                "titleSlug": "combinations",
+                "hasFrontendPreview": false
+            },
+            "notes": "",
+            "flagType": "WHITE",
+            "topicTags": [],
+            "runtimeError": null,
+            "compileError": null,
+            "lastTestcase": "",
+            "codeOutput": "",
+            "expectedOutput": "",
+            "totalCorrect": 27,
+            "totalTestcases": 27,
+            "fullCodeOutput": null,
+            "testDescriptions": null,
+            "testBodies": null,
+            "testInfo": null,
+            "stdOutput": ""
+        }
+    }
+}

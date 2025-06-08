@@ -1,1 +1,48 @@
-{}
+{
+    "data": {
+        "submissionDetails": {
+            "runtime": 12,
+            "runtimeDisplay": "12 ms",
+            "runtimePercentile": 8.563599999999994,
+            "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"0\", 2.2099], [\"1\", 0.5525], [\"2\", 1.105], [\"3\", 9.3923], [\"4\", 6.0773], [\"5\", 5.2486], [\"6\", 4.6961], [\"7\", 23.7569], [\"8\", 14.6409], [\"9\", 4.6961], [\"10\", 5.2486], [\"11\", 13.8122]]}",
+            "memory": 14348000,
+            "memoryDisplay": "14.3 MB",
+            "memoryPercentile": 48.619,
+            "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"11000\", 0.8287], [\"11300\", 0.2762], [\"11900\", 0.2762], [\"14100\", 2.7624], [\"14200\", 16.2983], [\"14300\", 30.9392], [\"14400\", 21.8232], [\"14500\", 11.326], [\"14600\", 4.9724], [\"14700\", 1.9337], [\"14800\", 0.2762], [\"14900\", 0.2762], [\"15000\", 0.5525], [\"15300\", 0.5525], [\"15400\", 1.105], [\"15500\", 0.2762]]}",
+            "code": "#include <stdlib.h>\n\n// Helper function to find index of a value in the inorder array\nint findIndex(int* arr, int start, int end, int value) {\n    for (int i = start; i <= end; ++i) {\n        if (arr[i] == value)\n            return i;\n    }\n    return -1;\n}\n\n// Recursive helper\nstruct TreeNode* buildTreeHelper(int* preorder, int* inorder, int inStart, int inEnd, int* preIndex) {\n    if (inStart > inEnd)\n        return NULL;\n\n    // Create the root node from preorder\n    int rootVal = preorder[*preIndex];\n    (*preIndex)++;\n    struct TreeNode* root = (struct TreeNode*)malloc(sizeof(struct TreeNode));\n    root->val = rootVal;\n    root->left = root->right = NULL;\n\n    // If this node has no children\n    if (inStart == inEnd)\n        return root;\n\n    // Find the index of this root in inorder\n    int inIndex = findIndex(inorder, inStart, inEnd, rootVal);\n\n    // Build left and right subtrees\n    root->left = buildTreeHelper(preorder, inorder, inStart, inIndex - 1, preIndex);\n    root->right = buildTreeHelper(preorder, inorder, inIndex + 1, inEnd, preIndex);\n\n    return root;\n}\n\nstruct TreeNode* buildTree(int* preorder, int preorderSize, int* inorder, int inorderSize) {\n    int preIndex = 0;\n    return buildTreeHelper(preorder, inorder, 0, inorderSize - 1, &preIndex);\n}\n",
+            "timestamp": 1749413923,
+            "statusCode": 10,
+            "user": {
+                "username": "ZRlvkAicEr",
+                "profile": {
+                    "realName": "ZRlvkAicEr",
+                    "userAvatar": "https://assets.leetcode.com/users/ZRlvkAicEr/avatar_1749245074.png"
+                }
+            },
+            "lang": {
+                "name": "c",
+                "verboseName": "C"
+            },
+            "question": {
+                "questionId": "105",
+                "titleSlug": "construct-binary-tree-from-preorder-and-inorder-traversal",
+                "hasFrontendPreview": false
+            },
+            "notes": "",
+            "flagType": "WHITE",
+            "topicTags": [],
+            "runtimeError": null,
+            "compileError": null,
+            "lastTestcase": "",
+            "codeOutput": "",
+            "expectedOutput": "",
+            "totalCorrect": 203,
+            "totalTestcases": 203,
+            "fullCodeOutput": null,
+            "testDescriptions": null,
+            "testBodies": null,
+            "testInfo": null,
+            "stdOutput": ""
+        }
+    }
+}

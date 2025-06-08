@@ -1,1 +1,48 @@
-{}
+{
+    "data": {
+        "submissionDetails": {
+            "runtime": 6,
+            "runtimeDisplay": "6 ms",
+            "runtimePercentile": 85.1331,
+            "runtimeDistribution": "{\"lang\": \"python3\", \"distribution\": [[\"1\", 9.7635], [\"3\", 5.1034], [\"5\", 16.0123], [\"7\", 6.9617], [\"9\", 23.6798], [\"11\", 7.1887], [\"13\", 11.4835], [\"16\", 2.7592], [\"18\", 2.9684], [\"20\", 0.7129000000000001], [\"22\", 1.9293], [\"24\", 0.5036], [\"26\", 1.0392], [\"28\", 0.2164], [\"30\", 0.45389999999999997], [\"33\", 0.2235], [\"35\", 0.0922], [\"37\", 0.1951], [\"39\", 0.0603], [\"41\", 0.16670000000000001], [\"43\", 0.0426], [\"45\", 0.15259999999999999], [\"48\", 0.0532], [\"50\", 0.11710000000000001], [\"52\", 0.039], [\"54\", 0.10640000000000001], [\"56\", 0.0745], [\"58\", 0.0709], [\"60\", 0.024800000000000003], [\"63\", 0.0815], [\"65\", 0.1028], [\"67\", 0.0354], [\"69\", 0.10640000000000001], [\"71\", 0.0319], [\"73\", 0.0957], [\"75\", 0.035500000000000004], [\"78\", 0.11], [\"80\", 0.042499999999999996], [\"82\", 0.1454], [\"84\", 0.0213], [\"86\", 0.0673], [\"88\", 0.0496], [\"90\", 0.0638], [\"92\", 0.11699999999999999], [\"95\", 0.0319], [\"97\", 0.0887], [\"99\", 0.035500000000000004], [\"101\", 0.0922], [\"103\", 0.024800000000000003], [\"105\", 0.0816], [\"107\", 0.0354], [\"110\", 0.0816], [\"112\", 0.0212], [\"114\", 0.0354], [\"116\", 0.0212], [\"118\", 0.0496], [\"120\", 0.0497], [\"122\", 0.0567], [\"125\", 0.1136], [\"127\", 0.0283], [\"129\", 0.07089999999999999], [\"131\", 0.0142], [\"133\", 0.039], [\"135\", 0.0283], [\"137\", 0.0497], [\"140\", 0.0461], [\"142\", 0.046099999999999995], [\"144\", 0.035500000000000004], [\"146\", 0.0461], [\"148\", 0.0319], [\"150\", 0.0674], [\"152\", 0.0284], [\"154\", 0.06029999999999999], [\"157\", 0.0461], [\"159\", 0.0213], [\"161\", 0.035500000000000004], [\"163\", 0.024800000000000003], [\"165\", 0.0745], [\"167\", 0.0248], [\"169\", 0.0496]]}",
+            "memory": 17804000,
+            "memoryDisplay": "17.8 MB",
+            "memoryPercentile": 61.52080000000001,
+            "memoryDistribution": "{\"lang\": \"python3\", \"distribution\": [[\"17300\", 0.0106], [\"17400\", 0.0213], [\"17500\", 0.1809], [\"17600\", 1.7874], [\"17700\", 10.7529], [\"17800\", 25.7261], [\"17900\", 21.864], [\"18000\", 20.1688]]}",
+            "code": "from typing import List\n\nclass Solution:\n    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:\n        result = []\n\n        def backtrack(start: int, current_combination: List[int], current_sum: int):\n            if current_sum == target:\n                result.append(list(current_combination))  # Found a valid combination\n                return\n            if current_sum > target:\n                return  # Prune the search if the sum exceeds the target\n\n            for i in range(start, len(candidates)):\n                current_combination.append(candidates[i])\n                backtrack(i, current_combination, current_sum + candidates[i])  # Allow same candidate again\n                current_combination.pop()  # Backtrack\n\n        backtrack(0, [], 0)\n        return result\n",
+            "timestamp": 1749249784,
+            "statusCode": 10,
+            "user": {
+                "username": "ZRlvkAicEr",
+                "profile": {
+                    "realName": "ZRlvkAicEr",
+                    "userAvatar": "https://assets.leetcode.com/users/ZRlvkAicEr/avatar_1749245074.png"
+                }
+            },
+            "lang": {
+                "name": "python3",
+                "verboseName": "Python3"
+            },
+            "question": {
+                "questionId": "39",
+                "titleSlug": "combination-sum",
+                "hasFrontendPreview": false
+            },
+            "notes": "",
+            "flagType": "WHITE",
+            "topicTags": [],
+            "runtimeError": null,
+            "compileError": null,
+            "lastTestcase": "",
+            "codeOutput": "",
+            "expectedOutput": "",
+            "totalCorrect": 160,
+            "totalTestcases": 160,
+            "fullCodeOutput": null,
+            "testDescriptions": null,
+            "testBodies": null,
+            "testInfo": null,
+            "stdOutput": ""
+        }
+    }
+}
