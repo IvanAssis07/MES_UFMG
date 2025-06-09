@@ -1,17 +1,17 @@
 {
     "data": {
         "submissionDetails": {
-            "runtime": 0,
-            "runtimeDisplay": "N/A",
-            "runtimePercentile": null,
-            "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"0\", 17.1364], [\"1\", 3.8331], [\"2\", 7.2153], [\"3\", 34.4983], [\"4\", 22.5479], [\"5\", 3.9459], [\"6\", 5.7497]]}",
-            "memory": 0,
-            "memoryDisplay": "N/A",
-            "memoryPercentile": null,
-            "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"10700\", 0.2255], [\"10800\", 0.451], [\"10900\", 1.0147], [\"11000\", 0.7892], [\"11200\", 0.5637], [\"11300\", 0.1127], [\"11400\", 0.1127], [\"15700\", 1.4656], [\"15800\", 21.7587], [\"15900\", 39.2334], [\"16000\", 20.7441], [\"16100\", 7.6663]]}",
-            "code": "#include <stdlib.h>\n\n// Definition for a binary tree node.\nstruct TreeNode {\n    int val;\n    struct TreeNode *left;\n    struct TreeNode *right;\n};\n\n// Helper function to recursively build the tree\nstruct TreeNode* buildBST(int* nums, int left, int right) {\n    if (left > right) {\n        return NULL;\n    }\n\n    int mid = left + (right - left) / 2;\n\n    struct TreeNode* root = (struct TreeNode*)malloc(sizeof(struct TreeNode));\n    root->val = nums[mid];\n    root->left = buildBST(nums, left, mid - 1);\n    root->right = buildBST(nums, mid + 1, right);\n\n    return root;\n}\n\n// Main function to be called\nstruct TreeNode* sortedArrayToBST(int* nums, int numsSize) {\n    return buildBST(nums, 0, numsSize - 1);\n}\n",
-            "timestamp": 1749157101,
-            "statusCode": 20,
+            "runtime": 3,
+            "runtimeDisplay": "3 ms",
+            "runtimePercentile": 72.6072,
+            "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"0\", 16.8317], [\"1\", 3.5204], [\"2\", 7.0407], [\"3\", 35.8636], [\"4\", 22.9923], [\"5\", 3.5204], [\"6\", 4.9505]]}",
+            "memory": 16132000,
+            "memoryDisplay": "16.1 MB",
+            "memoryPercentile": 5.720600000000008,
+            "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"10700\", 0.22], [\"10800\", 0.44], [\"10900\", 0.8801], [\"11000\", 0.7701], [\"11200\", 0.5501], [\"11300\", 0.11], [\"11400\", 0.11], [\"15700\", 1.3201], [\"15800\", 21.7822], [\"15900\", 39.3839], [\"16000\", 20.9021], [\"16100\", 7.8108]]}",
+            "code": "#include <stdlib.h>\n\n// Helper function to recursively build the tree\nstruct TreeNode* buildBST(int* nums, int left, int right) {\n    if (left > right) {\n        return NULL;\n    }\n\n    int mid = left + (right - left) / 2;\n\n    struct TreeNode* root = (struct TreeNode*)malloc(sizeof(struct TreeNode));\n    root->val = nums[mid];\n    root->left = buildBST(nums, left, mid - 1);\n    root->right = buildBST(nums, mid + 1, right);\n\n    return root;\n}\n\n// Main function to be called\nstruct TreeNode* sortedArrayToBST(int* nums, int numsSize) {\n    return buildBST(nums, 0, numsSize - 1);\n}\n",
+            "timestamp": 1749426125,
+            "statusCode": 10,
             "user": {
                 "username": "IvanAssis",
                 "profile": {
@@ -32,17 +32,17 @@
             "flagType": "WHITE",
             "topicTags": [],
             "runtimeError": null,
-            "compileError": "Line 4: Char 8: error: redefinition of \u2018struct TreeNode\u2019 [solution.c]\n    4 | struct TreeNode {\n      |        ^~~~~~~~",
-            "lastTestcase": null,
-            "codeOutput": "{\"compile_error\": \"Line 4: Char 8: error: redefinition of \\u2018struct TreeNode\\u2019 [solution.c]\\n    4 | struct TreeNode {\\n      |        ^~~~~~~~\"}",
-            "expectedOutput": null,
-            "totalCorrect": null,
-            "totalTestcases": 0,
+            "compileError": null,
+            "lastTestcase": "",
+            "codeOutput": "",
+            "expectedOutput": "",
+            "totalCorrect": 31,
+            "totalTestcases": 31,
             "fullCodeOutput": null,
             "testDescriptions": null,
             "testBodies": null,
             "testInfo": null,
-            "stdOutput": null
+            "stdOutput": ""
         }
     }
 }

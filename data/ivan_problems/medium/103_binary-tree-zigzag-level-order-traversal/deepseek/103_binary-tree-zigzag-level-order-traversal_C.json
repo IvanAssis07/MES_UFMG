@@ -2,16 +2,16 @@
     "data": {
         "submissionDetails": {
             "runtime": 0,
-            "runtimeDisplay": "N/A",
-            "runtimePercentile": null,
-            "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"0\", 81.5603], [\"1\", 4.9645], [\"2\", 7.8014], [\"3\", 2.8369], [\"14\", 0.7092]]}",
-            "memory": 0,
-            "memoryDisplay": "N/A",
-            "memoryPercentile": null,
-            "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"10700\", 1.4184], [\"10800\", 5.6738], [\"10900\", 2.8369], [\"11000\", 2.1277], [\"11100\", 6.383], [\"11200\", 5.6738], [\"11300\", 3.5461], [\"11400\", 5.6738], [\"11500\", 3.5461], [\"11600\", 12.0567], [\"11700\", 14.1844], [\"11800\", 10.6383], [\"11900\", 6.383], [\"12000\", 2.1277], [\"12100\", 0.7092], [\"12200\", 0.7092], [\"12300\", 2.8369], [\"12500\", 0.7092], [\"12600\", 1.4184], [\"12700\", 0.7092], [\"13100\", 0.7092], [\"13300\", 0.7092], [\"13400\", 1.4184], [\"13500\", 0.7092], [\"13700\", 1.4184]]}",
-            "code": "#include <stdio.h>\n#include <stdlib.h>\n\nstruct TreeNode {\n    int val;\n    struct TreeNode *left;\n    struct TreeNode *right;\n};\n\nint** zigzagLevelOrder(struct TreeNode* root, int* returnSize, int** returnColumnSizes) {\n    if (root == NULL) {\n        *returnSize = 0;\n        *returnColumnSizes = NULL;\n        return NULL;\n    }\n\n    struct TreeNode** queue = (struct TreeNode**)malloc(2000 * sizeof(struct TreeNode*));\n    int front = 0, rear = 0;\n    queue[rear++] = root;\n    int** result = (int**)malloc(2000 * sizeof(int*));\n    *returnColumnSizes = (int*)malloc(2000 * sizeof(int));\n    *returnSize = 0;\n    int level = 0;\n\n    while (front < rear) {\n        int level_size = rear - front;\n        int* current_level = (int*)malloc(level_size * sizeof(int));\n        for (int i = 0; i < level_size; ++i) {\n            struct TreeNode* node = queue[front++];\n            int index = (level % 2 == 0) ? i : (level_size - 1 - i);\n            current_level[index] = node->val;\n            if (node->left != NULL) {\n                queue[rear++] = node->left;\n            }\n            if (node->right != NULL) {\n                queue[rear++] = node->right;\n            }\n        }\n        (*returnColumnSizes)[*returnSize] = level_size;\n        result[*returnSize] = current_level;\n        (*returnSize)++;\n        level++;\n    }\n\n    free(queue);\n    return result;\n}",
-            "timestamp": 1749306299,
-            "statusCode": 20,
+            "runtimeDisplay": "0 ms",
+            "runtimePercentile": 100.0,
+            "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"0\", 79.8611], [\"1\", 4.8611], [\"2\", 6.9444], [\"3\", 3.4722], [\"4\", 0.6944]]}",
+            "memory": 11592000,
+            "memoryDisplay": "11.6 MB",
+            "memoryPercentile": 68.05560000000001,
+            "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"10700\", 1.3889], [\"10800\", 4.8611], [\"10900\", 2.7778], [\"11000\", 2.0833], [\"11100\", 4.8611], [\"11200\", 4.8611], [\"11300\", 2.7778], [\"11400\", 4.8611], [\"11500\", 3.4722], [\"11600\", 12.5], [\"11700\", 15.2778], [\"11800\", 12.5], [\"11900\", 7.6389], [\"12000\", 2.0833], [\"12200\", 0.6944], [\"12300\", 2.7778], [\"12500\", 0.6944], [\"12600\", 1.3889], [\"12700\", 0.6944], [\"13100\", 0.6944], [\"13300\", 0.6944], [\"13400\", 1.3889], [\"13500\", 0.6944], [\"13700\", 1.3889], [\"13800\", 0.6944], [\"14000\", 0.6944]]}",
+            "code": "#include <stdio.h>\n#include <stdlib.h>\n\nint** zigzagLevelOrder(struct TreeNode* root, int* returnSize, int** returnColumnSizes) {\n    if (root == NULL) {\n        *returnSize = 0;\n        *returnColumnSizes = NULL;\n        return NULL;\n    }\n\n    struct TreeNode** queue = (struct TreeNode**)malloc(2000 * sizeof(struct TreeNode*));\n    int front = 0, rear = 0;\n    queue[rear++] = root;\n    int** result = (int**)malloc(2000 * sizeof(int*));\n    *returnColumnSizes = (int*)malloc(2000 * sizeof(int));\n    *returnSize = 0;\n    int level = 0;\n\n    while (front < rear) {\n        int level_size = rear - front;\n        int* current_level = (int*)malloc(level_size * sizeof(int));\n        for (int i = 0; i < level_size; ++i) {\n            struct TreeNode* node = queue[front++];\n            int index = (level % 2 == 0) ? i : (level_size - 1 - i);\n            current_level[index] = node->val;\n            if (node->left != NULL) {\n                queue[rear++] = node->left;\n            }\n            if (node->right != NULL) {\n                queue[rear++] = node->right;\n            }\n        }\n        (*returnColumnSizes)[*returnSize] = level_size;\n        result[*returnSize] = current_level;\n        (*returnSize)++;\n        level++;\n    }\n\n    free(queue);\n    return result;\n}",
+            "timestamp": 1749426463,
+            "statusCode": 10,
             "user": {
                 "username": "IvanAssis",
                 "profile": {
@@ -32,17 +32,17 @@
             "flagType": "WHITE",
             "topicTags": [],
             "runtimeError": null,
-            "compileError": "Line 4: Char 8: error: redefinition of \u2018struct TreeNode\u2019 [solution.c]\n    4 | struct TreeNode {\n      |        ^~~~~~~~",
-            "lastTestcase": null,
-            "codeOutput": "{\"compile_error\": \"Line 4: Char 8: error: redefinition of \\u2018struct TreeNode\\u2019 [solution.c]\\n    4 | struct TreeNode {\\n      |        ^~~~~~~~\"}",
-            "expectedOutput": null,
-            "totalCorrect": null,
-            "totalTestcases": 0,
+            "compileError": null,
+            "lastTestcase": "",
+            "codeOutput": "",
+            "expectedOutput": "",
+            "totalCorrect": 33,
+            "totalTestcases": 33,
             "fullCodeOutput": null,
             "testDescriptions": null,
             "testBodies": null,
             "testInfo": null,
-            "stdOutput": null
+            "stdOutput": ""
         }
     }
 }

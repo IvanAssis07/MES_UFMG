@@ -2,16 +2,16 @@
     "data": {
         "submissionDetails": {
             "runtime": 0,
-            "runtimeDisplay": "N/A",
-            "runtimePercentile": null,
-            "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"0\", 93.7701], [\"1\", 1.0741], [\"2\", 0.8593], [\"3\", 1.826], [\"4\", 1.1815]]}",
-            "memory": 0,
-            "memoryDisplay": "N/A",
-            "memoryPercentile": null,
-            "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"20000\", 7.6262], [\"20100\", 37.3792], [\"20200\", 28.8937], [\"20300\", 13.6412], [\"20400\", 7.7336]]}",
-            "code": "#include <stdio.h>\n#include <stdlib.h>\n\n/**\n * Definition for a binary tree node.\n */\nstruct TreeNode {\n    int val;\n    struct TreeNode *left;\n    struct TreeNode *right;\n};\n\n// Helper function to calculate the height of the leftmost path\nint getLeftHeight(struct TreeNode* node) {\n    int height = 0;\n    while (node) {\n        height++;\n        node = node->left;\n    }\n    return height;\n}\n\n// Helper function to calculate the height of the rightmost path\nint getRightHeight(struct TreeNode* node) {\n    int height = 0;\n    while (node) {\n        height++;\n        node = node->right;\n    }\n    return height;\n}\n\nint countNodes(struct TreeNode* root) {\n    if (!root) return 0;\n    \n    int leftHeight = getLeftHeight(root);\n    int rightHeight = getRightHeight(root);\n    \n    // If left height equals right height, it's a perfect binary tree\n    if (leftHeight == rightHeight) {\n        // For a perfect binary tree with height h, total nodes = 2^h - 1\n        return (1 << leftHeight) - 1;  // 2^leftHeight - 1\n    }\n    \n    // Otherwise, recursively count left and right subtrees\n    return 1 + countNodes(root->left) + countNodes(root->right);\n}\n",
-            "timestamp": 1749303125,
-            "statusCode": 20,
+            "runtimeDisplay": "0 ms",
+            "runtimePercentile": 100.0,
+            "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"0\", 93.81], [\"1\", 1.0672], [\"2\", 0.8538], [\"3\", 1.8143], [\"4\", 1.174]]}",
+            "memory": 20192000,
+            "memoryDisplay": "20.2 MB",
+            "memoryPercentile": 55.389599999999994,
+            "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"20000\", 7.7908], [\"20100\", 36.8196], [\"20200\", 29.0288], [\"20300\", 13.5539], [\"20400\", 8.0043]]}",
+            "code": "#include <stdio.h>#include <stdlib.h>\n\n// Helper function to calculate the height of the leftmost path\nint getLeftHeight(struct TreeNode* node) {\n    int height = 0;\n    while (node) {\n        height++;\n        node = node->left;\n    }\n    return height;\n}\n\n// Helper function to calculate the height of the rightmost path\nint getRightHeight(struct TreeNode* node) {\n    int height = 0;\n    while (node) {\n        height++;\n        node = node->right;\n    }\n    return height;\n}\n\nint countNodes(struct TreeNode* root) {\n    if (!root) return 0;\n    \n    int leftHeight = getLeftHeight(root);\n    int rightHeight = getRightHeight(root);\n    \n    // If left height equals right height, it's a perfect binary tree\n    if (leftHeight == rightHeight) {\n        // For a perfect binary tree with height h, total nodes = 2^h - 1\n        return (1 << leftHeight) - 1;  // 2^leftHeight - 1\n    }\n    \n    // Otherwise, recursively count left and right subtrees\n    return 1 + countNodes(root->left) + countNodes(root->right);\n}\n",
+            "timestamp": 1749425913,
+            "statusCode": 10,
             "user": {
                 "username": "IvanAssis",
                 "profile": {
@@ -32,17 +32,17 @@
             "flagType": "WHITE",
             "topicTags": [],
             "runtimeError": null,
-            "compileError": "Line 7: Char 8: error: redefinition of \u2018struct TreeNode\u2019 [solution.c]\n    7 | struct TreeNode {\n      |        ^~~~~~~~",
-            "lastTestcase": null,
-            "codeOutput": "{\"compile_error\": \"Line 7: Char 8: error: redefinition of \\u2018struct TreeNode\\u2019 [solution.c]\\n    7 | struct TreeNode {\\n      |        ^~~~~~~~\"}",
-            "expectedOutput": null,
-            "totalCorrect": null,
-            "totalTestcases": 0,
+            "compileError": null,
+            "lastTestcase": "",
+            "codeOutput": "",
+            "expectedOutput": "",
+            "totalCorrect": 18,
+            "totalTestcases": 18,
             "fullCodeOutput": null,
             "testDescriptions": null,
             "testBodies": null,
             "testInfo": null,
-            "stdOutput": null
+            "stdOutput": ""
         }
     }
 }
