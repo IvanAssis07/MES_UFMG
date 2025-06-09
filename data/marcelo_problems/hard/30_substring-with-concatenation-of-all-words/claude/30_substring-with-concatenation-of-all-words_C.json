@@ -1,1 +1,48 @@
-{}
+{
+    "data": {
+        "submissionDetails": {
+            "runtime": 1205,
+            "runtimeDisplay": "1205 ms",
+            "runtimePercentile": 12.626200000000026,
+            "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"11\", 35.8803], [\"34\", 4.319], [\"57\", 4.3187999999999995], [\"80\", 3.6543], [\"103\", 6.644600000000001], [\"126\", 2.6578], [\"149\", 3.654299999999999], [\"172\", 0.9965999999999999], [\"195\", 0.3322], [\"218\", 0.3322], [\"241\", 0.3322], [\"264\", 0.6645], [\"287\", 3.6543999999999994], [\"310\", 0.9966999999999999], [\"333\", 0.3322], [\"356\", 0.3322], [\"379\", 0.3322], [\"402\", 0.3322], [\"425\", 0.3322], [\"448\", 0.6645], [\"471\", 0.3322], [\"494\", 0.3322], [\"517\", 0.3322], [\"540\", 0.6645], [\"563\", 0.3322], [\"586\", 0.3322], [\"609\", 0.3322], [\"632\", 0.3322], [\"655\", 0.3322], [\"678\", 0.6645], [\"701\", 0.3322], [\"724\", 0.3322], [\"747\", 0.3322], [\"770\", 0.3322], [\"793\", 0.3322], [\"816\", 0.3322], [\"839\", 0.6645], [\"862\", 0.3322], [\"885\", 0.3322], [\"908\", 0.3322], [\"932\", 0.3322], [\"955\", 0.3322], [\"978\", 0.3322], [\"1001\", 0.3322], [\"1024\", 0.9965999999999999], [\"1047\", 1.3289], [\"1070\", 1.3288], [\"1093\", 0.6644], [\"1116\", 0.3322], [\"1139\", 1.3288], [\"1162\", 0.9965999999999999], [\"1185\", 0.9965999999999999], [\"1208\", 0.6644], [\"1231\", 0.3322], [\"1254\", 0.3322], [\"1277\", 0.3322], [\"1300\", 0.3322], [\"1323\", 0.6644], [\"1346\", 0.3322], [\"1369\", 0.3322], [\"1392\", 0.3322], [\"1415\", 0.3322], [\"1438\", 0.3322], [\"1461\", 0.3322], [\"1484\", 0.3322], [\"1507\", 0.6645], [\"1530\", 0.3322], [\"1553\", 0.3322], [\"1576\", 0.3322], [\"1599\", 0.3322]]}",
+            "memory": 334032000,
+            "memoryDisplay": "334 MB",
+            "memoryPercentile": 5.648200000000019,
+            "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"13000\", 1.3289], [\"13100\", 3.3223], [\"13200\", 2.6578], [\"13300\", 2.99], [\"13400\", 4.3189], [\"13500\", 3.9867], [\"13600\", 8.3056], [\"13700\", 13.6213], [\"13800\", 8.6379], [\"13900\", 1.9934], [\"14000\", 2.99], [\"14100\", 0.9967], [\"14200\", 0.6645], [\"14300\", 0.6645], [\"14500\", 0.6645], [\"14600\", 0.3322], [\"14800\", 0.3322], [\"15200\", 0.6645], [\"15500\", 0.9967], [\"15600\", 1.6611], [\"15700\", 0.3322], [\"15900\", 0.6645], [\"18200\", 0.3322], [\"18800\", 0.3322], [\"19500\", 0.3322], [\"19600\", 1.6611], [\"19700\", 0.6645], [\"19800\", 0.3322], [\"19900\", 0.3322], [\"20000\", 0.3322], [\"20100\", 0.3322], [\"21200\", 0.3322], [\"21500\", 0.3322], [\"21600\", 0.3322], [\"22400\", 0.3322], [\"22600\", 0.3322], [\"22700\", 1.3289], [\"22800\", 0.6645], [\"22900\", 0.6645], [\"23000\", 0.3322], [\"23900\", 0.3322], [\"24000\", 0.3322], [\"24900\", 0.3322], [\"25100\", 0.3322], [\"25200\", 0.9967], [\"26300\", 0.3322], [\"26800\", 1.9934], [\"26900\", 1.3289], [\"27100\", 0.3322], [\"29500\", 0.3322], [\"29900\", 0.3322], [\"30200\", 0.3322], [\"30300\", 0.9967], [\"30500\", 0.6645], [\"30600\", 0.3322], [\"30800\", 0.3322], [\"32500\", 0.6645], [\"37300\", 0.3322], [\"37400\", 0.3322], [\"37500\", 0.3322], [\"39900\", 0.3322], [\"41500\", 0.3322], [\"41700\", 0.3322], [\"42700\", 0.3322], [\"42800\", 0.3322], [\"42900\", 1.3289], [\"43000\", 0.3322], [\"43100\", 0.9967], [\"43200\", 0.3322], [\"50600\", 0.3322], [\"50700\", 1.9934], [\"50800\", 0.9967], [\"50900\", 0.6645], [\"51200\", 0.3322], [\"61000\", 0.6645], [\"61100\", 0.3322], [\"61900\", 0.3322], [\"65200\", 0.3322], [\"137000\", 0.6645], [\"137500\", 0.3322]]}",
+            "code": "#include <stdio.h>\n#include <stdlib.h>\n#include <string.h>\n\n// Hash table structure for word counting\n#define HASH_SIZE 10007\n\ntypedef struct HashNode {\n    char* word;\n    int count;\n    struct HashNode* next;\n} HashNode;\n\n// Hash function\nunsigned int hash(char* word, int len) {\n    unsigned int hash = 0;\n    for (int i = 0; i < len; i++) {\n        hash = hash * 31 + word[i];\n    }\n    return hash % HASH_SIZE;\n}\n\n// Create hash table\nHashNode** createHashTable() {\n    HashNode** table = (HashNode**)calloc(HASH_SIZE, sizeof(HashNode*));\n    return table;\n}\n\n// Insert or update word count in hash table\nvoid insertOrUpdate(HashNode** table, char* word, int len, int count) {\n    unsigned int index = hash(word, len);\n    HashNode* node = table[index];\n    \n    // Check if word already exists\n    while (node) {\n        if (strncmp(node->word, word, len) == 0 && strlen(node->word) == len) {\n            node->count += count;\n            return;\n        }\n        node = node->next;\n    }\n    \n    // Create new node\n    HashNode* newNode = (HashNode*)malloc(sizeof(HashNode));\n    newNode->word = (char*)malloc((len + 1) * sizeof(char));\n    strncpy(newNode->word, word, len);\n    newNode->word[len] = '\\0';\n    newNode->count = count;\n    newNode->next = table[index];\n    table[index] = newNode;\n}\n\n// Get word count from hash table\nint getCount(HashNode** table, char* word, int len) {\n    unsigned int index = hash(word, len);\n    HashNode* node = table[index];\n    \n    while (node) {\n        if (strncmp(node->word, word, len) == 0 && strlen(node->word) == len) {\n            return node->count;\n        }\n        node = node->next;\n    }\n    return 0;\n}\n\n// Free hash table\nvoid freeHashTable(HashNode** table) {\n    for (int i = 0; i < HASH_SIZE; i++) {\n        HashNode* node = table[i];\n        while (node) {\n            HashNode* temp = node;\n            node = node->next;\n            free(temp->word);\n            free(temp);\n        }\n    }\n    free(table);\n}\n\n// Copy hash table\nHashNode** copyHashTable(HashNode** original) {\n    HashNode** copy = createHashTable();\n    for (int i = 0; i < HASH_SIZE; i++) {\n        HashNode* node = original[i];\n        while (node) {\n            insertOrUpdate(copy, node->word, strlen(node->word), node->count);\n            node = node->next;\n        }\n    }\n    return copy;\n}\n\nint* findSubstring(char* s, char** words, int wordsSize, int* returnSize) {\n    *returnSize = 0;\n    if (!s || !words || wordsSize == 0) return NULL;\n    \n    int sLen = strlen(s);\n    int wordLen = strlen(words[0]);\n    int totalLen = wordLen * wordsSize;\n    \n    if (sLen < totalLen) return NULL;\n    \n    // Create hash table for word counts\n    HashNode** wordCount = createHashTable();\n    for (int i = 0; i < wordsSize; i++) {\n        insertOrUpdate(wordCount, words[i], wordLen, 1);\n    }\n    \n    int* result = (int*)malloc(sLen * sizeof(int));\n    \n    // Try each possible starting offset (0 to wordLen-1)\n    for (int offset = 0; offset < wordLen; offset++) {\n        HashNode** seen = createHashTable();\n        int left = offset;\n        int count = 0;\n        \n        // Sliding window starting from offset\n        for (int right = offset; right <= sLen - wordLen; right += wordLen) {\n            char* word = s + right;\n            int wordCountInDict = getCount(wordCount, word, wordLen);\n            \n            if (wordCountInDict > 0) {\n                insertOrUpdate(seen, word, wordLen, 1);\n                count++;\n                \n                // If we have too many of this word, shrink window from left\n                while (getCount(seen, word, wordLen) > wordCountInDict) {\n                    char* leftWord = s + left;\n                    insertOrUpdate(seen, leftWord, wordLen, -1);\n                    count--;\n                    left += wordLen;\n                }\n                \n                // Check if we have a valid window\n                if (count == wordsSize) {\n                    result[(*returnSize)++] = left;\n                    \n                    // Move left pointer to continue searching\n                    char* leftWord = s + left;\n                    insertOrUpdate(seen, leftWord, wordLen, -1);\n                    count--;\n                    left += wordLen;\n                }\n            } else {\n                // Reset window\n                freeHashTable(seen);\n                seen = createHashTable();\n                count = 0;\n                left = right + wordLen;\n            }\n        }\n        \n        freeHashTable(seen);\n    }\n    \n    freeHashTable(wordCount);\n    \n    if (*returnSize == 0) {\n        free(result);\n        return NULL;\n    }\n    \n    return result;\n}",
+            "timestamp": 1749469875,
+            "statusCode": 10,
+            "user": {
+                "username": "ZRlvkAicEr",
+                "profile": {
+                    "realName": "ZRlvkAicEr",
+                    "userAvatar": "https://assets.leetcode.com/users/ZRlvkAicEr/avatar_1749245074.png"
+                }
+            },
+            "lang": {
+                "name": "c",
+                "verboseName": "C"
+            },
+            "question": {
+                "questionId": "30",
+                "titleSlug": "substring-with-concatenation-of-all-words",
+                "hasFrontendPreview": false
+            },
+            "notes": "",
+            "flagType": "WHITE",
+            "topicTags": [],
+            "runtimeError": null,
+            "compileError": null,
+            "lastTestcase": "",
+            "codeOutput": "",
+            "expectedOutput": "",
+            "totalCorrect": 182,
+            "totalTestcases": 182,
+            "fullCodeOutput": null,
+            "testDescriptions": null,
+            "testBodies": null,
+            "testInfo": null,
+            "stdOutput": ""
+        }
+    }
+}

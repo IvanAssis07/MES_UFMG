@@ -1,1 +1,48 @@
-{}
+{
+    "data": {
+        "submissionDetails": {
+            "runtime": 0,
+            "runtimeDisplay": "N/A",
+            "runtimePercentile": null,
+            "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"0\", 92.6108], [\"1\", 0.7389], [\"2\", 0.7389], [\"3\", 1.9704], [\"4\", 0.7389]]}",
+            "memory": 11468000,
+            "memoryDisplay": "N/A",
+            "memoryPercentile": null,
+            "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"11300\", 0.7389], [\"11400\", 27.0936], [\"11500\", 35.468], [\"11600\", 14.7783], [\"11700\", 13.67]]}",
+            "code": "/**\n * Definition for singly-linked list.\n * struct ListNode {\n *     int val;\n *     struct ListNode *next;\n * };\n */\n\n// Helper function to reverse a portion of the linked list\nstruct ListNode* reverse(struct ListNode* start, struct ListNode* end) {\n    struct ListNode* prev = end;\n    struct ListNode* curr = start;\n    \n    while (curr != end) {\n        struct ListNode* next = curr->next;\n        curr->next = prev;\n        prev = curr;\n        curr = next;\n    }\n    \n    return prev;\n}\n\nstruct ListNode* reverseKGroup(struct ListNode* head, int k) {\n    if (!head || k == 1) {\n        return head;\n    }\n    \n    // First, check if we have at least k nodes\n    struct ListNode* temp = head;\n    for (int i = 0; i < k; i++) {\n        if (!temp) {\n            return head; // Less than k nodes, return as is\n        }\n        temp = temp->next;\n    }\n    \n    // We have at least k nodes, so reverse this group\n    struct ListNode* nextGroupHead = reverseKGroup(temp, k);\n    struct ListNode* newHead = reverse(head, temp);\n    \n    return newHead;\n}\n\n// Alternative iterative solution\nstruct ListNode* reverseKGroupIterative(struct ListNode* head, int k) {\n    if (!head || k == 1) {\n        return head;\n    }\n    \n    // Create a dummy node to simplify edge cases\n    struct ListNode dummy;\n    dummy.next = head;\n    struct ListNode* prevGroupEnd = &dummy;\n    \n    while (1) {\n        // Check if we have k nodes remaining\n        struct ListNode* groupStart = prevGroupEnd->next;\n        struct ListNode* groupEnd = groupStart;\n        \n        for (int i = 0; i < k - 1; i++) {\n            if (!groupEnd || !groupEnd->next) {\n                return dummy.next; // Less than k nodes remaining\n            }\n            groupEnd = groupEnd->next;\n        }\n        \n        struct ListNode* nextGroupStart = groupEnd->next;\n        \n        // Reverse the current group\n        struct ListNode* prev = nextGroupStart;\n        struct ListNode* curr = groupStart;\n        \n        while (curr != nextGroupStart) {\n            struct ListNode* next = curr->next;\n            curr->next = prev;\n            prev = curr;\n            curr = next;\n        }\n        \n        // Connect with previous group\n        prevGroupEnd->next = groupEnd; // groupEnd is now the new head of reversed group\n        prevGroupEnd = groupStart; // groupStart is now the tail of reversed group\n    }\n    \n    return dummy.next;\n}",
+            "timestamp": 1749469545,
+            "statusCode": 11,
+            "user": {
+                "username": "ZRlvkAicEr",
+                "profile": {
+                    "realName": "ZRlvkAicEr",
+                    "userAvatar": "https://assets.leetcode.com/users/ZRlvkAicEr/avatar_1749245074.png"
+                }
+            },
+            "lang": {
+                "name": "c",
+                "verboseName": "C"
+            },
+            "question": {
+                "questionId": "25",
+                "titleSlug": "reverse-nodes-in-k-group",
+                "hasFrontendPreview": false
+            },
+            "notes": "",
+            "flagType": "WHITE",
+            "topicTags": [],
+            "runtimeError": null,
+            "compileError": null,
+            "lastTestcase": "[1,2,3,4,5]\n2",
+            "codeOutput": "[2,1,3,5]",
+            "expectedOutput": "[2,1,4,3,5]",
+            "totalCorrect": 35,
+            "totalTestcases": 62,
+            "fullCodeOutput": null,
+            "testDescriptions": null,
+            "testBodies": null,
+            "testInfo": null,
+            "stdOutput": ""
+        }
+    }
+}

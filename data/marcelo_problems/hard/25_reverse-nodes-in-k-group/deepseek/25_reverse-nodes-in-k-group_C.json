@@ -1,1 +1,48 @@
-{}
+{
+    "data": {
+        "submissionDetails": {
+            "runtime": 0,
+            "runtimeDisplay": "0 ms",
+            "runtimePercentile": 100.0,
+            "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"0\", 92.6108], [\"1\", 0.7389], [\"2\", 0.7389], [\"3\", 1.9704], [\"4\", 0.7389]]}",
+            "memory": 11500000,
+            "memoryDisplay": "11.5 MB",
+            "memoryPercentile": 72.1675,
+            "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"11300\", 0.7389], [\"11400\", 27.0936], [\"11500\", 35.468], [\"11600\", 14.7783], [\"11700\", 13.67]]}",
+            "code": "#include <stdlib.h>\n\n\nstruct ListNode* reverseKGroup(struct ListNode* head, int k) {\n    if (head == NULL || k == 1) {\n        return head;\n    }\n    \n    struct ListNode dummy;\n    dummy.next = head;\n    struct ListNode *prev = &dummy;\n    struct ListNode *curr = head;\n    struct ListNode *next = NULL;\n    \n    int count = 0;\n    struct ListNode *temp = head;\n    while (temp != NULL) {\n        temp = temp->next;\n        count++;\n    }\n    \n    while (count >= k) {\n        curr = prev->next;\n        next = curr->next;\n        for (int i = 1; i < k; i++) {\n            curr->next = next->next;\n            next->next = prev->next;\n            prev->next = next;\n            next = curr->next;\n        }\n        prev = curr;\n        count -= k;\n    }\n    \n    return dummy.next;\n}",
+            "timestamp": 1749469512,
+            "statusCode": 10,
+            "user": {
+                "username": "ZRlvkAicEr",
+                "profile": {
+                    "realName": "ZRlvkAicEr",
+                    "userAvatar": "https://assets.leetcode.com/users/ZRlvkAicEr/avatar_1749245074.png"
+                }
+            },
+            "lang": {
+                "name": "c",
+                "verboseName": "C"
+            },
+            "question": {
+                "questionId": "25",
+                "titleSlug": "reverse-nodes-in-k-group",
+                "hasFrontendPreview": false
+            },
+            "notes": "",
+            "flagType": "WHITE",
+            "topicTags": [],
+            "runtimeError": null,
+            "compileError": null,
+            "lastTestcase": "",
+            "codeOutput": "",
+            "expectedOutput": "",
+            "totalCorrect": 62,
+            "totalTestcases": 62,
+            "fullCodeOutput": null,
+            "testDescriptions": null,
+            "testBodies": null,
+            "testInfo": null,
+            "stdOutput": ""
+        }
+    }
+}

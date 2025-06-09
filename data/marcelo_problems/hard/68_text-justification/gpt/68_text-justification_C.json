@@ -1,1 +1,48 @@
-{}
+{
+    "data": {
+        "submissionDetails": {
+            "runtime": 0,
+            "runtimeDisplay": "0 ms",
+            "runtimePercentile": 100.0,
+            "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"0\", 90.2256], [\"1\", 2.2556], [\"2\", 3.0075], [\"3\", 3.0075], [\"4\", 1.5038]]}",
+            "memory": 8400000,
+            "memoryDisplay": "8.4 MB",
+            "memoryPercentile": 73.6842,
+            "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"8200\", 5.2632], [\"8300\", 21.0526], [\"8400\", 33.0827], [\"8500\", 18.0451], [\"8600\", 15.7895]]}",
+            "code": "#include <stdio.h>\n#include <stdlib.h>\n#include <string.h>\n\nchar* buildLine(char** words, int start, int end, int numWords, int numChars, int maxWidth, int isLastLine) {\n    char* line = (char*)malloc((maxWidth + 1) * sizeof(char));\n    line[0] = '\\0';\n\n    if (isLastLine || numWords == 1) {\n        for (int i = start; i <= end; ++i) {\n            strcat(line, words[i]);\n            if (i != end) strcat(line, \" \");\n        }\n        int currentLen = strlen(line);\n        for (int i = currentLen; i < maxWidth; ++i) {\n            strcat(line, \" \");\n        }\n    } else {\n        int totalSpaces = maxWidth - numChars;\n        int spaceSlots = numWords - 1;\n        int minSpaces = totalSpaces / spaceSlots;\n        int extraSpaces = totalSpaces % spaceSlots;\n\n        for (int i = start; i < end; ++i) {\n            strcat(line, words[i]);\n            for (int j = 0; j < minSpaces; ++j) strcat(line, \" \");\n            if (extraSpaces-- > 0) strcat(line, \" \");\n        }\n        strcat(line, words[end]); // last word\n    }\n\n    return line;\n}\n\nchar** fullJustify(char** words, int wordsSize, int maxWidth, int* returnSize) {\n    char** result = (char**)malloc(sizeof(char*) * (wordsSize + 1));\n    int start = 0, end = 0, lineLen = 0, count = 0;\n\n    while (start < wordsSize) {\n        lineLen = strlen(words[start]);\n        end = start + 1;\n\n        while (end < wordsSize && lineLen + 1 + strlen(words[end]) <= maxWidth) {\n            lineLen += 1 + strlen(words[end]);\n            ++end;\n        }\n\n        int numWords = end - start;\n        int numChars = 0;\n        for (int i = start; i < end; ++i) {\n            numChars += strlen(words[i]);\n        }\n\n        int isLastLine = (end == wordsSize);\n        result[count++] = buildLine(words, start, end - 1, numWords, numChars, maxWidth, isLastLine);\n\n        start = end;\n    }\n\n    *returnSize = count;\n    return result;\n}\n",
+            "timestamp": 1749481416,
+            "statusCode": 10,
+            "user": {
+                "username": "ZRlvkAicEr",
+                "profile": {
+                    "realName": "ZRlvkAicEr",
+                    "userAvatar": "https://assets.leetcode.com/users/ZRlvkAicEr/avatar_1749245074.png"
+                }
+            },
+            "lang": {
+                "name": "c",
+                "verboseName": "C"
+            },
+            "question": {
+                "questionId": "68",
+                "titleSlug": "text-justification",
+                "hasFrontendPreview": false
+            },
+            "notes": "",
+            "flagType": "WHITE",
+            "topicTags": [],
+            "runtimeError": null,
+            "compileError": null,
+            "lastTestcase": "",
+            "codeOutput": "",
+            "expectedOutput": "",
+            "totalCorrect": 29,
+            "totalTestcases": 29,
+            "fullCodeOutput": null,
+            "testDescriptions": null,
+            "testBodies": null,
+            "testInfo": null,
+            "stdOutput": ""
+        }
+    }
+}

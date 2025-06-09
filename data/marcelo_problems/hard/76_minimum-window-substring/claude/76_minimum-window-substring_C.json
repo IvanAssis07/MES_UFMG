@@ -1,1 +1,48 @@
-{}
+{
+    "data": {
+        "submissionDetails": {
+            "runtime": 2,
+            "runtimeDisplay": "2 ms",
+            "runtimePercentile": 67.2728,
+            "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"0\", 25.4545], [\"1\", 7.2727], [\"2\", 8.1818], [\"3\", 21.5152], [\"4\", 11.5152], [\"5\", 2.4242], [\"6\", 2.1212], [\"7\", 1.8182], [\"11\", 0.6061], [\"15\", 0.6061], [\"16\", 0.303], [\"17\", 0.303], [\"19\", 0.6061], [\"20\", 0.6061], [\"21\", 0.6061], [\"22\", 0.303], [\"23\", 0.9091], [\"27\", 0.9091], [\"28\", 0.303], [\"29\", 0.303], [\"30\", 0.303], [\"31\", 0.9091], [\"34\", 0.303], [\"35\", 1.2121], [\"36\", 0.303], [\"40\", 0.303], [\"51\", 0.303], [\"64\", 0.303], [\"65\", 0.303], [\"69\", 0.303], [\"79\", 0.303], [\"81\", 0.303], [\"83\", 0.303], [\"86\", 0.303], [\"95\", 0.303], [\"97\", 0.303], [\"102\", 0.303], [\"119\", 0.303], [\"135\", 0.303], [\"155\", 0.303], [\"198\", 0.303], [\"199\", 0.303]]}",
+            "memory": 9508000,
+            "memoryDisplay": "9.5 MB",
+            "memoryPercentile": 36.6665,
+            "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"8900\", 0.6061], [\"9000\", 4.8485], [\"9100\", 7.5758], [\"9200\", 7.5758], [\"9300\", 4.8485], [\"9400\", 10.0], [\"9500\", 27.8788], [\"9600\", 9.0909], [\"9700\", 7.5758], [\"9800\", 2.7273], [\"9900\", 1.2121], [\"10000\", 2.7273], [\"10100\", 3.3333], [\"10200\", 3.0303], [\"10300\", 0.6061], [\"11300\", 1.2121]]}",
+            "code": "char* minWindow(char* s, char* t) {\n    int m = strlen(s);\n    int n = strlen(t);\n    \n    if (m < n) return \"\";\n    \n    // Count frequency of characters in t\n    int tCount[128] = {0};  // ASCII characters\n    for (int i = 0; i < n; i++) {\n        tCount[t[i]]++;\n    }\n    \n    // Sliding window variables\n    int left = 0, right = 0;\n    int minLen = INT_MAX;\n    int minStart = 0;\n    int required = 0;  // Number of unique characters in t that need to be matched\n    int formed = 0;    // Number of unique characters in current window that match frequency in t\n    \n    // Count unique characters in t\n    for (int i = 0; i < 128; i++) {\n        if (tCount[i] > 0) required++;\n    }\n    \n    // Window character counts\n    int windowCount[128] = {0};\n    \n    while (right < m) {\n        // Expand window by including character at right\n        char c = s[right];\n        windowCount[c]++;\n        \n        // Check if current character's frequency matches required frequency in t\n        if (tCount[c] > 0 && windowCount[c] == tCount[c]) {\n            formed++;\n        }\n        \n        // Try to shrink window from left\n        while (left <= right && formed == required) {\n            // Update minimum window if current is smaller\n            if (right - left + 1 < minLen) {\n                minLen = right - left + 1;\n                minStart = left;\n            }\n            \n            // Remove leftmost character from window\n            char leftChar = s[left];\n            windowCount[leftChar]--;\n            if (tCount[leftChar] > 0 && windowCount[leftChar] < tCount[leftChar]) {\n                formed--;\n            }\n            left++;\n        }\n        \n        right++;\n    }\n    \n    // Return result\n    if (minLen == INT_MAX) {\n        char* result = (char*)malloc(1);\n        result[0] = '\\0';\n        return result;\n    }\n    \n    char* result = (char*)malloc(minLen + 1);\n    strncpy(result, s + minStart, minLen);\n    result[minLen] = '\\0';\n    return result;\n}",
+            "timestamp": 1749482186,
+            "statusCode": 10,
+            "user": {
+                "username": "ZRlvkAicEr",
+                "profile": {
+                    "realName": "ZRlvkAicEr",
+                    "userAvatar": "https://assets.leetcode.com/users/ZRlvkAicEr/avatar_1749245074.png"
+                }
+            },
+            "lang": {
+                "name": "c",
+                "verboseName": "C"
+            },
+            "question": {
+                "questionId": "76",
+                "titleSlug": "minimum-window-substring",
+                "hasFrontendPreview": false
+            },
+            "notes": "",
+            "flagType": "WHITE",
+            "topicTags": [],
+            "runtimeError": null,
+            "compileError": null,
+            "lastTestcase": "",
+            "codeOutput": "",
+            "expectedOutput": "",
+            "totalCorrect": 268,
+            "totalTestcases": 268,
+            "fullCodeOutput": null,
+            "testDescriptions": null,
+            "testBodies": null,
+            "testInfo": null,
+            "stdOutput": ""
+        }
+    }
+}

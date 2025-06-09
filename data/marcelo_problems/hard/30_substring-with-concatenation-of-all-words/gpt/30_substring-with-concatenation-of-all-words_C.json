@@ -1,1 +1,48 @@
-{}
+{
+    "data": {
+        "submissionDetails": {
+            "runtime": 8,
+            "runtimeDisplay": "8 ms",
+            "runtimePercentile": 70.4319,
+            "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"11\", 35.8803], [\"34\", 4.319], [\"57\", 4.3187999999999995], [\"80\", 3.6543], [\"103\", 6.644600000000001], [\"126\", 2.6578], [\"149\", 3.654299999999999], [\"172\", 0.9965999999999999], [\"195\", 0.3322], [\"218\", 0.3322], [\"241\", 0.3322], [\"264\", 0.6645], [\"287\", 3.6543999999999994], [\"310\", 0.9966999999999999], [\"333\", 0.3322], [\"356\", 0.3322], [\"379\", 0.3322], [\"402\", 0.3322], [\"425\", 0.3322], [\"448\", 0.6645], [\"471\", 0.3322], [\"494\", 0.3322], [\"517\", 0.3322], [\"540\", 0.6645], [\"563\", 0.3322], [\"586\", 0.3322], [\"609\", 0.3322], [\"632\", 0.3322], [\"655\", 0.3322], [\"678\", 0.6645], [\"701\", 0.3322], [\"724\", 0.3322], [\"747\", 0.3322], [\"770\", 0.3322], [\"793\", 0.3322], [\"816\", 0.3322], [\"839\", 0.6645], [\"862\", 0.3322], [\"885\", 0.3322], [\"908\", 0.3322], [\"932\", 0.3322], [\"955\", 0.3322], [\"978\", 0.3322], [\"1001\", 0.3322], [\"1024\", 0.9965999999999999], [\"1047\", 1.3289], [\"1070\", 1.3288], [\"1093\", 0.6644], [\"1116\", 0.3322], [\"1139\", 1.3288], [\"1162\", 0.9965999999999999], [\"1185\", 0.9965999999999999], [\"1208\", 0.6644], [\"1231\", 0.3322], [\"1254\", 0.3322], [\"1277\", 0.3322], [\"1300\", 0.3322], [\"1323\", 0.6644], [\"1346\", 0.3322], [\"1369\", 0.3322], [\"1392\", 0.3322], [\"1415\", 0.3322], [\"1438\", 0.3322], [\"1461\", 0.3322], [\"1484\", 0.3322], [\"1507\", 0.6645], [\"1530\", 0.3322], [\"1553\", 0.3322], [\"1576\", 0.3322], [\"1599\", 0.3322]]}",
+            "memory": 13372000,
+            "memoryDisplay": "13.4 MB",
+            "memoryPercentile": 89.70100000000001,
+            "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"13000\", 1.3289], [\"13100\", 3.3223], [\"13200\", 2.6578], [\"13300\", 2.99], [\"13400\", 4.3189], [\"13500\", 3.9867], [\"13600\", 8.3056], [\"13700\", 13.6213], [\"13800\", 8.6379], [\"13900\", 1.9934], [\"14000\", 2.99], [\"14100\", 0.9967], [\"14200\", 0.6645], [\"14300\", 0.6645], [\"14500\", 0.6645], [\"14600\", 0.3322], [\"14800\", 0.3322], [\"15200\", 0.6645], [\"15500\", 0.9967], [\"15600\", 1.6611], [\"15700\", 0.3322], [\"15900\", 0.6645], [\"18200\", 0.3322], [\"18800\", 0.3322], [\"19500\", 0.3322], [\"19600\", 1.6611], [\"19700\", 0.6645], [\"19800\", 0.3322], [\"19900\", 0.3322], [\"20000\", 0.3322], [\"20100\", 0.3322], [\"21200\", 0.3322], [\"21500\", 0.3322], [\"21600\", 0.3322], [\"22400\", 0.3322], [\"22600\", 0.3322], [\"22700\", 1.3289], [\"22800\", 0.6645], [\"22900\", 0.6645], [\"23000\", 0.3322], [\"23900\", 0.3322], [\"24000\", 0.3322], [\"24900\", 0.3322], [\"25100\", 0.3322], [\"25200\", 0.9967], [\"26300\", 0.3322], [\"26800\", 1.9934], [\"26900\", 1.3289], [\"27100\", 0.3322], [\"29500\", 0.3322], [\"29900\", 0.3322], [\"30200\", 0.3322], [\"30300\", 0.9967], [\"30500\", 0.6645], [\"30600\", 0.3322], [\"30800\", 0.3322], [\"32500\", 0.6645], [\"37300\", 0.3322], [\"37400\", 0.3322], [\"37500\", 0.3322], [\"39900\", 0.3322], [\"41500\", 0.3322], [\"41700\", 0.3322], [\"42700\", 0.3322], [\"42800\", 0.3322], [\"42900\", 1.3289], [\"43000\", 0.3322], [\"43100\", 0.9967], [\"43200\", 0.3322], [\"50600\", 0.3322], [\"50700\", 1.9934], [\"50800\", 0.9967], [\"50900\", 0.6645], [\"51200\", 0.3322], [\"61000\", 0.6645], [\"61100\", 0.3322], [\"61900\", 0.3322], [\"65200\", 0.3322], [\"137000\", 0.6645], [\"137500\", 0.3322]]}",
+            "code": "#include <stdlib.h>\n#include <string.h>\n#include <stdio.h>\n\ntypedef struct {\n    char *word;\n    int count;\n} WordEntry;\n\nint compare(const void *a, const void *b) {\n    return strcmp(((WordEntry *)a)->word, ((WordEntry *)b)->word);\n}\n\nint findWordIndex(WordEntry *entries, int size, const char *word) {\n    int left = 0, right = size - 1;\n    while (left <= right) {\n        int mid = (left + right) / 2;\n        int cmp = strcmp(entries[mid].word, word);\n        if (cmp == 0) return mid;\n        else if (cmp < 0) left = mid + 1;\n        else right = mid - 1;\n    }\n    return -1;\n}\n\nint* findSubstring(char* s, char** words, int wordsSize, int* returnSize) {\n    *returnSize = 0;\n    if (wordsSize == 0 || s == NULL || *s == '\\0') return NULL;\n\n    int wordLen = strlen(words[0]);\n    int totalLen = wordLen * wordsSize;\n    int sLen = strlen(s);\n    if (sLen < totalLen) return NULL;\n\n    // Count words\n    WordEntry *dict = malloc(wordsSize * sizeof(WordEntry));\n    int dictSize = 0;\n    for (int i = 0; i < wordsSize; ++i) {\n        int j;\n        for (j = 0; j < dictSize; ++j) {\n            if (strcmp(dict[j].word, words[i]) == 0) {\n                dict[j].count++;\n                break;\n            }\n        }\n        if (j == dictSize) {\n            dict[dictSize].word = words[i];\n            dict[dictSize].count = 1;\n            dictSize++;\n        }\n    }\n    qsort(dict, dictSize, sizeof(WordEntry), compare);\n\n    int *result = malloc(sizeof(int) * (sLen - totalLen + 1));\n    int resultCount = 0;\n\n    for (int offset = 0; offset < wordLen; offset++) {\n        int left = offset, right = offset;\n        int *currCount = calloc(dictSize, sizeof(int));\n        int wordsUsed = 0;\n\n        while (right + wordLen <= sLen) {\n            char temp = s[right + wordLen];\n            s[right + wordLen] = '\\0';\n            int idx = findWordIndex(dict, dictSize, s + right);\n            s[right + wordLen] = temp;\n\n            if (idx >= 0) {\n                currCount[idx]++;\n                wordsUsed++;\n                right += wordLen;\n\n                while (currCount[idx] > dict[idx].count) {\n                    char t = s[left + wordLen];\n                    s[left + wordLen] = '\\0';\n                    int leftIdx = findWordIndex(dict, dictSize, s + left);\n                    s[left + wordLen] = t;\n                    currCount[leftIdx]--;\n                    wordsUsed--;\n                    left += wordLen;\n                }\n\n                if (wordsUsed == wordsSize) {\n                    result[resultCount++] = left;\n                }\n\n            } else {\n                memset(currCount, 0, sizeof(int) * dictSize);\n                wordsUsed = 0;\n                right += wordLen;\n                left = right;\n            }\n        }\n        free(currCount);\n    }\n\n    free(dict);\n    *returnSize = resultCount;\n    return result;\n}\n",
+            "timestamp": 1749469779,
+            "statusCode": 10,
+            "user": {
+                "username": "ZRlvkAicEr",
+                "profile": {
+                    "realName": "ZRlvkAicEr",
+                    "userAvatar": "https://assets.leetcode.com/users/ZRlvkAicEr/avatar_1749245074.png"
+                }
+            },
+            "lang": {
+                "name": "c",
+                "verboseName": "C"
+            },
+            "question": {
+                "questionId": "30",
+                "titleSlug": "substring-with-concatenation-of-all-words",
+                "hasFrontendPreview": false
+            },
+            "notes": "",
+            "flagType": "WHITE",
+            "topicTags": [],
+            "runtimeError": null,
+            "compileError": null,
+            "lastTestcase": "",
+            "codeOutput": "",
+            "expectedOutput": "",
+            "totalCorrect": 182,
+            "totalTestcases": 182,
+            "fullCodeOutput": null,
+            "testDescriptions": null,
+            "testBodies": null,
+            "testInfo": null,
+            "stdOutput": ""
+        }
+    }
+}

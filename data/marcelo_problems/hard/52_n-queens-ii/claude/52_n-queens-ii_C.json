@@ -1,1 +1,48 @@
-{}
+{
+    "data": {
+        "submissionDetails": {
+            "runtime": 0,
+            "runtimeDisplay": "0 ms",
+            "runtimePercentile": 100.0,
+            "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"0\", 57.377], [\"1\", 9.8361], [\"2\", 12.7049], [\"3\", 15.5738], [\"4\", 2.8689]]}",
+            "memory": 7900000,
+            "memoryDisplay": "7.9 MB",
+            "memoryPercentile": 28.278700000000008,
+            "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"7600\", 6.1475], [\"7700\", 33.6066], [\"7800\", 31.9672], [\"7900\", 16.3934], [\"8000\", 5.7377]]}",
+            "code": "#include <stdlib.h>\n\nbool isSafe(int* queens, int row, int col) {\n    for (int i = 0; i < row; i++) {\n        // Check if queens are in same column or diagonal\n        if (queens[i] == col || \n            abs(queens[i] - col) == abs(i - row)) {\n            return false;\n        }\n    }\n    return true;\n}\n\nvoid backtrack(int* queens, int n, int row, int* count) {\n    if (row == n) {\n        (*count)++;\n        return;\n    }\n    \n    for (int col = 0; col < n; col++) {\n        if (isSafe(queens, row, col)) {\n            queens[row] = col;\n            backtrack(queens, n, row + 1, count);\n            queens[row] = -1; // backtrack\n        }\n    }\n}\n\nint totalNQueens(int n) {\n    int count = 0;\n    int* queens = (int*)malloc(n * sizeof(int));\n    \n    // Initialize queens array\n    for (int i = 0; i < n; i++) {\n        queens[i] = -1;\n    }\n    \n    backtrack(queens, n, 0, &count);\n    \n    free(queens);\n    return count;\n}",
+            "timestamp": 1749470586,
+            "statusCode": 10,
+            "user": {
+                "username": "ZRlvkAicEr",
+                "profile": {
+                    "realName": "ZRlvkAicEr",
+                    "userAvatar": "https://assets.leetcode.com/users/ZRlvkAicEr/avatar_1749245074.png"
+                }
+            },
+            "lang": {
+                "name": "c",
+                "verboseName": "C"
+            },
+            "question": {
+                "questionId": "52",
+                "titleSlug": "n-queens-ii",
+                "hasFrontendPreview": false
+            },
+            "notes": "",
+            "flagType": "WHITE",
+            "topicTags": [],
+            "runtimeError": null,
+            "compileError": null,
+            "lastTestcase": "",
+            "codeOutput": "",
+            "expectedOutput": "",
+            "totalCorrect": 9,
+            "totalTestcases": 9,
+            "fullCodeOutput": null,
+            "testDescriptions": null,
+            "testBodies": null,
+            "testInfo": null,
+            "stdOutput": ""
+        }
+    }
+}

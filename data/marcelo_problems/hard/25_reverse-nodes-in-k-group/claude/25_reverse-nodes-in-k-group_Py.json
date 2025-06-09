@@ -1,1 +1,48 @@
-{}
+{
+    "data": {
+        "submissionDetails": {
+            "runtime": 0,
+            "runtimeDisplay": "0 ms",
+            "runtimePercentile": 100.0,
+            "runtimeDistribution": "{\"lang\": \"python3\", \"distribution\": [[\"0\", 55.7837], [\"1\", 7.0967], [\"2\", 5.0438], [\"3\", 17.674], [\"4\", 6.9612], [\"5\", 1.3235], [\"6\", 0.8128]]}",
+            "memory": 18404000,
+            "memoryDisplay": "18.4 MB",
+            "memoryPercentile": 86.12970000000001,
+            "memoryDistribution": "{\"lang\": \"python3\", \"distribution\": [[\"18000\", 0.0208], [\"18100\", 0.0208], [\"18200\", 0.1251], [\"18300\", 1.5527], [\"18400\", 12.1509], [\"18500\", 27.3864], [\"18600\", 20.3418], [\"18700\", 20.3835]]}",
+            "code": "class Solution:\n    def reverseKGroup(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:\n        # Check if there are at least k nodes remaining\n        curr = head\n        count = 0\n        while curr and count < k:\n            curr = curr.next\n            count += 1\n        \n        # If we have k nodes, reverse them\n        if count == k:\n            # curr is now the (k+1)th node\n            # Recursively reverse the rest\n            curr = self.reverseKGroup(curr, k)\n            \n            # Reverse the first k nodes\n            while count > 0:\n                temp = head.next\n                head.next = curr\n                curr = head\n                head = temp\n                count -= 1\n            \n            head = curr\n        \n        return head",
+            "timestamp": 1749469369,
+            "statusCode": 10,
+            "user": {
+                "username": "ZRlvkAicEr",
+                "profile": {
+                    "realName": "ZRlvkAicEr",
+                    "userAvatar": "https://assets.leetcode.com/users/ZRlvkAicEr/avatar_1749245074.png"
+                }
+            },
+            "lang": {
+                "name": "python3",
+                "verboseName": "Python3"
+            },
+            "question": {
+                "questionId": "25",
+                "titleSlug": "reverse-nodes-in-k-group",
+                "hasFrontendPreview": false
+            },
+            "notes": "",
+            "flagType": "WHITE",
+            "topicTags": [],
+            "runtimeError": null,
+            "compileError": null,
+            "lastTestcase": "",
+            "codeOutput": "",
+            "expectedOutput": "",
+            "totalCorrect": 62,
+            "totalTestcases": 62,
+            "fullCodeOutput": null,
+            "testDescriptions": null,
+            "testBodies": null,
+            "testInfo": null,
+            "stdOutput": ""
+        }
+    }
+}

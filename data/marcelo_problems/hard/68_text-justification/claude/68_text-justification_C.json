@@ -1,1 +1,48 @@
-{}
+{
+    "data": {
+        "submissionDetails": {
+            "runtime": 0,
+            "runtimeDisplay": "0 ms",
+            "runtimePercentile": 100.0,
+            "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"0\", 90.2256], [\"1\", 2.2556], [\"2\", 3.0075], [\"3\", 3.0075], [\"4\", 1.5038]]}",
+            "memory": 8460000,
+            "memoryDisplay": "8.5 MB",
+            "memoryPercentile": 40.6015,
+            "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"8200\", 5.2632], [\"8300\", 21.0526], [\"8400\", 33.0827], [\"8500\", 18.0451], [\"8600\", 15.7895]]}",
+            "code": "#include <stdio.h>\n#include <stdlib.h>\n#include <string.h>\n\nchar** fullJustify(char** words, int wordsSize, int maxWidth, int* returnSize) {\n    char** result = (char**)malloc(wordsSize * sizeof(char*));\n    *returnSize = 0;\n    \n    int i = 0;\n    \n    while (i < wordsSize) {\n        // Find words that can fit in current line\n        int lineStart = i;\n        int totalChars = strlen(words[i]);\n        i++;\n        \n        // Add more words while they fit (accounting for at least 1 space between words)\n        while (i < wordsSize && totalChars + 1 + strlen(words[i]) <= maxWidth) {\n            totalChars += 1 + strlen(words[i]);\n            i++;\n        }\n        \n        // Now we have words from lineStart to i-1 for current line\n        int wordsInLine = i - lineStart;\n        \n        // Allocate memory for current line\n        result[*returnSize] = (char*)malloc((maxWidth + 1) * sizeof(char));\n        char* line = result[*returnSize];\n        \n        // Handle last line or single word line (left-justified)\n        if (i == wordsSize || wordsInLine == 1) {\n            int pos = 0;\n            for (int j = lineStart; j < i; j++) {\n                strcpy(line + pos, words[j]);\n                pos += strlen(words[j]);\n                if (j < i - 1) {\n                    line[pos++] = ' ';\n                }\n            }\n            // Fill remaining with spaces\n            while (pos < maxWidth) {\n                line[pos++] = ' ';\n            }\n            line[maxWidth] = '\\0';\n        }\n        else {\n            // Full justification\n            int totalWordChars = 0;\n            for (int j = lineStart; j < i; j++) {\n                totalWordChars += strlen(words[j]);\n            }\n            \n            int totalSpaces = maxWidth - totalWordChars;\n            int gaps = wordsInLine - 1;\n            int spacesPerGap = totalSpaces / gaps;\n            int extraSpaces = totalSpaces % gaps;\n            \n            int pos = 0;\n            for (int j = lineStart; j < i; j++) {\n                strcpy(line + pos, words[j]);\n                pos += strlen(words[j]);\n                \n                if (j < i - 1) { // Not the last word in line\n                    int spacesToAdd = spacesPerGap;\n                    if (j - lineStart < extraSpaces) {\n                        spacesToAdd++;\n                    }\n                    for (int k = 0; k < spacesToAdd; k++) {\n                        line[pos++] = ' ';\n                    }\n                }\n            }\n            line[maxWidth] = '\\0';\n        }\n        \n        (*returnSize)++;\n    }\n    \n    return result;\n}\n",
+            "timestamp": 1749481376,
+            "statusCode": 10,
+            "user": {
+                "username": "ZRlvkAicEr",
+                "profile": {
+                    "realName": "ZRlvkAicEr",
+                    "userAvatar": "https://assets.leetcode.com/users/ZRlvkAicEr/avatar_1749245074.png"
+                }
+            },
+            "lang": {
+                "name": "c",
+                "verboseName": "C"
+            },
+            "question": {
+                "questionId": "68",
+                "titleSlug": "text-justification",
+                "hasFrontendPreview": false
+            },
+            "notes": "",
+            "flagType": "WHITE",
+            "topicTags": [],
+            "runtimeError": null,
+            "compileError": null,
+            "lastTestcase": "",
+            "codeOutput": "",
+            "expectedOutput": "",
+            "totalCorrect": 29,
+            "totalTestcases": 29,
+            "fullCodeOutput": null,
+            "testDescriptions": null,
+            "testBodies": null,
+            "testInfo": null,
+            "stdOutput": ""
+        }
+    }
+}

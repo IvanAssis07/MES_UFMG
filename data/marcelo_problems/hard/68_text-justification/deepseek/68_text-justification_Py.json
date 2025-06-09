@@ -1,1 +1,48 @@
-{}
+{
+    "data": {
+        "submissionDetails": {
+            "runtime": 0,
+            "runtimeDisplay": "0 ms",
+            "runtimePercentile": 100.0,
+            "runtimeDistribution": "{\"lang\": \"python3\", \"distribution\": [[\"0\", 89.4569], [\"1\", 2.6711], [\"2\", 1.5744], [\"3\", 4.5286], [\"4\", 1.6982]]}",
+            "memory": 17816000,
+            "memoryDisplay": "17.8 MB",
+            "memoryPercentile": 63.965999999999994,
+            "memoryDistribution": "{\"lang\": \"python3\", \"distribution\": [[\"17400\", 0.0177], [\"17500\", 0.2123], [\"17600\", 1.309], [\"17700\", 9.6409], [\"17800\", 24.8541], [\"17900\", 24.4826], [\"18000\", 19.0341]]}",
+            "code": "from typing import List\n\nclass Solution:\n    def fullJustify(self, words: List[str], maxWidth: int) -> List[str]:\n        res = []\n        current_line = []\n        current_length = 0\n        \n        for word in words:\n            # Check if adding the current word exceeds the line length\n            # current_length is sum of word lengths, + (number of words - 1) spaces\n            if current_line:\n                # If we can add the word plus at least one space before it\n                if current_length + len(word) + len(current_line) <= maxWidth:\n                    current_line.append(word)\n                    current_length += len(word)\n                else:\n                    # Process the current line\n                    res.append(self.process_line(current_line, maxWidth, False))\n                    current_line = [word]\n                    current_length = len(word)\n            else:\n                current_line.append(word)\n                current_length = len(word)\n        \n        # Process the last line\n        if current_line:\n            res.append(self.process_line(current_line, maxWidth, True))\n        \n        return res\n    \n    def process_line(self, words: List[str], maxWidth: int, is_last_line: bool) -> str:\n        if is_last_line or len(words) == 1:\n            line = ' '.join(words)\n            line += ' ' * (maxWidth - len(line))\n            return line\n        else:\n            total_spaces = maxWidth - sum(len(word) for word in words)\n            gaps = len(words) - 1\n            space_per_gap = total_spaces // gaps\n            extra_spaces = total_spaces % gaps\n            \n            line = []\n            for i in range(len(words) - 1):\n                line.append(words[i])\n                line.append(' ' * space_per_gap)\n                if extra_spaces > 0:\n                    line.append(' ')\n                    extra_spaces -= 1\n            line.append(words[-1])\n            \n            return ''.join(line)",
+            "timestamp": 1749481645,
+            "statusCode": 10,
+            "user": {
+                "username": "ZRlvkAicEr",
+                "profile": {
+                    "realName": "ZRlvkAicEr",
+                    "userAvatar": "https://assets.leetcode.com/users/ZRlvkAicEr/avatar_1749245074.png"
+                }
+            },
+            "lang": {
+                "name": "python3",
+                "verboseName": "Python3"
+            },
+            "question": {
+                "questionId": "68",
+                "titleSlug": "text-justification",
+                "hasFrontendPreview": false
+            },
+            "notes": "",
+            "flagType": "WHITE",
+            "topicTags": [],
+            "runtimeError": null,
+            "compileError": null,
+            "lastTestcase": "",
+            "codeOutput": "",
+            "expectedOutput": "",
+            "totalCorrect": 29,
+            "totalTestcases": 29,
+            "fullCodeOutput": null,
+            "testDescriptions": null,
+            "testBodies": null,
+            "testInfo": null,
+            "stdOutput": ""
+        }
+    }
+}

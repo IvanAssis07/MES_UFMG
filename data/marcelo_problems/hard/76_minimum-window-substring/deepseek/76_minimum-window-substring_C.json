@@ -1,1 +1,48 @@
-{}
+{
+    "data": {
+        "submissionDetails": {
+            "runtime": 0,
+            "runtimeDisplay": "0 ms",
+            "runtimePercentile": 100.0,
+            "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"0\", 25.4545], [\"1\", 7.2727], [\"2\", 8.1818], [\"3\", 21.5152], [\"4\", 11.5152], [\"5\", 2.4242], [\"6\", 2.1212], [\"7\", 1.8182], [\"11\", 0.6061], [\"15\", 0.6061], [\"16\", 0.303], [\"17\", 0.303], [\"19\", 0.6061], [\"20\", 0.6061], [\"21\", 0.6061], [\"22\", 0.303], [\"23\", 0.9091], [\"27\", 0.9091], [\"28\", 0.303], [\"29\", 0.303], [\"30\", 0.303], [\"31\", 0.9091], [\"34\", 0.303], [\"35\", 1.2121], [\"36\", 0.303], [\"40\", 0.303], [\"51\", 0.303], [\"64\", 0.303], [\"65\", 0.303], [\"69\", 0.303], [\"79\", 0.303], [\"81\", 0.303], [\"83\", 0.303], [\"86\", 0.303], [\"95\", 0.303], [\"97\", 0.303], [\"102\", 0.303], [\"119\", 0.303], [\"135\", 0.303], [\"155\", 0.303], [\"198\", 0.303], [\"199\", 0.303]]}",
+            "memory": 9456000,
+            "memoryDisplay": "9.5 MB",
+            "memoryPercentile": 64.5453,
+            "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"8900\", 0.6061], [\"9000\", 4.8485], [\"9100\", 7.5758], [\"9200\", 7.5758], [\"9300\", 4.8485], [\"9400\", 10.0], [\"9500\", 27.8788], [\"9600\", 9.0909], [\"9700\", 7.5758], [\"9800\", 2.7273], [\"9900\", 1.2121], [\"10000\", 2.7273], [\"10100\", 3.3333], [\"10200\", 3.0303], [\"10300\", 0.6061], [\"11300\", 1.2121]]}",
+            "code": "#include <stdio.h>\n#include <stdlib.h>\n#include <string.h>\n#include <limits.h>\n\n#define MAX_CHARS 128 // covers both uppercase and lowercase English letters\n\nchar* minWindow(char* s, char* t) {\n    int s_len = strlen(s);\n    int t_len = strlen(t);\n    \n    if (s_len == 0 || t_len == 0 || s_len < t_len) {\n        return \"\";\n    }\n    \n    int freq_t[MAX_CHARS] = {0};\n    int freq_window[MAX_CHARS] = {0};\n    \n    // Initialize frequency map for t\n    for (int i = 0; i < t_len; i++) {\n        freq_t[t[i]]++;\n    }\n    \n    int required = 0;\n    for (int i = 0; i < MAX_CHARS; i++) {\n        if (freq_t[i] > 0) {\n            required++;\n        }\n    }\n    \n    int left = 0, right = 0;\n    int formed = 0;\n    int min_len = INT_MAX;\n    int min_left = 0;\n    \n    // Sliding window approach\n    while (right < s_len) {\n        char c = s[right];\n        freq_window[c]++;\n        \n        // Check if current character's frequency matches the desired count\n        if (freq_t[c] > 0 && freq_window[c] == freq_t[c]) {\n            formed++;\n        }\n        \n        // Try to contract the window from the left\n        while (left <= right && formed == required) {\n            c = s[left];\n            \n            // Update the minimum window if a smaller window is found\n            if (right - left + 1 < min_len) {\n                min_len = right - left + 1;\n                min_left = left;\n            }\n            \n            // The left character is being removed from the window\n            freq_window[c]--;\n            if (freq_t[c] > 0 && freq_window[c] < freq_t[c]) {\n                formed--;\n            }\n            \n            left++;\n        }\n        \n        right++;\n    }\n    \n    if (min_len == INT_MAX) {\n        return \"\";\n    }\n    \n    char* result = (char*)malloc(sizeof(char) * (min_len + 1));\n    strncpy(result, s + min_left, min_len);\n    result[min_len] = '\\0';\n    \n    return result;\n}",
+            "timestamp": 1749482162,
+            "statusCode": 10,
+            "user": {
+                "username": "ZRlvkAicEr",
+                "profile": {
+                    "realName": "ZRlvkAicEr",
+                    "userAvatar": "https://assets.leetcode.com/users/ZRlvkAicEr/avatar_1749245074.png"
+                }
+            },
+            "lang": {
+                "name": "c",
+                "verboseName": "C"
+            },
+            "question": {
+                "questionId": "76",
+                "titleSlug": "minimum-window-substring",
+                "hasFrontendPreview": false
+            },
+            "notes": "",
+            "flagType": "WHITE",
+            "topicTags": [],
+            "runtimeError": null,
+            "compileError": null,
+            "lastTestcase": "",
+            "codeOutput": "",
+            "expectedOutput": "",
+            "totalCorrect": 268,
+            "totalTestcases": 268,
+            "fullCodeOutput": null,
+            "testDescriptions": null,
+            "testBodies": null,
+            "testInfo": null,
+            "stdOutput": ""
+        }
+    }
+}

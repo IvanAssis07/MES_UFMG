@@ -1,1 +1,48 @@
-{}
+{
+    "data": {
+        "submissionDetails": {
+            "runtime": 0,
+            "runtimeDisplay": "0 ms",
+            "runtimePercentile": 100.0,
+            "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"0\", 90.2256], [\"1\", 2.2556], [\"2\", 3.0075], [\"3\", 3.0075], [\"4\", 1.5038]]}",
+            "memory": 8340000,
+            "memoryDisplay": "8.3 MB",
+            "memoryPercentile": 73.6842,
+            "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"8200\", 5.2632], [\"8300\", 21.0526], [\"8400\", 33.0827], [\"8500\", 18.0451], [\"8600\", 15.7895]]}",
+            "code": "#include <stdio.h>\n#include <stdlib.h>\n#include <string.h>\n\nchar** fullJustify(char** words, int wordsSize, int maxWidth, int* returnSize) {\n    char** result = (char**)malloc(sizeof(char*) * wordsSize); // Maximum possible lines is wordsSize\n    *returnSize = 0;\n    int start = 0;\n    \n    while (start < wordsSize) {\n        int end = start;\n        int lineLength = 0;\n        \n        // Determine the words in the current line\n        while (end < wordsSize) {\n            int wordLen = strlen(words[end]);\n            if (lineLength + wordLen + (end - start) > maxWidth) {\n                break;\n            }\n            lineLength += wordLen;\n            end++;\n        }\n        \n        int numWords = end - start;\n        int totalSpaces = maxWidth - lineLength;\n        char* line = (char*)calloc(maxWidth + 1, sizeof(char));\n        int pos = 0;\n        \n        // Handle the last line or line with one word (left-justified)\n        if (end == wordsSize || numWords == 1) {\n            for (int i = start; i < end; i++) {\n                strcpy(line + pos, words[i]);\n                pos += strlen(words[i]);\n                if (i < end - 1) {\n                    line[pos++] = ' ';\n                    totalSpaces--;\n                }\n            }\n            // Add remaining spaces at the end\n            while (pos < maxWidth) {\n                line[pos++] = ' ';\n            }\n        } else {\n            int baseSpaces = totalSpaces / (numWords - 1);\n            int extraSpaces = totalSpaces % (numWords - 1);\n            \n            for (int i = start; i < end; i++) {\n                strcpy(line + pos, words[i]);\n                pos += strlen(words[i]);\n                if (i < end - 1) {\n                    int spacesToAdd = baseSpaces + (extraSpaces-- > 0 ? 1 : 0);\n                    for (int j = 0; j < spacesToAdd; j++) {\n                        line[pos++] = ' ';\n                    }\n                }\n            }\n        }\n        \n        result[(*returnSize)++] = line;\n        start = end;\n    }\n    \n    return result;\n}",
+            "timestamp": 1749481468,
+            "statusCode": 10,
+            "user": {
+                "username": "ZRlvkAicEr",
+                "profile": {
+                    "realName": "ZRlvkAicEr",
+                    "userAvatar": "https://assets.leetcode.com/users/ZRlvkAicEr/avatar_1749245074.png"
+                }
+            },
+            "lang": {
+                "name": "c",
+                "verboseName": "C"
+            },
+            "question": {
+                "questionId": "68",
+                "titleSlug": "text-justification",
+                "hasFrontendPreview": false
+            },
+            "notes": "",
+            "flagType": "WHITE",
+            "topicTags": [],
+            "runtimeError": null,
+            "compileError": null,
+            "lastTestcase": "",
+            "codeOutput": "",
+            "expectedOutput": "",
+            "totalCorrect": 29,
+            "totalTestcases": 29,
+            "fullCodeOutput": null,
+            "testDescriptions": null,
+            "testBodies": null,
+            "testInfo": null,
+            "stdOutput": ""
+        }
+    }
+}

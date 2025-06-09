@@ -1,1 +1,48 @@
-{}
+{
+    "data": {
+        "submissionDetails": {
+            "runtime": 8,
+            "runtimeDisplay": "8 ms",
+            "runtimePercentile": 68.4969,
+            "runtimeDistribution": "{\"lang\": \"python3\", \"distribution\": [[\"0\", 3.0378], [\"2\", 4.0729], [\"3\", 1.1926], [\"5\", 23.1998], [\"7\", 4.658], [\"8\", 10.2835], [\"10\", 22.0747], [\"11\", 0.8776], [\"13\", 3.1279000000000003], [\"15\", 0.5176], [\"16\", 0.585], [\"18\", 1.4176000000000002], [\"19\", 0.1575], [\"21\", 1.5526], [\"23\", 0.315], [\"24\", 0.6525], [\"26\", 2.4302], [\"27\", 0.8775], [\"29\", 2.8577000000000004], [\"30\", 0.3375], [\"32\", 0.72], [\"34\", 1.1701], [\"35\", 0.45], [\"37\", 1.6651], [\"38\", 0.09], [\"40\", 0.3375], [\"42\", 0.5626], [\"43\", 0.27], [\"45\", 0.9901], [\"46\", 0.135], [\"48\", 0.1575], [\"50\", 0.18], [\"51\", 0.045], [\"53\", 0.045], [\"54\", 0.22499999999999998], [\"56\", 0.1125], [\"57\", 0.3825], [\"59\", 0.0675], [\"61\", 0.0675], [\"62\", 0.3375], [\"64\", 0.18], [\"65\", 0.2025], [\"67\", 0.09], [\"69\", 0.0675], [\"70\", 0.11249999999999999], [\"72\", 0.11249999999999999], [\"73\", 0.045], [\"75\", 0.0225], [\"76\", 0.0225], [\"78\", 0.2475], [\"80\", 0.0225], [\"81\", 0.405], [\"83\", 0.0675], [\"84\", 0.0675], [\"86\", 0.1575], [\"88\", 0.045], [\"89\", 0.09], [\"91\", 0.0225], [\"92\", 0.045], [\"94\", 0.1125], [\"96\", 0.0225], [\"97\", 0.09], [\"99\", 0.045], [\"100\", 0.0675], [\"102\", 0.0225], [\"103\", 0.045], [\"105\", 0.0225], [\"107\", 0.045], [\"108\", 0.0225], [\"110\", 0.045], [\"111\", 0.0225], [\"113\", 0.0225], [\"115\", 0.0225], [\"116\", 0.045], [\"118\", 0.0225], [\"119\", 0.045]]}",
+            "memory": 17796000,
+            "memoryDisplay": "17.8 MB",
+            "memoryPercentile": 63.816500000000005,
+            "memoryDistribution": "{\"lang\": \"python3\", \"distribution\": [[\"17200\", 0.0225], [\"17400\", 0.18], [\"17500\", 1.3951], [\"17600\", 10.216], [\"17700\", 24.3699], [\"17800\", 19.5545], [\"17900\", 19.1719], [\"18000\", 16.0216], [\"18100\", 3.6454]]}",
+            "code": "class Solution:\n    def totalNQueens(self, n: int) -> int:\n        def backtrack(row, cols, diag1, diag2):\n            if row == n:\n                return 1\n            solutions = 0\n            for col in range(n):\n                d1 = row - col\n                d2 = row + col\n                if col in cols or d1 in diag1 or d2 in diag2:\n                    continue\n                cols.add(col)\n                diag1.add(d1)\n                diag2.add(d2)\n                solutions += backtrack(row + 1, cols, diag1, diag2)\n                cols.remove(col)\n                diag1.remove(d1)\n                diag2.remove(d2)\n            return solutions\n        \n        return backtrack(0, set(), set(), set())",
+            "timestamp": 1749470320,
+            "statusCode": 10,
+            "user": {
+                "username": "ZRlvkAicEr",
+                "profile": {
+                    "realName": "ZRlvkAicEr",
+                    "userAvatar": "https://assets.leetcode.com/users/ZRlvkAicEr/avatar_1749245074.png"
+                }
+            },
+            "lang": {
+                "name": "python3",
+                "verboseName": "Python3"
+            },
+            "question": {
+                "questionId": "52",
+                "titleSlug": "n-queens-ii",
+                "hasFrontendPreview": false
+            },
+            "notes": "",
+            "flagType": "WHITE",
+            "topicTags": [],
+            "runtimeError": null,
+            "compileError": null,
+            "lastTestcase": "",
+            "codeOutput": "",
+            "expectedOutput": "",
+            "totalCorrect": 9,
+            "totalTestcases": 9,
+            "fullCodeOutput": null,
+            "testDescriptions": null,
+            "testBodies": null,
+            "testInfo": null,
+            "stdOutput": ""
+        }
+    }
+}

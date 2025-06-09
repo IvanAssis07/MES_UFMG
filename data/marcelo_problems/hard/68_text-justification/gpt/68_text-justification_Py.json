@@ -1,1 +1,48 @@
-{}
+{
+    "data": {
+        "submissionDetails": {
+            "runtime": 0,
+            "runtimeDisplay": "0 ms",
+            "runtimePercentile": 100.0,
+            "runtimeDistribution": "{\"lang\": \"python3\", \"distribution\": [[\"0\", 89.4569], [\"1\", 2.6711], [\"2\", 1.5744], [\"3\", 4.5286], [\"4\", 1.6982]]}",
+            "memory": 17764000,
+            "memoryDisplay": "17.8 MB",
+            "memoryPercentile": 88.8201,
+            "memoryDistribution": "{\"lang\": \"python3\", \"distribution\": [[\"17400\", 0.0177], [\"17500\", 0.2123], [\"17600\", 1.309], [\"17700\", 9.6409], [\"17800\", 24.8541], [\"17900\", 24.4826], [\"18000\", 19.0341]]}",
+            "code": "from typing import List\n\nclass Solution:\n    def fullJustify(self, words: List[str], maxWidth: int) -> List[str]:\n        result = []\n        index = 0\n        n = len(words)\n\n        while index < n:\n            # Step 1: Determine how many words fit into the current line\n            total_chars = len(words[index])\n            last = index + 1\n            while last < n and total_chars + 1 + len(words[last]) <= maxWidth:\n                total_chars += 1 + len(words[last])\n                last += 1\n\n            line = ''\n            number_of_words = last - index\n            # Step 2: If it's the last line or only one word in the line -> left justify\n            if last == n or number_of_words == 1:\n                line = ' '.join(words[index:last])\n                line += ' ' * (maxWidth - len(line))\n            else:\n                # Step 3: Fully justify\n                total_spaces = maxWidth - sum(len(word) for word in words[index:last])\n                space_slots = number_of_words - 1\n                space_per_slot = total_spaces // space_slots\n                extra_spaces = total_spaces % space_slots\n\n                for i in range(space_slots):\n                    line += words[index + i]\n                    spaces_to_add = space_per_slot + (1 if i < extra_spaces else 0)\n                    line += ' ' * spaces_to_add\n                line += words[last - 1]  # Last word in the line\n\n            result.append(line)\n            index = last\n\n        return result\n",
+            "timestamp": 1749481564,
+            "statusCode": 10,
+            "user": {
+                "username": "ZRlvkAicEr",
+                "profile": {
+                    "realName": "ZRlvkAicEr",
+                    "userAvatar": "https://assets.leetcode.com/users/ZRlvkAicEr/avatar_1749245074.png"
+                }
+            },
+            "lang": {
+                "name": "python3",
+                "verboseName": "Python3"
+            },
+            "question": {
+                "questionId": "68",
+                "titleSlug": "text-justification",
+                "hasFrontendPreview": false
+            },
+            "notes": "",
+            "flagType": "WHITE",
+            "topicTags": [],
+            "runtimeError": null,
+            "compileError": null,
+            "lastTestcase": "",
+            "codeOutput": "",
+            "expectedOutput": "",
+            "totalCorrect": 29,
+            "totalTestcases": 29,
+            "fullCodeOutput": null,
+            "testDescriptions": null,
+            "testBodies": null,
+            "testInfo": null,
+            "stdOutput": ""
+        }
+    }
+}

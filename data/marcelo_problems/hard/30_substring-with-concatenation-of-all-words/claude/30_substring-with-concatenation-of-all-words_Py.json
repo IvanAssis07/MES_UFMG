@@ -1,1 +1,48 @@
-{}
+{
+    "data": {
+        "submissionDetails": {
+            "runtime": 27,
+            "runtimeDisplay": "27 ms",
+            "runtimePercentile": 74.63100000000001,
+            "runtimeDistribution": "{\"lang\": \"python3\", \"distribution\": [[\"59\", 48.93210000000007], [\"179\", 2.5712999999999995], [\"298\", 2.085000000000001], [\"418\", 0.6432999999999996], [\"537\", 0.38239999999999985], [\"657\", 0.1914], [\"776\", 0.20879999999999999], [\"896\", 0.10439999999999999], [\"1015\", 0.087], [\"1135\", 0.3477999999999999], [\"1254\", 0.1914], [\"1374\", 0.1739], [\"1493\", 0.0696], [\"1613\", 0.1217], [\"1732\", 0.1566], [\"1852\", 0.052199999999999996], [\"1971\", 0.0696], [\"2091\", 0.0174], [\"2210\", 0.0174], [\"2330\", 0.087], [\"2449\", 0.6086999999999997], [\"2568\", 0.1391], [\"2688\", 0.087], [\"2807\", 0.0348], [\"2927\", 0.174], [\"3046\", 0.0696], [\"3166\", 0.0174], [\"3285\", 0.087], [\"3405\", 0.1566], [\"3524\", 0.31309999999999993], [\"3644\", 0.31309999999999993], [\"3763\", 0.261], [\"3883\", 0.22619999999999998], [\"4002\", 0.1217], [\"4122\", 0.1913], [\"4241\", 0.2261], [\"4361\", 1.5292000000000008], [\"4480\", 0.5216999999999996], [\"4600\", 0.39979999999999993], [\"4719\", 0.3303999999999999], [\"4839\", 0.3651], [\"4958\", 0.3999], [\"5078\", 0.5391999999999996], [\"5197\", 0.2609], [\"5317\", 0.2956], [\"5436\", 0.261], [\"5556\", 0.1914], [\"5675\", 0.2261], [\"5795\", 0.45199999999999985], [\"5914\", 0.3478999999999999], [\"6034\", 0.5217999999999997], [\"6153\", 0.4347999999999998], [\"6273\", 0.5563999999999997], [\"6392\", 0.313], [\"6512\", 0.29579999999999995], [\"6631\", 0.5737999999999996], [\"6751\", 0.3304999999999999], [\"6870\", 0.5040999999999997], [\"6990\", 0.36539999999999984], [\"7109\", 0.9905999999999991], [\"7228\", 2.7962999999999987], [\"7348\", 1.945900000000001], [\"7467\", 1.4077000000000002], [\"7587\", 1.0950999999999993], [\"7706\", 0.9905999999999991], [\"7826\", 0.7651999999999993], [\"7945\", 0.7648999999999997], [\"8065\", 1.1123999999999992], [\"8184\", 1.0077999999999991], [\"8304\", 0.6956999999999994], [\"8423\", 0.7823999999999994], [\"8543\", 0.7996999999999993], [\"8662\", 0.9038999999999993], [\"8782\", 0.7477999999999994], [\"8901\", 0.6778999999999997], [\"9021\", 0.6257999999999997], [\"9140\", 0.7302999999999994], [\"9260\", 1.1816999999999993], [\"9379\", 2.5885999999999987], [\"9499\", 2.7967999999999975]]}",
+            "memory": 18864000,
+            "memoryDisplay": "18.9 MB",
+            "memoryPercentile": 21.1841,
+            "memoryDistribution": "{\"lang\": \"python3\", \"distribution\": [[\"17700\", 0.0174], [\"17800\", 0.0174], [\"17900\", 0.1042], [\"18000\", 0.2431], [\"18100\", 0.382], [\"18200\", 0.5557], [\"18300\", 0.6772], [\"18400\", 2.6741], [\"18500\", 10.9394], [\"18600\", 24.0319], [\"18700\", 20.4376], [\"18800\", 18.7359], [\"18900\", 14.1865], [\"19000\", 1.8406]]}",
+            "code": "from typing import List\nfrom collections import Counter\n\nclass Solution:\n    def findSubstring(self, s: str, words: List[str]) -> List[int]:\n        if not s or not words:\n            return []\n        \n        word_len = len(words[0])\n        word_count = len(words)\n        total_len = word_len * word_count\n        \n        # If the total length is greater than string length, no solution\n        if total_len > len(s):\n            return []\n        \n        # Count frequency of each word\n        word_freq = Counter(words)\n        result = []\n        \n        # Try starting from each position from 0 to word_len-1\n        for start in range(word_len):\n            left = start\n            right = start\n            current_freq = Counter()\n            matched_words = 0\n            \n            # Sliding window approach\n            while right + word_len <= len(s):\n                # Extract the word at the right pointer\n                word = s[right:right + word_len]\n                right += word_len\n                \n                if word in word_freq:\n                    current_freq[word] += 1\n                    matched_words += 1\n                    \n                    # If we have too many of this word, shrink window from left\n                    while current_freq[word] > word_freq[word]:\n                        left_word = s[left:left + word_len]\n                        current_freq[left_word] -= 1\n                        matched_words -= 1\n                        left += word_len\n                    \n                    # Check if we have a valid window\n                    if matched_words == word_count:\n                        result.append(left)\n                        # Move left pointer to find next potential match\n                        left_word = s[left:left + word_len]\n                        current_freq[left_word] -= 1\n                        matched_words -= 1\n                        left += word_len\n                else:\n                    # Reset everything if word is not in words list\n                    current_freq.clear()\n                    matched_words = 0\n                    left = right\n        \n        return result",
+            "timestamp": 1749470153,
+            "statusCode": 10,
+            "user": {
+                "username": "ZRlvkAicEr",
+                "profile": {
+                    "realName": "ZRlvkAicEr",
+                    "userAvatar": "https://assets.leetcode.com/users/ZRlvkAicEr/avatar_1749245074.png"
+                }
+            },
+            "lang": {
+                "name": "python3",
+                "verboseName": "Python3"
+            },
+            "question": {
+                "questionId": "30",
+                "titleSlug": "substring-with-concatenation-of-all-words",
+                "hasFrontendPreview": false
+            },
+            "notes": "",
+            "flagType": "WHITE",
+            "topicTags": [],
+            "runtimeError": null,
+            "compileError": null,
+            "lastTestcase": "",
+            "codeOutput": "",
+            "expectedOutput": "",
+            "totalCorrect": 182,
+            "totalTestcases": 182,
+            "fullCodeOutput": null,
+            "testDescriptions": null,
+            "testBodies": null,
+            "testInfo": null,
+            "stdOutput": ""
+        }
+    }
+}

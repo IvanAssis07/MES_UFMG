@@ -1,1 +1,48 @@
-{}
+{
+    "data": {
+        "submissionDetails": {
+            "runtime": 3,
+            "runtimeDisplay": "3 ms",
+            "runtimePercentile": 6.297599999999996,
+            "runtimeDistribution": "{\"lang\": \"python3\", \"distribution\": [[\"0\", 89.4569], [\"1\", 2.6711], [\"2\", 1.5744], [\"3\", 4.5286], [\"4\", 1.6982]]}",
+            "memory": 17848000,
+            "memoryDisplay": "17.8 MB",
+            "memoryPercentile": 63.965999999999994,
+            "memoryDistribution": "{\"lang\": \"python3\", \"distribution\": [[\"17400\", 0.0177], [\"17500\", 0.2123], [\"17600\", 1.309], [\"17700\", 9.6409], [\"17800\", 24.8541], [\"17900\", 24.4826], [\"18000\", 19.0341]]}",
+            "code": "from typing import List\n\nclass Solution:\n    def fullJustify(self, words: List[str], maxWidth: int) -> List[str]:\n        result = []\n        i = 0\n        \n        while i < len(words):\n            # Find words that fit in current line\n            line_words = []\n            line_length = 0\n            \n            # Greedily pack words\n            while i < len(words):\n                # Check if we can add this word (word + at least 1 space between words)\n                needed_space = len(words[i])\n                if line_words:  # Need space before word if not first word\n                    needed_space += 1\n                \n                if line_length + needed_space <= maxWidth:\n                    line_words.append(words[i])\n                    line_length += len(words[i])\n                    if len(line_words) > 1:  # Add space count between words\n                        line_length += 1\n                    i += 1\n                else:\n                    break\n            \n            # Format the line\n            if i == len(words):  # Last line - left justify\n                line = self.leftJustify(line_words, maxWidth)\n            else:  # Full justify\n                line = self.fullJustifyLine(line_words, maxWidth)\n            \n            result.append(line)\n        \n        return result\n    \n    def leftJustify(self, words: List[str], maxWidth: int) -> str:\n        \"\"\"Left justify words with single spaces between them\"\"\"\n        line = ' '.join(words)\n        # Pad with spaces at the end\n        line += ' ' * (maxWidth - len(line))\n        return line\n    \n    def fullJustifyLine(self, words: List[str], maxWidth: int) -> str:\n        \"\"\"Fully justify a line by distributing spaces evenly\"\"\"\n        if len(words) == 1:\n            # Single word - left justify\n            return words[0] + ' ' * (maxWidth - len(words[0]))\n        \n        # Calculate total spaces needed\n        total_word_length = sum(len(word) for word in words)\n        total_spaces = maxWidth - total_word_length\n        gaps = len(words) - 1\n        \n        # Distribute spaces evenly\n        spaces_per_gap = total_spaces // gaps\n        extra_spaces = total_spaces % gaps\n        \n        result = []\n        for i in range(len(words)):\n            result.append(words[i])\n            if i < gaps:  # Not the last word\n                # Add base spaces plus one extra if this gap gets extra\n                spaces = spaces_per_gap\n                if i < extra_spaces:\n                    spaces += 1\n                result.append(' ' * spaces)\n        \n        return ''.join(result)",
+            "timestamp": 1749481707,
+            "statusCode": 10,
+            "user": {
+                "username": "ZRlvkAicEr",
+                "profile": {
+                    "realName": "ZRlvkAicEr",
+                    "userAvatar": "https://assets.leetcode.com/users/ZRlvkAicEr/avatar_1749245074.png"
+                }
+            },
+            "lang": {
+                "name": "python3",
+                "verboseName": "Python3"
+            },
+            "question": {
+                "questionId": "68",
+                "titleSlug": "text-justification",
+                "hasFrontendPreview": false
+            },
+            "notes": "",
+            "flagType": "WHITE",
+            "topicTags": [],
+            "runtimeError": null,
+            "compileError": null,
+            "lastTestcase": "",
+            "codeOutput": "",
+            "expectedOutput": "",
+            "totalCorrect": 29,
+            "totalTestcases": 29,
+            "fullCodeOutput": null,
+            "testDescriptions": null,
+            "testBodies": null,
+            "testInfo": null,
+            "stdOutput": ""
+        }
+    }
+}

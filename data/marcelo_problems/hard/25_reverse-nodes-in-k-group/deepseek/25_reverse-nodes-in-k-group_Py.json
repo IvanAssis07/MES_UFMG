@@ -1,1 +1,48 @@
-{}
+{
+    "data": {
+        "submissionDetails": {
+            "runtime": 4,
+            "runtimeDisplay": "4 ms",
+            "runtimePercentile": 14.401800000000001,
+            "runtimeDistribution": "{\"lang\": \"python3\", \"distribution\": [[\"0\", 55.7837], [\"1\", 7.0967], [\"2\", 5.0438], [\"3\", 17.674], [\"4\", 6.9612], [\"5\", 1.3235], [\"6\", 0.8128]]}",
+            "memory": 18472000,
+            "memoryDisplay": "18.5 MB",
+            "memoryPercentile": 86.12970000000001,
+            "memoryDistribution": "{\"lang\": \"python3\", \"distribution\": [[\"18000\", 0.0208], [\"18100\", 0.0208], [\"18200\", 0.1251], [\"18300\", 1.5527], [\"18400\", 12.1509], [\"18500\", 27.3864], [\"18600\", 20.3418], [\"18700\", 20.3835]]}",
+            "code": "# Definition for singly-linked list.\n# class ListNode:\n#     def __init__(self, val=0, next=None):\n#         self.val = val\n#         self.next = next\nclass Solution:\n    def reverseKGroup(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:\n        if not head or k == 1:\n            return head\n        \n        dummy = ListNode(0)\n        dummy.next = head\n        curr = dummy\n        next_group = dummy\n        prev = dummy\n        count = 0\n        \n        # Count the total number of nodes\n        while curr.next:\n            count += 1\n            curr = curr.next\n        \n        while count >= k:\n            curr = prev.next\n            next_group = curr.next\n            for _ in range(1, k):\n                curr.next = next_group.next\n                next_group.next = prev.next\n                prev.next = next_group\n                next_group = curr.next\n            prev = curr\n            count -= k\n        \n        return dummy.next",
+            "timestamp": 1749469315,
+            "statusCode": 10,
+            "user": {
+                "username": "ZRlvkAicEr",
+                "profile": {
+                    "realName": "ZRlvkAicEr",
+                    "userAvatar": "https://assets.leetcode.com/users/ZRlvkAicEr/avatar_1749245074.png"
+                }
+            },
+            "lang": {
+                "name": "python3",
+                "verboseName": "Python3"
+            },
+            "question": {
+                "questionId": "25",
+                "titleSlug": "reverse-nodes-in-k-group",
+                "hasFrontendPreview": false
+            },
+            "notes": "",
+            "flagType": "WHITE",
+            "topicTags": [],
+            "runtimeError": null,
+            "compileError": null,
+            "lastTestcase": "",
+            "codeOutput": "",
+            "expectedOutput": "",
+            "totalCorrect": 62,
+            "totalTestcases": 62,
+            "fullCodeOutput": null,
+            "testDescriptions": null,
+            "testBodies": null,
+            "testInfo": null,
+            "stdOutput": ""
+        }
+    }
+}

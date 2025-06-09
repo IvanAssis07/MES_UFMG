@@ -1,1 +1,48 @@
-{}
+{
+    "data": {
+        "submissionDetails": {
+            "runtime": 0,
+            "runtimeDisplay": "0 ms",
+            "runtimePercentile": 100.0,
+            "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"0\", 57.377], [\"1\", 9.8361], [\"2\", 12.7049], [\"3\", 15.5738], [\"4\", 2.8689]]}",
+            "memory": 7744000,
+            "memoryDisplay": "7.7 MB",
+            "memoryPercentile": 60.245900000000006,
+            "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"7600\", 6.1475], [\"7700\", 33.6066], [\"7800\", 31.9672], [\"7900\", 16.3934], [\"8000\", 5.7377]]}",
+            "code": "#include <stdbool.h>\n\nint count = 0;\n\nvoid solve(int n, int row, bool* cols, bool* diag1, bool* diag2) {\n    if (row == n) {\n        count++;\n        return;\n    }\n\n    for (int col = 0; col < n; col++) {\n        int d1 = row - col + n - 1;  // index for main diagonal\n        int d2 = row + col;          // index for anti-diagonal\n\n        if (cols[col] || diag1[d1] || diag2[d2])\n            continue;\n\n        // Place queen\n        cols[col] = diag1[d1] = diag2[d2] = true;\n\n        solve(n, row + 1, cols, diag1, diag2);\n\n        // Backtrack\n        cols[col] = diag1[d1] = diag2[d2] = false;\n    }\n}\n\nint totalNQueens(int n) {\n    count = 0;\n\n    bool cols[9] = {false};           // Max n = 9\n    bool diag1[17] = {false};         // 2*n - 1 max size\n    bool diag2[17] = {false};\n\n    solve(n, 0, cols, diag1, diag2);\n\n    return count;\n}\n",
+            "timestamp": 1749470512,
+            "statusCode": 10,
+            "user": {
+                "username": "ZRlvkAicEr",
+                "profile": {
+                    "realName": "ZRlvkAicEr",
+                    "userAvatar": "https://assets.leetcode.com/users/ZRlvkAicEr/avatar_1749245074.png"
+                }
+            },
+            "lang": {
+                "name": "c",
+                "verboseName": "C"
+            },
+            "question": {
+                "questionId": "52",
+                "titleSlug": "n-queens-ii",
+                "hasFrontendPreview": false
+            },
+            "notes": "",
+            "flagType": "WHITE",
+            "topicTags": [],
+            "runtimeError": null,
+            "compileError": null,
+            "lastTestcase": "",
+            "codeOutput": "",
+            "expectedOutput": "",
+            "totalCorrect": 9,
+            "totalTestcases": 9,
+            "fullCodeOutput": null,
+            "testDescriptions": null,
+            "testBodies": null,
+            "testInfo": null,
+            "stdOutput": ""
+        }
+    }
+}

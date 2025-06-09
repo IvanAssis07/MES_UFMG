@@ -1,1 +1,48 @@
-{}
+{
+    "data": {
+        "submissionDetails": {
+            "runtime": 0,
+            "runtimeDisplay": "0 ms",
+            "runtimePercentile": 100.0,
+            "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"0\", 57.377], [\"1\", 9.8361], [\"2\", 12.7049], [\"3\", 15.5738], [\"4\", 2.8689]]}",
+            "memory": 7648000,
+            "memoryDisplay": "7.6 MB",
+            "memoryPercentile": 93.8525,
+            "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"7600\", 6.1475], [\"7700\", 33.6066], [\"7800\", 31.9672], [\"7900\", 16.3934], [\"8000\", 5.7377]]}",
+            "code": "void backtrack(int n, int row, int* columns, int* diag1, int* diag2, int* count) {\n    if (row == n) {\n        (*count)++;\n        return;\n    }\n    \n    for (int col = 0; col < n; col++) {\n        int d1 = row - col + n; // to handle negative indices, though in diag1 it's row + col\n        int d2 = row + col;\n        // Check if the column or diagonals are already occupied\n        if (columns[col] || diag1[row + col] || diag2[row - col + n - 1]) {\n            continue;\n        }\n        \n        // Place the queen\n        columns[col] = 1;\n        diag1[row + col] = 1;\n        diag2[row - col + n - 1] = 1;\n        \n        // Move to the next row\n        backtrack(n, row + 1, columns, diag1, diag2, count);\n        \n        // Backtrack\n        columns[col] = 0;\n        diag1[row + col] = 0;\n        diag2[row - col + n - 1] = 0;\n    }\n}\n\nint totalNQueens(int n) {\n    int count = 0;\n    int columns[n];\n    int diag1_size = 2 * n - 1;\n    int diag2_size = 2 * n - 1;\n    int diag1[diag1_size];\n    int diag2[diag2_size];\n    \n    // Initialize all to 0\n    for (int i = 0; i < n; i++) {\n        columns[i] = 0;\n    }\n    for (int i = 0; i < diag1_size; i++) {\n        diag1[i] = 0;\n    }\n    for (int i = 0; i < diag2_size; i++) {\n        diag2[i] = 0;\n    }\n    \n    backtrack(n, 0, columns, diag1, diag2, &count);\n    return count;\n}",
+            "timestamp": 1749470478,
+            "statusCode": 10,
+            "user": {
+                "username": "ZRlvkAicEr",
+                "profile": {
+                    "realName": "ZRlvkAicEr",
+                    "userAvatar": "https://assets.leetcode.com/users/ZRlvkAicEr/avatar_1749245074.png"
+                }
+            },
+            "lang": {
+                "name": "c",
+                "verboseName": "C"
+            },
+            "question": {
+                "questionId": "52",
+                "titleSlug": "n-queens-ii",
+                "hasFrontendPreview": false
+            },
+            "notes": "",
+            "flagType": "WHITE",
+            "topicTags": [],
+            "runtimeError": null,
+            "compileError": null,
+            "lastTestcase": "",
+            "codeOutput": "",
+            "expectedOutput": "",
+            "totalCorrect": 9,
+            "totalTestcases": 9,
+            "fullCodeOutput": null,
+            "testDescriptions": null,
+            "testBodies": null,
+            "testInfo": null,
+            "stdOutput": ""
+        }
+    }
+}

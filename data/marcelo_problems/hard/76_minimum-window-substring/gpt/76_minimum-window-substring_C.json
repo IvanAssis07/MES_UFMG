@@ -1,1 +1,48 @@
-{}
+{
+    "data": {
+        "submissionDetails": {
+            "runtime": 3,
+            "runtimeDisplay": "3 ms",
+            "runtimePercentile": 59.091,
+            "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"0\", 25.4545], [\"1\", 7.2727], [\"2\", 8.1818], [\"3\", 21.5152], [\"4\", 11.5152], [\"5\", 2.4242], [\"6\", 2.1212], [\"7\", 1.8182], [\"11\", 0.6061], [\"15\", 0.6061], [\"16\", 0.303], [\"17\", 0.303], [\"19\", 0.6061], [\"20\", 0.6061], [\"21\", 0.6061], [\"22\", 0.303], [\"23\", 0.9091], [\"27\", 0.9091], [\"28\", 0.303], [\"29\", 0.303], [\"30\", 0.303], [\"31\", 0.9091], [\"34\", 0.303], [\"35\", 1.2121], [\"36\", 0.303], [\"40\", 0.303], [\"51\", 0.303], [\"64\", 0.303], [\"65\", 0.303], [\"69\", 0.303], [\"79\", 0.303], [\"81\", 0.303], [\"83\", 0.303], [\"86\", 0.303], [\"95\", 0.303], [\"97\", 0.303], [\"102\", 0.303], [\"119\", 0.303], [\"135\", 0.303], [\"155\", 0.303], [\"198\", 0.303], [\"199\", 0.303]]}",
+            "memory": 9512000,
+            "memoryDisplay": "9.5 MB",
+            "memoryPercentile": 36.6665,
+            "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"8900\", 0.6061], [\"9000\", 4.8485], [\"9100\", 7.5758], [\"9200\", 7.5758], [\"9300\", 4.8485], [\"9400\", 10.0], [\"9500\", 27.8788], [\"9600\", 9.0909], [\"9700\", 7.5758], [\"9800\", 2.7273], [\"9900\", 1.2121], [\"10000\", 2.7273], [\"10100\", 3.3333], [\"10200\", 3.0303], [\"10300\", 0.6061], [\"11300\", 1.2121]]}",
+            "code": "#include <stdio.h>\n#include <stdlib.h>\n#include <string.h>\n#include <limits.h>\n\nchar* minWindow(char* s, char* t) {\n    int sLen = strlen(s);\n    int tLen = strlen(t);\n\n    if (sLen == 0 || tLen == 0 || tLen > sLen) return \"\";\n\n    // Frequency map for t\n    int tFreq[128] = {0};  // ASCII\n    for (int i = 0; i < tLen; i++) {\n        tFreq[(int)t[i]]++;\n    }\n\n    // Sliding window\n    int left = 0, right = 0;\n    int minLeft = 0, minLen = INT_MAX;\n    int required = tLen;\n\n    int windowFreq[128] = {0};\n\n    while (right < sLen) {\n        char c = s[right];\n        if (tFreq[(int)c] > 0) {\n            windowFreq[(int)c]++;\n            if (windowFreq[(int)c] <= tFreq[(int)c]) {\n                required--;\n            }\n        }\n\n        // When valid window is found\n        while (required == 0) {\n            // Update result if this window is smaller\n            if (right - left + 1 < minLen) {\n                minLeft = left;\n                minLen = right - left + 1;\n            }\n\n            // Shrink from left\n            char lChar = s[left];\n            if (tFreq[(int)lChar] > 0) {\n                windowFreq[(int)lChar]--;\n                if (windowFreq[(int)lChar] < tFreq[(int)lChar]) {\n                    required++;\n                }\n            }\n            left++;\n        }\n        right++;\n    }\n\n    if (minLen == INT_MAX) return \"\";\n\n    // Allocate and copy result substring\n    char* result = (char*)malloc((minLen + 1) * sizeof(char));\n    strncpy(result, s + minLeft, minLen);\n    result[minLen] = '\\0';\n    return result;\n}\n",
+            "timestamp": 1749482130,
+            "statusCode": 10,
+            "user": {
+                "username": "ZRlvkAicEr",
+                "profile": {
+                    "realName": "ZRlvkAicEr",
+                    "userAvatar": "https://assets.leetcode.com/users/ZRlvkAicEr/avatar_1749245074.png"
+                }
+            },
+            "lang": {
+                "name": "c",
+                "verboseName": "C"
+            },
+            "question": {
+                "questionId": "76",
+                "titleSlug": "minimum-window-substring",
+                "hasFrontendPreview": false
+            },
+            "notes": "",
+            "flagType": "WHITE",
+            "topicTags": [],
+            "runtimeError": null,
+            "compileError": null,
+            "lastTestcase": "",
+            "codeOutput": "",
+            "expectedOutput": "",
+            "totalCorrect": 268,
+            "totalTestcases": 268,
+            "fullCodeOutput": null,
+            "testDescriptions": null,
+            "testBodies": null,
+            "testInfo": null,
+            "stdOutput": ""
+        }
+    }
+}

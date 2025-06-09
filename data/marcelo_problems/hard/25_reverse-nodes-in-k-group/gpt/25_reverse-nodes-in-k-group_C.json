@@ -1,1 +1,48 @@
-{}
+{
+    "data": {
+        "submissionDetails": {
+            "runtime": 0,
+            "runtimeDisplay": "0 ms",
+            "runtimePercentile": 100.0,
+            "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"0\", 92.6108], [\"1\", 0.7389], [\"2\", 0.7389], [\"3\", 1.9704], [\"4\", 0.7389]]}",
+            "memory": 11420000,
+            "memoryDisplay": "11.4 MB",
+            "memoryPercentile": 72.1675,
+            "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"11300\", 0.7389], [\"11400\", 27.0936], [\"11500\", 35.468], [\"11600\", 14.7783], [\"11700\", 13.67]]}",
+            "code": "/**\n * Definition for singly-linked list.\n * struct ListNode {\n *     int val;\n *     struct ListNode *next;\n * };\n */\n\nstruct ListNode* reverseKGroup(struct ListNode* head, int k) {\n    struct ListNode* node = head;\n    int count = 0;\n\n    // First, check if we have at least k nodes\n    while (node && count < k) {\n        node = node->next;\n        count++;\n    }\n\n    if (count < k) {\n        return head;  // Not enough nodes to reverse, return head as is\n    }\n\n    // Reverse k nodes\n    struct ListNode* prev = NULL;\n    struct ListNode* curr = head;\n    struct ListNode* next = NULL;\n    count = 0;\n\n    while (curr && count < k) {\n        next = curr->next;\n        curr->next = prev;\n        prev = curr;\n        curr = next;\n        count++;\n    }\n\n    // Recursively reverse next k nodes\n    if (next != NULL) {\n        head->next = reverseKGroup(next, k);\n    }\n\n    // prev is the new head of the reversed group\n    return prev;\n}\n",
+            "timestamp": 1749469462,
+            "statusCode": 10,
+            "user": {
+                "username": "ZRlvkAicEr",
+                "profile": {
+                    "realName": "ZRlvkAicEr",
+                    "userAvatar": "https://assets.leetcode.com/users/ZRlvkAicEr/avatar_1749245074.png"
+                }
+            },
+            "lang": {
+                "name": "c",
+                "verboseName": "C"
+            },
+            "question": {
+                "questionId": "25",
+                "titleSlug": "reverse-nodes-in-k-group",
+                "hasFrontendPreview": false
+            },
+            "notes": "",
+            "flagType": "WHITE",
+            "topicTags": [],
+            "runtimeError": null,
+            "compileError": null,
+            "lastTestcase": "",
+            "codeOutput": "",
+            "expectedOutput": "",
+            "totalCorrect": 62,
+            "totalTestcases": 62,
+            "fullCodeOutput": null,
+            "testDescriptions": null,
+            "testBodies": null,
+            "testInfo": null,
+            "stdOutput": ""
+        }
+    }
+}
