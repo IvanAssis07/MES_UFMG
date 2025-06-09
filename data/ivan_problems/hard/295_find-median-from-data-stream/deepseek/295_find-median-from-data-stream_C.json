@@ -1,48 +1,48 @@
 {
-    "data": {
-        "submissionDetails": {
-            "runtime": 52,
-            "runtimeDisplay": "52 ms",
-            "runtimePercentile": 74.25740000000002,
-            "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"25\", 0.9901], [\"32\", 0.9901], [\"37\", 0.9901], [\"38\", 1.9802], [\"39\", 0.9901], [\"41\", 0.9901], [\"43\", 2.9703], [\"44\", 1.9802], [\"46\", 0.9901], [\"48\", 2.9703], [\"49\", 0.9901], [\"50\", 3.9604], [\"51\", 4.9505], [\"52\", 3.9604], [\"53\", 2.9703], [\"54\", 1.9802], [\"55\", 1.9802], [\"56\", 3.9604], [\"58\", 0.9901], [\"59\", 0.9901], [\"60\", 2.9703], [\"61\", 2.9703], [\"62\", 0.9901], [\"63\", 1.9802], [\"64\", 4.9505], [\"65\", 1.9802], [\"66\", 1.9802], [\"67\", 2.9703], [\"68\", 6.9307], [\"69\", 0.9901], [\"70\", 2.9703], [\"71\", 0.9901], [\"72\", 1.9802], [\"73\", 1.9802], [\"74\", 0.9901], [\"75\", 1.9802], [\"78\", 0.9901], [\"79\", 1.9802], [\"82\", 1.9802], [\"83\", 0.9901], [\"84\", 1.9802], [\"85\", 0.9901], [\"91\", 0.9901], [\"93\", 0.9901], [\"94\", 0.9901]]}",
-            "memory": 85876000,
-            "memoryDisplay": "85.9 MB",
-            "memoryPercentile": 87.12870000000002,
-            "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"84000\", 1.9802], [\"84300\", 0.9901], [\"85200\", 0.9901], [\"85300\", 3.9604], [\"85500\", 0.9901], [\"85600\", 0.9901], [\"85700\", 0.9901], [\"85800\", 1.9802], [\"85900\", 11.8812], [\"86000\", 22.7723], [\"86100\", 11.8812], [\"86200\", 9.901], [\"86300\", 2.9703], [\"86800\", 0.9901], [\"86900\", 7.9208], [\"87000\", 3.9604], [\"87100\", 1.9802], [\"87200\", 4.9505], [\"87300\", 0.9901]]}",
-            "code": "#include <stdlib.h>\n#include <stdbool.h>\n\ntypedef struct {\n    int* maxHeap;       // Stores the smaller half (max at root)\n    int maxHeapSize;\n    int maxHeapCapacity;\n    \n    int* minHeap;       // Stores the larger half (min at root)\n    int minHeapSize;\n    int minHeapCapacity;\n} MedianFinder;\n\nvoid swap(int* a, int* b) {\n    int temp = *a;\n    *a = *b;\n    *b = temp;\n}\n\n// Max heap functions\nvoid maxHeapifyUp(int* heap, int size, int index) {\n    while (index > 0) {\n        int parent = (index - 1) / 2;\n        if (heap[parent] >= heap[index]) break;\n        swap(&heap[parent], &heap[index]);\n        index = parent;\n    }\n}\n\nvoid maxHeapifyDown(int* heap, int size, int index) {\n    while (1) {\n        int left = 2 * index + 1;\n        int right = 2 * index + 2;\n        int largest = index;\n        \n        if (left < size && heap[left] > heap[largest]) largest = left;\n        if (right < size && heap[right] > heap[largest]) largest = right;\n        \n        if (largest == index) break;\n        swap(&heap[index], &heap[largest]);\n        index = largest;\n    }\n}\n\n// Min heap functions\nvoid minHeapifyUp(int* heap, int size, int index) {\n    while (index > 0) {\n        int parent = (index - 1) / 2;\n        if (heap[parent] <= heap[index]) break;\n        swap(&heap[parent], &heap[index]);\n        index = parent;\n    }\n}\n\nvoid minHeapifyDown(int* heap, int size, int index) {\n    while (1) {\n        int left = 2 * index + 1;\n        int right = 2 * index + 2;\n        int smallest = index;\n        \n        if (left < size && heap[left] < heap[smallest]) smallest = left;\n        if (right < size && heap[right] < heap[smallest]) smallest = right;\n        \n        if (smallest == index) break;\n        swap(&heap[index], &heap[smallest]);\n        index = smallest;\n    }\n}\n\nMedianFinder* medianFinderCreate() {\n    MedianFinder* obj = malloc(sizeof(MedianFinder));\n    obj->maxHeapCapacity = 16;\n    obj->minHeapCapacity = 16;\n    obj->maxHeapSize = 0;\n    obj->minHeapSize = 0;\n    obj->maxHeap = malloc(obj->maxHeapCapacity * sizeof(int));\n    obj->minHeap = malloc(obj->minHeapCapacity * sizeof(int));\n    return obj;\n}\n\nvoid ensureCapacity(MedianFinder* obj, bool isMaxHeap) {\n    int* heap = isMaxHeap ? obj->maxHeap : obj->minHeap;\n    int* capacity = isMaxHeap ? &obj->maxHeapCapacity : &obj->minHeapCapacity;\n    int size = isMaxHeap ? obj->maxHeapSize : obj->minHeapSize;\n    \n    if (size == *capacity) {\n        *capacity *= 2;\n        int* newHeap = realloc(heap, *capacity * sizeof(int));\n        if (isMaxHeap) {\n            obj->maxHeap = newHeap;\n        } else {\n            obj->minHeap = newHeap;\n        }\n    }\n}\n\nvoid medianFinderAddNum(MedianFinder* obj, int num) {\n    // Add to maxHeap (smaller half) by default\n    if (obj->maxHeapSize == 0 || num <= obj->maxHeap[0]) {\n        ensureCapacity(obj, true);\n        obj->maxHeap[obj->maxHeapSize++] = num;\n        maxHeapifyUp(obj->maxHeap, obj->maxHeapSize, obj->maxHeapSize - 1);\n    } else {\n        ensureCapacity(obj, false);\n        obj->minHeap[obj->minHeapSize++] = num;\n        minHeapifyUp(obj->minHeap, obj->minHeapSize, obj->minHeapSize - 1);\n    }\n    \n    // Balance the heaps\n    if (obj->maxHeapSize > obj->minHeapSize + 1) {\n        // Move from maxHeap to minHeap\n        int val = obj->maxHeap[0];\n        obj->maxHeap[0] = obj->maxHeap[--obj->maxHeapSize];\n        maxHeapifyDown(obj->maxHeap, obj->maxHeapSize, 0);\n        \n        ensureCapacity(obj, false);\n        obj->minHeap[obj->minHeapSize++] = val;\n        minHeapifyUp(obj->minHeap, obj->minHeapSize, obj->minHeapSize - 1);\n    } else if (obj->minHeapSize > obj->maxHeapSize) {\n        // Move from minHeap to maxHeap\n        int val = obj->minHeap[0];\n        obj->minHeap[0] = obj->minHeap[--obj->minHeapSize];\n        minHeapifyDown(obj->minHeap, obj->minHeapSize, 0);\n        \n        ensureCapacity(obj, true);\n        obj->maxHeap[obj->maxHeapSize++] = val;\n        maxHeapifyUp(obj->maxHeap, obj->maxHeapSize, obj->maxHeapSize - 1);\n    }\n}\n\ndouble medianFinderFindMedian(MedianFinder* obj) {\n    if (obj->maxHeapSize > obj->minHeapSize) {\n        return (double)obj->maxHeap[0];\n    } else {\n        return (obj->maxHeap[0] + obj->minHeap[0]) / 2.0;\n    }\n}\n\nvoid medianFinderFree(MedianFinder* obj) {\n    free(obj->maxHeap);\n    free(obj->minHeap);\n    free(obj);\n}",
-            "timestamp": 1749305562,
-            "statusCode": 10,
-            "user": {
-                "username": "IvanAssis",
-                "profile": {
-                    "realName": "IvanAssis",
-                    "userAvatar": "https://assets.leetcode.com/users/default_avatar.jpg"
-                }
-            },
-            "lang": {
-                "name": "c",
-                "verboseName": "C"
-            },
-            "question": {
-                "questionId": "295",
-                "titleSlug": "find-median-from-data-stream",
-                "hasFrontendPreview": false
-            },
-            "notes": "",
-            "flagType": "WHITE",
-            "topicTags": [],
-            "runtimeError": null,
-            "compileError": null,
-            "lastTestcase": "",
-            "codeOutput": "",
-            "expectedOutput": "",
-            "totalCorrect": 21,
-            "totalTestcases": 21,
-            "fullCodeOutput": null,
-            "testDescriptions": null,
-            "testBodies": null,
-            "testInfo": null,
-            "stdOutput": ""
+  "data": {
+    "submissionDetails": {
+      "runtime": 52,
+      "runtimeDisplay": "52 ms",
+      "runtimePercentile": 74.25740000000002,
+      "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"25\", 0.9901], [\"32\", 0.9901], [\"37\", 0.9901], [\"38\", 1.9802], [\"39\", 0.9901], [\"41\", 0.9901], [\"43\", 2.9703], [\"44\", 1.9802], [\"46\", 0.9901], [\"48\", 2.9703], [\"49\", 0.9901], [\"50\", 3.9604], [\"51\", 4.9505], [\"52\", 3.9604], [\"53\", 2.9703], [\"54\", 1.9802], [\"55\", 1.9802], [\"56\", 3.9604], [\"58\", 0.9901], [\"59\", 0.9901], [\"60\", 2.9703], [\"61\", 2.9703], [\"62\", 0.9901], [\"63\", 1.9802], [\"64\", 4.9505], [\"65\", 1.9802], [\"66\", 1.9802], [\"67\", 2.9703], [\"68\", 6.9307], [\"69\", 0.9901], [\"70\", 2.9703], [\"71\", 0.9901], [\"72\", 1.9802], [\"73\", 1.9802], [\"74\", 0.9901], [\"75\", 1.9802], [\"78\", 0.9901], [\"79\", 1.9802], [\"82\", 1.9802], [\"83\", 0.9901], [\"84\", 1.9802], [\"85\", 0.9901], [\"91\", 0.9901], [\"93\", 0.9901], [\"94\", 0.9901]]}",
+      "memory": 85876000,
+      "memoryDisplay": "85.9 MB",
+      "memoryPercentile": 87.12870000000002,
+      "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"84000\", 1.9802], [\"84300\", 0.9901], [\"85200\", 0.9901], [\"85300\", 3.9604], [\"85500\", 0.9901], [\"85600\", 0.9901], [\"85700\", 0.9901], [\"85800\", 1.9802], [\"85900\", 11.8812], [\"86000\", 22.7723], [\"86100\", 11.8812], [\"86200\", 9.901], [\"86300\", 2.9703], [\"86800\", 0.9901], [\"86900\", 7.9208], [\"87000\", 3.9604], [\"87100\", 1.9802], [\"87200\", 4.9505], [\"87300\", 0.9901]]}",
+      "code": "#include <stdlib.h>\n#include <stdbool.h>\n\ntypedef struct {\n    int* maxHeap;       // Stores the smaller half (max at root)\n    int maxHeapSize;\n    int maxHeapCapacity;\n    \n    int* minHeap;       // Stores the larger half (min at root)\n    int minHeapSize;\n    int minHeapCapacity;\n} MedianFinder;\n\nvoid swap(int* a, int* b) {\n    int temp = *a;\n    *a = *b;\n    *b = temp;\n}\n\n// Max heap functions\nvoid maxHeapifyUp(int* heap, int size, int index) {\n    while (index > 0) {\n        int parent = (index - 1) / 2;\n        if (heap[parent] >= heap[index]) break;\n        swap(&heap[parent], &heap[index]);\n        index = parent;\n    }\n}\n\nvoid maxHeapifyDown(int* heap, int size, int index) {\n    while (1) {\n        int left = 2 * index + 1;\n        int right = 2 * index + 2;\n        int largest = index;\n        \n        if (left < size && heap[left] > heap[largest]) largest = left;\n        if (right < size && heap[right] > heap[largest]) largest = right;\n        \n        if (largest == index) break;\n        swap(&heap[index], &heap[largest]);\n        index = largest;\n    }\n}\n\n// Min heap functions\nvoid minHeapifyUp(int* heap, int size, int index) {\n    while (index > 0) {\n        int parent = (index - 1) / 2;\n        if (heap[parent] <= heap[index]) break;\n        swap(&heap[parent], &heap[index]);\n        index = parent;\n    }\n}\n\nvoid minHeapifyDown(int* heap, int size, int index) {\n    while (1) {\n        int left = 2 * index + 1;\n        int right = 2 * index + 2;\n        int smallest = index;\n        \n        if (left < size && heap[left] < heap[smallest]) smallest = left;\n        if (right < size && heap[right] < heap[smallest]) smallest = right;\n        \n        if (smallest == index) break;\n        swap(&heap[index], &heap[smallest]);\n        index = smallest;\n    }\n}\n\nMedianFinder* medianFinderCreate() {\n    MedianFinder* obj = malloc(sizeof(MedianFinder));\n    obj->maxHeapCapacity = 16;\n    obj->minHeapCapacity = 16;\n    obj->maxHeapSize = 0;\n    obj->minHeapSize = 0;\n    obj->maxHeap = malloc(obj->maxHeapCapacity * sizeof(int));\n    obj->minHeap = malloc(obj->minHeapCapacity * sizeof(int));\n    return obj;\n}\n\nvoid ensureCapacity(MedianFinder* obj, bool isMaxHeap) {\n    int* heap = isMaxHeap ? obj->maxHeap : obj->minHeap;\n    int* capacity = isMaxHeap ? &obj->maxHeapCapacity : &obj->minHeapCapacity;\n    int size = isMaxHeap ? obj->maxHeapSize : obj->minHeapSize;\n    \n    if (size == *capacity) {\n        *capacity *= 2;\n        int* newHeap = realloc(heap, *capacity * sizeof(int));\n        if (isMaxHeap) {\n            obj->maxHeap = newHeap;\n        } else {\n            obj->minHeap = newHeap;\n        }\n    }\n}\n\nvoid medianFinderAddNum(MedianFinder* obj, int num) {\n    // Add to maxHeap (smaller half) by default\n    if (obj->maxHeapSize == 0 || num <= obj->maxHeap[0]) {\n        ensureCapacity(obj, true);\n        obj->maxHeap[obj->maxHeapSize++] = num;\n        maxHeapifyUp(obj->maxHeap, obj->maxHeapSize, obj->maxHeapSize - 1);\n    } else {\n        ensureCapacity(obj, false);\n        obj->minHeap[obj->minHeapSize++] = num;\n        minHeapifyUp(obj->minHeap, obj->minHeapSize, obj->minHeapSize - 1);\n    }\n    \n    // Balance the heaps\n    if (obj->maxHeapSize > obj->minHeapSize + 1) {\n        // Move from maxHeap to minHeap\n        int val = obj->maxHeap[0];\n        obj->maxHeap[0] = obj->maxHeap[--obj->maxHeapSize];\n        maxHeapifyDown(obj->maxHeap, obj->maxHeapSize, 0);\n        \n        ensureCapacity(obj, false);\n        obj->minHeap[obj->minHeapSize++] = val;\n        minHeapifyUp(obj->minHeap, obj->minHeapSize, obj->minHeapSize - 1);\n    } else if (obj->minHeapSize > obj->maxHeapSize) {\n        // Move from minHeap to maxHeap\n        int val = obj->minHeap[0];\n        obj->minHeap[0] = obj->minHeap[--obj->minHeapSize];\n        minHeapifyDown(obj->minHeap, obj->minHeapSize, 0);\n        \n        ensureCapacity(obj, true);\n        obj->maxHeap[obj->maxHeapSize++] = val;\n        maxHeapifyUp(obj->maxHeap, obj->maxHeapSize, obj->maxHeapSize - 1);\n    }\n}\n\ndouble medianFinderFindMedian(MedianFinder* obj) {\n    if (obj->maxHeapSize > obj->minHeapSize) {\n        return (double)obj->maxHeap[0];\n    } else {\n        return (obj->maxHeap[0] + obj->minHeap[0]) / 2.0;\n    }\n}\n\nvoid medianFinderFree(MedianFinder* obj) {\n    free(obj->maxHeap);\n    free(obj->minHeap);\n    free(obj);\n}",
+      "timestamp": 1749305562,
+      "statusCode": 10,
+      "user": {
+        "username": "IvanAssis",
+        "profile": {
+          "realName": "IvanAssis",
+          "userAvatar": "https://assets.leetcode.com/users/default_avatar.jpg"
         }
+      },
+      "lang": {
+        "name": "c",
+        "verboseName": "C"
+      },
+      "question": {
+        "questionId": "295",
+        "titleSlug": "find-median-from-data-stream",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null,
+      "lastTestcase": "",
+      "codeOutput": "",
+      "expectedOutput": "",
+      "totalCorrect": 21,
+      "totalTestcases": 21,
+      "fullCodeOutput": null,
+      "testDescriptions": null,
+      "testBodies": null,
+      "testInfo": null,
+      "stdOutput": ""
     }
+  }
 }

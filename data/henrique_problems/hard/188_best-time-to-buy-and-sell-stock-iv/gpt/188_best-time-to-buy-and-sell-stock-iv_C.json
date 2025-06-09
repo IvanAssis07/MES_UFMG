@@ -1,1 +1,45 @@
-{}
+{
+  "data": {
+    "submissionDetails": {
+      "runtime": 3,
+      "runtimeDisplay": "3 ms",
+      "runtimePercentile": 39.4737,
+      "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"0\", 50.0], [\"1\", 7.8947], [\"2\", 2.6316], [\"3\", 15.7895], [\"4\", 7.8947], [\"11\", 2.6316], [\"14\", 2.6316], [\"40\", 2.6316], [\"42\", 2.6316]]}",
+      "memory": 9556000,
+      "memoryDisplay": "9.6 MB",
+      "memoryPercentile": 39.4735,
+      "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"8100\", 5.2632], [\"8200\", 10.5263], [\"8500\", 5.2632], [\"8600\", 15.7895], [\"8700\", 5.2632], [\"8800\", 5.2632], [\"9000\", 2.6316], [\"9100\", 2.6316], [\"9500\", 7.8947], [\"9600\", 15.7895], [\"9700\", 2.6316], [\"9800\", 10.5263], [\"10000\", 2.6316], [\"10900\", 2.6316]]}",
+      "code": "#include <stdio.h>\n#include <stdlib.h>\n\nint maxProfit(int k, int* prices, int pricesSize) {\n    if (pricesSize == 0 || k == 0) return 0;\n\n    // Optimization: If k >= pricesSize / 2, it becomes the unlimited transaction case\n    if (k >= pricesSize / 2) {\n        int profit = 0;\n        for (int i = 1; i < pricesSize; i++) {\n            if (prices[i] > prices[i - 1]) {\n                profit += prices[i] - prices[i - 1];\n            }\n        }\n        return profit;\n    }\n\n    // DP table: dp[k+1][pricesSize]\n    int** dp = (int**)malloc((k + 1) * sizeof(int*));\n    for (int i = 0; i <= k; i++) {\n        dp[i] = (int*)calloc(pricesSize, sizeof(int));\n    }\n\n    for (int t = 1; t <= k; t++) {\n        int maxDiff = -prices[0];\n        for (int d = 1; d < pricesSize; d++) {\n            dp[t][d] = dp[t][d - 1] > prices[d] + maxDiff ? dp[t][d - 1] : prices[d] + maxDiff;\n            if (dp[t - 1][d] - prices[d] > maxDiff) {\n                maxDiff = dp[t - 1][d] - prices[d];\n            }\n        }\n    }\n\n    int result = dp[k][pricesSize - 1];\n\n    // Free memory\n    for (int i = 0; i <= k; i++) {\n        free(dp[i]);\n    }\n    free(dp);\n\n    return result;\n}\n",
+      "timestamp": 1749412901,
+      "statusCode": 10,
+      "user": {
+        "username": "yosQbj5lkC",
+        "profile": {
+          "realName": "Henrique Freitas",
+          "userAvatar": "https://assets.leetcode.com/users/yosQbj5lkC/avatar_1748722942.png"
+        }
+      },
+      "lang": { "name": "c", "verboseName": "C" },
+      "question": {
+        "questionId": "188",
+        "titleSlug": "best-time-to-buy-and-sell-stock-iv",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null,
+      "lastTestcase": "",
+      "codeOutput": "",
+      "expectedOutput": "",
+      "totalCorrect": 210,
+      "totalTestcases": 210,
+      "fullCodeOutput": null,
+      "testDescriptions": null,
+      "testBodies": null,
+      "testInfo": null,
+      "stdOutput": ""
+    }
+  }
+}

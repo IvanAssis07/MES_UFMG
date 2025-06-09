@@ -1,1 +1,48 @@
-{}
+{
+  "data": {
+    "submissionDetails": {
+      "runtime": 10,
+      "runtimeDisplay": "10 ms",
+      "runtimePercentile": 33.333100000000016,
+      "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"0\", 5.5556], [\"1\", 0.5051], [\"2\", 1.0101], [\"3\", 6.5657], [\"4\", 2.5253], [\"5\", 5.0505], [\"6\", 5.0505], [\"7\", 27.2727], [\"8\", 8.5859], [\"9\", 4.5455], [\"10\", 9.0909], [\"11\", 13.6364]]}",
+      "memory": 14300000,
+      "memoryDisplay": "14.3 MB",
+      "memoryPercentile": 82.82820000000001,
+      "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"10800\", 0.5051], [\"10900\", 2.0202], [\"11100\", 0.5051], [\"11200\", 1.0101], [\"14200\", 13.1313], [\"14300\", 31.3131], [\"14400\", 28.2828], [\"14500\", 10.6061], [\"14600\", 4.0404], [\"14700\", 2.0202], [\"14800\", 0.5051], [\"15200\", 0.5051], [\"15300\", 0.5051]]}",
+      "code": "#include <stdio.h>\n#include <stdlib.h>\n\n\n// Helper function to create a new tree node\nstruct TreeNode* createNode(int val) {\n    struct TreeNode* node = (struct TreeNode*)malloc(sizeof(struct TreeNode));\n    node->val = val;\n    node->left = NULL;\n    node->right = NULL;\n    return node;\n}\n\n// Helper function to find index of value in inorder array\nint findIndex(int* inorder, int start, int end, int val) {\n    for (int i = start; i <= end; i++) {\n        if (inorder[i] == val) {\n            return i;\n        }\n    }\n    return -1;\n}\n\n// Recursive helper function to build the tree\nstruct TreeNode* buildTreeHelper(int* inorder, int inStart, int inEnd, \n                                int* postorder, int postStart, int postEnd) {\n    // Base case: if there are no elements to construct the tree\n    if (inStart > inEnd || postStart > postEnd) {\n        return NULL;\n    }\n    \n    // The last element in postorder is always the root\n    int rootVal = postorder[postEnd];\n    struct TreeNode* root = createNode(rootVal);\n    \n    // If there's only one element, return the root\n    if (inStart == inEnd) {\n        return root;\n    }\n    \n    // Find the root in inorder array to determine left and right subtrees\n    int rootIndex = findIndex(inorder, inStart, inEnd, rootVal);\n    \n    // Calculate the size of left subtree\n    int leftSubtreeSize = rootIndex - inStart;\n    \n    // Recursively build left and right subtrees\n    root->left = buildTreeHelper(inorder, inStart, rootIndex - 1,\n                                postorder, postStart, postStart + leftSubtreeSize - 1);\n    \n    root->right = buildTreeHelper(inorder, rootIndex + 1, inEnd,\n                                 postorder, postStart + leftSubtreeSize, postEnd - 1);\n    \n    return root;\n}\n\nstruct TreeNode* buildTree(int* inorder, int inorderSize, int* postorder, int postorderSize) {\n    if (inorderSize == 0 || postorderSize == 0) {\n        return NULL;\n    }\n    \n    return buildTreeHelper(inorder, 0, inorderSize - 1, postorder, 0, postorderSize - 1);\n}",
+      "timestamp": 1749414226,
+      "statusCode": 10,
+      "user": {
+        "username": "ZRlvkAicEr",
+        "profile": {
+          "realName": "ZRlvkAicEr",
+          "userAvatar": "https://assets.leetcode.com/users/ZRlvkAicEr/avatar_1749245074.png"
+        }
+      },
+      "lang": {
+        "name": "c",
+        "verboseName": "C"
+      },
+      "question": {
+        "questionId": "106",
+        "titleSlug": "construct-binary-tree-from-inorder-and-postorder-traversal",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null,
+      "lastTestcase": "",
+      "codeOutput": "",
+      "expectedOutput": "",
+      "totalCorrect": 202,
+      "totalTestcases": 202,
+      "fullCodeOutput": null,
+      "testDescriptions": null,
+      "testBodies": null,
+      "testInfo": null,
+      "stdOutput": ""
+    }
+  }
+}

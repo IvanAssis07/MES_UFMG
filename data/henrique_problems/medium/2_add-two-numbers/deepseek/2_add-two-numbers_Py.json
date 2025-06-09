@@ -1,1 +1,48 @@
-{}
+{
+  "data": {
+    "submissionDetails": {
+      "runtime": 8,
+      "runtimeDisplay": "8 ms",
+      "runtimePercentile": 55.775700000000015,
+      "runtimeDistribution": "{\"lang\": \"python3\", \"distribution\": [[\"0\", 5.473], [\"1\", 1.9752], [\"2\", 2.018], [\"3\", 7.014], [\"4\", 8.4816], [\"5\", 4.6352], [\"6\", 4.5863], [\"7\", 10.041], [\"8\", 9.2399], [\"9\", 4.568], [\"10\", 4.2072], [\"11\", 8.0475], [\"12\", 5.4608], [\"13\", 2.5378], [\"14\", 2.1525], [\"15\", 4.3784], [\"16\", 2.446], [\"17\", 1.3209], [\"18\", 0.9845], [\"19\", 2.0363], [\"20\", 1.0579], [\"21\", 0.5137], [\"22\", 0.4709], [\"23\", 0.9784], [\"24\", 0.3486]]}",
+      "memory": 12604000,
+      "memoryDisplay": "12.6 MB",
+      "memoryPercentile": 15.134799999999998,
+      "memoryDistribution": "{\"lang\": \"python3\", \"distribution\": [[\"12100\", 0.0061], [\"12200\", 0.0367], [\"12300\", 0.8989], [\"12400\", 14.9636], [\"12500\", 29.7377], [\"12600\", 39.2222]]}",
+      "code": "\n\nclass Solution(object):\n    def addTwoNumbers(self, l1, l2):\n        \"\"\"\n        :type l1: Optional[ListNode]\n        :type l2: Optional[ListNode]\n        :rtype: Optional[ListNode]\n        \"\"\"\n        # Create dummy head to simplify list construction\n        dummy = ListNode(0)\n        current = dummy\n        carry = 0\n        \n        # Process both lists while at least one has nodes or there's a carry\n        while l1 or l2 or carry:\n            # Calculate sum of current digits plus carry\n            digit_sum = carry\n            \n            if l1:\n                digit_sum += l1.val\n                l1 = l1.next\n            \n            if l2:\n                digit_sum += l2.val\n                l2 = l2.next\n            \n            # Calculate new carry and current digit\n            carry = digit_sum // 10\n            digit = digit_sum % 10\n            \n            # Create new node and link it\n            current.next = ListNode(digit)\n            current = current.next\n        \n        # Return the actual head (skip dummy)\n        return dummy.next\n",
+      "timestamp": 1749335853,
+      "statusCode": 10,
+      "user": {
+        "username": "yosQbj5lkC",
+        "profile": {
+          "realName": "Henrique Freitas",
+          "userAvatar": "https://assets.leetcode.com/users/yosQbj5lkC/avatar_1748722942.png"
+        }
+      },
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python"
+      },
+      "question": {
+        "questionId": "2",
+        "titleSlug": "add-two-numbers",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null,
+      "lastTestcase": "",
+      "codeOutput": "",
+      "expectedOutput": "",
+      "totalCorrect": 1569,
+      "totalTestcases": 1569,
+      "fullCodeOutput": null,
+      "testDescriptions": null,
+      "testBodies": null,
+      "testInfo": null,
+      "stdOutput": ""
+    }
+  }
+}

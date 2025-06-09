@@ -1,0 +1,1053 @@
+,model,difficulty,language,code,problem
+0,claude,easy,c,"#include <stdio.h>
+#include <stdlib.h>
+
+// Solução principal - Uma passada O(n)
+int maxProfit(int* prices, int pricesSize) {
+    if (pricesSize <= 1) {
+        return 0;
+    }
+    
+    int minPrice = prices[0];  // Menor preço encontrado até agora
+    int maxProfit = 0;        // Maior lucro possível
+    
+    for (int i = 1; i < pricesSize; i++) {
+        // Se encontramos um preço menor, atualizamos
+        if (prices[i] < minPrice) {
+            minPrice = prices[i];
+        }
+        // Caso contrário, calculamos o lucro vendendo hoje
+        else {
+            int currentProfit = prices[i] - minPrice;
+            if (currentProfit > maxProfit) {
+                maxProfit = currentProfit;
+            }
+        }
+    }
+    
+    return maxProfit;
+}
+",best-time-to-buy-and-sell-stock
+1,claude,easy,c,"#include <stdio.h>
+#include <stdlib.h>
+
+
+double* averageOfLevels(struct TreeNode* root, int* returnSize) {
+    if (!root) {
+        *returnSize = 0;
+        return NULL;
+    }
+    
+    // Array para armazenar as médias de cada nível
+    double* result = (double*)malloc(10000 * sizeof(double));
+    int levelCount = 0;
+    
+    // Queue para BFS - usando array circular
+    struct TreeNode** queue = (struct TreeNode**)malloc(10000 * sizeof(struct TreeNode*));
+    int front = 0, rear = 0;
+    
+    // Adiciona a raiz na queue
+    queue[rear++] = root;
+    
+    while (front < rear) {
+        int levelSize = rear - front;  // Número de nós no nível atual
+        long long sum = 0;  // Usar long long para evitar overflow
+        
+        // Processa todos os nós do nível atual
+        for (int i = 0; i < levelSize; i++) {
+            struct TreeNode* node = queue[front++];
+            sum += node->val;
+            
+            // Adiciona os filhos na queue para o próximo nível
+            if (node->left) {
+                queue[rear++] = node->left;
+            }
+            if (node->right) {
+                queue[rear++] = node->right;
+            }
+        }
+        
+        // Calcula a média do nível atual
+        result[levelCount++] = (double)sum / levelSize;
+    }
+    
+    *returnSize = levelCount;
+    free(queue);
+    
+    // Redimensiona o array result para o tamanho exato
+    result = (double*)realloc(result, levelCount * sizeof(double));
+    
+    return result;
+}
+
+// Função auxiliar para criar um novo nó
+struct TreeNode* createNode(int val) {
+    struct TreeNode* node = (struct TreeNode*)malloc(sizeof(struct TreeNode));
+    node->val = val;
+    node->left = NULL;
+    node->right = NULL;
+    return node;
+}
+",average-of-levels-in-binary-tree
+2,claude,easy,c,"#include <stdio.h>
+
+// Solução principal - Programação Dinâmica (Bottom-up)
+int climbStairs(int n) {
+    if (n <= 2) {
+        return n;
+    }
+    
+    // Para chegar ao degrau n, podemos vir do degrau (n-1) ou (n-2)
+    // Então: ways[n] = ways[n-1] + ways[n-2]
+    // Isso é equivalente à sequência de Fibonacci!
+    
+    int prev2 = 1; // ways[1] = 1
+    int prev1 = 2; // ways[2] = 2
+    int current;
+    
+    for (int i = 3; i <= n; i++) {
+        current = prev1 + prev2;
+        prev2 = prev1;
+        prev1 = current;
+    }
+    
+    return current;
+}
+
+// Solução alternativa - Recursão com memoização
+int climbStairsHelper(int n, int* memo) {
+    if (n <= 2) {
+        return n;
+    }
+    
+    if (memo[n] != -1) {
+        return memo[n];
+    }
+    
+    memo[n] = climbStairsHelper(n - 1, memo) + climbStairsHelper(n - 2, memo);
+    return memo[n];
+}
+
+int climbStairs_memoization(int n) {
+    int* memo = (int*)malloc((n + 1) * sizeof(int));
+    
+    // Inicializa array de memoização com -1
+    for (int i = 0; i <= n; i++) {
+        memo[i] = -1;
+    }
+    
+    int result = climbStairsHelper(n, memo);
+    free(memo);
+    return result;
+}
+
+// Solução usando array de DP (mais clara para entender)
+int climbStairs_array(int n) {
+    if (n <= 2) {
+        return n;
+    }
+    
+    int* dp = (int*)malloc((n + 1) * sizeof(int));
+    dp[1] = 1;
+    dp[2] = 2;
+    
+    for (int i = 3; i <= n; i++) {
+        dp[i] = dp[i - 1] + dp[i - 2];
+    }
+    
+    int result = dp[n];
+    free(dp);
+    return result;
+}
+",climbing-stairs
+3,claude,hard,c,"
+int maxProfit(int* prices, int pricesSize) {
+    if (pricesSize <= 1) {
+        return 0;
+    }
+    
+    int buy1 = -prices[0];  
+    int sell1 = 0; 
+    int buy2 = -prices[0];   
+    int sell2 = 0;       
+    
+    for (int i = 1; i < pricesSize; i++) {
+
+        sell2 = (sell2 > buy2 + prices[i]) ? sell2 : buy2 + prices[i];
+        
+        buy2 = (buy2 > sell1 - prices[i]) ? buy2 : sell1 - prices[i];
+        
+        sell1 = (sell1 > buy1 + prices[i]) ? sell1 : buy1 + prices[i];
+        
+        buy1 = (buy1 > -prices[i]) ? buy1 : -prices[i];
+    }
+    
+    return sell2;
+}",best-time-to-buy-and-sell-stock-iii
+4,claude,hard,c,"
+// Global variable to keep track of maximum path sum
+int globalMax;
+
+/**
+ * Helper function that returns the maximum path sum starting from current node
+ * and going down to one of its subtrees (or just the node itself)
+ */
+int maxPathSumHelper(struct TreeNode* node) {
+    if (node == NULL) {
+        return 0;
+    }
+    
+    // Get maximum path sum from left and right subtrees
+    // Use 0 if the subtree path sum is negative (don't include negative paths)
+    int leftMax = maxPathSumHelper(node->left);
+    int rightMax = maxPathSumHelper(node->right);
+    
+    // Only include positive contributions from subtrees
+    leftMax = leftMax > 0 ? leftMax : 0;
+    rightMax = rightMax > 0 ? rightMax : 0;
+    
+    // Calculate the maximum path sum that passes through current node
+    // This includes the node itself plus both left and right subtrees
+    int currentPathSum = node->val + leftMax + rightMax;
+    
+    // Update global maximum if current path is better
+    if (currentPathSum > globalMax) {
+        globalMax = currentPathSum;
+    }
+    
+    // Return the maximum path sum that starts from current node
+    // and goes down to one subtree (can be used by parent nodes)
+    int leftPath = node->val + leftMax;
+    int rightPath = node->val + rightMax;
+    return leftPath > rightPath ? leftPath : rightPath;
+}
+
+int maxPathSum(struct TreeNode* root) {
+    // Initialize global maximum to minimum integer value
+    globalMax = INT_MIN;
+    
+    // Start the recursive traversal
+    maxPathSumHelper(root);
+    
+    return globalMax;
+}
+
+// Helper function to create a new tree node
+struct TreeNode* createNode(int val) {
+    struct TreeNode* node = (struct TreeNode*)malloc(sizeof(struct TreeNode));
+    node->val = val;
+    node->left = NULL;
+    node->right = NULL;
+    return node;
+}",binary-tree-maximum-path-sum
+5,claude,hard,c,"#include <stdio.h>
+#include <stdlib.h>
+
+int candy(int* ratings, int ratingsSize) {
+    if (ratingsSize <= 0) return 0;
+    
+    // Allocate array for candies, initialize each child with 1 candy
+    int* candies = (int*)malloc(ratingsSize * sizeof(int));
+    for (int i = 0; i < ratingsSize; i++) {
+        candies[i] = 1;
+    }
+    
+    // Left to right pass: ensure higher rated children get more than left neighbor
+    for (int i = 1; i < ratingsSize; i++) {
+        if (ratings[i] > ratings[i-1]) {
+            candies[i] = candies[i-1] + 1;
+        }
+    }
+    
+    // Right to left pass: ensure higher rated children get more than right neighbor
+    for (int i = ratingsSize - 2; i >= 0; i--) {
+        if (ratings[i] > ratings[i+1]) {
+            // Take maximum to satisfy both left and right constraints
+            if (candies[i] <= candies[i+1]) {
+                candies[i] = candies[i+1] + 1;
+            }
+        }
+    }
+    
+    // Calculate total candies needed
+    int total = 0;
+    for (int i = 0; i < ratingsSize; i++) {
+        total += candies[i];
+    }
+    
+    free(candies);
+    return total;
+}",candy
+6,claude,medium,c,"#include <stdio.h>
+#include <stdlib.h>
+
+/**
+ * Return an array of arrays of size *returnSize.
+ * The sizes of the arrays are returned as *returnColumnSizes array.
+ * Note: Both returned array and *columnSizes array must be malloced, assume caller calls free().
+ */
+int** levelOrder(struct TreeNode* root, int* returnSize, int** returnColumnSizes) {
+    *returnSize = 0;
+    
+    // Handle empty tree
+    if (root == NULL) {
+        *returnColumnSizes = NULL;
+        return NULL;
+    }
+    
+    // Allocate memory for result (max 2000 nodes means max ~11 levels for balanced tree)
+    int maxLevels = 2000;
+    int** result = (int**)malloc(maxLevels * sizeof(int*));
+    *returnColumnSizes = (int*)malloc(maxLevels * sizeof(int));
+    
+    // Use array-based queue for BFS (more efficient than linked list)
+    struct TreeNode** queue = (struct TreeNode**)malloc(2000 * sizeof(struct TreeNode*));
+    int front = 0, rear = 0;
+    
+    // Start with root
+    queue[rear++] = root;
+    
+    while (front < rear) {
+        int levelSize = rear - front;
+        
+        // Allocate memory for current level
+        result[*returnSize] = (int*)malloc(levelSize * sizeof(int));
+        (*returnColumnSizes)[*returnSize] = levelSize;
+        
+        // Process all nodes at current level
+        int nextRear = rear;  // Mark where next level starts
+        
+        for (int i = 0; i < levelSize; i++) {
+            struct TreeNode* current = queue[front++];
+            result[*returnSize][i] = current->val;
+            
+            // Add children to queue for next level
+            if (current->left != NULL) {
+                queue[nextRear++] = current->left;
+            }
+            if (current->right != NULL) {
+                queue[nextRear++] = current->right;
+            }
+        }
+        
+        rear = nextRear;  // Update rear for next level
+        (*returnSize)++;
+    }
+    
+    // Clean up queue
+    free(queue);
+    
+    // Resize arrays to actual size needed
+    if (*returnSize > 0) {
+        result = (int**)realloc(result, (*returnSize) * sizeof(int*));
+        *returnColumnSizes = (int*)realloc(*returnColumnSizes, (*returnSize) * sizeof(int));
+    }
+    
+    return result;
+}
+
+// Alternative solution using recursive approach to find depth first
+int getDepth(struct TreeNode* root) {
+    if (root == NULL) return 0;
+    int leftDepth = getDepth(root->left);
+    int rightDepth = getDepth(root->right);
+    return 1 + (leftDepth > rightDepth ? leftDepth : rightDepth);
+}
+
+void fillLevel(struct TreeNode* root, int level, int* arr, int* index) {
+    if (root == NULL) return;
+    if (level == 0) {
+        arr[(*index)++] = root->val;
+        return;
+    }
+    fillLevel(root->left, level - 1, arr, index);
+    fillLevel(root->right, level - 1, arr, index);
+}
+
+int countNodesAtLevel(struct TreeNode* root, int level) {
+    if (root == NULL) return 0;
+    if (level == 0) return 1;
+    return countNodesAtLevel(root->left, level - 1) + 
+           countNodesAtLevel(root->right, level - 1);
+}
+
+// Recursive solution (less efficient but educational)
+int** levelOrderRecursive(struct TreeNode* root, int* returnSize, int** returnColumnSizes) {
+    *returnSize = 0;
+    
+    if (root == NULL) {
+        *returnColumnSizes = NULL;
+        return NULL;
+    }
+    
+    int depth = getDepth(root);
+    *returnSize = depth;
+    
+    int** result = (int**)malloc(depth * sizeof(int*));
+    *returnColumnSizes = (int*)malloc(depth * sizeof(int));
+    
+    for (int level = 0; level < depth; level++) {
+        int nodeCount = countNodesAtLevel(root, level);
+        result[level] = (int*)malloc(nodeCount * sizeof(int));
+        (*returnColumnSizes)[level] = nodeCount;
+        
+        int index = 0;
+        fillLevel(root, level, result[level], &index);
+    }
+    
+    return result;
+}
+
+// Helper functions for testing
+struct TreeNode* createNode(int val) {
+    struct TreeNode* node = (struct TreeNode*)malloc(sizeof(struct TreeNode));
+    node->val = val;
+    node->left = node->right = NULL;
+    return node;
+}
+
+void printResults(int** result, int* returnColumnSizes, int returnSize) {
+    printf(""["");
+    for (int i = 0; i < returnSize; i++) {
+        printf(""["");
+        for (int j = 0; j < returnColumnSizes[i]; j++) {
+            printf(""%d"", result[i][j]);
+            if (j < returnColumnSizes[i] - 1) printf("","");
+        }
+        printf(""]"");
+        if (i < returnSize - 1) printf("","");
+    }
+    printf(""]\n"");
+}
+
+void freeResults(int** result, int* returnColumnSizes, int returnSize) {
+    if (result) {
+        for (int i = 0; i < returnSize; i++) {
+            free(result[i]);
+        }
+        free(result);
+    }
+    if (returnColumnSizes) {
+        free(returnColumnSizes);
+    }
+}
+
+void freeTree(struct TreeNode* root) {
+    if (root == NULL) return;
+    freeTree(root->left);
+    freeTree(root->right);
+    free(root);
+}
+",binary-tree-level-order-traversal
+7,claude,medium,python3,"from collections import deque
+
+class Solution(object):
+    def levelOrder(self, root):
+        """"""
+        :type root: Optional[TreeNode]
+        :rtype: List[List[int]]
+        """"""
+        if not root:
+            return []
+
+        result = []
+        queue = deque([root])
+
+        while queue:
+            level_size = len(queue)
+            level = []
+
+            for _ in range(level_size):
+                node = queue.popleft()
+                level.append(node.val)
+
+                if node.left:
+                    queue.append(node.left)
+                if node.right:
+                    queue.append(node.right)
+
+            result.append(level)
+
+        return result
+",binary-tree-level-order-traversal
+8,claude,medium,c,"int maxProfit(int* prices, int pricesSize) {
+    int profit = 0;
+    
+    for (int i = 1; i < pricesSize; i++) {
+        if (prices[i] > prices[i - 1]) {
+            profit += prices[i] - prices[i - 1];
+        }
+    }
+    
+    return profit;
+}
+",best-time-to-buy-and-sell-stock-ii
+9,deepseek,easy,c,"#include <stdio.h>
+#include <limits.h>
+
+int maxProfit(int* prices, int pricesSize) {
+    if (pricesSize <= 1) return 0;
+    
+    int min_price = INT_MAX;
+    int max_profit = 0;
+    
+    for (int i = 0; i < pricesSize; i++) {
+        if (prices[i] < min_price) {
+            min_price = prices[i];
+        } else if (prices[i] - min_price > max_profit) {
+            max_profit = prices[i] - min_price;
+        }
+    }
+    
+    return max_profit;
+}
+",best-time-to-buy-and-sell-stock
+10,deepseek,easy,c,"#include <stdlib.h>
+
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     struct TreeNode *left;
+ *     struct TreeNode *right;
+ * };
+ */
+
+typedef struct TreeNode TreeNode;
+
+double* averageOfLevels(TreeNode* root, int* returnSize) {
+    if (!root) {
+        *returnSize = 0;
+        return NULL;
+    }
+
+    TreeNode** queue = (TreeNode**)malloc(10000 * sizeof(TreeNode*));
+    int front = 0, rear = 0;
+    queue[rear++] = root;
+    double* averages = (double*)malloc(10000 * sizeof(double));
+    int levelCount = 0;
+
+    while (front < rear) {
+        int levelLength = rear - front;
+        double sum = 0.0;
+        for (int i = 0; i < levelLength; ++i) {
+            TreeNode* node = queue[front++];
+            sum += node->val;
+            if (node->left) queue[rear++] = node->left;
+            if (node->right) queue[rear++] = node->right;
+        }
+        averages[levelCount++] = sum / levelLength;
+    }
+
+    *returnSize = levelCount;
+    free(queue);
+    return averages;
+}",average-of-levels-in-binary-tree
+11,deepseek,easy,python3,"from collections import deque
+
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+
+class Solution(object):
+    def averageOfLevels(self, root):
+        """"""
+        :type root: Optional[TreeNode]
+        :rtype: List[float]
+        """"""
+        if not root:
+            return []
+        
+        queue = deque([root])
+        averages = []
+        
+        while queue:
+            level_length = len(queue)
+            level_sum = 0.0
+            
+            for _ in range(level_length):
+                node = queue.popleft()
+                level_sum += node.val
+                if node.left:
+                    queue.append(node.left)
+                if node.right:
+                    queue.append(node.right)
+            
+            averages.append(level_sum / level_length)
+        
+        return averages",average-of-levels-in-binary-tree
+12,deepseek,hard,c,"int maxProfit(int* prices, int pricesSize) {
+    if (pricesSize == 0) return 0;
+    
+    int buy1 = -prices[0], sell1 = 0;
+    int buy2 = -prices[0], sell2 = 0;
+    
+    for (int i = 1; i < pricesSize; i++) {
+        buy1 = (buy1 > -prices[i]) ? buy1 : -prices[i];
+        sell1 = (sell1 > buy1 + prices[i]) ? sell1 : buy1 + prices[i];
+        buy2 = (buy2 > sell1 - prices[i]) ? buy2 : sell1 - prices[i];
+        sell2 = (sell2 > buy2 + prices[i]) ? sell2 : buy2 + prices[i];
+    }
+    
+    return sell2;
+}",best-time-to-buy-and-sell-stock-iii
+13,deepseek,hard,c,"#include <limits.h>
+
+
+
+int helper(struct TreeNode* root, int* maxSum) {
+    if (root == NULL) return 0;
+    
+    int leftSum = helper(root->left, maxSum);
+    int rightSum = helper(root->right, maxSum);
+    
+    // Calculate the maximum path sum that includes the current node
+    int currentMax = root->val;
+    if (leftSum > 0) currentMax += leftSum;
+    if (rightSum > 0) currentMax += rightSum;
+    
+    // Update the global maximum path sum
+    if (currentMax > *maxSum) {
+        *maxSum = currentMax;
+    }
+    
+    // Return the maximum path sum that can be extended to the parent node
+    int maxChild = leftSum > rightSum ? leftSum : rightSum;
+    if (maxChild > 0) {
+        return root->val + maxChild;
+    } else {
+        return root->val;
+    }
+}
+
+int maxPathSum(struct TreeNode* root) {
+    int maxSum = INT_MIN;
+    helper(root, &maxSum);
+    return maxSum;
+}",binary-tree-maximum-path-sum
+14,deepseek,hard,c,"int candy(int* ratings, int ratingsSize) {
+    if (ratingsSize == 0) return 0;
+    
+    int* candies = (int*)malloc(ratingsSize * sizeof(int));
+    for (int i = 0; i < ratingsSize; i++) {
+        candies[i] = 1;
+    }
+    
+    // Left to right pass
+    for (int i = 1; i < ratingsSize; i++) {
+        if (ratings[i] > ratings[i - 1]) {
+            candies[i] = candies[i - 1] + 1;
+        }
+    }
+    
+    // Right to left pass
+    for (int i = ratingsSize - 2; i >= 0; i--) {
+        if (ratings[i] > ratings[i + 1]) {
+            if (candies[i] <= candies[i + 1]) {
+                candies[i] = candies[i + 1] + 1;
+            }
+        }
+    }
+    
+    int total = 0;
+    for (int i = 0; i < ratingsSize; i++) {
+        total += candies[i];
+    }
+    
+    free(candies);
+    return total;
+}",candy
+15,deepseek,medium,python3,"from collections import deque
+
+# Definition for a binary tree node.
+class TreeNode(object):
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+class Solution(object):
+    def levelOrder(self, root):
+        """"""
+        :type root: TreeNode
+        :rtype: List[List[int]]
+        """"""
+        if not root:
+            return []
+        
+        result = []
+        queue = deque([root])
+        
+        while queue:
+            level_size = len(queue)
+            current_level = []
+            
+            for _ in range(level_size):
+                node = queue.popleft()
+                current_level.append(node.val)
+                
+                if node.left:
+                    queue.append(node.left)
+                if node.right:
+                    queue.append(node.right)
+            
+            result.append(current_level)
+        
+        return result",binary-tree-level-order-traversal
+16,deepseek,medium,c,"int maxProfit(int* prices, int pricesSize) {
+    int profit = 0;
+    
+    for (int i = 1; i < pricesSize; i++) {
+        if (prices[i] > prices[i - 1]) {
+            profit += prices[i] - prices[i - 1];
+        }
+    }
+    
+    return profit;
+}
+",best-time-to-buy-and-sell-stock-ii
+17,deepseek,medium,python3,"class Solution(object):
+    def maxProfit(self, prices):
+        """"""
+        :type prices: List[int]
+        :rtype: int
+        """"""
+        profit = 0
+        for i in range(1, len(prices)):
+            if prices[i] > prices[i - 1]:
+                profit += prices[i] - prices[i - 1]
+        return profit
+",best-time-to-buy-and-sell-stock-ii
+18,gpt,easy,c,"#include <stdio.h>
+
+int maxProfit(int* prices, int pricesSize) {
+    if (pricesSize < 2) return 0;
+
+    int minPrice = prices[0];
+    int maxProfit = 0;
+
+    for (int i = 1; i < pricesSize; i++) {
+        if (prices[i] < minPrice) {
+            minPrice = prices[i]; // atualiza o menor preço visto até agora
+        } else {
+            int profit = prices[i] - minPrice;
+            if (profit > maxProfit) {
+                maxProfit = profit; // atualiza o maior lucro se necessário
+            }
+        }
+    }
+
+    return maxProfit;
+}
+",best-time-to-buy-and-sell-stock
+19,gpt,easy,c,"#include <stdio.h>
+#include <stdlib.h>
+
+
+
+// Estrutura para fila
+typedef struct QueueNode {
+    struct TreeNode* node;
+    struct QueueNode* next;
+} QueueNode;
+
+typedef struct {
+    QueueNode* front;
+    QueueNode* rear;
+    int size;
+} Queue;
+
+// Funções auxiliares para manipular a fila
+Queue* createQueue() {
+    Queue* q = (Queue*) malloc(sizeof(Queue));
+    q->front = q->rear = NULL;
+    q->size = 0;
+    return q;
+}
+
+void enqueue(Queue* q, struct TreeNode* node) {
+    QueueNode* temp = (QueueNode*) malloc(sizeof(QueueNode));
+    temp->node = node;
+    temp->next = NULL;
+    if (q->rear) q->rear->next = temp;
+    q->rear = temp;
+    if (!q->front) q->front = temp;
+    q->size++;
+}
+
+struct TreeNode* dequeue(Queue* q) {
+    if (!q->front) return NULL;
+    QueueNode* temp = q->front;
+    struct TreeNode* node = temp->node;
+    q->front = q->front->next;
+    if (!q->front) q->rear = NULL;
+    free(temp);
+    q->size--;
+    return node;
+}
+
+int isEmpty(Queue* q) {
+    return q->size == 0;
+}
+
+// Função principal
+double* averageOfLevels(struct TreeNode* root, int* returnSize) {
+    if (!root) {
+        *returnSize = 0;
+        return NULL;
+    }
+
+    double* result = (double*) malloc(10000 * sizeof(double));
+    *returnSize = 0;
+
+    Queue* q = createQueue();
+    enqueue(q, root);
+
+    while (!isEmpty(q)) {
+        int levelSize = q->size;
+        long long sum = 0;
+
+        for (int i = 0; i < levelSize; i++) {
+            struct TreeNode* node = dequeue(q);
+            sum += node->val;
+            if (node->left) enqueue(q, node->left);
+            if (node->right) enqueue(q, node->right);
+        }
+
+        result[*returnSize] = (double)sum / levelSize;
+        (*returnSize)++;
+    }
+
+    free(q);
+    return result;
+}
+",average-of-levels-in-binary-tree
+20,gpt,easy,c,"#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+char* addBinary(const char* a, const char* b) {
+    int lenA = strlen(a);
+    int lenB = strlen(b);
+    int maxLen = lenA > lenB ? lenA : lenB;
+    
+    // Alocar espaço suficiente para o resultado (máx + 1 para carry, +1 para '\0')
+    char* result = (char*)malloc(maxLen + 2);
+    result[maxLen + 1] = '\0';
+
+    int i = lenA - 1, j = lenB - 1, k = maxLen, carry = 0;
+
+    while (i >= 0 || j >= 0 || carry) {
+        int bitA = i >= 0 ? a[i--] - '0' : 0;
+        int bitB = j >= 0 ? b[j--] - '0' : 0;
+        int sum = bitA + bitB + carry;
+
+        result[k--] = (sum % 2) + '0';
+        carry = sum / 2;
+    }
+
+    // Se não houve carry no final, retornamos a string começando de result + 1
+    if (k == 0)
+        return result + 1;
+    
+    // Caso contrário, colocamos '1' no início
+    result[0] = '1';
+    return result;
+}
+",add-binary
+21,gpt,hard,c,"#include <limits.h>
+
+
+// Helper function to compute max of two integers
+int max(int a, int b) {
+    return a > b ? a : b;
+}
+
+// Global variable to store the max path sum
+int maxSum;
+
+// Recursive function to compute max gain from each node
+int maxGain(struct TreeNode* node) {
+    if (node == NULL) return 0;
+
+    // Recursively get max gain from left and right subtrees
+    int leftGain = max(maxGain(node->left), 0);   // Ignore paths with negative sum
+    int rightGain = max(maxGain(node->right), 0);
+
+    // Path sum that passes through the current node (can’t be extended upwards)
+    int currentPathSum = node->val + leftGain + rightGain;
+
+    // Update global max if needed
+    if (currentPathSum > maxSum)
+        maxSum = currentPathSum;
+
+    // Return max gain if continuing the same path upwards
+    return node->val + max(leftGain, rightGain);
+}
+
+// Main function
+int maxPathSum(struct TreeNode* root) {
+    maxSum = INT_MIN; // Initialize to smallest possible int
+    maxGain(root);
+    return maxSum;
+}
+",binary-tree-maximum-path-sum
+22,gpt,hard,c,"#include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
+
+#define STACK_SIZE 100000
+
+int calculate(char* s) {
+    int stack[STACK_SIZE];
+    int top = -1;
+
+    int result = 0;
+    int number = 0;
+    int sign = 1;
+
+    for (int i = 0; s[i] != '\0'; i++) {
+        char c = s[i];
+
+        if (isdigit(c)) {
+            number = number * 10 + (c - '0');
+        } else if (c == '+') {
+            result += sign * number;
+            number = 0;
+            sign = 1;
+        } else if (c == '-') {
+            result += sign * number;
+            number = 0;
+            sign = -1;
+        } else if (c == '(') {
+            // Push current result and sign to stack
+            stack[++top] = result;
+            stack[++top] = sign;
+            result = 0;
+            sign = 1;
+        } else if (c == ')') {
+            result += sign * number;
+            number = 0;
+            result *= stack[top--];    // sign before '('
+            result += stack[top--];    // result before '('
+        }
+        // ignore spaces
+    }
+
+    result += sign * number;
+    return result;
+}
+",basic-calculator
+23,gpt,hard,c,"#include <stdio.h>
+#include <limits.h>
+
+double findMedianSortedArrays(int* nums1, int nums1Size, int* nums2, int nums2Size) {
+    // Ensure nums1 is smaller
+    if (nums1Size > nums2Size) {
+        return findMedianSortedArrays(nums2, nums2Size, nums1, nums1Size);
+    }
+    
+    int m = nums1Size;
+    int n = nums2Size;
+    int imin = 0, imax = m, half_len = (m + n + 1) / 2;
+    int max_of_left, min_of_right;
+    
+    while (imin <= imax) {
+        int i = (imin + imax) / 2;
+        int j = half_len - i;
+        
+        if (i < m && nums2[j - 1] > nums1[i]) {
+            // i is too small, must increase it
+            imin = i + 1;
+        } else if (i > 0 && nums1[i - 1] > nums2[j]) {
+            // i is too big, must decrease it
+            imax = i - 1;
+        } else {
+            // i is perfect
+            
+            if (i == 0) {
+                max_of_left = nums2[j - 1];
+            } else if (j == 0) {
+                max_of_left = nums1[i - 1];
+            } else {
+                max_of_left = nums1[i - 1] > nums2[j - 1] ? nums1[i - 1] : nums2[j - 1];
+            }
+            
+            if ((m + n) % 2 == 1) {
+                return max_of_left; // odd length
+            }
+            
+            if (i == m) {
+                min_of_right = nums2[j];
+            } else if (j == n) {
+                min_of_right = nums1[i];
+            } else {
+                min_of_right = nums1[i] < nums2[j] ? nums1[i] : nums2[j];
+            }
+            
+            return (max_of_left + min_of_right) / 2.0;
+        }
+    }
+    
+    // If we reach here, input was invalid
+    return 0.0;
+}
+",median-of-two-sorted-arrays
+24,gpt,medium,python3,"from collections import deque
+
+class Solution(object):
+    def levelOrder(self, root):
+        """"""
+        :type root: Optional[TreeNode]
+        :rtype: List[List[int]]
+        """"""
+        if not root:
+            return []
+
+        result = []
+        queue = deque([root])
+
+        while queue:
+            level_size = len(queue)
+            level = []
+
+            for _ in range(level_size):
+                node = queue.popleft()
+                level.append(node.val)
+
+                if node.left:
+                    queue.append(node.left)
+                if node.right:
+                    queue.append(node.right)
+
+            result.append(level)
+
+        return result
+",binary-tree-level-order-traversal
+25,gpt,medium,c,"int maxProfit(int* prices, int pricesSize) {
+    int profit = 0;
+    
+    for (int i = 1; i < pricesSize; i++) {
+        if (prices[i] > prices[i - 1]) {
+            profit += prices[i] - prices[i - 1];
+        }
+    }
+    
+    return profit;
+}
+",best-time-to-buy-and-sell-stock-ii
+26,gpt,medium,python3,"class Solution(object):
+    def maxProfit(self, prices):
+        """"""
+        :type prices: List[int]
+        :rtype: int
+        """"""
+        profit = 0
+        for i in range(1, len(prices)):
+            if prices[i] > prices[i - 1]:
+                profit += prices[i] - prices[i - 1]
+        return profit
+",best-time-to-buy-and-sell-stock-ii

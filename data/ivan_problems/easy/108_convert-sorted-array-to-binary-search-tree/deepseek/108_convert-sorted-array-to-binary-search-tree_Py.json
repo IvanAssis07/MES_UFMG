@@ -1,48 +1,48 @@
 {
-    "data": {
-        "submissionDetails": {
-            "runtime": 0,
-            "runtimeDisplay": "0 ms",
-            "runtimePercentile": 100.0,
-            "runtimeDistribution": "{\"lang\": \"python3\", \"distribution\": [[\"0\", 13.296], [\"1\", 5.2393], [\"2\", 8.1918], [\"3\", 46.2273], [\"4\", 18.4388], [\"5\", 3.2806]]}",
-            "memory": 18928000,
-            "memoryDisplay": "18.9 MB",
-            "memoryPercentile": 74.9229,
-            "memoryDistribution": "{\"lang\": \"python3\", \"distribution\": [[\"18500\", 0.0193], [\"18600\", 0.0482], [\"18700\", 1.0903], [\"18800\", 6.8699], [\"18900\", 17.0494], [\"19000\", 18.8634], [\"19100\", 25.6368], [\"19200\", 14.7144]]}",
-            "code": "# Definition for a binary tree node.\n# class TreeNode:\n#     def __init__(self, val=0, left=None, right=None):\n#         self.val = val\n#         self.left = left\n#         self.right = right\nclass Solution:\n    def sortedArrayToBST(self, nums: List[int]) -> Optional[TreeNode]:\n        if not nums:\n            return None\n        \n        mid = len(nums) // 2\n        root = TreeNode(nums[mid])\n        root.left = self.sortedArrayToBST(nums[:mid])\n        root.right = self.sortedArrayToBST(nums[mid+1:])\n        \n        return root",
-            "timestamp": 1749302510,
-            "statusCode": 10,
-            "user": {
-                "username": "IvanAssis",
-                "profile": {
-                    "realName": "IvanAssis",
-                    "userAvatar": "https://assets.leetcode.com/users/default_avatar.jpg"
-                }
-            },
-            "lang": {
-                "name": "python3",
-                "verboseName": "Python3"
-            },
-            "question": {
-                "questionId": "108",
-                "titleSlug": "convert-sorted-array-to-binary-search-tree",
-                "hasFrontendPreview": false
-            },
-            "notes": "",
-            "flagType": "WHITE",
-            "topicTags": [],
-            "runtimeError": null,
-            "compileError": null,
-            "lastTestcase": "",
-            "codeOutput": "",
-            "expectedOutput": "",
-            "totalCorrect": 31,
-            "totalTestcases": 31,
-            "fullCodeOutput": null,
-            "testDescriptions": null,
-            "testBodies": null,
-            "testInfo": null,
-            "stdOutput": ""
+  "data": {
+    "submissionDetails": {
+      "runtime": 0,
+      "runtimeDisplay": "0 ms",
+      "runtimePercentile": 100.0,
+      "runtimeDistribution": "{\"lang\": \"python3\", \"distribution\": [[\"0\", 13.296], [\"1\", 5.2393], [\"2\", 8.1918], [\"3\", 46.2273], [\"4\", 18.4388], [\"5\", 3.2806]]}",
+      "memory": 18928000,
+      "memoryDisplay": "18.9 MB",
+      "memoryPercentile": 74.9229,
+      "memoryDistribution": "{\"lang\": \"python3\", \"distribution\": [[\"18500\", 0.0193], [\"18600\", 0.0482], [\"18700\", 1.0903], [\"18800\", 6.8699], [\"18900\", 17.0494], [\"19000\", 18.8634], [\"19100\", 25.6368], [\"19200\", 14.7144]]}",
+      "code": "# Definition for a binary tree node.\n# class TreeNode:\n#     def __init__(self, val=0, left=None, right=None):\n#         self.val = val\n#         self.left = left\n#         self.right = right\nclass Solution:\n    def sortedArrayToBST(self, nums: List[int]) -> Optional[TreeNode]:\n        if not nums:\n            return None\n        \n        mid = len(nums) // 2\n        root = TreeNode(nums[mid])\n        root.left = self.sortedArrayToBST(nums[:mid])\n        root.right = self.sortedArrayToBST(nums[mid+1:])\n        \n        return root",
+      "timestamp": 1749302510,
+      "statusCode": 10,
+      "user": {
+        "username": "IvanAssis",
+        "profile": {
+          "realName": "IvanAssis",
+          "userAvatar": "https://assets.leetcode.com/users/default_avatar.jpg"
         }
+      },
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "question": {
+        "questionId": "108",
+        "titleSlug": "convert-sorted-array-to-binary-search-tree",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null,
+      "lastTestcase": "",
+      "codeOutput": "",
+      "expectedOutput": "",
+      "totalCorrect": 31,
+      "totalTestcases": 31,
+      "fullCodeOutput": null,
+      "testDescriptions": null,
+      "testBodies": null,
+      "testInfo": null,
+      "stdOutput": ""
     }
+  }
 }

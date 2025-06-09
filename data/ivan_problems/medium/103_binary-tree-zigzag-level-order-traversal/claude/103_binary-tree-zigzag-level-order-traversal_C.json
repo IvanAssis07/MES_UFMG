@@ -1,48 +1,48 @@
 {
-    "data": {
-        "submissionDetails": {
-            "runtime": 2,
-            "runtimeDisplay": "2 ms",
-            "runtimePercentile": 13.475200000000001,
-            "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"0\", 81.5603], [\"1\", 4.9645], [\"2\", 7.8014], [\"3\", 2.8369], [\"14\", 0.7092]]}",
-            "memory": 11668000,
-            "memoryDisplay": "11.7 MB",
-            "memoryPercentile": 51.0637,
-            "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"10700\", 1.4184], [\"10800\", 5.6738], [\"10900\", 2.8369], [\"11000\", 2.1277], [\"11100\", 6.383], [\"11200\", 5.6738], [\"11300\", 3.5461], [\"11400\", 5.6738], [\"11500\", 3.5461], [\"11600\", 12.0567], [\"11700\", 14.1844], [\"11800\", 10.6383], [\"11900\", 6.383], [\"12000\", 2.1277], [\"12100\", 0.7092], [\"12200\", 0.7092], [\"12300\", 2.8369], [\"12500\", 0.7092], [\"12600\", 1.4184], [\"12700\", 0.7092], [\"13100\", 0.7092], [\"13300\", 0.7092], [\"13400\", 1.4184], [\"13500\", 0.7092], [\"13700\", 1.4184]]}",
-            "code": "/**\n * Definition for a binary tree node.\n * struct TreeNode {\n *     int val;\n *     struct TreeNode *left;\n *     struct TreeNode *right;\n * };\n */\n\n#include <stdio.h>\n#include <stdlib.h>\n\n/**\n * Return an array of arrays of size *returnSize.\n * The sizes of the arrays are returned as *returnColumnSizes array.\n * Note: Both returned array and *columnSizes array must be malloced, assume caller calls free().\n */\nint** zigzagLevelOrder(struct TreeNode* root, int* returnSize, int** returnColumnSizes) {\n    *returnSize = 0;\n    if (!root) {\n        *returnColumnSizes = NULL;\n        return NULL;\n    }\n    \n    // Maximum possible levels in a tree with 2000 nodes\n    int** result = (int**)malloc(2000 * sizeof(int*));\n    *returnColumnSizes = (int*)malloc(2000 * sizeof(int));\n    \n    // Queue for BFS - store nodes and their levels\n    struct TreeNode** queue = (struct TreeNode**)malloc(2000 * sizeof(struct TreeNode*));\n    int front = 0, rear = 0;\n    \n    // Add root to queue\n    queue[rear++] = root;\n    \n    int level = 0;\n    bool leftToRight = true;\n    \n    while (front < rear) {\n        int levelSize = rear - front;\n        int* levelNodes = (int*)malloc(levelSize * sizeof(int));\n        \n        // Process all nodes at current level\n        for (int i = 0; i < levelSize; i++) {\n            struct TreeNode* node = queue[front++];\n            \n            // Add to result based on direction\n            if (leftToRight) {\n                levelNodes[i] = node->val;\n            } else {\n                levelNodes[levelSize - 1 - i] = node->val;\n            }\n            \n            // Add children to queue for next level\n            if (node->left) {\n                queue[rear++] = node->left;\n            }\n            if (node->right) {\n                queue[rear++] = node->right;\n            }\n        }\n        \n        // Add level to result\n        result[level] = levelNodes;\n        (*returnColumnSizes)[level] = levelSize;\n        level++;\n        \n        // Alternate direction for next level\n        leftToRight = !leftToRight;\n    }\n    \n    *returnSize = level;\n    free(queue);\n    \n    return result;\n}",
-            "timestamp": 1749306272,
-            "statusCode": 10,
-            "user": {
-                "username": "IvanAssis",
-                "profile": {
-                    "realName": "IvanAssis",
-                    "userAvatar": "https://assets.leetcode.com/users/default_avatar.jpg"
-                }
-            },
-            "lang": {
-                "name": "c",
-                "verboseName": "C"
-            },
-            "question": {
-                "questionId": "103",
-                "titleSlug": "binary-tree-zigzag-level-order-traversal",
-                "hasFrontendPreview": false
-            },
-            "notes": "",
-            "flagType": "WHITE",
-            "topicTags": [],
-            "runtimeError": null,
-            "compileError": null,
-            "lastTestcase": "",
-            "codeOutput": "",
-            "expectedOutput": "",
-            "totalCorrect": 33,
-            "totalTestcases": 33,
-            "fullCodeOutput": null,
-            "testDescriptions": null,
-            "testBodies": null,
-            "testInfo": null,
-            "stdOutput": ""
+  "data": {
+    "submissionDetails": {
+      "runtime": 2,
+      "runtimeDisplay": "2 ms",
+      "runtimePercentile": 13.475200000000001,
+      "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"0\", 81.5603], [\"1\", 4.9645], [\"2\", 7.8014], [\"3\", 2.8369], [\"14\", 0.7092]]}",
+      "memory": 11668000,
+      "memoryDisplay": "11.7 MB",
+      "memoryPercentile": 51.0637,
+      "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"10700\", 1.4184], [\"10800\", 5.6738], [\"10900\", 2.8369], [\"11000\", 2.1277], [\"11100\", 6.383], [\"11200\", 5.6738], [\"11300\", 3.5461], [\"11400\", 5.6738], [\"11500\", 3.5461], [\"11600\", 12.0567], [\"11700\", 14.1844], [\"11800\", 10.6383], [\"11900\", 6.383], [\"12000\", 2.1277], [\"12100\", 0.7092], [\"12200\", 0.7092], [\"12300\", 2.8369], [\"12500\", 0.7092], [\"12600\", 1.4184], [\"12700\", 0.7092], [\"13100\", 0.7092], [\"13300\", 0.7092], [\"13400\", 1.4184], [\"13500\", 0.7092], [\"13700\", 1.4184]]}",
+      "code": "/**\n * Definition for a binary tree node.\n * struct TreeNode {\n *     int val;\n *     struct TreeNode *left;\n *     struct TreeNode *right;\n * };\n */\n\n#include <stdio.h>\n#include <stdlib.h>\n\n/**\n * Return an array of arrays of size *returnSize.\n * The sizes of the arrays are returned as *returnColumnSizes array.\n * Note: Both returned array and *columnSizes array must be malloced, assume caller calls free().\n */\nint** zigzagLevelOrder(struct TreeNode* root, int* returnSize, int** returnColumnSizes) {\n    *returnSize = 0;\n    if (!root) {\n        *returnColumnSizes = NULL;\n        return NULL;\n    }\n    \n    // Maximum possible levels in a tree with 2000 nodes\n    int** result = (int**)malloc(2000 * sizeof(int*));\n    *returnColumnSizes = (int*)malloc(2000 * sizeof(int));\n    \n    // Queue for BFS - store nodes and their levels\n    struct TreeNode** queue = (struct TreeNode**)malloc(2000 * sizeof(struct TreeNode*));\n    int front = 0, rear = 0;\n    \n    // Add root to queue\n    queue[rear++] = root;\n    \n    int level = 0;\n    bool leftToRight = true;\n    \n    while (front < rear) {\n        int levelSize = rear - front;\n        int* levelNodes = (int*)malloc(levelSize * sizeof(int));\n        \n        // Process all nodes at current level\n        for (int i = 0; i < levelSize; i++) {\n            struct TreeNode* node = queue[front++];\n            \n            // Add to result based on direction\n            if (leftToRight) {\n                levelNodes[i] = node->val;\n            } else {\n                levelNodes[levelSize - 1 - i] = node->val;\n            }\n            \n            // Add children to queue for next level\n            if (node->left) {\n                queue[rear++] = node->left;\n            }\n            if (node->right) {\n                queue[rear++] = node->right;\n            }\n        }\n        \n        // Add level to result\n        result[level] = levelNodes;\n        (*returnColumnSizes)[level] = levelSize;\n        level++;\n        \n        // Alternate direction for next level\n        leftToRight = !leftToRight;\n    }\n    \n    *returnSize = level;\n    free(queue);\n    \n    return result;\n}",
+      "timestamp": 1749306272,
+      "statusCode": 10,
+      "user": {
+        "username": "IvanAssis",
+        "profile": {
+          "realName": "IvanAssis",
+          "userAvatar": "https://assets.leetcode.com/users/default_avatar.jpg"
         }
+      },
+      "lang": {
+        "name": "c",
+        "verboseName": "C"
+      },
+      "question": {
+        "questionId": "103",
+        "titleSlug": "binary-tree-zigzag-level-order-traversal",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null,
+      "lastTestcase": "",
+      "codeOutput": "",
+      "expectedOutput": "",
+      "totalCorrect": 33,
+      "totalTestcases": 33,
+      "fullCodeOutput": null,
+      "testDescriptions": null,
+      "testBodies": null,
+      "testInfo": null,
+      "stdOutput": ""
     }
+  }
 }

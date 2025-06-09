@@ -1,48 +1,48 @@
 {
-    "data": {
-        "submissionDetails": {
-            "runtime": 1,
-            "runtimeDisplay": "1 ms",
-            "runtimePercentile": 64.5193,
-            "runtimeDistribution": "{\"lang\": \"python3\", \"distribution\": [[\"0\", 35.4807], [\"1\", 6.233], [\"2\", 5.5242], [\"3\", 17.8153], [\"4\", 11.37], [\"5\", 3.3913], [\"6\", 2.6731], [\"7\", 7.2417], [\"8\", 2.7355], [\"9\", 0.9712], [\"10\", 0.6433]]}",
-            "memory": 18052000,
-            "memoryDisplay": "18.1 MB",
-            "memoryPercentile": 59.24809999999998,
-            "memoryDistribution": "{\"lang\": \"python3\", \"distribution\": [[\"17400\", 0.0062], [\"17500\", 0.0062], [\"17600\", 0.025], [\"17700\", 0.1686], [\"17800\", 2.492], [\"17900\", 13.9212], [\"18000\", 24.1327], [\"18100\", 19.3548], [\"18200\", 20.351], [\"18300\", 13.965]]}",
-            "code": "from typing import List\n\nclass Solution:\n    def findMedianSortedArrays(self, nums1: List[int], nums2: List[int]) -> float:\n        # Ensure nums1 is the smaller array for optimization\n        if len(nums1) > len(nums2):\n            nums1, nums2 = nums2, nums1\n        \n        m, n = len(nums1), len(nums2)\n        left, right = 0, m\n        \n        while left <= right:\n            # Partition nums1 at cut1 and nums2 at cut2\n            cut1 = (left + right) // 2\n            cut2 = (m + n + 1) // 2 - cut1\n            \n            # Calculate boundary values\n            # Use float('-inf') and float('inf') for edge cases\n            left1 = float('-inf') if cut1 == 0 else nums1[cut1 - 1]\n            left2 = float('-inf') if cut2 == 0 else nums2[cut2 - 1]\n            right1 = float('inf') if cut1 == m else nums1[cut1]\n            right2 = float('inf') if cut2 == n else nums2[cut2]\n            \n            # Check if we found the correct partition\n            if left1 <= right2 and left2 <= right1:\n                # Found the correct partition\n                if (m + n) % 2 == 1:\n                    # Odd total length - return max of left partition\n                    return max(left1, left2)\n                else:\n                    # Even total length - return average of middle two elements\n                    return (max(left1, left2) + min(right1, right2)) / 2\n            \n            # Adjust binary search boundaries\n            elif left1 > right2:\n                # We took too many elements from nums1, reduce cut1\n                right = cut1 - 1\n            else:\n                # We took too few elements from nums1, increase cut1\n                left = cut1 + 1\n        \n        return 0.0  # Should never reach here for valid input\n",
-            "timestamp": 1749304617,
-            "statusCode": 10,
-            "user": {
-                "username": "IvanAssis",
-                "profile": {
-                    "realName": "IvanAssis",
-                    "userAvatar": "https://assets.leetcode.com/users/default_avatar.jpg"
-                }
-            },
-            "lang": {
-                "name": "python3",
-                "verboseName": "Python3"
-            },
-            "question": {
-                "questionId": "4",
-                "titleSlug": "median-of-two-sorted-arrays",
-                "hasFrontendPreview": false
-            },
-            "notes": "",
-            "flagType": "WHITE",
-            "topicTags": [],
-            "runtimeError": null,
-            "compileError": null,
-            "lastTestcase": "",
-            "codeOutput": "",
-            "expectedOutput": "",
-            "totalCorrect": 2096,
-            "totalTestcases": 2096,
-            "fullCodeOutput": null,
-            "testDescriptions": null,
-            "testBodies": null,
-            "testInfo": null,
-            "stdOutput": ""
+  "data": {
+    "submissionDetails": {
+      "runtime": 1,
+      "runtimeDisplay": "1 ms",
+      "runtimePercentile": 64.5193,
+      "runtimeDistribution": "{\"lang\": \"python3\", \"distribution\": [[\"0\", 35.4807], [\"1\", 6.233], [\"2\", 5.5242], [\"3\", 17.8153], [\"4\", 11.37], [\"5\", 3.3913], [\"6\", 2.6731], [\"7\", 7.2417], [\"8\", 2.7355], [\"9\", 0.9712], [\"10\", 0.6433]]}",
+      "memory": 18052000,
+      "memoryDisplay": "18.1 MB",
+      "memoryPercentile": 59.24809999999998,
+      "memoryDistribution": "{\"lang\": \"python3\", \"distribution\": [[\"17400\", 0.0062], [\"17500\", 0.0062], [\"17600\", 0.025], [\"17700\", 0.1686], [\"17800\", 2.492], [\"17900\", 13.9212], [\"18000\", 24.1327], [\"18100\", 19.3548], [\"18200\", 20.351], [\"18300\", 13.965]]}",
+      "code": "from typing import List\n\nclass Solution:\n    def findMedianSortedArrays(self, nums1: List[int], nums2: List[int]) -> float:\n        # Ensure nums1 is the smaller array for optimization\n        if len(nums1) > len(nums2):\n            nums1, nums2 = nums2, nums1\n        \n        m, n = len(nums1), len(nums2)\n        left, right = 0, m\n        \n        while left <= right:\n            # Partition nums1 at cut1 and nums2 at cut2\n            cut1 = (left + right) // 2\n            cut2 = (m + n + 1) // 2 - cut1\n            \n            # Calculate boundary values\n            # Use float('-inf') and float('inf') for edge cases\n            left1 = float('-inf') if cut1 == 0 else nums1[cut1 - 1]\n            left2 = float('-inf') if cut2 == 0 else nums2[cut2 - 1]\n            right1 = float('inf') if cut1 == m else nums1[cut1]\n            right2 = float('inf') if cut2 == n else nums2[cut2]\n            \n            # Check if we found the correct partition\n            if left1 <= right2 and left2 <= right1:\n                # Found the correct partition\n                if (m + n) % 2 == 1:\n                    # Odd total length - return max of left partition\n                    return max(left1, left2)\n                else:\n                    # Even total length - return average of middle two elements\n                    return (max(left1, left2) + min(right1, right2)) / 2\n            \n            # Adjust binary search boundaries\n            elif left1 > right2:\n                # We took too many elements from nums1, reduce cut1\n                right = cut1 - 1\n            else:\n                # We took too few elements from nums1, increase cut1\n                left = cut1 + 1\n        \n        return 0.0  # Should never reach here for valid input\n",
+      "timestamp": 1749304617,
+      "statusCode": 10,
+      "user": {
+        "username": "IvanAssis",
+        "profile": {
+          "realName": "IvanAssis",
+          "userAvatar": "https://assets.leetcode.com/users/default_avatar.jpg"
         }
+      },
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "question": {
+        "questionId": "4",
+        "titleSlug": "median-of-two-sorted-arrays",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null,
+      "lastTestcase": "",
+      "codeOutput": "",
+      "expectedOutput": "",
+      "totalCorrect": 2096,
+      "totalTestcases": 2096,
+      "fullCodeOutput": null,
+      "testDescriptions": null,
+      "testBodies": null,
+      "testInfo": null,
+      "stdOutput": ""
     }
+  }
 }

@@ -1,48 +1,48 @@
 {
-    "data": {
-        "submissionDetails": {
-            "runtime": 0,
-            "runtimeDisplay": "0 ms",
-            "runtimePercentile": 100.0,
-            "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"0\", 85.2713], [\"1\", 1.938], [\"2\", 2.3256], [\"3\", 5.814], [\"4\", 2.3256]]}",
-            "memory": 9776000,
-            "memoryDisplay": "9.8 MB",
-            "memoryPercentile": 63.17829999999999,
-            "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"9400\", 0.7752], [\"9500\", 7.3643], [\"9600\", 18.6047], [\"9700\", 10.0775], [\"9800\", 12.7907], [\"9900\", 11.6279], [\"10000\", 5.0388], [\"10100\", 7.3643], [\"10200\", 2.3256], [\"10300\", 3.4884], [\"10400\", 2.7132], [\"10500\", 1.1628], [\"10600\", 1.1628], [\"10700\", 0.7752], [\"10900\", 0.7752], [\"11000\", 0.7752], [\"11200\", 0.3876], [\"11300\", 0.7752], [\"11400\", 1.938], [\"11500\", 0.7752], [\"11600\", 0.3876], [\"11700\", 0.3876], [\"11900\", 0.3876], [\"12000\", 0.3876], [\"12200\", 0.7752], [\"12300\", 0.7752], [\"12600\", 1.1628]]}",
-            "code": "#include <stdlib.h>\n\ntypedef struct QueueNode {\n    struct TreeNode* node;\n    struct QueueNode* next;\n} QueueNode;\n\ntypedef struct {\n    QueueNode *front, *rear;\n} Queue;\n\nvoid enqueue(Queue *q, struct TreeNode* node) {\n    QueueNode* newNode = (QueueNode*)malloc(sizeof(QueueNode));\n    newNode->node = node;\n    newNode->next = NULL;\n    if (!q->rear) {\n        q->front = q->rear = newNode;\n    } else {\n        q->rear->next = newNode;\n        q->rear = newNode;\n    }\n}\n\nstruct TreeNode* dequeue(Queue *q) {\n    if (!q->front) return NULL;\n    QueueNode* temp = q->front;\n    struct TreeNode* node = temp->node;\n    q->front = q->front->next;\n    if (!q->front) q->rear = NULL;\n    free(temp);\n    return node;\n}\n\nint queueSize(Queue *q) {\n    int size = 0;\n    QueueNode* current = q->front;\n    while(current) {\n        size++;\n        current = current->next;\n    }\n    return size;\n}\n\nint* rightSideView(struct TreeNode* root, int* returnSize) {\n    *returnSize = 0;\n    if (!root) return NULL;\n\n    int capacity = 100;  // max nodes as per constraints\n    int* result = (int*)malloc(sizeof(int) * capacity);\n\n    Queue q = {0};\n    enqueue(&q, root);\n\n    while (q.front) {\n        int levelSize = queueSize(&q);\n        struct TreeNode* current = NULL;\n        for (int i = 0; i < levelSize; i++) {\n            current = dequeue(&q);\n            if (current->left) enqueue(&q, current->left);\n            if (current->right) enqueue(&q, current->right);\n        }\n        // current now points to the rightmost node of the current level\n        result[*returnSize] = current->val;\n        (*returnSize)++;\n    }\n\n    return result;\n}\n",
-            "timestamp": 1749306909,
-            "statusCode": 10,
-            "user": {
-                "username": "IvanAssis",
-                "profile": {
-                    "realName": "IvanAssis",
-                    "userAvatar": "https://assets.leetcode.com/users/default_avatar.jpg"
-                }
-            },
-            "lang": {
-                "name": "c",
-                "verboseName": "C"
-            },
-            "question": {
-                "questionId": "199",
-                "titleSlug": "binary-tree-right-side-view",
-                "hasFrontendPreview": false
-            },
-            "notes": "",
-            "flagType": "WHITE",
-            "topicTags": [],
-            "runtimeError": null,
-            "compileError": null,
-            "lastTestcase": "",
-            "codeOutput": "",
-            "expectedOutput": "",
-            "totalCorrect": 217,
-            "totalTestcases": 217,
-            "fullCodeOutput": null,
-            "testDescriptions": null,
-            "testBodies": null,
-            "testInfo": null,
-            "stdOutput": ""
+  "data": {
+    "submissionDetails": {
+      "runtime": 0,
+      "runtimeDisplay": "0 ms",
+      "runtimePercentile": 100.0,
+      "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"0\", 85.2713], [\"1\", 1.938], [\"2\", 2.3256], [\"3\", 5.814], [\"4\", 2.3256]]}",
+      "memory": 9776000,
+      "memoryDisplay": "9.8 MB",
+      "memoryPercentile": 63.17829999999999,
+      "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"9400\", 0.7752], [\"9500\", 7.3643], [\"9600\", 18.6047], [\"9700\", 10.0775], [\"9800\", 12.7907], [\"9900\", 11.6279], [\"10000\", 5.0388], [\"10100\", 7.3643], [\"10200\", 2.3256], [\"10300\", 3.4884], [\"10400\", 2.7132], [\"10500\", 1.1628], [\"10600\", 1.1628], [\"10700\", 0.7752], [\"10900\", 0.7752], [\"11000\", 0.7752], [\"11200\", 0.3876], [\"11300\", 0.7752], [\"11400\", 1.938], [\"11500\", 0.7752], [\"11600\", 0.3876], [\"11700\", 0.3876], [\"11900\", 0.3876], [\"12000\", 0.3876], [\"12200\", 0.7752], [\"12300\", 0.7752], [\"12600\", 1.1628]]}",
+      "code": "#include <stdlib.h>\n\ntypedef struct QueueNode {\n    struct TreeNode* node;\n    struct QueueNode* next;\n} QueueNode;\n\ntypedef struct {\n    QueueNode *front, *rear;\n} Queue;\n\nvoid enqueue(Queue *q, struct TreeNode* node) {\n    QueueNode* newNode = (QueueNode*)malloc(sizeof(QueueNode));\n    newNode->node = node;\n    newNode->next = NULL;\n    if (!q->rear) {\n        q->front = q->rear = newNode;\n    } else {\n        q->rear->next = newNode;\n        q->rear = newNode;\n    }\n}\n\nstruct TreeNode* dequeue(Queue *q) {\n    if (!q->front) return NULL;\n    QueueNode* temp = q->front;\n    struct TreeNode* node = temp->node;\n    q->front = q->front->next;\n    if (!q->front) q->rear = NULL;\n    free(temp);\n    return node;\n}\n\nint queueSize(Queue *q) {\n    int size = 0;\n    QueueNode* current = q->front;\n    while(current) {\n        size++;\n        current = current->next;\n    }\n    return size;\n}\n\nint* rightSideView(struct TreeNode* root, int* returnSize) {\n    *returnSize = 0;\n    if (!root) return NULL;\n\n    int capacity = 100;  // max nodes as per constraints\n    int* result = (int*)malloc(sizeof(int) * capacity);\n\n    Queue q = {0};\n    enqueue(&q, root);\n\n    while (q.front) {\n        int levelSize = queueSize(&q);\n        struct TreeNode* current = NULL;\n        for (int i = 0; i < levelSize; i++) {\n            current = dequeue(&q);\n            if (current->left) enqueue(&q, current->left);\n            if (current->right) enqueue(&q, current->right);\n        }\n        // current now points to the rightmost node of the current level\n        result[*returnSize] = current->val;\n        (*returnSize)++;\n    }\n\n    return result;\n}\n",
+      "timestamp": 1749306909,
+      "statusCode": 10,
+      "user": {
+        "username": "IvanAssis",
+        "profile": {
+          "realName": "IvanAssis",
+          "userAvatar": "https://assets.leetcode.com/users/default_avatar.jpg"
         }
+      },
+      "lang": {
+        "name": "c",
+        "verboseName": "C"
+      },
+      "question": {
+        "questionId": "199",
+        "titleSlug": "binary-tree-right-side-view",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null,
+      "lastTestcase": "",
+      "codeOutput": "",
+      "expectedOutput": "",
+      "totalCorrect": 217,
+      "totalTestcases": 217,
+      "fullCodeOutput": null,
+      "testDescriptions": null,
+      "testBodies": null,
+      "testInfo": null,
+      "stdOutput": ""
     }
+  }
 }

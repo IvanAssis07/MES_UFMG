@@ -1,1 +1,48 @@
-{}
+{
+  "data": {
+    "submissionDetails": {
+      "runtime": 38,
+      "runtimeDisplay": "N/A",
+      "runtimePercentile": null,
+      "runtimeDistribution": "{\"lang\": \"python3\", \"distribution\": [[\"1\", 31.183799999999998], [\"3\", 10.3108], [\"5\", 4.4009], [\"7\", 1.0598], [\"9\", 0.1617], [\"11\", 0.036], [\"13\", 0.0359], [\"15\", 0.0539], [\"17\", 0.1437], [\"19\", 0.018], [\"21\", 0.0719], [\"23\", 0.0359], [\"25\", 0.6287], [\"27\", 0.0898], [\"29\", 0.2335], [\"31\", 0.1437], [\"33\", 0.5569], [\"35\", 0.0719], [\"37\", 0.0539], [\"39\", 0.0359], [\"41\", 0.0539], [\"43\", 0.036], [\"45\", 0.0359], [\"47\", 0.018], [\"49\", 0.018], [\"51\", 1.1317], [\"53\", 0.4131], [\"55\", 0.3952], [\"57\", 0.7544], [\"59\", 4.5806], [\"61\", 0.7006], [\"63\", 0.7544], [\"65\", 4.3111], [\"67\", 1.2574], [\"69\", 1.0239], [\"71\", 0.1258], [\"73\", 0.1438], [\"75\", 0.036], [\"77\", 0.0719], [\"79\", 0.0539], [\"82\", 0.1437], [\"84\", 0.0898], [\"86\", 0.5928], [\"88\", 0.2695], [\"90\", 3.3591], [\"92\", 2.0837], [\"94\", 5.371], [\"96\", 2.3711], [\"98\", 3.7183], [\"100\", 1.1855], [\"102\", 1.6885999999999999], [\"104\", 0.7004999999999999], [\"106\", 1.4011], [\"108\", 0.5569], [\"110\", 1.0778], [\"112\", 0.6825], [\"114\", 1.3293], [\"116\", 0.3952], [\"118\", 0.4491], [\"120\", 0.12580000000000002], [\"122\", 0.16169999999999998], [\"124\", 0.0539], [\"126\", 0.1258], [\"128\", 0.0539], [\"130\", 0.1257], [\"132\", 0.018], [\"134\", 0.018], [\"136\", 0.0539], [\"138\", 0.0539], [\"140\", 0.08990000000000001], [\"142\", 0.018], [\"144\", 0.2515], [\"146\", 0.018], [\"148\", 0.0359], [\"150\", 0.1796], [\"152\", 0.1078], [\"154\", 0.26940000000000003], [\"156\", 0.1078], [\"158\", 0.23349999999999999], [\"160\", 0.08990000000000001]]}",
+      "memory": 17768000,
+      "memoryDisplay": "N/A",
+      "memoryPercentile": null,
+      "memoryDistribution": "{\"lang\": \"python3\", \"distribution\": [[\"18600\", 0.1257], [\"18700\", 0.4491], [\"18800\", 0.4131], [\"18900\", 0.8981], [\"19000\", 1.2933], [\"19100\", 2.6406], [\"19200\", 6.0535], [\"19300\", 15.7176], [\"19400\", 10.6161], [\"19500\", 5.5146], [\"19600\", 4.4728], [\"19700\", 2.2454], [\"19800\", 0.6826], [\"19900\", 0.2156], [\"20000\", 0.0898], [\"20300\", 0.018], [\"20500\", 0.018], [\"20600\", 0.018], [\"20800\", 0.0359], [\"30600\", 0.018], [\"37800\", 0.018], [\"53600\", 0.0359], [\"53700\", 0.1078], [\"53800\", 0.2515], [\"53900\", 1.8861], [\"54000\", 5.0476], [\"54100\", 5.3889], [\"54200\", 2.3352], [\"54300\", 0.7365], [\"54400\", 0.1976], [\"54500\", 0.1617], [\"54600\", 0.0898], [\"54700\", 0.018], [\"54900\", 0.0539], [\"65600\", 0.018], [\"87800\", 0.018], [\"88900\", 0.0359], [\"89000\", 0.0898], [\"89100\", 0.3413], [\"89200\", 1.2394], [\"89300\", 2.5507], [\"89400\", 6.287], [\"89500\", 7.5624], [\"89600\", 4.1135], [\"89700\", 1.2574], [\"89800\", 1.2754]]}",
+      "code": "# Definition for a binary tree node.\nfrom typing import List, Optional\n\nclass TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n\nclass Solution:\n    def buildTree(self, inorder: List[int], postorder: List[int]) -> Optional[TreeNode]:\n        # Map of value -> index in inorder to optimize lookup\n        inorder_index_map = {val: idx for idx, val in enumerate(inorder)}\n        \n        # We use a helper function that takes the range of inorder and postorder\n        def build(in_left, in_right):\n            if in_left > in_right:\n                return None\n            \n            # The last item in postorder is the root\n            root_val = postorder.pop()\n            root = TreeNode(root_val)\n            \n            # Root splits inorder list into left and right subtrees\n            index = inorder_index_map[root_val]\n            \n            # Build right subtree first because postorder is L-R-Root\n            root.right = build(index + 1, in_right)\n            root.left = build(in_left, index - 1)\n            \n            return root\n        \n        return build(0, len(inorder) - 1)\n",
+      "timestamp": 1749414311,
+      "statusCode": 15,
+      "user": {
+        "username": "ZRlvkAicEr",
+        "profile": {
+          "realName": "ZRlvkAicEr",
+          "userAvatar": "https://assets.leetcode.com/users/ZRlvkAicEr/avatar_1749245074.png"
+        }
+      },
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "question": {
+        "questionId": "106",
+        "titleSlug": "construct-binary-tree-from-inorder-and-postorder-traversal",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": "TypeError: <__main__.TreeNode object at 0x7fd7bbae17d0> is not valid value for the expected return type TreeNode\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    raise TypeError(str(ret) + \" is not valid value for the expected return type TreeNode\");\nLine 70 in _driver (Solution.py)\n    _driver()\nLine 79 in <module> (Solution.py)\nDuring handling of the above exception, another exception occurred:\nException: Type <class '__main__.TreeNode'> cannot be serialized\nLine 138 in serializer_node (./python3/__serializer__.py)\nLine 181 in _serialize_default (./python3/__serializer__.py)\nLine 200 in _serialize (./python3/__serializer__.py)\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    out = ser._serialize(ret, 'TreeNode')\nLine 68 in _driver (Solution.py)",
+      "compileError": null,
+      "lastTestcase": "[9,3,15,20,7]\n[9,15,7,20,3]",
+      "codeOutput": "",
+      "expectedOutput": "[3,9,20,null,null,15,7]",
+      "totalCorrect": 0,
+      "totalTestcases": 202,
+      "fullCodeOutput": null,
+      "testDescriptions": null,
+      "testBodies": null,
+      "testInfo": null,
+      "stdOutput": ""
+    }
+  }
+}

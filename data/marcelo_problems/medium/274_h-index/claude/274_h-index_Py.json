@@ -1,0 +1,48 @@
+{
+  "data": {
+    "submissionDetails": {
+      "runtime": 3,
+      "runtimeDisplay": "3 ms",
+      "runtimePercentile": 24.775499999999994,
+      "runtimeDistribution": "{\"lang\": \"python3\", \"distribution\": [[\"1\", 84.34060000000001], [\"3\", 4.5026], [\"6\", 0.5213], [\"8\", 0.0666], [\"11\", 0.3327], [\"13\", 0.1774], [\"16\", 0.1442], [\"18\", 0.1886], [\"21\", 0.3106], [\"23\", 0.0555], [\"26\", 0.0666], [\"28\", 0.0333], [\"31\", 0.0887], [\"33\", 0.0333], [\"36\", 0.0333], [\"38\", 0.0887], [\"41\", 0.0777], [\"43\", 0.0444], [\"46\", 0.1331], [\"48\", 0.05550000000000001], [\"51\", 0.0111], [\"53\", 0.0222], [\"56\", 0.0111], [\"58\", 0.0444], [\"61\", 0.0666], [\"63\", 0.0333], [\"66\", 0.0555], [\"68\", 0.0222], [\"71\", 0.1109], [\"73\", 0.0776], [\"76\", 0.0555], [\"78\", 0.1553], [\"81\", 0.244], [\"83\", 0.0333], [\"86\", 0.11100000000000002], [\"88\", 0.0999], [\"91\", 0.1109], [\"93\", 0.0444], [\"96\", 0.1331], [\"98\", 0.0111], [\"101\", 0.2883], [\"103\", 0.0998], [\"106\", 0.2107], [\"108\", 0.0666], [\"111\", 0.0999], [\"113\", 0.0222], [\"116\", 0.0222], [\"118\", 0.0776], [\"121\", 0.0222], [\"123\", 0.0333], [\"126\", 0.0998], [\"128\", 0.0444], [\"131\", 0.0887], [\"133\", 0.0111], [\"136\", 0.0333], [\"138\", 0.0111], [\"141\", 0.0666], [\"143\", 0.0111], [\"146\", 0.0555], [\"148\", 0.0222], [\"151\", 0.0222], [\"153\", 0.0555], [\"156\", 0.0222], [\"158\", 0.0222], [\"161\", 0.0998], [\"163\", 0.05550000000000001], [\"166\", 0.1331], [\"168\", 0.0776], [\"171\", 0.0222], [\"173\", 0.0444], [\"176\", 0.0444], [\"178\", 0.0111], [\"181\", 0.0444], [\"183\", 0.0222], [\"186\", 0.0444], [\"188\", 0.0111], [\"191\", 0.0111], [\"193\", 0.0111], [\"196\", 0.0444], [\"198\", 0.0444]]}",
+      "memory": 18016000,
+      "memoryDisplay": "18 MB",
+      "memoryPercentile": 63.712999999999994,
+      "memoryDistribution": "{\"lang\": \"python3\", \"distribution\": [[\"17200\", 0.0111], [\"17600\", 0.0333], [\"17700\", 0.1774], [\"17800\", 1.5083], [\"17900\", 9.471], [\"18000\", 25.0859], [\"18100\", 22.513], [\"18200\", 20.6832]]}",
+      "code": "class Solution:\n    def hIndex(self, citations: List[int]) -> int:\n        # Sort citations in descending order\n        citations.sort(reverse=True)\n        \n        h_index = 0\n        \n        # Check each possible h value\n        for i in range(len(citations)):\n            # Number of papers with at least citations[i] citations is (i + 1)\n            # We need at least h papers with at least h citations\n            # So we need: min(citations[i], i + 1) as our h-index candidate\n            h_candidate = min(citations[i], i + 1)\n            h_index = max(h_index, h_candidate)\n        \n        return h_index",
+      "timestamp": 1749414700,
+      "statusCode": 10,
+      "user": {
+        "username": "ZRlvkAicEr",
+        "profile": {
+          "realName": "ZRlvkAicEr",
+          "userAvatar": "https://assets.leetcode.com/users/ZRlvkAicEr/avatar_1749245074.png"
+        }
+      },
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "question": {
+        "questionId": "274",
+        "titleSlug": "h-index",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null,
+      "lastTestcase": "",
+      "codeOutput": "",
+      "expectedOutput": "",
+      "totalCorrect": 83,
+      "totalTestcases": 83,
+      "fullCodeOutput": null,
+      "testDescriptions": null,
+      "testBodies": null,
+      "testInfo": null,
+      "stdOutput": ""
+    }
+  }
+}

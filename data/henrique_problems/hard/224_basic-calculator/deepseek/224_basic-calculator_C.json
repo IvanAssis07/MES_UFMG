@@ -1,1 +1,45 @@
-{}
+{
+  "data": {
+    "submissionDetails": {
+      "runtime": 0,
+      "runtimeDisplay": "0 ms",
+      "runtimePercentile": 100.0,
+      "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"0\", 47.0899], [\"1\", 10.8466], [\"2\", 7.672], [\"3\", 18.5185], [\"4\", 9.2593], [\"5\", 0.7937], [\"6\", 0.2646], [\"7\", 0.2646]]}",
+      "memory": 9220000,
+      "memoryDisplay": "9.2 MB",
+      "memoryPercentile": 57.14280000000001,
+      "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"8700\", 0.2646], [\"8800\", 2.6455], [\"8900\", 6.3492], [\"9000\", 2.9101], [\"9100\", 11.6402], [\"9200\", 19.0476], [\"9300\", 26.9841], [\"9400\", 10.0529], [\"9500\", 3.4392], [\"9600\", 1.5873], [\"9700\", 0.7937], [\"9800\", 1.5873], [\"9900\", 0.5291], [\"10000\", 2.381], [\"10100\", 4.4974], [\"10200\", 0.2646]]}",
+      "code": "#include <stdlib.h>\n#include <ctype.h>\n\nint calculate(char* s) {\n    int len = strlen(s);\n    int* stack = (int*)malloc(len * sizeof(int));\n    int top = -1;\n    int result = 0;\n    int num = 0;\n    int sign = 1;\n\n    for (int i = 0; i < len; i++) {\n        char c = s[i];\n        if (isdigit(c)) {\n            num = num * 10 + (c - '0');\n        } else if (c == '+') {\n            result += sign * num;\n            num = 0;\n            sign = 1;\n        } else if (c == '-') {\n            result += sign * num;\n            num = 0;\n            sign = -1;\n        } else if (c == '(') {\n            stack[++top] = result;\n            stack[++top] = sign;\n            result = 0;\n            sign = 1;\n        } else if (c == ')') {\n            result += sign * num;\n            num = 0;\n            result *= stack[top--];\n            result += stack[top--];\n        }\n    }\n    result += sign * num;\n    free(stack);\n    return result;\n}",
+      "timestamp": 1749420684,
+      "statusCode": 10,
+      "user": {
+        "username": "yosQbj5lkC",
+        "profile": {
+          "realName": "Henrique Freitas",
+          "userAvatar": "https://assets.leetcode.com/users/yosQbj5lkC/avatar_1748722942.png"
+        }
+      },
+      "lang": { "name": "c", "verboseName": "C" },
+      "question": {
+        "questionId": "224",
+        "titleSlug": "basic-calculator",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null,
+      "lastTestcase": "",
+      "codeOutput": "",
+      "expectedOutput": "",
+      "totalCorrect": 47,
+      "totalTestcases": 47,
+      "fullCodeOutput": null,
+      "testDescriptions": null,
+      "testBodies": null,
+      "testInfo": null,
+      "stdOutput": ""
+    }
+  }
+}

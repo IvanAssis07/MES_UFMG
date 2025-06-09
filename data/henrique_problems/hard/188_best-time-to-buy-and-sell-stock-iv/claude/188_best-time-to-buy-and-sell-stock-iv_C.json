@@ -1,1 +1,45 @@
-{}
+{
+  "data": {
+    "submissionDetails": {
+      "runtime": 4,
+      "runtimeDisplay": "4 ms",
+      "runtimePercentile": 23.6842,
+      "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"0\", 50.0], [\"1\", 7.8947], [\"2\", 2.6316], [\"3\", 15.7895], [\"4\", 7.8947], [\"11\", 2.6316], [\"14\", 2.6316], [\"40\", 2.6316], [\"42\", 2.6316]]}",
+      "memory": 8140000,
+      "memoryDisplay": "8.1 MB",
+      "memoryPercentile": 94.7368,
+      "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"8100\", 5.2632], [\"8200\", 10.5263], [\"8500\", 5.2632], [\"8600\", 15.7895], [\"8700\", 5.2632], [\"8800\", 5.2632], [\"9000\", 2.6316], [\"9100\", 2.6316], [\"9500\", 7.8947], [\"9600\", 15.7895], [\"9700\", 2.6316], [\"9800\", 10.5263], [\"10000\", 2.6316], [\"10900\", 2.6316]]}",
+      "code": "#include <stdio.h>\n#include <stdlib.h>\n\n#define max(a, b) ((a) > (b) ? (a) : (b))\n\nint maxProfit(int k, int* prices, int pricesSize) {\n    if (pricesSize <= 1 || k <= 0) {\n        return 0;\n    }\n    \n    // Se k >= pricesSize/2, podemos fazer transa\u00e7\u00f5es ilimitadas\n    if (k >= pricesSize / 2) {\n        int profit = 0;\n        for (int i = 1; i < pricesSize; i++) {\n            if (prices[i] > prices[i-1]) {\n                profit += prices[i] - prices[i-1];\n            }\n        }\n        return profit;\n    }\n    \n    // DP: bought[i] = lucro m\u00e1ximo com i transa\u00e7\u00f5es segurando a\u00e7\u00e3o\n    //     sold[i] = lucro m\u00e1ximo com i transa\u00e7\u00f5es sem a\u00e7\u00e3o\n    int* bought = (int*)malloc((k + 1) * sizeof(int));\n    int* sold = (int*)malloc((k + 1) * sizeof(int));\n    \n    for (int i = 0; i <= k; i++) {\n        bought[i] = -prices[0];\n        sold[i] = 0;\n    }\n    \n    for (int day = 1; day < pricesSize; day++) {\n        for (int t = k; t >= 1; t--) {\n            sold[t] = max(sold[t], bought[t] + prices[day]);\n            bought[t] = max(bought[t], sold[t-1] - prices[day]);\n        }\n    }\n    \n    int result = sold[k];\n    free(bought);\n    free(sold);\n    return result;\n}",
+      "timestamp": 1749413247,
+      "statusCode": 10,
+      "user": {
+        "username": "yosQbj5lkC",
+        "profile": {
+          "realName": "Henrique Freitas",
+          "userAvatar": "https://assets.leetcode.com/users/yosQbj5lkC/avatar_1748722942.png"
+        }
+      },
+      "lang": { "name": "c", "verboseName": "C" },
+      "question": {
+        "questionId": "188",
+        "titleSlug": "best-time-to-buy-and-sell-stock-iv",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null,
+      "lastTestcase": "",
+      "codeOutput": "",
+      "expectedOutput": "",
+      "totalCorrect": 210,
+      "totalTestcases": 210,
+      "fullCodeOutput": null,
+      "testDescriptions": null,
+      "testBodies": null,
+      "testInfo": null,
+      "stdOutput": ""
+    }
+  }
+}

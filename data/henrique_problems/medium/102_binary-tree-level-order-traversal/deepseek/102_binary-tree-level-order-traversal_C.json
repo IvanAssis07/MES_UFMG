@@ -1,1 +1,48 @@
-{}
+{
+  "data": {
+    "submissionDetails": {
+      "runtime": 1,
+      "runtimeDisplay": "1 ms",
+      "runtimePercentile": 51.2415,
+      "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"0\", 48.7585], [\"1\", 3.386], [\"2\", 4.7404], [\"3\", 9.0293], [\"4\", 7.2235], [\"5\", 1.8059], [\"6\", 2.2573], [\"7\", 4.5147], [\"8\", 1.3544], [\"10\", 1.5801], [\"11\", 2.9345], [\"12\", 1.3544], [\"13\", 0.6772], [\"14\", 0.6772], [\"15\", 2.4831], [\"16\", 0.4515], [\"19\", 0.6772], [\"21\", 0.2257], [\"23\", 0.2257], [\"36\", 0.2257], [\"38\", 0.2257]]}",
+      "memory": 13280000,
+      "memoryDisplay": "13.3 MB",
+      "memoryPercentile": 51.24170000000002,
+      "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"12700\", 52.59579999999999], [\"13900\", 10.835199999999997], [\"15100\", 1.8058], [\"16300\", 1.1286], [\"17500\", 0.9028], [\"18700\", 1.8059], [\"19900\", 6.5463], [\"21100\", 1.8059], [\"22300\", 1.5801], [\"23500\", 0.4515], [\"24700\", 0.2257], [\"25900\", 0.2257], [\"27100\", 0.2257], [\"28300\", 0.2257], [\"29500\", 1.8058], [\"30700\", 0.2257], [\"31900\", 0.2257], [\"33100\", 0.2257], [\"34300\", 0.4515], [\"35500\", 0.2257], [\"36700\", 0.2257], [\"37900\", 0.2257], [\"39100\", 0.2257], [\"40300\", 4.7402999999999995], [\"41500\", 0.4515], [\"42700\", 0.6772], [\"43900\", 0.9029], [\"45100\", 0.4515], [\"46300\", 1.1287], [\"47500\", 1.3543], [\"48700\", 0.2257], [\"49900\", 0.2257], [\"51100\", 0.2257], [\"52300\", 0.2257]]}",
+      "code": "#include <stdlib.h>\n#include <stdio.h>\n\n\n\nint** levelOrder(struct TreeNode* root, int* returnSize, int** returnColumnSizes) {\n    if (root == NULL) {\n        *returnSize = 0;\n        *returnColumnSizes = NULL;\n        return NULL;\n    }\n\n    struct TreeNode** queue = (struct TreeNode**)malloc(2000 * sizeof(struct TreeNode*));\n    int front = 0, rear = 0;\n    queue[rear++] = root;\n    int** result = (int**)malloc(2000 * sizeof(int*));\n    *returnColumnSizes = (int*)malloc(2000 * sizeof(int));\n    *returnSize = 0;\n\n    while (front < rear) {\n        int levelSize = rear - front;\n        int* currentLevel = (int*)malloc(levelSize * sizeof(int));\n        for (int i = 0; i < levelSize; i++) {\n            struct TreeNode* node = queue[front++];\n            currentLevel[i] = node->val;\n            if (node->left != NULL) {\n                queue[rear++] = node->left;\n            }\n            if (node->right != NULL) {\n                queue[rear++] = node->right;\n            }\n        }\n        result[*returnSize] = currentLevel;\n        (*returnColumnSizes)[*returnSize] = levelSize;\n        (*returnSize)++;\n    }\n\n    free(queue);\n    return result;\n}",
+      "timestamp": 1749336837,
+      "statusCode": 10,
+      "user": {
+        "username": "yosQbj5lkC",
+        "profile": {
+          "realName": "Henrique Freitas",
+          "userAvatar": "https://assets.leetcode.com/users/yosQbj5lkC/avatar_1748722942.png"
+        }
+      },
+      "lang": {
+        "name": "c",
+        "verboseName": "C"
+      },
+      "question": {
+        "questionId": "102",
+        "titleSlug": "binary-tree-level-order-traversal",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null,
+      "lastTestcase": "",
+      "codeOutput": "",
+      "expectedOutput": "",
+      "totalCorrect": 35,
+      "totalTestcases": 35,
+      "fullCodeOutput": null,
+      "testDescriptions": null,
+      "testBodies": null,
+      "testInfo": null,
+      "stdOutput": ""
+    }
+  }
+}

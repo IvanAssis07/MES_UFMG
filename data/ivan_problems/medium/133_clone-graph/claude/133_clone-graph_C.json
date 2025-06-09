@@ -1,48 +1,48 @@
 {
-    "data": {
-        "submissionDetails": {
-            "runtime": 3,
-            "runtimeDisplay": "3 ms",
-            "runtimePercentile": 79.99999999999999,
-            "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"0\", 18.3333], [\"2\", 1.6667], [\"3\", 39.4444], [\"4\", 4.4444], [\"5\", 0.5556], [\"7\", 20.5556], [\"8\", 7.7778], [\"9\", 1.1111], [\"10\", 1.1111]]}",
-            "memory": 11112000,
-            "memoryDisplay": "11.1 MB",
-            "memoryPercentile": 21.66669999999999,
-            "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"10600\", 0.5556], [\"10700\", 3.8889], [\"10800\", 9.4444], [\"10900\", 32.2222], [\"11000\", 18.3333], [\"11100\", 13.8889], [\"11200\", 9.4444], [\"11300\", 2.2222], [\"11500\", 1.1111], [\"11600\", 1.1111], [\"11700\", 1.6667], [\"14600\", 0.5556]]}",
-            "code": "#include <stdio.h>\n#include <stdlib.h>\n\n// Hash map structure for mapping original nodes to cloned nodes\nstruct MapNode {\n    struct Node* original;\n    struct Node* clone;\n    struct MapNode* next;\n};\n\nstruct HashMap {\n    struct MapNode** buckets;\n    int size;\n};\n\n// Hash function\nint hash(struct Node* node, int size) {\n    return ((long)node) % size;\n}\n\n// Create hash map\nstruct HashMap* createHashMap(int size) {\n    struct HashMap* map = (struct HashMap*)malloc(sizeof(struct HashMap));\n    map->size = size;\n    map->buckets = (struct MapNode**)calloc(size, sizeof(struct MapNode*));\n    return map;\n}\n\n// Insert into hash map\nvoid put(struct HashMap* map, struct Node* original, struct Node* clone) {\n    int index = hash(original, map->size);\n    struct MapNode* newNode = (struct MapNode*)malloc(sizeof(struct MapNode));\n    newNode->original = original;\n    newNode->clone = clone;\n    newNode->next = map->buckets[index];\n    map->buckets[index] = newNode;\n}\n\n// Get from hash map\nstruct Node* get(struct HashMap* map, struct Node* original) {\n    int index = hash(original, map->size);\n    struct MapNode* current = map->buckets[index];\n    while (current) {\n        if (current->original == original) {\n            return current->clone;\n        }\n        current = current->next;\n    }\n    return NULL;\n}\n\n// Free hash map\nvoid freeHashMap(struct HashMap* map) {\n    for (int i = 0; i < map->size; i++) {\n        struct MapNode* current = map->buckets[i];\n        while (current) {\n            struct MapNode* temp = current;\n            current = current->next;\n            free(temp);\n        }\n    }\n    free(map->buckets);\n    free(map);\n}\n\n// Create a new node\nstruct Node* createNode(int val, int numNeighbors) {\n    struct Node* node = (struct Node*)malloc(sizeof(struct Node));\n    node->val = val;\n    node->numNeighbors = numNeighbors;\n    if (numNeighbors > 0) {\n        node->neighbors = (struct Node**)malloc(numNeighbors * sizeof(struct Node*));\n    } else {\n        node->neighbors = NULL;\n    }\n    return node;\n}\n\n// DFS helper function\nstruct Node* dfs(struct Node* node, struct HashMap* map) {\n    if (!node) return NULL;\n    \n    // Check if node is already cloned\n    struct Node* cloned = get(map, node);\n    if (cloned) {\n        return cloned;\n    }\n    \n    // Create clone of current node\n    cloned = createNode(node->val, node->numNeighbors);\n    put(map, node, cloned);\n    \n    // Clone all neighbors\n    for (int i = 0; i < node->numNeighbors; i++) {\n        cloned->neighbors[i] = dfs(node->neighbors[i], map);\n    }\n    \n    return cloned;\n}\n\nstruct Node* cloneGraph(struct Node* s) {\n    if (!s) return NULL;\n    \n    // Create hash map to store original -> clone mapping\n    struct HashMap* map = createHashMap(101);  // Size based on constraint: max 100 nodes\n    \n    // Perform DFS to clone the graph\n    struct Node* result = dfs(s, map);\n    \n    // Clean up hash map\n    freeHashMap(map);\n    \n    return result;\n}",
-            "timestamp": 1749306680,
-            "statusCode": 10,
-            "user": {
-                "username": "IvanAssis",
-                "profile": {
-                    "realName": "IvanAssis",
-                    "userAvatar": "https://assets.leetcode.com/users/default_avatar.jpg"
-                }
-            },
-            "lang": {
-                "name": "c",
-                "verboseName": "C"
-            },
-            "question": {
-                "questionId": "133",
-                "titleSlug": "clone-graph",
-                "hasFrontendPreview": false
-            },
-            "notes": "",
-            "flagType": "WHITE",
-            "topicTags": [],
-            "runtimeError": null,
-            "compileError": null,
-            "lastTestcase": "",
-            "codeOutput": "",
-            "expectedOutput": "",
-            "totalCorrect": 22,
-            "totalTestcases": 22,
-            "fullCodeOutput": null,
-            "testDescriptions": null,
-            "testBodies": null,
-            "testInfo": null,
-            "stdOutput": ""
+  "data": {
+    "submissionDetails": {
+      "runtime": 3,
+      "runtimeDisplay": "3 ms",
+      "runtimePercentile": 79.99999999999999,
+      "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"0\", 18.3333], [\"2\", 1.6667], [\"3\", 39.4444], [\"4\", 4.4444], [\"5\", 0.5556], [\"7\", 20.5556], [\"8\", 7.7778], [\"9\", 1.1111], [\"10\", 1.1111]]}",
+      "memory": 11112000,
+      "memoryDisplay": "11.1 MB",
+      "memoryPercentile": 21.66669999999999,
+      "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"10600\", 0.5556], [\"10700\", 3.8889], [\"10800\", 9.4444], [\"10900\", 32.2222], [\"11000\", 18.3333], [\"11100\", 13.8889], [\"11200\", 9.4444], [\"11300\", 2.2222], [\"11500\", 1.1111], [\"11600\", 1.1111], [\"11700\", 1.6667], [\"14600\", 0.5556]]}",
+      "code": "#include <stdio.h>\n#include <stdlib.h>\n\n// Hash map structure for mapping original nodes to cloned nodes\nstruct MapNode {\n    struct Node* original;\n    struct Node* clone;\n    struct MapNode* next;\n};\n\nstruct HashMap {\n    struct MapNode** buckets;\n    int size;\n};\n\n// Hash function\nint hash(struct Node* node, int size) {\n    return ((long)node) % size;\n}\n\n// Create hash map\nstruct HashMap* createHashMap(int size) {\n    struct HashMap* map = (struct HashMap*)malloc(sizeof(struct HashMap));\n    map->size = size;\n    map->buckets = (struct MapNode**)calloc(size, sizeof(struct MapNode*));\n    return map;\n}\n\n// Insert into hash map\nvoid put(struct HashMap* map, struct Node* original, struct Node* clone) {\n    int index = hash(original, map->size);\n    struct MapNode* newNode = (struct MapNode*)malloc(sizeof(struct MapNode));\n    newNode->original = original;\n    newNode->clone = clone;\n    newNode->next = map->buckets[index];\n    map->buckets[index] = newNode;\n}\n\n// Get from hash map\nstruct Node* get(struct HashMap* map, struct Node* original) {\n    int index = hash(original, map->size);\n    struct MapNode* current = map->buckets[index];\n    while (current) {\n        if (current->original == original) {\n            return current->clone;\n        }\n        current = current->next;\n    }\n    return NULL;\n}\n\n// Free hash map\nvoid freeHashMap(struct HashMap* map) {\n    for (int i = 0; i < map->size; i++) {\n        struct MapNode* current = map->buckets[i];\n        while (current) {\n            struct MapNode* temp = current;\n            current = current->next;\n            free(temp);\n        }\n    }\n    free(map->buckets);\n    free(map);\n}\n\n// Create a new node\nstruct Node* createNode(int val, int numNeighbors) {\n    struct Node* node = (struct Node*)malloc(sizeof(struct Node));\n    node->val = val;\n    node->numNeighbors = numNeighbors;\n    if (numNeighbors > 0) {\n        node->neighbors = (struct Node**)malloc(numNeighbors * sizeof(struct Node*));\n    } else {\n        node->neighbors = NULL;\n    }\n    return node;\n}\n\n// DFS helper function\nstruct Node* dfs(struct Node* node, struct HashMap* map) {\n    if (!node) return NULL;\n    \n    // Check if node is already cloned\n    struct Node* cloned = get(map, node);\n    if (cloned) {\n        return cloned;\n    }\n    \n    // Create clone of current node\n    cloned = createNode(node->val, node->numNeighbors);\n    put(map, node, cloned);\n    \n    // Clone all neighbors\n    for (int i = 0; i < node->numNeighbors; i++) {\n        cloned->neighbors[i] = dfs(node->neighbors[i], map);\n    }\n    \n    return cloned;\n}\n\nstruct Node* cloneGraph(struct Node* s) {\n    if (!s) return NULL;\n    \n    // Create hash map to store original -> clone mapping\n    struct HashMap* map = createHashMap(101);  // Size based on constraint: max 100 nodes\n    \n    // Perform DFS to clone the graph\n    struct Node* result = dfs(s, map);\n    \n    // Clean up hash map\n    freeHashMap(map);\n    \n    return result;\n}",
+      "timestamp": 1749306680,
+      "statusCode": 10,
+      "user": {
+        "username": "IvanAssis",
+        "profile": {
+          "realName": "IvanAssis",
+          "userAvatar": "https://assets.leetcode.com/users/default_avatar.jpg"
         }
+      },
+      "lang": {
+        "name": "c",
+        "verboseName": "C"
+      },
+      "question": {
+        "questionId": "133",
+        "titleSlug": "clone-graph",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null,
+      "lastTestcase": "",
+      "codeOutput": "",
+      "expectedOutput": "",
+      "totalCorrect": 22,
+      "totalTestcases": 22,
+      "fullCodeOutput": null,
+      "testDescriptions": null,
+      "testBodies": null,
+      "testInfo": null,
+      "stdOutput": ""
     }
+  }
 }

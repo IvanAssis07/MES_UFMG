@@ -1,1 +1,48 @@
-{}
+{
+  "data": {
+    "submissionDetails": {
+      "runtime": 0,
+      "runtimeDisplay": "0 ms",
+      "runtimePercentile": 100.0,
+      "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"0\", 50.6927], [\"1\", 7.8401], [\"2\", 5.8879], [\"3\", 13.5548], [\"4\", 10.1385], [\"5\", 2.1568], [\"6\", 1.4641]]}",
+      "memory": 12924000,
+      "memoryDisplay": "12.9 MB",
+      "memoryPercentile": 8.453999999999992,
+      "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"11900\", 0.0315], [\"12000\", 1.039], [\"12100\", 2.0781], [\"12200\", 0.9603], [\"12300\", 0.5668], [\"12400\", 0.2676], [\"12500\", 3.2116], [\"12600\", 23.1423], [\"12700\", 33.9421], [\"12800\", 16.5145], [\"12900\", 9.7922]]}",
+      "code": "/**\n * Definition for singly-linked list.\n * struct ListNode {\n *     int val;\n *     struct ListNode *next;\n * };\n */\nstruct ListNode* createNode(int val) {\n    struct ListNode* node = (struct ListNode*)malloc(sizeof(struct ListNode));\n    node->val = val;\n    node->next = NULL;\n    return node;\n}\n\nstruct ListNode* addTwoNumbers(struct ListNode* l1, struct ListNode* l2) {\n    struct ListNode* dummyHead = createNode(0);\n    struct ListNode* current = dummyHead;\n    int carry = 0;\n\n    while (l1 != NULL || l2 != NULL || carry != 0) {\n        int x = (l1 != NULL) ? l1->val : 0;\n        int y = (l2 != NULL) ? l2->val : 0;\n        int sum = x + y + carry;\n        carry = sum / 10;\n\n        current->next = createNode(sum % 10);\n        current = current->next;\n\n        if (l1 != NULL) l1 = l1->next;\n        if (l2 != NULL) l2 = l2->next;\n    }\n\n    struct ListNode* result = dummyHead->next;\n    free(dummyHead); // libera o n\u00f3 sentinela\n    return result;\n}\n",
+      "timestamp": 1749257677,
+      "statusCode": 10,
+      "user": {
+        "username": "yosQbj5lkC",
+        "profile": {
+          "realName": "Henrique Freitas",
+          "userAvatar": "https://assets.leetcode.com/users/yosQbj5lkC/avatar_1748722942.png"
+        }
+      },
+      "lang": {
+        "name": "c",
+        "verboseName": "C"
+      },
+      "question": {
+        "questionId": "2",
+        "titleSlug": "add-two-numbers",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null,
+      "lastTestcase": "",
+      "codeOutput": "",
+      "expectedOutput": "",
+      "totalCorrect": 1569,
+      "totalTestcases": 1569,
+      "fullCodeOutput": null,
+      "testDescriptions": null,
+      "testBodies": null,
+      "testInfo": null,
+      "stdOutput": ""
+    }
+  }
+}

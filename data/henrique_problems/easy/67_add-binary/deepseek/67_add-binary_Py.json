@@ -4,11 +4,11 @@
       "runtime": 6,
       "runtimeDisplay": "6 ms",
       "runtimePercentile": 40.35349999999999,
-      "runtimeDistribution": "{\"lang\": \"python\", \"distribution\": [[\"0\", 38.313], [\"1\", 1.7854], [\"2\", 2.1315], [\"3\", 7.9249], [\"4\", 6.759], [\"5\", 2.7327], [\"6\", 3.1518], [\"7\", 14.8114], [\"8\", 5.3562], [\"9\", 2.3684], [\"10\", 1.8947], [\"11\", 5.9209], [\"12\", 0.9473], [\"13\", 0.5648]]}",
+      "runtimeDistribution": "{\"lang\": \"python3\", \"distribution\": [[\"0\", 38.313], [\"1\", 1.7854], [\"2\", 2.1315], [\"3\", 7.9249], [\"4\", 6.759], [\"5\", 2.7327], [\"6\", 3.1518], [\"7\", 14.8114], [\"8\", 5.3562], [\"9\", 2.3684], [\"10\", 1.8947], [\"11\", 5.9209], [\"12\", 0.9473], [\"13\", 0.5648]]}",
       "memory": 12492000,
       "memoryDisplay": "12.5 MB",
       "memoryPercentile": 54.618300000000005,
-      "memoryDistribution": "{\"lang\": \"python\", \"distribution\": [[\"12100\", 0.0547], [\"12200\", 0.8198], [\"12300\", 13.9005], [\"12400\", 30.6067], [\"12500\", 38.6774]]}",
+      "memoryDistribution": "{\"lang\": \"python3\", \"distribution\": [[\"12100\", 0.0547], [\"12200\", 0.8198], [\"12300\", 13.9005], [\"12400\", 30.6067], [\"12500\", 38.6774]]}",
       "code": "class Solution(object):\n    def addBinary(self, a, b):\n        \"\"\"\n        :type a: str\n        :type b: str\n        :rtype: str\n        \"\"\"\n        i = len(a) - 1\n        j = len(b) - 1\n        carry = 0\n        result = []\n        \n        while i >= 0 or j >= 0 or carry:\n            sum_val = carry\n            if i >= 0:\n                sum_val += int(a[i])\n                i -= 1\n            if j >= 0:\n                sum_val += int(b[j])\n                j -= 1\n            result.append(str(sum_val % 2))\n            carry = sum_val // 2\n        \n        return ''.join(reversed(result))",
       "timestamp": 1748825225,
       "statusCode": 10,
@@ -19,7 +19,7 @@
           "userAvatar": "https://assets.leetcode.com/users/yosQbj5lkC/avatar_1748722942.png"
         }
       },
-      "lang": { "name": "python", "verboseName": "Python" },
+      "lang": { "name": "python3", "verboseName": "Python" },
       "question": {
         "questionId": "67",
         "titleSlug": "add-binary",

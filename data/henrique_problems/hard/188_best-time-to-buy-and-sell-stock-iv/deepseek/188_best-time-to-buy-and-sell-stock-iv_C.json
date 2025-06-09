@@ -1,1 +1,45 @@
-{}
+{
+  "data": {
+    "submissionDetails": {
+      "runtime": 1,
+      "runtimeDisplay": "1 ms",
+      "runtimePercentile": 50.0,
+      "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"0\", 50.0], [\"1\", 7.8947], [\"2\", 2.6316], [\"3\", 15.7895], [\"4\", 7.8947], [\"11\", 2.6316], [\"14\", 2.6316], [\"40\", 2.6316], [\"42\", 2.6316]]}",
+      "memory": 8496000,
+      "memoryDisplay": "8.5 MB",
+      "memoryPercentile": 84.2105,
+      "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"8100\", 5.2632], [\"8200\", 10.5263], [\"8500\", 5.2632], [\"8600\", 15.7895], [\"8700\", 5.2632], [\"8800\", 5.2632], [\"9000\", 2.6316], [\"9100\", 2.6316], [\"9500\", 7.8947], [\"9600\", 15.7895], [\"9700\", 2.6316], [\"9800\", 10.5263], [\"10000\", 2.6316], [\"10900\", 2.6316]]}",
+      "code": "int maxProfit(int k, int* prices, int pricesSize) {\n    if (pricesSize <= 1 || k == 0) {\n        return 0;\n    }\n    \n    // If k is large enough, the problem becomes the same as unlimited transactions\n    if (k >= pricesSize / 2) {\n        int max_profit = 0;\n        for (int i = 1; i < pricesSize; i++) {\n            if (prices[i] > prices[i - 1]) {\n                max_profit += prices[i] - prices[i - 1];\n            }\n        }\n        return max_profit;\n    }\n    \n    // Initialize DP table\n    int dp[k + 1][pricesSize];\n    for (int i = 0; i <= k; i++) {\n        for (int j = 0; j < pricesSize; j++) {\n            dp[i][j] = 0;\n        }\n    }\n    \n    for (int i = 1; i <= k; i++) {\n        int max_diff = -prices[0];\n        for (int j = 1; j < pricesSize; j++) {\n            dp[i][j] = (dp[i][j - 1] > (prices[j] + max_diff)) ? dp[i][j - 1] : (prices[j] + max_diff);\n            max_diff = (max_diff > (dp[i - 1][j] - prices[j])) ? max_diff : (dp[i - 1][j] - prices[j]);\n        }\n    }\n    \n    return dp[k][pricesSize - 1];\n}",
+      "timestamp": 1749413272,
+      "statusCode": 10,
+      "user": {
+        "username": "yosQbj5lkC",
+        "profile": {
+          "realName": "Henrique Freitas",
+          "userAvatar": "https://assets.leetcode.com/users/yosQbj5lkC/avatar_1748722942.png"
+        }
+      },
+      "lang": { "name": "c", "verboseName": "C" },
+      "question": {
+        "questionId": "188",
+        "titleSlug": "best-time-to-buy-and-sell-stock-iv",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null,
+      "lastTestcase": "",
+      "codeOutput": "",
+      "expectedOutput": "",
+      "totalCorrect": 210,
+      "totalTestcases": 210,
+      "fullCodeOutput": null,
+      "testDescriptions": null,
+      "testBodies": null,
+      "testInfo": null,
+      "stdOutput": ""
+    }
+  }
+}

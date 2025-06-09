@@ -1,48 +1,48 @@
 {
-    "data": {
-        "submissionDetails": {
-            "runtime": 0,
-            "runtimeDisplay": "0 ms",
-            "runtimePercentile": 100.0,
-            "runtimeDistribution": "{\"lang\": \"python3\", \"distribution\": [[\"0\", 62.1161], [\"1\", 7.8989], [\"2\", 4.8239], [\"3\", 15.8983], [\"4\", 5.418]]}",
-            "memory": 17748000,
-            "memoryDisplay": "17.7 MB",
-            "memoryPercentile": 67.07799999999999,
-            "memoryDistribution": "{\"lang\": \"python3\", \"distribution\": [[\"17100\", 0.0042], [\"17300\", 0.0126], [\"17400\", 0.0879], [\"17500\", 0.9999], [\"17600\", 7.5433], [\"17700\", 24.2741], [\"17800\", 25.2531], [\"17900\", 17.873], [\"18000\", 18.6972]]}",
-            "code": "class Solution:\n    def isSubsequence(self, s: str, t: str) -> bool:\n        # Two pointers approach\n        i = 0  # pointer for s\n        j = 0  # pointer for t\n        \n        # Traverse through both strings\n        while i < len(s) and j < len(t):\n            if s[i] == t[j]:\n                i += 1  # move to next character in s\n            j += 1  # always move to next character in t\n        \n        # If we've matched all characters in s, it's a subsequence\n        return i == len(s)\n\n# Alternative one-liner solution using iteration\nclass SolutionAlternative:\n    def isSubsequence(self, s: str, t: str) -> bool:\n        it = iter(t)\n        return all(c in it for c in s)\n\n# For the follow-up question: optimized solution for multiple queries\nclass SolutionOptimized:\n    def __init__(self, t: str):\n        # Preprocess t to create a mapping of char -> list of indices\n        from collections import defaultdict\n        self.char_indices = defaultdict(list)\n        for i, char in enumerate(t):\n            self.char_indices[char].append(i)\n    \n    def isSubsequence(self, s: str) -> bool:\n        import bisect\n        prev_index = -1\n        \n        for char in s:\n            if char not in self.char_indices:\n                return False\n            \n            # Find the first occurrence of char after prev_index\n            indices = self.char_indices[char]\n            pos = bisect.bisect_right(indices, prev_index)\n            \n            if pos == len(indices):\n                return False\n            \n            prev_index = indices[pos]\n        \n        return True\n\n",
-            "timestamp": 1749247527,
-            "statusCode": 10,
-            "user": {
-                "username": "ZRlvkAicEr",
-                "profile": {
-                    "realName": "ZRlvkAicEr",
-                    "userAvatar": "https://assets.leetcode.com/users/ZRlvkAicEr/avatar_1749245074.png"
-                }
-            },
-            "lang": {
-                "name": "python3",
-                "verboseName": "Python3"
-            },
-            "question": {
-                "questionId": "392",
-                "titleSlug": "is-subsequence",
-                "hasFrontendPreview": false
-            },
-            "notes": "",
-            "flagType": "WHITE",
-            "topicTags": [],
-            "runtimeError": null,
-            "compileError": null,
-            "lastTestcase": "",
-            "codeOutput": "",
-            "expectedOutput": "",
-            "totalCorrect": 21,
-            "totalTestcases": 21,
-            "fullCodeOutput": null,
-            "testDescriptions": null,
-            "testBodies": null,
-            "testInfo": null,
-            "stdOutput": ""
+  "data": {
+    "submissionDetails": {
+      "runtime": 0,
+      "runtimeDisplay": "0 ms",
+      "runtimePercentile": 100.0,
+      "runtimeDistribution": "{\"lang\": \"python3\", \"distribution\": [[\"0\", 62.1161], [\"1\", 7.8989], [\"2\", 4.8239], [\"3\", 15.8983], [\"4\", 5.418]]}",
+      "memory": 17748000,
+      "memoryDisplay": "17.7 MB",
+      "memoryPercentile": 67.07799999999999,
+      "memoryDistribution": "{\"lang\": \"python3\", \"distribution\": [[\"17100\", 0.0042], [\"17300\", 0.0126], [\"17400\", 0.0879], [\"17500\", 0.9999], [\"17600\", 7.5433], [\"17700\", 24.2741], [\"17800\", 25.2531], [\"17900\", 17.873], [\"18000\", 18.6972]]}",
+      "code": "class Solution:\n    def isSubsequence(self, s: str, t: str) -> bool:\n        # Two pointers approach\n        i = 0  # pointer for s\n        j = 0  # pointer for t\n        \n        # Traverse through both strings\n        while i < len(s) and j < len(t):\n            if s[i] == t[j]:\n                i += 1  # move to next character in s\n            j += 1  # always move to next character in t\n        \n        # If we've matched all characters in s, it's a subsequence\n        return i == len(s)\n\n# Alternative one-liner solution using iteration\nclass SolutionAlternative:\n    def isSubsequence(self, s: str, t: str) -> bool:\n        it = iter(t)\n        return all(c in it for c in s)\n\n# For the follow-up question: optimized solution for multiple queries\nclass SolutionOptimized:\n    def __init__(self, t: str):\n        # Preprocess t to create a mapping of char -> list of indices\n        from collections import defaultdict\n        self.char_indices = defaultdict(list)\n        for i, char in enumerate(t):\n            self.char_indices[char].append(i)\n    \n    def isSubsequence(self, s: str) -> bool:\n        import bisect\n        prev_index = -1\n        \n        for char in s:\n            if char not in self.char_indices:\n                return False\n            \n            # Find the first occurrence of char after prev_index\n            indices = self.char_indices[char]\n            pos = bisect.bisect_right(indices, prev_index)\n            \n            if pos == len(indices):\n                return False\n            \n            prev_index = indices[pos]\n        \n        return True\n\n",
+      "timestamp": 1749247527,
+      "statusCode": 10,
+      "user": {
+        "username": "ZRlvkAicEr",
+        "profile": {
+          "realName": "ZRlvkAicEr",
+          "userAvatar": "https://assets.leetcode.com/users/ZRlvkAicEr/avatar_1749245074.png"
         }
+      },
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "question": {
+        "questionId": "392",
+        "titleSlug": "is-subsequence",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null,
+      "lastTestcase": "",
+      "codeOutput": "",
+      "expectedOutput": "",
+      "totalCorrect": 21,
+      "totalTestcases": 21,
+      "fullCodeOutput": null,
+      "testDescriptions": null,
+      "testBodies": null,
+      "testInfo": null,
+      "stdOutput": ""
     }
+  }
 }

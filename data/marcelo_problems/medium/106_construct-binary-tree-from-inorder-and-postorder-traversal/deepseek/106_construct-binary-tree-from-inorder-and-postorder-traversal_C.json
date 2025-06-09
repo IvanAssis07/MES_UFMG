@@ -1,1 +1,48 @@
-{}
+{
+  "data": {
+    "submissionDetails": {
+      "runtime": 1,
+      "runtimeDisplay": "1 ms",
+      "runtimePercentile": 94.4444,
+      "runtimeDistribution": "{\"lang\": \"c\", \"distribution\": [[\"0\", 5.5556], [\"1\", 0.5051], [\"2\", 1.0101], [\"3\", 6.5657], [\"4\", 2.5253], [\"5\", 5.0505], [\"6\", 5.0505], [\"7\", 27.2727], [\"8\", 8.5859], [\"9\", 4.5455], [\"10\", 9.0909], [\"11\", 13.6364]]}",
+      "memory": 17872000,
+      "memoryDisplay": "17.9 MB",
+      "memoryPercentile": 5.050300000000011,
+      "memoryDistribution": "{\"lang\": \"c\", \"distribution\": [[\"10800\", 0.5051], [\"10900\", 2.0202], [\"11100\", 0.5051], [\"11200\", 1.0101], [\"14200\", 13.1313], [\"14300\", 31.3131], [\"14400\", 28.2828], [\"14500\", 10.6061], [\"14600\", 4.0404], [\"14700\", 2.0202], [\"14800\", 0.5051], [\"15200\", 0.5051], [\"15300\", 0.5051]]}",
+      "code": "#include <stdio.h>\n#include <stdlib.h>\n\nstruct TreeNode* buildTreeHelper(int* inorder, int inStart, int inEnd, int* postorder, int postStart, int postEnd, int* postIndex, int* inorderMap) {\n    if (inStart > inEnd) {\n        return NULL;\n    }\n    \n    int rootVal = postorder[postEnd];\n    struct TreeNode* root = (struct TreeNode*)malloc(sizeof(struct TreeNode));\n    root->val = rootVal;\n    \n    int inRootIndex = inorderMap[rootVal + 3000]; // Adjusting for negative values\n    \n    int leftSubtreeSize = inRootIndex - inStart;\n    \n    root->left = buildTreeHelper(inorder, inStart, inRootIndex - 1, postorder, postStart, postStart + leftSubtreeSize - 1, postIndex, inorderMap);\n    root->right = buildTreeHelper(inorder, inRootIndex + 1, inEnd, postorder, postStart + leftSubtreeSize, postEnd - 1, postIndex, inorderMap);\n    \n    return root;\n}\n\nstruct TreeNode* buildTree(int* inorder, int inorderSize, int* postorder, int postorderSize) {\n    if (inorderSize == 0 || postorderSize == 0) {\n        return NULL;\n    }\n    \n    // Create a map to store the indices of inorder elements for quick lookup\n    int* inorderMap = (int*)malloc(6001 * sizeof(int)); // Range from -3000 to 3000\n    for (int i = 0; i < inorderSize; i++) {\n        inorderMap[inorder[i] + 3000] = i;\n    }\n    \n    int postIndex = postorderSize - 1; // The root is the last element in postorder\n    \n    struct TreeNode* root = buildTreeHelper(inorder, 0, inorderSize - 1, postorder, 0, postorderSize - 1, &postIndex, inorderMap);\n    \n    free(inorderMap);\n    return root;\n}",
+      "timestamp": 1749414185,
+      "statusCode": 10,
+      "user": {
+        "username": "ZRlvkAicEr",
+        "profile": {
+          "realName": "ZRlvkAicEr",
+          "userAvatar": "https://assets.leetcode.com/users/ZRlvkAicEr/avatar_1749245074.png"
+        }
+      },
+      "lang": {
+        "name": "c",
+        "verboseName": "C"
+      },
+      "question": {
+        "questionId": "106",
+        "titleSlug": "construct-binary-tree-from-inorder-and-postorder-traversal",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null,
+      "lastTestcase": "",
+      "codeOutput": "",
+      "expectedOutput": "",
+      "totalCorrect": 202,
+      "totalTestcases": 202,
+      "fullCodeOutput": null,
+      "testDescriptions": null,
+      "testBodies": null,
+      "testInfo": null,
+      "stdOutput": ""
+    }
+  }
+}
